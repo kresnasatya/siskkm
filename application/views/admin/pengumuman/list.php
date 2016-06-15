@@ -17,9 +17,9 @@
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <h3>List Data Pengumuman</h3>
+          <h3>Daftar Data Pengumuman</h3>
           <div class="col-md-4">
-            <a href="<?php echo site_url('admin/pengumuman/create');?>" class="btn btn-primary">Tambah Pengumuman</a>
+            <a href="<?php echo site_url('admin/pengumuman/tambah');?>" class="btn btn-primary">Tambah Pengumuman</a>
           </div>
           <div class="col-md-4 text-center">
               <div style="margin-top: 4px"  id="message">
@@ -32,9 +32,9 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Judul</th>
+                    <th>Judul Pengumuman</th>
                     <th>Tanggal</th>
-                    <th>Pengarang</th>
+                    <th>Pembuat</th>
                 </tr>
             </thead>
             <tbody>
@@ -43,7 +43,7 @@
                 foreach ($pengumuman as $row): ?>
                 <tr>
                   <td><?php echo ++$start ?></td>
-                  <td><a href="<?php echo site_url('admin/pengumuman/update/'.$row->id); ?>"><?php echo $row->judul; ?></a></td>
+                  <td><a href="<?php echo site_url('admin/pengumuman/ubah/'.$row->id); ?>"><?php echo $row->judul; ?></a></td>
                   <td><?php echo $row->tanggal; ?></td>
                   <td><?php echo $row->nama_depan.''.$row->nama_belakang; ?></td>
                 </tr>
