@@ -32,7 +32,7 @@
 					    <input type="text" name="perihal" value="Kritik dan Saran" class="form-control" id="exampleInputEmail1" readonly="">
 					  </div>
 					  <div class="form-group">
-					  	<label for="message1">pesan</label>
+					  	<label for="message1">Pesan</label>
 					  	<textarea class="form-control" name="pesan" id="message1" rows="3" required=""></textarea>
 					  </div>
 					  <button type="submit" class="btn btn-theme">Submit</button>

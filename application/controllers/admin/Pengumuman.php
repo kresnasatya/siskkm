@@ -14,7 +14,7 @@ class Pengumuman extends Admin_Controller{
     $this->template->load('templates/admin/pengumuman_template','admin/pengumuman/list',$data);
   }
 
-  public function create(){
+  public function tambah(){
     $this->rules();
     if ($this->form_validation->run() == FALSE) {
       $data = array('current_user' => $this->ion_auth->user()->row());
@@ -24,24 +24,19 @@ class Pengumuman extends Admin_Controller{
       $isi_pengumuman = $this->input->post('isi_pengumuman');
       $slug = url_title($judul, 'dash', TRUE);
       $user = $this->ion_auth->user()->row();
-      $config['upload_path'] = './gambar_posting/';
-      $config['allowed_types'] = 'jpeg|jpg|gif|png';
-      $this->load->library('upload',$config);
-      $this->upload->do_upload('foto');
-      $data = array('upload_data' => $this->upload->data());
-      $kirim = array(
+      $data = array(
                     'judul' => $judul,
                     'isi_pengumuman' => $isi_pengumuman,
                     'slug' => $slug,
                     'id_user' => $user->id, // baca dokumentasi ion auth
-                    'foto' => $data['upload_data']['file_name']);
-      $this->pengumuman->insert($kirim);
-      $this->session->set_flashdata('message','Tambah pengumuman berhasil.');
+                    );
+      $this->pengumuman->insert($data);
+      $this->session->set_flashdata('message','Pengumuman berhasil ditambah.');
       redirect(site_url('admin/pengumuman'));
     }
   }
 
-  public function update($id){
+  public function ubah($id){
     $this->rules();
     if ($this->form_validation->run() == FALSE) {
       $row = $this->pengumuman->get_by_id($id);
@@ -65,40 +60,23 @@ class Pengumuman extends Admin_Controller{
       $isi_pengumuman = $this->input->post('isi_pengumuman');
       $slug = url_title($judul, 'dash', TRUE);
       $user = $this->ion_auth->user()->row();
-      if ($_FILES['foto']['name'] == "") {
-          $d = array(
-          'judul' => $judul,
-          'isi_pengumuman' => $isi_pengumuman,
-          'slug' => $slug,
-          'id_user' => $user->id);
-          $this->pengumuman->update($id,$d);
-          $this->session->set_flashdata('message','Update pengumuman berhasil.');
-          redirect(site_url('admin/pengumuman'));
-      }else{
-        $config['upload_path'] = './gambar_posting/';
-        $config['allowed_types'] = 'gif|jpg|png';
-        $this->load->library('upload',$config);
-        $this->upload->do_upload('foto');
-        $data = array('upload_data' => $this->upload->data());
-        $d = array(
-                  'judul' => $judul,
-                  'isi_pengumuman' => $isi_pengumuman,
-                  'foto' => $data['upload_data']['file_name'],
-                  'slug' => $slug,
-                  'id_user' => $user->id);
-        $this->pengumuman->update($id,$d);
-        $this->session->set_flashdata('message','Update pengumuman berhasil.');
-        redirect(site_url('admin/pengumuman'));
-      }
+      $data = array(
+                 'judul' => $judul,
+                 'isi_pengumuman' => $isi_pengumuman,
+                 'slug' => $slug,
+                 'id_user' => $user->id);
+      $this->pengumuman->update($id,$data);
+      $this->session->set_flashdata('message','Pengumuman berhasil diubah.');
+      redirect(site_url('admin/pengumuman'));
     }
   }
 
-  public function delete($id){
+  public function hapus($id){
     $row = $this->pengumuman->get_by_id($id);
 
     if ($row) {
       $this->pengumuman->delete($id);
-      $this->session->set_flashdata('message', 'Hapus pengumuman berhasil.');
+      $this->session->set_flashdata('message', 'Pengumuman berhasil dihapus.');
       redirect(site_url('admin/pengumuman'));
     }else {
       $this->session->set_flashdata('message', 'Data tidak ditemukan.');
