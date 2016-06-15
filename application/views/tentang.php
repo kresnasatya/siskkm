@@ -17,7 +17,7 @@
         Sistem ini ditujukan kepada mahasiswa untuk mengelola SKKM yang dimiliki dan UP2KK untuk memvalidasi SKKM.
         Dengan kehadiran sistem ini dapat memangkas waktu dalam merekap SKKM dan mahasiswa dapat mengunggah SKKM yang dimilki setiap saat.
       </p>
-      <p><br/><a href="<?php echo site_url('contact'); ?>" class="btn btn-theme">Kontak</a></p>
+      <p><br/><a href="<?php echo site_url('kontak'); ?>" class="btn btn-theme">Kontak</a></p>
     </div>
   </div><! --/row -->
  </div><! --/container -->
