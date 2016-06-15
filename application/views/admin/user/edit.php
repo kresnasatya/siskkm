@@ -93,8 +93,8 @@
           </div><!-- /. box-body -->
           <?php echo form_hidden('user_id',$current_user->id); ?>
           <div class="box-footer">
+            <?php echo anchor(site_url('admin/user/profil'), 'Kembali', 'class="btn btn-default"'); ?>
             <?php echo form_submit('submit', 'Edit', 'class="btn btn-warning"'); ?>
-            <a href="<?php echo site_url('admin/user/profile') ?>" class="btn btn-default">Kembali</a>
           </div><!-- /. box-footer -->
         <?php echo form_close(); ?>
         <!-- /.form end -->
