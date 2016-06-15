@@ -35,6 +35,7 @@
                     <th>Judul Pengumuman</th>
                     <th>Tanggal</th>
                     <th>Pembuat</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -46,6 +47,12 @@
                   <td><a href="<?php echo site_url('admin/pengumuman/ubah/'.$row->id); ?>"><?php echo $row->judul; ?></a></td>
                   <td><?php echo $row->tanggal; ?></td>
                   <td><?php echo $row->nama_depan.''.$row->nama_belakang; ?></td>
+                  <td><?php
+                        $hapus = array(
+                                  'class' => 'btn btn-sm btn-danger',
+                                  'onclick' => 'javascript: return confirm(\'Kamu Yakin ?\')'
+                                );
+                                echo anchor(site_url('admin/pengumuman/hapus/'.$row->id),'Hapus',$hapus);?></td>
                 </tr>
               <?php endforeach; ?>
             </tbody>

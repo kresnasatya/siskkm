@@ -37,7 +37,8 @@
             <?php echo form_error('isi_pengumuman'); ?>
             <textarea name="isi_pengumuman" class="ckeditor" id="ckeditor"></textarea>
           </div>
-          <?php echo form_submit('submit','Submit','class="btn btn-primary"'); ?>
+          <?php echo anchor(site_url('admin/pengumuman'),'Kembali','class="btn btn-default"'); ?>
+          <?php echo form_submit('submit','Tambah','class="btn btn-primary"'); ?>
         </div>
         <?php echo form_close(); ?>
       </div>

@@ -40,12 +40,6 @@
           <?php echo form_hidden('id',$id); ?>
           <?php echo anchor(site_url('admin/pengumuman'),'Kembali','class="btn btn-default"'); ?>
           <?php echo form_submit('submit','Edit','class="btn btn-warning"'); ?>
-          <?php
-                $hapus = array(
-                          'class' => 'btn btn-danger',
-                          'onclick' => 'javascript: return confirm(\'Are You Sure ?\')'
-                        );
-                        echo anchor(site_url('admin/pengumuman/delete/'.$id),'Hapus',$hapus);?>
         </div>
         <?php echo form_close(); ?>
       </div>
