@@ -9,14 +9,14 @@ class Home_model extends CI_Model{
   }
 
   public function pengumuman(){
-    $sql = "SELECT pengumuman.id, judul, isi_pengumuman, slug, tanggal, users.nama_depan, users.nama_belakang, foto
+    $sql = "SELECT pengumuman.id, judul, isi_pengumuman, slug, tanggal, users.nama_depan, users.nama_belakang
             FROM pengumuman
             INNER JOIN users ON users.id=pengumuman.id_user";
     return $this->db->query($sql)->result();
   }
 
   public function pengumuman_paging($limit){
-    $sql = "SELECT pengumuman.id, judul, isi_pengumuman, slug, tanggal, users.nama_depan, users.nama_belakang, foto
+    $sql = "SELECT pengumuman.id, judul, isi_pengumuman, slug, tanggal, users.nama_depan, users.nama_belakang
             FROM pengumuman
             INNER JOIN users ON users.id=pengumuman.id_user
             limit $limit[perpage]
@@ -26,7 +26,7 @@ class Home_model extends CI_Model{
 
   public function single($id){
     $sql = "SELECT
-              pengumuman.id, judul, isi_pengumuman, tanggal, slug, users.nama_depan, users.nama_belakang, foto
+              pengumuman.id, judul, isi_pengumuman, tanggal, slug, users.nama_depan, users.nama_belakang
             FROM
               pengumuman, users
             WHERE
