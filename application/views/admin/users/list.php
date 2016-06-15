@@ -18,7 +18,7 @@
         <div class="box-header">
           <h3>Daftar Data Users</h3>
           <div class="col-md-4">
-            <a href="<?php echo site_url('admin/users/create');?>" class="btn btn-primary">Tambah Users</a>
+            <a href="<?php echo site_url('admin/users/tambah');?>" class="btn btn-primary">Tambah Users</a>
           </div>
           <div class="col-md-4 text-center">
               <div style="margin-top: 4px"  id="message">
@@ -35,6 +35,7 @@
                       <th>Nama</th>
                       <th>Username</th>
                       <th>Login Terakhir</th>
+                      <th>Aksi</th>
                   </tr>
               </thead>
               <tbody>
@@ -45,13 +46,23 @@
           		            <td><?php echo ++$start ?></td>
                           <td>
                             <?php if ($current_user->id != $user->id): ?>
-                              <a href="<?php echo site_url('admin/users/update/'.$user->id); ?>"><?php echo $user->nama_depan.' '.$user->nama_belakang; ?></a>
+                              <a href="<?php echo site_url('admin/users/ubah/'.$user->id); ?>"><?php echo $user->nama_depan.' '.$user->nama_belakang; ?></a>
                             <?php else: ?>
                               <?php echo $user->nama_depan.' '.$user->nama_belakang; ?>
                             <?php endif; ?>
                           </td>
                           <td><?php echo $user->username; ?></td>
                           <td><?php echo date('Y-m-d H:i:s', $user->last_login); ?></td>
+                          <td>
+                              <?php if ($current_user->id != $user->id): ?>
+                              <?php
+                                  $hapus = array(
+                                                'class' => 'btn btn-sm btn-danger',
+                                                'onclick' => 'javascript: return confirm(\'Kamu Yakin ?\')');
+                                  echo anchor(site_url('admin/users/hapus/'.$user->id),'Hapus',$hapus);
+                               ?>
+                              <?php endif; ?>
+                          </td>
           	        </tr>
                   <?php endforeach; ?>
               </tbody>

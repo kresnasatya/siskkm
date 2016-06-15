@@ -10,11 +10,8 @@
     <link rel="stylesheet" href="<?php echo base_url('adminlte/bootstrap/css/bootstrap.min.css');?>">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="<?php echo base_url('adminlte/font-awesome/css/font-awesome.min.css');?>">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="<?php echo base_url('adminlte/ionic/ionicons.min.css');?>">
     <!-- Datatables -->
     <link rel="stylesheet" href="<?php echo base_url('adminlte/plugins/datatables/dataTables.bootstrap.css');?>">
-    <link rel="stylesheet" href="<?php echo base_url('adminlte/plugins/datatables/extensions/Buttons/css/buttons.bootstrap.min.css');?>">
     <!-- Select2 CSS -->
     <link rel="stylesheet" href="<?php echo base_url('adminlte/plugins/select2/select2.min.css');?>">
     <!-- Theme style -->
@@ -151,14 +148,6 @@
     <!-- Datatables -->
     <script src="<?php echo base_url('adminlte/plugins/datatables/jquery.dataTables.min.js');?>"></script>
     <script src="<?php echo base_url('adminlte/plugins/datatables/dataTables.bootstrap.min.js');?>"></script>
-    <script src="<?php echo base_url('adminlte/plugins/datatables/extensions/Buttons/js/dataTables.buttons.min.js');?>"></script>
-    <script src="<?php echo base_url('adminlte/plugins/datatables/extensions/Buttons/js/buttons.bootstrap.min.js');?>"></script>
-    <script src="<?php echo base_url('adminlte/plugins/datatables/extensions/JSZip/jszip.min.js');?>"></script>
-    <script src="<?php echo base_url('adminlte/plugins/datatables/extensions/pdfmake/build/pdfmake.min.js');?>"></script>
-    <script src="<?php echo base_url('adminlte/plugins/datatables/extensions/pdfmake/build/vfs_fonts.js');?>"></script>
-    <script src="<?php echo base_url('adminlte/plugins/datatables/extensions/Buttons/js/buttons.html5.min.js');?>"></script>
-    <script src="<?php echo base_url('adminlte/plugins/datatables/extensions/Buttons/js/buttons.print.min.js');?>"></script>
-    <script src="<?php echo base_url('adminlte/plugins/datatables/extensions/Buttons/js/buttons.colVis.min.js');?>"></script>
     <!-- SlimScroll -->
     <script src="<?php echo base_url('adminlte/plugins/slimScroll/jquery.slimscroll.min.js');?>"></script>
     <!-- FastClick -->
@@ -170,16 +159,9 @@
     <!-- page script-->
     <script>
       $(document).ready(function () {
-        var table = $('#bobotskkmtable').DataTable( {
-          lengthChange: false,
-          buttons: ['copy','excel','pdf','print','colvis']
-        });
-        table.buttons().container()
-          .appendTo('#bobotskkmtable_wrapper .col-sm-6:eq(0)');
-
-        $(".select2").select2({
-          placeholder: "Please Select"
-        });
+        $("#jenistable").DataTable();
+        $("#tingkattable").DataTable();
+        $("#sebagaitable").DataTable();
       });
     </script>
   </body>

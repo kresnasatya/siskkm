@@ -1,7 +1,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Form Users
+    Tambah User
   </h1>
   <ol class="breadcrumb">
     <li><a href="<?php echo site_url('admin/beranda');?>"><i class="fa fa-home"></i> Beranda</a></li>
@@ -15,7 +15,7 @@
     <div class="col-md-12">
       <div class="box box-primary">
         <!-- form start-->
-        <?php echo form_open($action); ?>
+        <?php echo form_open('admin/users/tambah'); ?>
           <div class="box-body">
             <div class="form-group">
               <?php echo form_label('Nama depan','nama_depan'); ?>
@@ -169,8 +169,8 @@
             </div>
           </div><!-- /. box-body -->
           <div class="box-footer">
-            <a href="<?php echo site_url('admin/users') ?>" class="btn btn-default">Kembali</a>
-            <?php echo form_submit('submit', $button, 'class="btn btn-primary"'); ?>
+            <?php echo anchor(site_url('admin/users'),'Kembali','class="btn btn-default"'); ?>
+            <?php echo form_submit('submit', 'Tambah', 'class="btn btn-primary"'); ?>
           </div><!-- /. box-footer -->
         <?php echo form_close(); ?>
         <!-- /.form end -->

@@ -18,28 +18,22 @@ class Users extends Admin_Controller{
         $this->template->load('templates/admin/users_template','admin/users/list',$data);
     }
 
-    public function create(){
-        $data = array(
-                      'button' => 'Tambah',
-                      'action' => 'admin/users/create_action',
-                      'groups' => $this->ion_auth->groups()->result(),
-                      'dd_jurusan' => $this->users_model->get_jurusan(),
-                      'jurusan_selected' => $this->input->post('id_jurusan') ? $this->input->post('id_jurusan') : '',
-                      'dd_prodi' => $this->users_model->get_prodi(),
-                      'prodi_selected' => $this->input->post('id_prodi') ? $this->input->post('id_prodi') : '',
-                      'dd_semester' => $this->users_model->get_semester(),
-                      'semester_selected' => $this->input->post('id_semester') ? $this->input->post('id_semester') : '',
-                      'dd_kelas' => $this->users_model->get_kelas(),
-                      'kelas_selected' => $this->input->post('id_kelas') ? $this->input->post('id_kelas') : '',
-                      'current_user' => $this->ion_auth->user()->row());
-
-        $this->template->load('templates/admin/users_template','admin/users/add',$data);
-    }
-
-    public function create_action(){
-        $this->rules_create();
+    public function tambah(){
+        $this->rules_tambah();
         if ($this->form_validation->run() === FALSE) {
-          $this->create();
+          $data = array(
+                        'groups' => $this->ion_auth->groups()->result(),
+                        'dd_jurusan' => $this->users_model->get_jurusan(),
+                        'jurusan_selected' => $this->input->post('id_jurusan') ? $this->input->post('id_jurusan') : '',
+                        'dd_prodi' => $this->users_model->get_prodi(),
+                        'prodi_selected' => $this->input->post('id_prodi') ? $this->input->post('id_prodi') : '',
+                        'dd_semester' => $this->users_model->get_semester(),
+                        'semester_selected' => $this->input->post('id_semester') ? $this->input->post('id_semester') : '',
+                        'dd_kelas' => $this->users_model->get_kelas(),
+                        'kelas_selected' => $this->input->post('id_kelas') ? $this->input->post('id_kelas') : '',
+                        'current_user' => $this->ion_auth->user()->row());
+
+          $this->template->load('templates/admin/users_template','admin/users/add',$data);
         }else {
           $username = $this->input->post('username');
           $email = $this->input->post('email');
@@ -64,41 +58,33 @@ class Users extends Admin_Controller{
         }
     }
 
-    public function update($user_id = NULL){
-      $user_id = $this->input->post('user_id') ? $this->input->post('user_id') : $user_id;
-
-      if ($user = $this->ion_auth->user((int) $user_id)->row()) {
-        $data = array(
-                      'user' => $user,
-                      'button' => 'Edit',
-                      'action' => 'admin/users/update_action',
-                      'groups' => $this->ion_auth->groups()->result(),
-                      'usergroups' => array(),
-                      'dd_jurusan' => $this->users_model->get_jurusan(),
-                      'dd_prodi' => $this->users_model->get_prodi(),
-                      'dd_kelas' => $this->users_model->get_kelas(),
-                      'dd_semester' => $this->users_model->get_semester(),
-                      'current_user' => $this->ion_auth->user()->row());
-
-      }else {
-        $this->session->set_flashdata('message','User tidak ada');
-        redirect('admin/users','refresh');
-      }
-      $data['groups'] = $this->ion_auth->groups()->result();
-      $data['usergroups'] = array();
-      if ($usergroups = $this->ion_auth->get_users_groups($user->id)->result()) {
-        foreach ($usergroups as $group) {
-          $data['usergroups'][] = $group->id;
-        }
-      }
-      $this->template->load('templates/admin/users_template','admin/users/edit',$data);
-
-      }
-
-    public function update_action(){
-      $this->rules_update();
+    public function ubah($user_id = NULL){
+      $this->rules_ubah();
       if ($this->form_validation->run() === FALSE) {
-        $this->update();
+        $user_id = $this->input->post('user_id') ? $this->input->post('user_id') : $user_id;
+
+        if ($user = $this->ion_auth->user((int) $user_id)->row()) {
+          $data = array(
+                        'user' => $user,
+                        'groups' => $this->ion_auth->groups()->result(),
+                        'usergroups' => array(),
+                        'dd_jurusan' => $this->users_model->get_jurusan(),
+                        'dd_prodi' => $this->users_model->get_prodi(),
+                        'dd_kelas' => $this->users_model->get_kelas(),
+                        'dd_semester' => $this->users_model->get_semester(),
+                        'current_user' => $this->ion_auth->user()->row());
+        }else {
+          $this->session->set_flashdata('message','User tidak ada');
+          redirect('admin/users','refresh');
+        }
+        $data['groups'] = $this->ion_auth->groups()->result();
+        $data['usergroups'] = array();
+        if ($usergroups = $this->ion_auth->get_users_groups($user->id)->result()) {
+          foreach ($usergroups as $group) {
+            $data['usergroups'][] = $group->id;
+          }
+        }
+        $this->template->load('templates/admin/users_template','admin/users/edit',$data);
       }else {
         $user_id = $this->input->post('user_id');
         $new_data = array(
@@ -129,7 +115,7 @@ class Users extends Admin_Controller{
     }
   }
 
-    public function delete($user_id = NULL)
+    public function hapus($user_id = NULL)
     {
       if (is_null($user_id)) {
         $this->session->set_flashdata('message','Tidak ada data user untuk dihapus');
@@ -141,7 +127,7 @@ class Users extends Admin_Controller{
       redirect('admin/users','refresh');
     }
 
-    public function rules_create(){
+    public function rules_tambah(){
       $this->form_validation->set_rules('username', 'username', 'trim|required|is_unique[users.username]');
       $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[users.email]');
       $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]|max_length[20]');
@@ -158,7 +144,7 @@ class Users extends Admin_Controller{
       $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
 
-    public function rules_update(){
+    public function rules_ubah(){
       $this->form_validation->set_rules('username', 'username', 'trim|required');
       $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
       $this->form_validation->set_rules('nama_depan', 'Nama depan', 'trim|required');

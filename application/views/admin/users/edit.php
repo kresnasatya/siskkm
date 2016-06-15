@@ -1,7 +1,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Form Users
+    Edit User
   </h1>
   <ol class="breadcrumb">
     <li><a href="<?php echo site_url('admin/beranda');?>"><i class="fa fa-home"></i> Beranda</a></li>
@@ -15,7 +15,7 @@
     <div class="col-md-12">
       <div class="box box-primary">
         <!-- form start-->
-        <?php echo form_open($action); ?>
+        <?php echo form_open('admin/users/ubah'); ?>
           <div class="box-body">
             <div class="form-group">
               <?php echo form_label('Nama depan','nama_depan'); ?>
@@ -140,14 +140,8 @@
           </div><!-- /. box-body -->
           <?php echo form_hidden('user_id',$user->id); ?>
           <div class="box-footer">
-            <a href="<?php echo site_url('admin/users') ?>" class="btn btn-default">Kembali</a>
-            <?php echo form_submit('submit', $button, 'class="btn btn-warning"'); ?>
-            <?php
-                $hapus = array(
-                              'class' => 'btn btn-danger',
-                              'onclick' => 'javascript: return confirm(\'Are You Sure ?\')');
-                echo anchor(site_url('admin/users/delete/'.$user->id),'Hapus',$hapus);
-             ?>
+            <?php echo anchor(site_url('admin/users'),'Kembali','class="btn btn-default"'); ?>
+            <?php echo form_submit('submit', 'Edit', 'class="btn btn-warning"'); ?>
           </div><!-- /. box-footer -->
         <?php echo form_close(); ?>
         <!-- /.form end -->
