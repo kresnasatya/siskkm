@@ -15,7 +15,7 @@
   <div class="row">
     <div class="col-md-12">
       <div class="box box-primary">
-        <?php echo form_open_multipart('admin/pengumuman/create'); ?>
+        <?php echo form_open('admin/pengumuman/tambah'); ?>
         <div class="box-body">
           <div class="form-group">
             <?php echo form_label('Judul Pengumuman','judul'); ?>
@@ -36,10 +36,6 @@
             <?php echo form_label('Isi','isi_pengumuman'); ?>
             <?php echo form_error('isi_pengumuman'); ?>
             <textarea name="isi_pengumuman" class="ckeditor" id="ckeditor"></textarea>
-          </div>
-          <div class="form-group">
-            <?php echo form_label('Foto','foto'); ?>
-            <input type="file" name="foto" class="form-control">
           </div>
           <?php echo form_submit('submit','Submit','class="btn btn-primary"'); ?>
         </div>
