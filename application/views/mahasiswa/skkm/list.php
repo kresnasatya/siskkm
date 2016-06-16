@@ -17,7 +17,7 @@
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <h3>List Data SKKM</h3>
+          <h3>Daftar Data SKKM</h3>
           <div class="col-md-4">
             <a href="<?php echo site_url('mahasiswa/skkm/tambah');?>" class="btn btn-primary">Tambah SKKM</a>
           </div>

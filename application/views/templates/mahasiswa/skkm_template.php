@@ -10,8 +10,10 @@
     <link rel="stylesheet" href="<?php echo base_url('adminlte/bootstrap/css/bootstrap.min.css');?>">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="<?php echo base_url('adminlte/font-awesome/css/font-awesome.min.css');?>">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="<?php echo base_url('adminlte/ionic/css/ionicons.min.css');?>">
+    <!-- Datatables -->
+    <link rel="stylesheet" href="<?php echo base_url('adminlte/plugins/datatables/dataTables.bootstrap.css');?>">
+    <!-- Select2 CSS -->
+    <link rel="stylesheet" href="<?php echo base_url('adminlte/plugins/select2/select2.min.css');?>">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?php echo base_url('adminlte/dist/css/AdminLTE.min.css');?>">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -137,19 +139,22 @@
     <!-- Datatables -->
     <script src="<?php echo base_url('adminlte/plugins/datatables/jquery.dataTables.min.js');?>"></script>
     <script src="<?php echo base_url('adminlte/plugins/datatables/dataTables.bootstrap.min.js');?>"></script>
-    <script src="<?php echo base_url('adminlte/plugins/datatables/extensions/Buttons/js/dataTables.buttons.min.js');?>"></script>
-    <script src="<?php echo base_url('adminlte/plugins/datatables/extensions/Buttons/js/buttons.bootstrap.min.js');?>"></script>
-    <script src="<?php echo base_url('adminlte/plugins/datatables/extensions/JSZip/jszip.min.js');?>"></script>
-    <script src="<?php echo base_url('adminlte/plugins/datatables/extensions/pdfmake/build/pdfmake.min.js');?>"></script>
-    <script src="<?php echo base_url('adminlte/plugins/datatables/extensions/pdfmake/build/vfs_fonts.js');?>"></script>
-    <script src="<?php echo base_url('adminlte/plugins/datatables/extensions/Buttons/js/buttons.html5.min.js');?>"></script>
-    <script src="<?php echo base_url('adminlte/plugins/datatables/extensions/Buttons/js/buttons.print.min.js');?>"></script>
-    <script src="<?php echo base_url('adminlte/plugins/datatables/extensions/Buttons/js/buttons.colVis.min.js');?>"></script>
     <!-- SlimScroll -->
     <script src="<?php echo base_url('adminlte/plugins/slimScroll/jquery.slimscroll.min.js');?>"></script>
     <!-- FastClick -->
     <script src="<?php echo base_url('adminlte/plugins/fastclick/fastclick.min.js');?>"></script>
     <!-- AdminLTE App -->
     <script src="<?php echo base_url('adminlte/dist/js/app.min.js');?>"></script>
+    <!-- Select2 Js -->
+    <script src="<?php echo base_url('adminlte/plugins/select2/select2.min.js');?>"></script>
+    <!-- page script-->
+    <script>
+      $(document).ready(function(){
+        $("#skkmtable").DataTable();
+        $(".select2").select2({
+          placeholder: "Silahkan Pilih"
+        });
+      });
+    </script>
   </body>
 </html>

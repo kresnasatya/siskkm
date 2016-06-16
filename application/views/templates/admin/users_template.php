@@ -161,6 +161,9 @@
     <script>
       $(document).ready(function(){
         $("#userstable").DataTable();
+        $(".select2").select2({
+          placeholder: "Silahkan Pilih"
+        });
       });
     </script>
   </body>

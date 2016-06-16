@@ -8,14 +8,14 @@
     <?php echo form_open(); ?>
       <div class="form-group has-feedback">
         <?php
-          $user = array(
-                      'type' => 'text',
+          $email = array(
+                      'type' => 'email',
                       'name' => 'identity',
                       'class' => 'form-control',
-                      'placeholder' => 'Username',
+                      'placeholder' => 'Email',
                       'required' => 'required',
                       'autofocus' => 'autofocus');
-        echo form_input($user); ?>
+        echo form_input($email); ?>
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
