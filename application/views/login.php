@@ -16,7 +16,7 @@
                       'required' => 'required',
                       'autofocus' => 'autofocus');
         echo form_input($email); ?>
-        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+        <span class="fa fa-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
         <?php
@@ -27,7 +27,7 @@
                       'placeholder' => 'Password',
                       'required' => 'required');
           echo form_input($pass);?>
-        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        <span class="fa fa-unlock-alt form-control-feedback"></span>
       </div>
       <div class="row">
         <div class="col-xs-12">
@@ -35,7 +35,6 @@
         </div><!-- /.col -->
       </div>
     <?php echo form_close();?>
-    <a href="">Lupa password?</a><br>
 
   </div><!-- /.login-box-body -->
 </div><!-- /.login-box -->
