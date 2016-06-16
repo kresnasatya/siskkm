@@ -106,7 +106,7 @@
             </li>
             <li class="treeview active">
               <a href="<?php echo site_url('up2kk/validasi');?>">
-                <i class="fa fa-balance-scale"></i> <span>Menu Validasi SKKM</span>
+                <i class="fa fa-check-square-o"></i> <span>Menu Validasi SKKM</span>
               </a>
             </li>
           </ul>
