@@ -36,6 +36,20 @@ class User extends UP2KK_Controller{
     }
   }
 
+  function ubah_password(){
+    $current_user = $this->ion_auth->user()->row();
+    $data['current_user'] = $current_user;
+    $this->_rules();
+    if ($this->form_validation->run()===FALSE) {
+      $this->template->load('templates/up2kk/user_template','up2kk/user/ubah_password', $data);
+    }else{
+      // isi perintah ubah password di sini
+
+      $this->session->set_flashdata('message', $this->ion_auth->messages());
+      redirect('up2kk/user/profil','refresh');
+    }
+  }
+
   function _rules(){
     $this->form_validation->set_rules('nama_depan', 'Nama depan', 'trim|required');
     $this->form_validation->set_rules('nama_belakang', 'Nama belakang', 'trim|required');

@@ -33,7 +33,8 @@
                 <b>Nip</b> <a class="pull-right"><?php echo $current_user->nip; ?></a>
               </li>
             </ul>
-            <a href="<?php echo site_url('up2kk/user/edit');?>" class="btn btn-primary btn-block"><b>Edit Profil</b></a>
+            <?php echo anchor(site_url('up2kk/user/edit'),'Edit Profil','class="btn btn-primary btn-block"'); ?>
+            <?php echo anchor(site_url('up2kk/user/ubah_password'),'Ubah Password','class="btn btn-primary btn-block"'); ?>
           </div>
         </div>
       </div>
