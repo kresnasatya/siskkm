@@ -18,7 +18,7 @@
       <!-- Jenis -->
       <div class="box box-default collapsed-box">
         <div class="box-header with-border">
-          <h3 class="box-title">Data Jenis</h3>
+          <h3 class="box-title">Daftar Data Jenis</h3>
 
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
@@ -71,7 +71,7 @@
       <!-- Tingkat -->
       <div class="box box-default collapsed-box">
         <div class="box-header with-border">
-          <h3 class="box-title">Data Tingkat</h3>
+          <h3 class="box-title">Daftar Data Tingkat</h3>
 
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
@@ -125,7 +125,7 @@
       <!-- Sebagai -->
       <div class="box box-default collapsed-box">
         <div class="box-header with-border">
-          <h3 class="box-title">Data Sebagai</h3>
+          <h3 class="box-title">Daftar Data Sebagai</h3>
 
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
