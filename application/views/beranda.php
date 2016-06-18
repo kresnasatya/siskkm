@@ -3,9 +3,9 @@
     <div class="container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2">
-        <h3>Uji Coba</h3>
-        <h1>Sistem Informasi SKKM</h1>
-        <h5>Politeknik Negeri Bali.</h5>
+        <h3>Sistem Informasi SKKM</h3>
+        <h1>Politeknik Negeri Bali</h1>
+        <h5>Versi Alfa</h5>
       </div>
     </div><!-- /row -->
     </div> <!-- /container -->
@@ -19,7 +19,7 @@
  <div class="container mtb">
   <div class="row">
     <div class="col-lg-6 col-lg-offset-1">
-      <h4>Tentang SISKKM.</h4>
+      <h4>Tentang SISKKM</h4>
       <p>
         Peringatan!!!<br>
         Sistem ini masih dalam status uji coba dan pengembangan. Belum siap untuk produksi.
