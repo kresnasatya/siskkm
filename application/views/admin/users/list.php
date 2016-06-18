@@ -33,7 +33,7 @@
                   <tr>
                       <th>No</th>
                       <th>Nama</th>
-                      <th>Username</th>
+                      <th>Email</th>
                       <th>Login Terakhir</th>
                       <th>Aksi</th>
                   </tr>
@@ -51,7 +51,7 @@
                               <?php echo $user->nama_depan.' '.$user->nama_belakang; ?>
                             <?php endif; ?>
                           </td>
-                          <td><?php echo $user->username; ?></td>
+                          <td><?php echo $user->email; ?></td>
                           <td><?php echo date('Y-m-d H:i:s', $user->last_login); ?></td>
                           <td>
                               <?php if ($current_user->id != $user->id): ?>
