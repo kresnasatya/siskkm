@@ -9,7 +9,7 @@
     </div>
 
     <div class="col-lg-6">
-      <h4>Lebih lanjut tentang SISKKM.</h4>
+      <h4>Tentang SISKKM</h4>
       <p>
         Peringatan!!!<br>
         Sistem ini masih dalam status uji coba dan pengembangan. Belum siap untuk produksi.
