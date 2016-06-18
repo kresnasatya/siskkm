@@ -75,7 +75,7 @@
             Sistem ini masih dalam status uji coba dan pengembangan. Belum siap untuk produksi.</p>
         </div>
         <div class="col-lg-6">
-          <h4>Alamat Kami</h4>
+          <h4>Alamat</h4>
           <div class="hline-w"></div>
           <p>
             Politeknik Negeri Bali,<br/>
