@@ -5,8 +5,7 @@
     <small>kelola data Bobot SKKM di sini</small>
   </h1>
   <ol class="breadcrumb">
-    <li><a href="<?php echo site_url('admin/beranda'); ?>"><i class="fa fa-home"></i> Beranda</a></li>
-    <li><a href="<?php echo site_url('admin/pengumuman'); ?>"> Menu Bobot SKKM</a></li>
+    <li><a href="<?php echo site_url('admin/pengumuman'); ?>"><i class="fa fa-balance-scale"></i> Menu Bobot SKKM</a></li>
     <li class="active">Data Bobot SKKM</li>
   </ol>
 </section>
