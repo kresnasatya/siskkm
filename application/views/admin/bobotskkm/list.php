@@ -58,7 +58,7 @@
                                         'class' => 'btn btn-sm btn-danger',
                                         'onclick' => 'javascript: return confirm(\'Kamu Yakin ?\')'
                                       );
-                                      echo anchor(site_url('admin/bobotskkm/hapus_jenis/'.$row->id),'Hapus',$hapus);?></td>
+                                      echo anchor(site_url('admin/bobotskkm/hapus_jenis/'.$row->id_jenis),'Hapus',$hapus);?></td>
                     </tr>
               <?php endforeach; ?>
             </tbody>
