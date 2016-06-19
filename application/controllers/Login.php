@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Login extends MY_Controller{
+class Login extends MY_Controller
+{
 
   public function __construct()
   {
@@ -11,9 +12,7 @@ class Login extends MY_Controller{
 
   public function index()
   {
-    /*
-    * Kalau user telah login sebelumnya
-    */
+    // kalau user telah login sebelumnya
     if ($this->ion_auth->logged_in()) {
       if ($this->ion_auth->is_admin()) {
         redirect('admin/beranda');
@@ -23,9 +22,7 @@ class Login extends MY_Controller{
         redirect('up2kk/beranda');
       }
     } else {
-      /*
-      * Kalau user belum login sebelumnya
-      */
+      // kalau user belum login
       if ($this->input->post()) {
         $this->_rules();
         if ($this->form_validation->run() === TRUE) {
@@ -60,4 +57,5 @@ class Login extends MY_Controller{
     $this->form_validation->set_rules('identity', '', 'trim');
     $this->form_validation->set_rules('password','','trim');
   }
+
 }

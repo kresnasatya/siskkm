@@ -5,8 +5,7 @@
     <small>kelola data users di sini</small>
   </h1>
   <ol class="breadcrumb">
-    <li><a href="<?php echo site_url('admin/beranda');?>"><i class="fa fa-home"></i> Beranda</a></li>
-    <li><a href="<?php echo site_url('admin/users');?>">Menu Pengguna</a></li>
+    <li><a href="<?php echo site_url('admin/users');?>">Menu Users</a></li>
     <li class="active">Data Users</li>
   </ol>
 </section>

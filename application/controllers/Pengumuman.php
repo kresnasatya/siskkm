@@ -1,14 +1,17 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Pengumuman extends CI_Controller{
+class Pengumuman extends CI_Controller
+{
 
-  public function __construct(){
+  public function __construct()
+  {
     parent::__construct();
     $this->load->model('Home_model','home');
   }
 
-  public function index($offset=0){
+  public function index($offset=0)
+  {
     // tentukan jumlah data per halaman
     $perpage = 3;
 
@@ -16,7 +19,8 @@ class Pengumuman extends CI_Controller{
     $config = array(
                     'base_url' => base_url('pengumuman/index'),
                     'total_rows' => count($this->home->pengumuman()),
-                    'per_page' => $perpage);
+                    'per_page' => $perpage
+    );
 
     // inisialisasi pagination dan config
     $this->pagination->initialize($config);
@@ -27,7 +31,8 @@ class Pengumuman extends CI_Controller{
     $this->template->load('templates/home_template','pengumuman',$data);
   }
 
-  public function single($id){
+  public function single($id)
+  {
     $data['pengumuman'] = $this->home->pengumuman();
     $data['single'] = $this->home->single($id);
     $this->template->load('templates/home_template','single',$data);

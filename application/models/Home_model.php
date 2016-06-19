@@ -1,21 +1,23 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Home_model extends CI_Model{
+class Home_model extends CI_Model {
 
-  public function __construct(){
+  public function __construct()
+  {
     parent::__construct();
-    //Codeigniter : Write Less Do More
   }
 
-  public function pengumuman(){
+  public function pengumuman()
+  {
     $sql = "SELECT pengumuman.id, judul, isi_pengumuman, slug, tanggal, users.nama_depan, users.nama_belakang
             FROM pengumuman
             INNER JOIN users ON users.id=pengumuman.id_user";
     return $this->db->query($sql)->result();
   }
 
-  public function pengumuman_paging($limit){
+  public function pengumuman_paging($limit)
+  {
     $sql = "SELECT pengumuman.id, judul, isi_pengumuman, slug, tanggal, users.nama_depan, users.nama_belakang
             FROM pengumuman
             INNER JOIN users ON users.id=pengumuman.id_user
@@ -24,7 +26,8 @@ class Home_model extends CI_Model{
     return $this->db->query($sql)->result();
   }
 
-  public function single($id){
+  public function single($id)
+  {
     $sql = "SELECT
               pengumuman.id, judul, isi_pengumuman, tanggal, slug, users.nama_depan, users.nama_belakang
             FROM
@@ -35,4 +38,5 @@ class Home_model extends CI_Model{
               pengumuman.id_user=users.id";
     return $this->db->query($sql)->result();
   }
+  
 }

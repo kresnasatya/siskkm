@@ -1,8 +1,10 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User extends Admin_Controller{
+class User extends Admin_Controller
+{
 
-  function __construct(){
+  function __construct()
+  {
     parent::__construct();
     if (!$this->ion_auth->in_group('admin')) {
       $this->session->set_flashdata('message','Kamu bukan admin!');
@@ -11,13 +13,15 @@ class User extends Admin_Controller{
     $this->load->library('form_validation');
   }
 
-  function profil(){
+  function profil()
+  {
     $current_user = $this->ion_auth->user()->row();
     $data['current_user'] = $current_user;
     $this->template->load('templates/admin/user_template','admin/user/profil', $data);
   }
 
-  function edit(){
+  function edit()
+  {
     $current_user = $this->ion_auth->user()->row();
     $data['current_user'] = $current_user;
     $this->_rules();
@@ -27,8 +31,8 @@ class User extends Admin_Controller{
       $new_data = array(
                     'nama_depan' => $this->input->post('nama_depan'),
                     'nama_belakang' => $this->input->post('nama_belakang'),
-                    'nip' => $this->input->post('nip'));
-
+                    'nip' => $this->input->post('nip')
+      );
       $this->session->set_flashdata('message', $this->ion_auth->messages());
       redirect('admin/user/profil','refresh');
     }

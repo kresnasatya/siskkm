@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Bobotskkm extends Admin_Controller{
+class Bobotskkm extends Admin_Controller
+{
 
   public function __construct()
   {
@@ -18,7 +19,8 @@ class Bobotskkm extends Admin_Controller{
                   'current_user' => $this->ion_auth->user()->row(),
                   'jenis' => $this->jenis->get_all(),
                   'tingkat' => $this->tingkat->get_all(),
-                  'sebagai' => $this->sebagai->get_all());
+                  'sebagai' => $this->sebagai->get_all()
+    );
     $this->template->load('templates/admin/bobot_template','admin/bobotskkm/list',$data);
   }
 
