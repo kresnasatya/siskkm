@@ -12,8 +12,8 @@ class Bobotskkm_model extends CI_Model {
   /*---------- Jenis -----------*/
   public function get_all_jenis()
   {
-    $sql = 'SELECT * FROM jenis';
-    return $this->db->query($sql)->result();
+    $query = $this->db->get('jenis');
+    return $query->result();
   }
   /*---------- End Jenis -----------*/
 
