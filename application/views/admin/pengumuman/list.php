@@ -5,8 +5,7 @@
     <small>kelola data pengumuman di sini</small>
   </h1>
   <ol class="breadcrumb">
-    <li><a href="<?php echo site_url('admin/beranda'); ?>"><i class="fa fa-home"></i> Beranda</a></li>
-    <li><a href="<?php echo site_url('admin/pengumuman'); ?>"> Menu Pengumuman</a></li>
+    <li><a href="<?php echo site_url('admin/pengumuman'); ?>"><i class="fa fa-newspaper-o"></i> Menu Pengumuman</a></li>
     <li class="active">Data Pengumuman</li>
   </ol>
 </section>
