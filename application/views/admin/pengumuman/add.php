@@ -4,7 +4,7 @@
     Tambah Pengumuman
   </h1>
   <ol class="breadcrumb">
-    <li><a href="<?php echo site_url('admin/pengumuman');?>"><i class="fa fa-newspaper-o"></i> Menu Pengumuman</a></li>
+    <li><a href="<?php echo site_url('admin/pengumuman');?>"><i class="fa fa-newspaper-o"></i>Pengumuman</a></li>
     <li class="active">Data Pengumuman</li>
   </ol>
 </section>
@@ -27,7 +27,8 @@
                                 'class' => 'form-control',
                                 'placeholder' => 'Judul Pengumuman',
                                 'required' => 'required',
-                                'autofocus' => 'autofocus');
+                                'autofocus' => 'autofocus'
+                );
                 echo form_input($input);
             ?>
           </div>

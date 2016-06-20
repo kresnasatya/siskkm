@@ -1,8 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Login extends MY_Controller
-{
+class Login extends MY_Controller {
 
   public function __construct()
   {
@@ -15,11 +14,11 @@ class Login extends MY_Controller
     // kalau user telah login sebelumnya
     if ($this->ion_auth->logged_in()) {
       if ($this->ion_auth->is_admin()) {
-        redirect('admin/beranda');
+        redirect('admin/dasbor');
       } elseif ($this->ion_auth->in_group('mahasiswa')) {
-        redirect('mahasiswa/beranda');
+        redirect('mahasiswa/dasbor');
       } elseif ($this->ion_auth->in_group('up2kk')) {
-        redirect('up2kk/beranda');
+        redirect('up2kk/dasbor');
       }
     } else {
       // kalau user belum login
@@ -30,11 +29,11 @@ class Login extends MY_Controller
           $password = $this->input->post('password');
           if ($this->ion_auth->login($identity, $password)) {
             if ($this->ion_auth->is_admin()) {
-              redirect('admin/beranda');
+              redirect('admin/dasbor');
             } elseif ($this->ion_auth->in_group('mahasiswa')) {
-              redirect('mahasiswa/beranda');
+              redirect('mahasiswa/dasbor');
             } elseif ($this->ion_auth->in_group('up2kk')) {
-              redirect('up2kk/beranda');
+              redirect('up2kk/dasbor');
             }
           } else {
             $this->session->set_flashdata('message', $this->ion_auth->errors());

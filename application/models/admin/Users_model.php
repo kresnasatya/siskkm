@@ -1,13 +1,15 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Users_model extends CI_Model{
+class Users_model extends CI_Model {
 
-    function __construct(){
+  public function __construct()
+  {
         parent::__construct();
-    }
+  }
 
-    // fungsi menampilkan semua jurusan
-    function get_jurusan(){
+  // fungsi menampilkan semua jurusan
+  public function get_jurusan()
+  {
       // ambil data jurusan
       $this->db->order_by('nama_jurusan','ASC');
       $result = $this->db->get('jurusan');
@@ -21,10 +23,11 @@ class Users_model extends CI_Model{
         }
       }
       return $dd;
-    }
+  }
 
-    // fungsi menampilkan prodi berdasarkan jurusan
-    function get_prodi(){
+  // fungsi menampilkan prodi berdasarkan jurusan
+  public function get_prodi()
+  {
       // ambil data prodi
       $this->db->order_by('nama_prodi','asc');
       $result = $this->db->get('prodi');
@@ -37,10 +40,11 @@ class Users_model extends CI_Model{
         }
       }
       return $dd;
-    }
+  }
 
-    // fungsi menampilkan kelas
-    function get_kelas(){
+  // fungsi menampilkan kelas
+  public function get_kelas()
+  {
       // ambil data kelas
       $this->db->order_by('kelas','asc');
       $result = $this->db->get('kelas');
@@ -54,9 +58,10 @@ class Users_model extends CI_Model{
         }
       }
       return $dd;
-    }
+  }
 
-    function get_semester(){
+  public function get_semester()
+  {
       // ambil data semester
       $this->db->order_by('semester','asc');
       $result = $this->db->get('semester');
@@ -70,5 +75,5 @@ class Users_model extends CI_Model{
         }
       }
       return $dd;
-    }
+  }
 }

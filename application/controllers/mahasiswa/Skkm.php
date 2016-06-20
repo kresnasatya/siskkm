@@ -1,22 +1,24 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Skkm extends Mahasiswa_Controller{
+class Skkm extends Mahasiswa_Controller {
 
-  public function __construct() {
+  public function __construct()
+  {
     parent::__construct();
-    //Codeigniter : Write Less Do More
     // $this->load->model('mahasiswa/Skkm_model', 'skkm');
     $this->load->library('form_validation');
   }
 
-  function index() {
+  public function index()
+  {
     $data['current_user'] = $this->ion_auth->user()->row();
     $this->template->load('templates/mahasiswa/skkm_template', 'mahasiswa/skkm/list', $data);
   }
 
-  function tambah() {
-    $this->rules();
+  public function tambah()
+  {
+    $this->rules_tambah();
     if ($this->form_validation->run() == FALSE) {
       $data = array('current_user' => $this->ion_auth->user()->row());
       $this->template->load('templates/mahasiswa/skkm_template','mahasiswa/skkm/add',$data);
@@ -25,15 +27,18 @@ class Skkm extends Mahasiswa_Controller{
     }
   }
 
-  function edit() {
+  public function edit($id = NULL)
+  {
 
   }
 
-  function hapus() {
+  public function hapus($id = NULL)
+  {
 
   }
 
-  function rules() {
+  function rules_tambah()
+  {
 
   }
 

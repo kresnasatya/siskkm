@@ -10,8 +10,10 @@
     <link rel="stylesheet" href="<?php echo base_url('adminlte/bootstrap/css/bootstrap.min.css');?>">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="<?php echo base_url('adminlte/font-awesome/css/font-awesome.min.css');?>">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="<?php echo base_url('adminlte/ionic/css/ionicons.min.css');?>">
+    <!-- Datatables -->
+    <link rel="stylesheet" href="<?php echo base_url('adminlte/plugins/datatables/dataTables.bootstrap.css');?>">
+    <!-- Select2 CSS -->
+    <link rel="stylesheet" href="<?php echo base_url('adminlte/plugins/select2/select2.min.css');?>">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?php echo base_url('adminlte/dist/css/AdminLTE.min.css');?>">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -19,7 +21,6 @@
     <link rel="stylesheet" href="<?php echo base_url('adminlte/dist/css/skins/_all-skins.min.css');?>">
     <!-- Normalize CSS -->
     <link rel="stylesheet" href="<?php echo base_url('adminlte/plugins/normalize.css');?>">
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -52,7 +53,7 @@
             <ul class="nav navbar-nav">
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
-                <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="<?php echo base_url('adminlte/dist/img/user2-160x160.jpg');?>" class="user-image" alt="User Image">
                   <span class="hidden-xs"><?php echo $current_user->nama_depan.' '.$current_user->nama_belakang; ?></span>
                 </a>
@@ -99,24 +100,29 @@
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
-            <li class="treeview active">
+            <li class="treeview">
               <a href="<?php echo site_url('admin/beranda');?>">
-                <i class="fa fa-home"></i> <span>Halaman Beranda</span>
+                <i class="fa fa-dashboard"></i> <span>Dasbor</span>
               </a>
             </li>
             <li class="treeview">
               <a href="<?php echo site_url('admin/users');?>">
-                <i class="fa fa-users"></i> <span>Menu Users</span>
+                <i class="fa fa-users"></i> <span>Users</span>
               </a>
             </li>
-            <li class="treeview">
-              <a href="<?php echo site_url('admin/bobotskkm');?>">
-                <i class="fa fa-balance-scale"></i> <span>Menu Bobot SKKM</span>
+            <li class="active treeview">
+              <a href="">
+                <i class="fa fa-balance-scale"></i> <span>Bobot SKKM</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
+              <ul class="treeview-menu">
+                <li><a href="<?php echo site_url('admin/jenis'); ?>"><i class="fa fa-circle-o"></i> Data Jenis</a></li>
+                <li class="active"><a href="<?php echo site_url('admin/tingkat'); ?>"><i class="fa fa-circle-o"></i> Data Tingkat</a></li>
+                <li><a href="<?php echo site_url('admin/sebagai'); ?>"><i class="fa fa-circle-o"></i> Data Sebagai</a></li>
+              </ul>
             </li>
             <li class="treeview">
               <a href="<?php echo site_url('admin/pengumuman');?>">
-                <i class="fa fa-newspaper-o"></i> <span>Menu pengumuman</span>
+                <i class="fa fa-newspaper-o"></i> <span>Pengumuman</span>
               </a>
             </li>
           </ul>
@@ -144,11 +150,25 @@
     <script src="<?php echo base_url('adminlte/plugins/jQuery/jquery.min.js');?>"></script>
     <!-- Bootstrap 3.3.5 -->
     <script src="<?php echo base_url('adminlte/bootstrap/js/bootstrap.min.js');?>"></script>
+    <!-- Datatables -->
+    <script src="<?php echo base_url('adminlte/plugins/datatables/jquery.dataTables.min.js');?>"></script>
+    <script src="<?php echo base_url('adminlte/plugins/datatables/dataTables.bootstrap.min.js');?>"></script>
     <!-- SlimScroll -->
     <script src="<?php echo base_url('adminlte/plugins/slimScroll/jquery.slimscroll.min.js');?>"></script>
     <!-- FastClick -->
     <script src="<?php echo base_url('adminlte/plugins/fastclick/fastclick.min.js');?>"></script>
     <!-- AdminLTE App -->
     <script src="<?php echo base_url('adminlte/dist/js/app.min.js');?>"></script>
+    <!-- Select2 Js -->
+    <script src="<?php echo base_url('adminlte/plugins/select2/select2.min.js');?>"></script>
+    <!-- page script-->
+    <script>
+      $(document).ready(function () {
+        $("#tingkattable").DataTable();
+        $(".select2").select2({
+          placeholder: "Silahkan Pilih"
+        });
+      });
+    </script>
   </body>
 </html>

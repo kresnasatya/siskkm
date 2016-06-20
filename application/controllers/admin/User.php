@@ -1,9 +1,8 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User extends Admin_Controller
-{
+class User extends Admin_Controller {
 
-  function __construct()
+  public function __construct()
   {
     parent::__construct();
     if (!$this->ion_auth->in_group('admin')) {
@@ -13,14 +12,14 @@ class User extends Admin_Controller
     $this->load->library('form_validation');
   }
 
-  function profil()
+  public function profil()
   {
     $current_user = $this->ion_auth->user()->row();
     $data['current_user'] = $current_user;
     $this->template->load('templates/admin/user_template','admin/user/profil', $data);
   }
 
-  function edit()
+  public function edit()
   {
     $current_user = $this->ion_auth->user()->row();
     $data['current_user'] = $current_user;

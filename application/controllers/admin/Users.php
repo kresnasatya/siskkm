@@ -1,7 +1,9 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Users extends Admin_Controller{
-    function __construct(){
+class Users extends Admin_Controller {
+
+  public function __construct()
+  {
         parent::__construct();
         if (!$this->ion_auth->in_group('admin')) {
           $this->session->set_flashdata('message','Kamu bukan admin!');
@@ -9,16 +11,18 @@ class Users extends Admin_Controller{
         }
         $this->load->model('admin/users_model');
         $this->load->library('form_validation');
-    }
+  }
 
-    public function index($group_id = NULL){
+  public function index($group_id = NULL)
+  {
         $data['current_user'] = $this->ion_auth->user()->row();
         $data['users'] = $this->ion_auth->users($group_id)->result();
 
         $this->template->load('templates/admin/users_template','admin/users/list',$data);
-    }
+  }
 
-    public function tambah(){
+  public function tambah()
+  {
         $this->rules_tambah();
         if ($this->form_validation->run() === FALSE) {
           $data = array(
@@ -56,9 +60,10 @@ class Users extends Admin_Controller{
            $this->session->set_flashdata('message', $this->ion_auth->messages());
           redirect('admin/users','refresh');
         }
-    }
+  }
 
-    public function ubah($user_id = NULL){
+  public function ubah($user_id = NULL)
+  {
       $this->rules_ubah();
       if ($this->form_validation->run() === FALSE) {
         $user_id = $this->input->post('user_id') ? $this->input->post('user_id') : $user_id;
@@ -115,8 +120,8 @@ class Users extends Admin_Controller{
     }
   }
 
-    public function hapus($user_id = NULL)
-    {
+  public function hapus($user_id = NULL)
+  {
       if (is_null($user_id)) {
         $this->session->set_flashdata('message','Tidak ada data user untuk dihapus');
       }
@@ -125,10 +130,11 @@ class Users extends Admin_Controller{
         $this->session->set_flashdata('message', $this->ion_auth->messages());
       }
       redirect('admin/users','refresh');
-    }
+  }
 
-    public function rules_tambah(){
-      $this->form_validation->set_rules('username', 'username', 'trim|required|is_unique[users.username]');
+  public function rules_tambah()
+  {
+      $this->form_validation->set_rules('username', 'Username', 'trim|required|is_unique[users.username]');
       $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[users.email]');
       $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]|max_length[20]');
       $this->form_validation->set_rules('confirm_password', 'Confirm password', 'trim|required|matches[password]');
@@ -142,9 +148,10 @@ class Users extends Admin_Controller{
       $this->form_validation->set_rules('id_kelas', 'Kelas', 'trim');
       $this->form_validation->set_rules('id_semester', 'Semester', 'trim');
       $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
-    }
+  }
 
-    public function rules_ubah(){
+  public function rules_ubah()
+  {
       $this->form_validation->set_rules('username', 'username', 'trim|required');
       $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
       $this->form_validation->set_rules('nama_depan', 'Nama depan', 'trim|required');
@@ -157,6 +164,6 @@ class Users extends Admin_Controller{
       $this->form_validation->set_rules('id_kelas', 'Kelas', 'trim');
       $this->form_validation->set_rules('id_semester', 'Semester', 'trim');
       $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
-    }
+  }
 
 }

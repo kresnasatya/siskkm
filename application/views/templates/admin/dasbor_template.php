@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>SISKKM - Mahasiswa</title>
+    <title>SISKKM - Admin</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -27,17 +27,17 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body class="hold-transition skin-green sidebar-mini">
+  <body class="hold-transition skin-blue sidebar-mini">
     <!-- Site wrapper -->
     <div class="wrapper">
 
       <header class="main-header">
         <!-- Logo -->
-        <a href="<?php echo site_url('mahasiswa/beranda');?>" class="logo">
+        <a href="<?php echo site_url('admin/beranda');?>" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>M</b>KM</span>
+          <span class="logo-mini"><b>A</b>KM</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>Mahasiswa</b> SKKM</span>
+          <span class="logo-lg"><b>Admin</b>SKKM</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -52,7 +52,7 @@
             <ul class="nav navbar-nav">
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <a href="" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="<?php echo base_url('adminlte/dist/img/user2-160x160.jpg');?>" class="user-image" alt="User Image">
                   <span class="hidden-xs"><?php echo $current_user->nama_depan.' '.$current_user->nama_belakang; ?></span>
                 </a>
@@ -67,7 +67,7 @@
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
-                      <a href="<?php echo site_url('mahasiswa/user/profil');?>" class="btn btn-default btn-flat">Profil</a>
+                      <a href="<?php echo site_url('admin/user/profil');?>" class="btn btn-default btn-flat">Profil</a>
                     </div>
                     <div class="pull-right">
                       <a href="<?php echo site_url('login/logout');?>" class="btn btn-default btn-flat">Keluar</a>
@@ -100,13 +100,28 @@
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li class="treeview active">
-              <a href="<?php echo site_url('mahasiswa/beranda');?>">
-                <i class="fa fa-home"></i> <span>Halaman Beranda</span>
+              <a href="<?php echo site_url('admin/beranda');?>">
+                <i class="fa fa-dashboard"></i> <span>Dasbor</span>
               </a>
             </li>
             <li class="treeview">
-              <a href="<?php echo site_url('mahasiswa/skkm');?>">
-                <i class="fa fa-archive"></i> <span>Menu SKKKM</span>
+              <a href="<?php echo site_url('admin/users');?>">
+                <i class="fa fa-users"></i> <span>Users</span>
+              </a>
+            </li>
+            <li class="treeview">
+              <a href="">
+                <i class="fa fa-balance-scale"></i> <span>Bobot SKKM</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?php echo site_url('admin/jenis'); ?>"><i class="fa fa-circle-o"></i> Data Jenis</a></li>
+                <li><a href="<?php echo site_url('admin/tingkat'); ?>"><i class="fa fa-circle-o"></i> Data Tingkat</a></li>
+                <li><a href="<?php echo site_url('admin/sebagai'); ?>"><i class="fa fa-circle-o"></i> Data Sebagai</a></li>
+              </ul>
+            </li>
+            <li class="treeview">
+              <a href="<?php echo site_url('admin/pengumuman');?>">
+                <i class="fa fa-newspaper-o"></i> <span>Pengumuman</span>
               </a>
             </li>
           </ul>

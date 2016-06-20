@@ -102,8 +102,8 @@
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li class="treeview">
-              <a href="<?php echo site_url('mahasiswa/beranda');?>">
-                <i class="fa fa-home"></i> <span>Halaman Beranda</span>
+              <a href="<?php echo site_url('mahasiswa/dasbor');?>">
+                <i class="fa fa-dashboard"></i> <span>Dasbor</span>
               </a>
             </li>
             <li class="treeview active">

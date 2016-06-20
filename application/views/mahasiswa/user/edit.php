@@ -77,24 +77,11 @@
                                 'placeholder' => 'Nim');
                echo form_input($nim, set_value('nim',$current_user->nim)); ?>
             </div>
-            <div class="form-group">
-              <?php echo form_label('Ubah Password','password'); ?>
-              <?php echo form_error('password'); ?>
-              <?php
-                  $pass = array(
-                                'type' => 'password',
-                                'class' => 'form-control',
-                                'name' => 'password',
-                                'id' => 'password',
-                                'placeholder' => 'Password');
-                  echo form_input($pass)
-               ?>
-            </div>
           </div><!-- /. box-body -->
           <?php echo form_hidden('user_id',$current_user->id); ?>
           <div class="box-footer">
-            <?php echo form_submit('submit', 'Edit', 'class="btn btn-warning"'); ?>
             <a href="<?php echo site_url('mahasiswa/user/profil') ?>" class="btn btn-default">Kembali</a>
+            <?php echo form_submit('submit', 'Edit', 'class="btn btn-warning"'); ?>
           </div><!-- /. box-footer -->
         <?php echo form_close(); ?>
         <!-- /.form end -->

@@ -4,7 +4,7 @@
     Edit User
   </h1>
   <ol class="breadcrumb">
-    <li><a href="<?php echo site_url('admin/users');?>"><i class="fa fa-users"></i> Menu Users</a></li>
+    <li><a href="<?php echo site_url('admin/users');?>"><i class="fa fa-users"></i>Users</a></li>
     <li class="active">Data Users</li>
   </ol>
 </section>
@@ -110,30 +110,38 @@
               <?php echo form_label('Jurusan', 'id_jurusan'); ?>
               <?php echo form_error('id_jurusan'); ?>
               <?php
-                  $jurusan_attribute = 'class="form-control select2"';
-                  echo form_dropdown('id_jurusan', $dd_jurusan, set_value('id_jurusan',$user->id_jurusan), $jurusan_attribute);
+                $extra = array('class' => 'form-control select2',
+                               'required' => 'required'
+                );
+                echo form_dropdown('id_jurusan', $dd_jurusan, set_value('id_jurusan',$user->id_jurusan), $extra);
                ?>
             </div>
             <div class="form-group">
               <?php echo form_label('Prodi', 'id_prodi'); ?>
               <?php echo form_error('id_prodi'); ?>
               <?php
-                $prodi_attribute = 'class="form-control select2"';
-                echo form_dropdown('id_prodi', $dd_prodi, set_value('id_prodi',$user->id_prodi), $prodi_attribute);
+                $extra = array('class' => 'form-control select2',
+                               'required' => 'required'
+                );
+                echo form_dropdown('id_prodi', $dd_prodi, set_value('id_prodi',$user->id_prodi), $extra);
                ?>
             </div>
             <div class="form-group">
               <label for="kelas">Kelas <?php echo form_error('id_kelas'); ?></label>
               <?php
-                $kelas_attribute = 'class="form-control select2"';
-                echo form_dropdown('id_kelas', $dd_kelas, set_value('id_kelas',$user->id_kelas), $kelas_attribute);
+                $extra = array('class' => 'form-control select2',
+                               'required' => 'required'
+                );
+                echo form_dropdown('id_kelas', $dd_kelas, set_value('id_kelas',$user->id_kelas), $extra);
                ?>
             </div>
             <div class="form-group">
               <label for="semester">Semester <?php echo form_error('id_semester'); ?></label>
               <?php
-                $semester_attribute = 'class="form-control select2"';
-                echo form_dropdown('id_semester', $dd_semester, set_value('id_semester',$user->id_semester), $semester_attribute);
+                $extra = array('class' => 'form-control select2',
+                               'required' => 'required'
+                );
+                echo form_dropdown('id_semester', $dd_semester, set_value('id_semester',$user->id_semester), $extra);
                ?>
             </div>
           </div><!-- /. box-body -->

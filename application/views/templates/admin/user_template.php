@@ -99,22 +99,27 @@
             <li class="header">MAIN NAVIGATION</li>
             <li class="treeview">
               <a href="<?php echo site_url('admin/beranda');?>">
-                <i class="fa fa-home"></i> <span>Halaman Beranda</span>
+                <i class="fa fa-dashboard"></i> <span>Dasbor</span>
               </a>
             </li>
             <li class="treeview">
               <a href="<?php echo site_url('admin/users');?>">
-                <i class="fa fa-users"></i> <span>Menu Users</span>
+                <i class="fa fa-users"></i> <span>Users</span>
               </a>
             </li>
             <li class="treeview">
-              <a href="<?php echo site_url('admin/bobotskkm');?>">
-                <i class="fa fa-balance-scale"></i> <span>Menu Bobot SKKM</span>
+              <a href="">
+                <i class="fa fa-balance-scale"></i> <span>Bobot SKKM</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
+              <ul class="treeview-menu">
+                <li><a href="<?php echo site_url('admin/jenis'); ?>"><i class="fa fa-circle-o"></i> Data Jenis</a></li>
+                <li><a href="<?php echo site_url('admin/tingkat'); ?>"><i class="fa fa-circle-o"></i> Data Tingkat</a></li>
+                <li><a href="<?php echo site_url('admin/sebagai'); ?>"><i class="fa fa-circle-o"></i> Data Sebagai</a></li>
+              </ul>
             </li>
             <li class="treeview">
               <a href="<?php echo site_url('admin/pengumuman');?>">
-                <i class="fa fa-newspaper-o"></i> <span>Menu pengumuman</span>
+                <i class="fa fa-newspaper-o"></i> <span>Pengumuman</span>
               </a>
             </li>
           </ul>
