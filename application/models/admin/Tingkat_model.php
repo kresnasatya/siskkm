@@ -25,7 +25,7 @@ class Tingkat_model extends CI_Model {
   // mendapatkan data jenis
   function get_jenis()
   {
-    // ambil data jurusan
+    // ambil data jenis
     $this->db->order_by('jenis','ASC');
     $result = $this->db->get('jenis');
 

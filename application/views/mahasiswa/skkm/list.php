@@ -32,16 +32,63 @@
                 <tr>
                     <th>No</th>
                     <th>Nama Kegiatan</th>
-                    <th>Bukti</th>
-                    <th>Bobot</th>
+                    <th>File</th>
+                    <th>Jenis</th>
+                    <th>Tingkat</th>
+                    <th>Sebagai</th>
+                    <th>Nilai</th>
                     <th>Status</th>
                     <th>Keterangan</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
-
+              <?php
+                $start = 0;
+                foreach ($skkm as $row): ?>
+                <tr>
+                  <td><?php echo ++$start ?></td>
+                  <td>
+                    <?php if ($row->status == 0): ?>
+                      <a href="<?php echo site_url('mahasiswa/skkm/ubah/'.$row->id); ?>"><?php echo $row->nama_kegiatan; ?></a>
+                    <?php else: ?>
+                      <?php echo $row->nama_kegiatan; ?>
+                    <?php endif; ?>
+                  </td>
+                  <td><img src="<?php echo base_url('fileskkm/resize/'.$row->filefoto); ?>" alt="" /></td>
+                  <td><?php echo $row->jenis; ?></td>
+                  <td><?php echo $row->tingkat; ?></td>
+                  <td><?php echo $row->sebagai; ?></td>
+                  <td><?php echo $row->nilai; ?></td>
+                  <td>
+                    <?php if ($row->status == 0): ?>
+                        <?php echo "Tidak Valid"; ?>
+                      <?php else: ?>
+                        <?php echo "Valid"; ?>
+                    <?php endif; ?>
+                  </td>
+                  <td>
+                    <?php echo $row->keterangan; ?>
+                  </td>
+                  <td>
+                    <?php if ($row->status == 0): ?>
+                      <?php
+                          $hapus = array(
+                                    'class' => 'btn btn-sm btn-danger',
+                                    'onclick' => 'javascript: return confirm(\'Kamu Yakin ?\')'
+                                  );
+                                  echo anchor(site_url('mahasiswa/skkm/hapus/'.$row->id),'Hapus',$hapus);
+                      ?>
+                    <?php else: ?>
+                      -
+                    <?php endif; ?>
+                  </td>
+                </tr>
+              <?php endforeach; ?>
             </tbody>
           </table>
+          <p><strong>Total SKKM yang valid: <?php echo $skkm_valid; ?></strong></p>
+          <p><strong>Total SKKM tidak valid: <?php echo $skkm_tidak_valid; ?></strong></p>
         </div>
       </div>
     </div>

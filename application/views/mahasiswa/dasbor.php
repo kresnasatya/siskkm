@@ -18,7 +18,7 @@
           <span class="info-box-icon bg-green"><i class="fa fa-check-square-o"></i></span>
           <div class="info-box-content">
               <span class="info-box-text"><a href="<?php echo site_url('mahasiswa/skkm'); ?>">skkm valid</a></span>
-              <span class="info-box-number">xxxxx</span>
+              <span class="info-box-number"><?php echo $skkm_valid; ?></span>
           </div>
           <!-- /.info-box-content -->
       </div>
@@ -26,10 +26,10 @@
     <div class="col-md-3 col-sm-6 col-xs-12">
       <div class="info-box">
           <!-- Apply any bg-* class to to the icon to color it -->
-          <span class="info-box-icon bg-red"><i class="fa fa-ban"></i></span>
+          <span class="info-box-icon bg-red"><i class="fa fa-times-circle-o"></i></span>
           <div class="info-box-content">
-              <span class="info-box-text"><a href="<?php echo site_url('mahasiswa/skkm'); ?>">tidak valid</a></span>
-              <span class="info-box-number">xxxx</span>
+              <span class="info-box-text"><a href="<?php echo site_url('mahasiswa/skkm'); ?>">skkm tidak valid</a></span>
+              <span class="info-box-number"><?php echo $skkm_tidak_valid; ?></span>
           </div>
           <!-- /.info-box-content -->
       </div>

@@ -12,13 +12,17 @@ class Dasbor_model extends CI_Model {
   // menghitung jumlah skkm valid
   public function skkm_valid()
   {
-
+    $this->db->where('status', 1); // 1 berarti valid
+    $this->db->from('skkm');
+    return $this->db->count_all_results();
   }
 
   // menghitung jumlah skkm tidak valid
   public function skkm_tidak_valid()
   {
-    
+    $this->db->where('status', 0); // 1 berarti valid
+    $this->db->from('skkm');
+    return $this->db->count_all_results();
   }
 
 }

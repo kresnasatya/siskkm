@@ -32,84 +32,65 @@
             ?>
           </div>
           <div class="form-group">
-            <?php echo form_label('Bukti Kegiatan', 'bukti_kegiatan'); ?>
-            <?php echo form_error('bukti_kegiatan'); ?>
+            <?php echo form_label('File','filefoto'); ?>
+            <?php echo form_error('filefoto'); ?>
             <?php
-              $extra = array(
-                              'type' => 'file',
-                              'id' => 'bukti_kegiatan',
+                $extra = array(
+                              'id' => 'filefoto',
                               'class' => 'form-control',
-                              'required' => 'required'
-              );
-              echo form_upload('bukti_kegiatan', set_value('bukti_kegiatan'), $extra);
-             ?>
+                              'required' => 'required');
+                echo form_upload('filefoto', set_value('filefoto'), $extra); ?>
           </div>
           <div class="form-group">
             <?php echo form_label('Jenis Kegiatan', 'id_jenis'); ?>
             <?php echo form_error('id_jenis'); ?>
             <?php
-              $options = array(
-                            'small'         => 'Small Shirt',
-                            'med'           => 'Medium Shirt',
-                            'large'         => 'Large Shirt',
-                            'xlarge'        => 'Extra Large Shirt'
-              );
-              $attribute = array(
+              $extra = array(
                             'class' => 'form-control select2',
-                            'id' => 'id_jenis'
+                            'id' => 'id_jenis',
+                            'required' => 'required'
               );
-              $shirts_on_sale = array('small', 'large');
-              echo form_dropdown('id_jenis', $options, 'large', $attribute);
+              echo form_dropdown('id_jenis', $dd_jenis, set_value('id_jenis'), $extra);
              ?>
           </div>
           <div class="form-group">
             <?php echo form_label('Tingkat Kegiatan', 'id_tingkat'); ?>
             <?php echo form_error('id_tingkat'); ?>
             <?php
-              $options = array(
-                            'small'         => 'Small Shirt',
-                            'med'           => 'Medium Shirt',
-                            'large'         => 'Large Shirt',
-                            'xlarge'        => 'Extra Large Shirt'
-              );
-              $attribute = array(
+              $extra = array(
                             'class' => 'form-control select2',
-                            'id' => 'id_tingkat'
+                            'id' => 'id_tingkat',
+                            'required' => 'required'
               );
-              $shirts_on_sale = array('small', 'large');
-              echo form_dropdown('id_tingkat', $options, 'large', $attribute);
+              echo form_dropdown('id_tingkat', $dd_tingkat, set_value('id_tingkat'), $extra);
              ?>
           </div>
           <div class="form-group">
             <?php echo form_label('Sebagai', 'id_sebagai'); ?>
             <?php echo form_error('id_sebagai'); ?>
             <?php
-              $options = array(
-                            'small'         => 'Small Shirt',
-                            'med'           => 'Medium Shirt',
-                            'large'         => 'Large Shirt',
-                            'xlarge'        => 'Extra Large Shirt'
-              );
-              $attribute = array(
+              $extra = array(
                             'class' => 'form-control select2',
-                            'id' => 'id_sebagai'
+                            'id' => 'id_sebagai',
+                            'required' => 'required'
               );
-              $shirts_on_sale = array('small', 'large');
-              echo form_dropdown('id_sebagai', $options, 'large', $attribute);
+              echo form_dropdown('id_sebagai', $dd_sebagai, set_value('id_sebagai'), $extra);
              ?>
           </div>
           <div class="form-group">
-            <?php echo form_label('Bobot','bobot'); ?>
-            <?php echo form_error('bobot'); ?>
+            <?php echo form_label('Nilai','nilai'); ?>
+            <?php echo form_error('nilai'); ?>
             <?php
                 $extra = array(
                                 'type' => 'number',
-                                'id' => 'bobot',
+                                'name' => 'nilai',
+                                'value' => set_value('nilai'),
+                                'id' => 'nilai',
                                 'class' => 'form-control',
-                                'placeholder' => 'Bobot',
+                                'placeholder' => 'Nilai',
                                 'required' => 'required'
                 );
-                echo form_input('bobot', set_value('bobot'), $extra);
+                echo form_input($extra);
             ?>
           </div>
           <?php echo anchor(site_url('mahasiswa/skkm'),'Kembali','class="btn btn-default"'); ?>
