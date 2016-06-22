@@ -18,7 +18,13 @@
           <span class="info-box-icon bg-green"><i class="fa fa-check-square-o"></i></span>
           <div class="info-box-content">
               <span class="info-box-text"><a href="<?php echo site_url('mahasiswa/skkm'); ?>">skkm valid</a></span>
-              <span class="info-box-number"><?php echo $skkm_valid; ?></span>
+              <span class="info-box-number">
+                <?php if ($skkm_valid == NULL): ?>
+                    <?php echo 0; ?>
+                  <?php else: ?>
+                    <?php echo $skkm_valid; ?>
+                <?php endif; ?>
+              </span>
           </div>
           <!-- /.info-box-content -->
       </div>
@@ -29,7 +35,13 @@
           <span class="info-box-icon bg-red"><i class="fa fa-times-circle-o"></i></span>
           <div class="info-box-content">
               <span class="info-box-text"><a href="<?php echo site_url('mahasiswa/skkm'); ?>">skkm tidak valid</a></span>
-              <span class="info-box-number"><?php echo $skkm_tidak_valid; ?></span>
+              <span class="info-box-number">
+                <?php if ($skkm_tidak_valid == NULL): ?>
+                    <?php echo 0; ?>
+                  <?php else: ?>
+                    <?php echo $skkm_tidak_valid; ?>
+                <?php endif; ?>
+              </span>
           </div>
           <!-- /.info-box-content -->
       </div>
