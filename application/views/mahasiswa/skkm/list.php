@@ -87,8 +87,16 @@
               <?php endforeach; ?>
             </tbody>
           </table>
-          <p><strong>Total SKKM yang valid: <?php echo $skkm_valid; ?></strong></p>
-          <p><strong>Total SKKM tidak valid: <?php echo $skkm_tidak_valid; ?></strong></p>
+          <p><strong>Total SKKM yang valid: <?php if ($skkm_valid == NULL): ?>
+            <?php echo 0; ?>
+          <?php else: ?>
+            <?php echo $skkm_valid; ?>
+          <?php endif; ?></strong></p>
+          <p><strong>Total SKKM tidak valid: <?php if ($skkm_tidak_valid == NULL): ?>
+            <?php echo 0; ?>
+          <?php else: ?>
+            <?php echo $skkm_tidak_valid; ?>
+          <?php endif; ?></strong></p>
         </div>
       </div>
     </div>

@@ -80,17 +80,19 @@ class Skkm_model extends CI_Model {
   // menghitung skkm valid
   public function count_valid()
   {
-    $this->db->where('status', 1); // 1 berarti valid
+    $this->db->select('SUM(nilai) as total');
     $this->db->from('skkm');
-    return $this->db->count_all_results();
+    $this->db->where('status',1);
+    return $result = $this->db->get()->row()->total;
   }
 
   // menghitung skkm tidak valid
   public function count_tidak_valid()
   {
-    $this->db->where('status', 0); // 0 berarti tidak valid
+    $this->db->select('SUM(nilai) as total');
     $this->db->from('skkm');
-    return $this->db->count_all_results();
+    $this->db->where('status',0);
+    return $result = $this->db->get()->row()->total;
   }
 
   public function insert($data)
