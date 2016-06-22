@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="<?php echo base_url('adminlte/bootstrap/css/bootstrap.min.css');?>">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="<?php echo base_url('adminlte/font-awesome/css/font-awesome.min.css');?>">
+    <!-- Datatables -->
+    <link rel="stylesheet" href="<?php echo base_url('adminlte/plugins/datatables/dataTables.bootstrap.css');?>">
     <!-- Ionicons -->
     <link rel="stylesheet" href="<?php echo base_url('adminlte/ionic/css/ionicons.min.css');?>">
     <!-- Theme style -->
@@ -33,7 +35,7 @@
 
       <header class="main-header">
         <!-- Logo -->
-        <a href="<?php echo site_url('up2kk/beranda');?>" class="logo">
+        <a href="<?php echo site_url('up2kk/dasbor');?>" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>U</b>KM</span>
           <!-- logo for regular state and mobile devices -->
@@ -100,13 +102,13 @@
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li class="treeview">
-              <a href="<?php echo site_url('up2kk/beranda');?>">
-                <i class="fa fa-home"></i> <span>Halaman Beranda</span>
+              <a href="<?php echo site_url('up2kk/dasbor');?>">
+                <i class="fa fa-dashboard"></i> <span>Dasbor</span>
               </a>
             </li>
             <li class="treeview active">
               <a href="<?php echo site_url('up2kk/validasi');?>">
-                <i class="fa fa-check-square-o"></i> <span>Menu Validasi SKKM</span>
+                <i class="fa fa-check-square-o"></i> <span>Validasi SKKM</span>
               </a>
             </li>
           </ul>
@@ -134,11 +136,21 @@
     <script src="<?php echo base_url('adminlte/plugins/jQuery/jquery.min.js');?>"></script>
     <!-- Bootstrap 3.3.5 -->
     <script src="<?php echo base_url('adminlte/bootstrap/js/bootstrap.min.js');?>"></script>
+    <!-- Datatables -->
+    <script src="<?php echo base_url('adminlte/plugins/datatables/jquery.dataTables.min.js');?>"></script>
+    <script src="<?php echo base_url('adminlte/plugins/datatables/dataTables.bootstrap.min.js');?>"></script>
     <!-- SlimScroll -->
     <script src="<?php echo base_url('adminlte/plugins/slimScroll/jquery.slimscroll.min.js');?>"></script>
     <!-- FastClick -->
     <script src="<?php echo base_url('adminlte/plugins/fastclick/fastclick.min.js');?>"></script>
     <!-- AdminLTE App -->
     <script src="<?php echo base_url('adminlte/dist/js/app.min.js');?>"></script>
+    <!-- page script-->
+    <script>
+      $(document).ready(function(){
+        $("#mahasiswatable").DataTable();
+        $("#listskkmtable").DataTable();
+      });
+    </script>
   </body>
 </html>

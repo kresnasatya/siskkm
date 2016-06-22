@@ -33,7 +33,7 @@
 
       <header class="main-header">
         <!-- Logo -->
-        <a href="<?php echo site_url('up2kk/beranda');?>" class="logo">
+        <a href="<?php echo site_url('up2kk/dasbor');?>" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>U</b>KM</span>
           <!-- logo for regular state and mobile devices -->
@@ -100,13 +100,13 @@
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li class="treeview">
-              <a href="<?php echo site_url('up2kk/beranda');?>">
-                <i class="fa fa-home"></i> <span>Halaman Beranda</span>
+              <a href="<?php echo site_url('up2kk/dasbor');?>">
+                <i class="fa fa-dasboard"></i> <span>Dasbor</span>
               </a>
             </li>
             <li class="treeview">
               <a href="<?php echo site_url('up2kk/validasi');?>">
-                <i class="fa fa-check-square-o"></i> <span>Menu Validasi SKKM</span>
+                <i class="fa fa-check-square-o"></i> <span>Validasi SKKM</span>
               </a>
             </li>
           </ul>
