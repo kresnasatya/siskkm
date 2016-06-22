@@ -5,7 +5,7 @@
     <small>semua berawal dari sini</small>
   </h1>
   <ol class="breadcrumb">
-    <li><a href="<?php echo site_url('up2kk/beranda');?>"><i class="fa fa-home"></i> Beranda</a></li>
+    <li><a href="<?php echo site_url('up2kk/dasbor');?>"><i class="fa fa-dashboard"></i> Dasbor</a></li>
     <li><a href="">Examples</a></li>
     <li class="active">Blank page</li>
   </ol>
