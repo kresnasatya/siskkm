@@ -137,9 +137,7 @@
                 <?php echo form_label('Jurusan', 'id_jurusan'); ?>
                 <?php echo form_error('id_jurusan'); ?>
                 <?php
-                  $extra = array('class' => 'form-control select2',
-                                 'required' => 'required'
-                  );
+                  $extra = array('class' => 'form-control select2');
                   echo form_dropdown('id_jurusan', $dd_jurusan, $jurusan_selected, $extra);
                  ?>
               </div>
@@ -149,9 +147,7 @@
                 <?php echo form_label('Prodi', 'id_prodi'); ?>
                 <?php echo form_error('id_prodi'); ?>
                 <?php
-                  $extra = array('class' => 'form-control select2',
-                                 'required' => 'required'
-                  );
+                  $extra = array('class' => 'form-control select2');
                   echo form_dropdown('id_prodi', $dd_prodi, $prodi_selected, $extra);
                  ?>
               </div>
@@ -159,18 +155,14 @@
             <div class="form-group">
               <label for="kelas">Kelas <?php echo form_error('id_kelas'); ?></label>
               <?php
-                $extra = array('class' => 'form-control select2',
-                               'required' => 'required'
-                );
+                $extra = array('class' => 'form-control select2');
                 echo form_dropdown('id_kelas', $dd_kelas, $kelas_selected, $extra);
                ?>
             </div>
             <div class="form-group">
               <label for="semester">Semester <?php echo form_error('id_semester'); ?></label>
               <?php
-                $extra = array('class' => 'form-control select2',
-                               'required' => 'required'
-                );
+                $extra = array('class' => 'form-control select2');
                 echo form_dropdown('id_semester', $dd_semester, $semester_selected, $extra);
                ?>
             </div>

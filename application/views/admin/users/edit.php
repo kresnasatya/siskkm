@@ -110,9 +110,7 @@
               <?php echo form_label('Jurusan', 'id_jurusan'); ?>
               <?php echo form_error('id_jurusan'); ?>
               <?php
-                $extra = array('class' => 'form-control select2',
-                               'required' => 'required'
-                );
+                $extra = array('class' => 'form-control select2');
                 echo form_dropdown('id_jurusan', $dd_jurusan, set_value('id_jurusan',$user->id_jurusan), $extra);
                ?>
             </div>
@@ -120,27 +118,21 @@
               <?php echo form_label('Prodi', 'id_prodi'); ?>
               <?php echo form_error('id_prodi'); ?>
               <?php
-                $extra = array('class' => 'form-control select2',
-                               'required' => 'required'
-                );
+                $extra = array('class' => 'form-control select2');
                 echo form_dropdown('id_prodi', $dd_prodi, set_value('id_prodi',$user->id_prodi), $extra);
                ?>
             </div>
             <div class="form-group">
               <label for="kelas">Kelas <?php echo form_error('id_kelas'); ?></label>
               <?php
-                $extra = array('class' => 'form-control select2',
-                               'required' => 'required'
-                );
+                $extra = array('class' => 'form-control select2');
                 echo form_dropdown('id_kelas', $dd_kelas, set_value('id_kelas',$user->id_kelas), $extra);
                ?>
             </div>
             <div class="form-group">
               <label for="semester">Semester <?php echo form_error('id_semester'); ?></label>
               <?php
-                $extra = array('class' => 'form-control select2',
-                               'required' => 'required'
-                );
+                $extra = array('class' => 'form-control select2');
                 echo form_dropdown('id_semester', $dd_semester, set_value('id_semester',$user->id_semester), $extra);
                ?>
             </div>
