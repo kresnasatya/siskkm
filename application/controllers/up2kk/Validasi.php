@@ -33,7 +33,7 @@ class Validasi extends UP2KK_Controller {
 
   }
 
-  public function validasi_skkm($id = NULL)
+  public function skkm($id = NULL)
   {
     $current_user = $this->ion_auth->user()->row();
     $row = $this->validasi->get_id_skkm($id);
