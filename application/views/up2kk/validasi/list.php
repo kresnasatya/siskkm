@@ -25,6 +25,9 @@
                     <th>No</th>
                     <th>Nama Mahasiswa</th>
                     <th>NIM</th>
+                    <th>Jurusan</th>
+                    <th>Prodi</th>
+                    <th>Jenjang</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,6 +37,9 @@
               <td><?php echo ++$start ?></td>
               <td><a href="<?php echo site_url('up2kk/validasi/list_skkm/'.$row->id); ?>"><?php echo $row->nama_depan.' '.$row->nama_belakang; ?></a></td>
               <td><?php echo $row->nim; ?></td>
+              <td><?php echo $row->nama_jurusan; ?></td>
+              <td><?php echo $row->nama_prodi; ?></td>
+              <td><?php echo $row->jenjang; ?></td>
               <?php endforeach; ?>
             </tbody>
           </table>

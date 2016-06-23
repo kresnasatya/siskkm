@@ -1,12 +1,12 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Data Mahasiswa
+    Data SKKM
     <small>validasi data skkm di sini</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="<?php echo site_url('up2kk/validasi');?>"><i class="fa fa-check-square-o"></i> Validasi SKKM</a></li>
-    <li class="active">Data Mahasiswa</li>
+    <li class="active">Data SKKM</li>
   </ol>
 </section>
 
@@ -16,7 +16,7 @@
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <h3>Daftar Data Mahasiswa</h3>
+          <h3>Daftar Data SKKM</h3>
         </div>
         <div class="box-body">
           <table id="mahasiswatable" class="table table-bordered table-striped">
@@ -42,7 +42,7 @@
                 <td><?php echo ++$start ?></td>
                 <td>
                   <?php if ($row->status == 0): ?>
-                    <a href="<?php echo site_url('mahasiswa/skkm/ubah/'.$row->id); ?>"><?php echo $row->nama_kegiatan; ?></a>
+                    <?php echo $row->nama_kegiatan; ?>
                   <?php else: ?>
                     <?php echo $row->nama_kegiatan; ?>
                   <?php endif; ?>

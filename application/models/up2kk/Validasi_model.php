@@ -11,10 +11,11 @@ class Validasi_model extends CI_Model {
 
   public function get_mahasiswa($id)
   {
-    $sql = "SELECT u.id, u.nama_depan, u.nama_belakang, u.nim, g.name, j.nama_jurusan
+    $sql = "SELECT u.id, u.nama_depan, u.nama_belakang, u.nim, g.name, j.nama_jurusan, p.nama_prodi, p.jenjang
             FROM users u INNER JOIN users_groups ug ON ug.user_id = u.id
             INNER JOIN groups g ON g.id = ug.group_id
             INNER JOIN jurusan j ON j.id = u.id_jurusan
+            INNER JOIN prodi p ON p.id = u.id_prodi
             WHERE j.id = $id AND g.id = 3";
     return $this->db->query($sql)->result();
   }
@@ -31,9 +32,15 @@ class Validasi_model extends CI_Model {
 
   public function get_id_skkm($id)
   {
-    $sql = "SELECT id, status, keterangan FROM skkm
+    $sql = "SELECT id, id_user, status, keterangan FROM skkm
             WHERE id = $id";
     return $this->db->query($sql)->row();
+  }
+
+  public function validasi_skkm($id, $data)
+  {
+    $this->db->where('id', $id);
+    $this->db->update('skkm', $data);
   }
 
 }
