@@ -8,12 +8,13 @@ class Skkm_model extends CI_Model {
     parent::__construct();
   }
 
-  public function get_all()
+  public function get_all($id_user)
   {
-    $sql =   "SELECT id, nama_kegiatan, filefoto, jenis.jenis, tingkat.tingkat, sebagai.sebagai, nilai, status, keterangan FROM skkm
+    $sql =   "SELECT id, id_user, nama_kegiatan, filefoto, jenis.jenis, tingkat.tingkat, sebagai.sebagai, nilai, status, keterangan FROM skkm
               INNER JOIN jenis ON jenis.id_jenis = skkm.id_jenis
               INNER JOIN tingkat ON tingkat.id_tingkat = skkm.id_tingkat
-              INNER JOIN sebagai ON sebagai.id_sebagai = skkm.id_sebagai";
+              INNER JOIN sebagai ON sebagai.id_sebagai = skkm.id_sebagai
+              WHERE id_user=$id_user";
     return $this->db->query($sql)->result();
   }
 
@@ -78,20 +79,22 @@ class Skkm_model extends CI_Model {
   }
 
   // menghitung skkm valid
-  public function count_valid()
+  public function count_valid($id_user)
   {
     $this->db->select('SUM(nilai) as total');
     $this->db->from('skkm');
-    $this->db->where('status',1);
+    $this->db->where('status', 1);
+    $this->db->where('id_user', $id_user);
     return $result = $this->db->get()->row()->total;
   }
 
   // menghitung skkm tidak valid
-  public function count_tidak_valid()
+  public function count_tidak_valid($id_user)
   {
     $this->db->select('SUM(nilai) as total');
     $this->db->from('skkm');
-    $this->db->where('status',0);
+    $this->db->where('status', 0);
+    $this->db->where('id_user', $id_user);
     return $result = $this->db->get()->row()->total;
   }
 

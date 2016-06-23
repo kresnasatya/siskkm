@@ -12,11 +12,13 @@ class Skkm extends Mahasiswa_Controller {
 
   public function index()
   {
+    $current_user = $this->ion_auth->user()->row();
+    $id_user = $current_user->id;
     $data = array(
-                  'current_user' => $this->ion_auth->user()->row(),
-                  'skkm' => $this->skkm->get_all(),
-                  'skkm_valid' => $this->skkm->count_valid(),
-                  'skkm_tidak_valid' => $this->skkm->count_tidak_valid());
+                  'current_user' => $current_user,
+                  'skkm' => $this->skkm->get_all($id_user),
+                  'skkm_valid' => $this->skkm->count_valid($id_user),
+                  'skkm_tidak_valid' => $this->skkm->count_tidak_valid($id_user));
     $this->template->load('templates/mahasiswa/skkm_template', 'mahasiswa/skkm/list', $data);
   }
 

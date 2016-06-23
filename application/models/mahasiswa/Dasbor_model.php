@@ -10,20 +10,22 @@ class Dasbor_model extends CI_Model {
   }
 
   // menghitung jumlah nilai skkm valid
-  public function skkm_valid()
+  public function skkm_valid($id_user)
   {
     $this->db->select('SUM(nilai) as total');
     $this->db->from('skkm');
-    $this->db->where('status',1);
+    $this->db->where('status', 1);
+    $this->db->where('id_user', $id_user);
     return $result = $this->db->get()->row()->total;
   }
 
   // menghitung jumlah nilai skkm tidak valid
-  public function skkm_tidak_valid()
+  public function skkm_tidak_valid($id_user)
   {
     $this->db->select('SUM(nilai) as total');
     $this->db->from('skkm');
-    $this->db->where('status',0);
+    $this->db->where('status', 0);
+    $this->db->where('id_user', $id_user);
     return $result = $this->db->get()->row()->total;
   }
 
