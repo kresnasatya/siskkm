@@ -13,7 +13,7 @@ class Validasi extends UP2KK_Controller {
   {
     $current_user = $this->ion_auth->user()->row();
     // mengambil id jurusan up2kk
-    $id_current_user = $current_user->id_jurusan;
+    $jurusan_current_user = $current_user->id_jurusan;
     $mahasiswa = $this->validasi->get_mahasiswa($id_current_user);
     $data = array(
                   'current_user' => $current_user,
