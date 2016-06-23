@@ -33,7 +33,7 @@
 
       <header class="main-header">
         <!-- Logo -->
-        <a href="<?php echo site_url('admin/beranda');?>" class="logo">
+        <a href="<?php echo site_url('admin/dasbor');?>" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>A</b>KM</span>
           <!-- logo for regular state and mobile devices -->
@@ -100,7 +100,7 @@
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li class="treeview active">
-              <a href="<?php echo site_url('admin/beranda');?>">
+              <a href="<?php echo site_url('admin/dasbor');?>">
                 <i class="fa fa-dashboard"></i> <span>Dasbor</span>
               </a>
             </li>
