@@ -33,7 +33,7 @@ class Validasi_model extends CI_Model {
   {
     $sql = "SELECT id, status, keterangan FROM skkm
             WHERE id = $id";
-    return $this->db->query($sql)->result();
+    return $this->db->query($sql)->row();
   }
 
 }
