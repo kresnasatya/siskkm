@@ -39,7 +39,7 @@ class Validasi extends UP2KK_Controller {
     $this->rules();
     if ($this->form_validation->run() == FALSE) {
       $current_user = $this->ion_auth->user()->row();
-      $row = $this->validasi->get_id_skkm($id_skkm);
+      $row = $this->validasi->get_skkm($id_skkm);
       if ($row) {
         $data = array(
                       'current_user' => $current_user,
