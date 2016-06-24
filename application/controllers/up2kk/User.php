@@ -30,12 +30,15 @@ class User extends UP2KK_Controller {
       $new_data = array(
                     'nama_depan' => $this->input->post('nama_depan'),
                     'nama_belakang' => $this->input->post('nama_belakang'),
-                    'nip' => $this->input->post('nip'));
+                    'nip' => $this->input->post('nip'),
+                    'email' => $this->input->post('email'),
+                    'username' => $this->input->post('username')
+      );
 
       $this->ion_auth->update($current_user->id, $new_data);
 
       $this->session->set_flashdata('message', $this->ion_auth->messages());
-      redirect('up2kk/user/profil','refresh');
+      redirect('up2kk/user','refresh');
     }
   }
 
