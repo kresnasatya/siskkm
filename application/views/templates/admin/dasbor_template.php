@@ -67,7 +67,7 @@
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
-                      <a href="<?php echo site_url('admin/user/profil');?>" class="btn btn-default btn-flat">Profil</a>
+                      <a href="<?php echo site_url('admin/user');?>" class="btn btn-default btn-flat">Profil</a>
                     </div>
                     <div class="pull-right">
                       <a href="<?php echo site_url('login/logout');?>" class="btn btn-default btn-flat">Keluar</a>
