@@ -12,14 +12,14 @@ class User extends Mahasiswa_Controller {
     $this->load->library('form_validation');
   }
 
-  function profil()
+  function index()
   {
     $current_user = $this->ion_auth->user()->row();
     $data['current_user'] = $current_user;
     $this->template->load('templates/mahasiswa/user_template','mahasiswa/user/profil', $data);
   }
 
-  function edit()
+  function edit_profil()
   {
     $current_user = $this->ion_auth->user()->row();
     $data['current_user'] = $current_user;
@@ -27,7 +27,6 @@ class User extends Mahasiswa_Controller {
     if ($this->form_validation->run()===FALSE) {
       $this->template->load('templates/mahasiswa/user_template','mahasiswa/user/edit', $data);
     }else{
-      
       $new_data = array(
                     'nama_depan' => $this->input->post('nama_depan'),
                     'nama_belakang' => $this->input->post('nama_belakang'),

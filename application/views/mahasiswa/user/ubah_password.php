@@ -4,8 +4,7 @@
     Ubah Password
   </h1>
   <ol class="breadcrumb">
-    <li><a href="<?php echo site_url('mahasiswa/beranda');?>"><i class="fa fa-home"></i> Beranda</a></li>
-    <li><a href="<?php echo site_url('mahasiswa/user/profil');?>"> Profil</a></li>
+    <li><a href="<?php echo site_url('mahasiswa/user');?>"><i class="fa fa-user"></i>Profil</a></li>
     <li class="active">Profil User</li>
   </ol>
 </section>
@@ -48,7 +47,7 @@
             ?>
           </div>
           <?php echo form_hidden('user_id', $current_user->id); ?>
-          <?php echo anchor(site_url('mahasiswa/user/profil'),'Kembali','class="btn btn-default"'); ?>
+          <?php echo anchor(site_url('mahasiswa/user'),'Kembali','class="btn btn-default"'); ?>
           <?php echo form_submit('submit','Ubah Password','class="btn btn-warning"'); ?>
         </div>
         <?php echo form_close(); ?>

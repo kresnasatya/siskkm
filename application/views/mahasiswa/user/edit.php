@@ -3,6 +3,10 @@
   <h1>
     Edit Profil
   </h1>
+  <ol class="breadcrumb">
+    <li><a href="<?php echo site_url('mahasiswa/user');?>"><i class="fa fa-user"></i>Profil</a></li>
+    <li class="active">Edit Profil</li>
+  </ol>
 </section>
 <!-- Main content -->
 <section class="content">
@@ -80,7 +84,7 @@
           </div><!-- /. box-body -->
           <?php echo form_hidden('user_id',$current_user->id); ?>
           <div class="box-footer">
-            <a href="<?php echo site_url('mahasiswa/user/profil') ?>" class="btn btn-default">Kembali</a>
+            <a href="<?php echo site_url('mahasiswa/user') ?>" class="btn btn-default">Kembali</a>
             <?php echo form_submit('submit', 'Edit', 'class="btn btn-warning"'); ?>
           </div><!-- /. box-footer -->
         <?php echo form_close(); ?>

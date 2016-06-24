@@ -4,8 +4,7 @@
     Profil User
   </h1>
   <ol class="breadcrumb">
-    <li><a href="<?php echo site_url('mahasiswa/beranda');?>"><i class="fa fa-home"></i> Beranda</a></li>
-    <li><a href="<?php echo site_url('mahasiswa/user/profil');?>">Profil</a></li>
+    <li><a href="<?php echo site_url('mahasiswa/user');?>"><i class="fa fa-user"></i>Profil</a></li>
     <li class="active">Profil User</li>
   </ol>
 </section>
@@ -33,7 +32,7 @@
                 <b>Nim</b> <a class="pull-right"><?php echo $current_user->nim; ?></a>
               </li>
             </ul>
-            <?php echo anchor(site_url('mahasiswa/user/edit'),'Edit Profil','class="btn btn-primary btn-block"'); ?>
+            <?php echo anchor(site_url('mahasiswa/user/edit_profil'),'Edit Profil','class="btn btn-primary btn-block"'); ?>
             <?php echo anchor(site_url('mahasiswa/user/ubah_password'),'Ubah Password','class="btn btn-primary btn-block"'); ?>
           </div>
         </div>
