@@ -23,15 +23,15 @@ class User extends Mahasiswa_Controller {
   {
     $current_user = $this->ion_auth->user()->row();
     $data['current_user'] = $current_user;
-    $this->_rules();
+    $this->rules_edit_profil();
     if ($this->form_validation->run()===FALSE) {
       $this->template->load('templates/mahasiswa/user_template','mahasiswa/user/edit', $data);
     }else{
+      
       $new_data = array(
                     'nama_depan' => $this->input->post('nama_depan'),
                     'nama_belakang' => $this->input->post('nama_belakang'),
                     'nim' => $this->input->post('nim'));
-      if(strlen($this->input->post('password'))>=8) $new_data['password'] = $this->input->post('password');
       $this->ion_auth->update($current_user->id, $new_data);
 
       $this->session->set_flashdata('message', $this->ion_auth->messages());
@@ -43,24 +43,34 @@ class User extends Mahasiswa_Controller {
   {
     $current_user = $this->ion_auth->user()->row();
     $data['current_user'] = $current_user;
-    $this->_rules();
+    $this->rules_ubah_password();
     if ($this->form_validation->run()===FALSE) {
       $this->template->load('templates/mahasiswa/user_template','mahasiswa/user/ubah_password', $data);
     }else{
-      // isi perintah ubah password di sini
+      $id_user = $this->input->post('user_id');
+      $data = array('password' => $this->input->post('password_baru'));
 
+      $this->ion_auth->update($id_user, $data);
+
+      $this->ion_auth->logout();
       $this->session->set_flashdata('message', $this->ion_auth->messages());
-      redirect('mahasiswa/user/profil','refresh');
+      redirect('login','refresh');
     }
   }
 
-  function _rules()
+  function rules_edit_profil()
   {
     $this->form_validation->set_rules('nama_depan', 'Nama depan', 'trim|required');
     $this->form_validation->set_rules('nama_belakang', 'Nama belakang', 'trim|required');
     $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
     $this->form_validation->set_rules('nim', 'Nim', 'trim|required');
-    $this->form_validation->set_rules('password', 'Ubah Password', 'trim|min_length[8]|max_length[20]');
+  }
+
+  public function rules_ubah_password()
+  {
+    $this->form_validation->set_rules('password_baru', 'Password Baru', 'trim|required');
+    $this->form_validation->set_rules('konfirmasi_password', 'Konfirmasi Password', 'trim|required|matches[password_baru]');
+    $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
   }
 
 }

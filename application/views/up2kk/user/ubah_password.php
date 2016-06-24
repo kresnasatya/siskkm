@@ -18,21 +18,6 @@
         <?php echo form_open('up2kk/user/ubah_password'); ?>
         <div class="box-body">
           <div class="form-group">
-            <?php echo form_label('Password Lama','password_lama'); ?>
-            <?php echo form_error('password_lama'); ?>
-            <?php
-                $input = array(
-                                'type' => 'password',
-                                'name' => 'password_lama',
-                                'id' => 'password_lama',
-                                'class' => 'form-control',
-                                'placeholder' => 'Password Lama',
-                                'required' => 'required',
-                                'autofocus' => 'autofocus');
-                echo form_input($input);
-            ?>
-          </div>
-          <div class="form-group">
             <?php echo form_label('Password Baru','password_baru'); ?>
             <?php echo form_error('password_baru'); ?>
             <?php
@@ -58,10 +43,11 @@
                                 'class' => 'form-control',
                                 'placeholder' => 'Konfirmasi Password',
                                 'required' => 'required',
-                                'autofocus' => 'autofocus');
+                );
                 echo form_input($input);
             ?>
           </div>
+          <?php echo form_hidden('user_id', $current_user->id); ?>
           <?php echo anchor(site_url('up2kk/user/profil'),'Kembali','class="btn btn-default"'); ?>
           <?php echo form_submit('submit','Ubah Password','class="btn btn-warning"'); ?>
         </div>
