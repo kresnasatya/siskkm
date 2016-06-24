@@ -45,7 +45,6 @@ class User extends Admin_Controller {
     if ($this->form_validation->run() == FALSE) {
       $this->template->load('templates/admin/user_template','admin/user/ubah_password', $data);
     }else{
-
       $id_user = $this->input->post('user_id');
       $data = array('password' => $this->input->post('password_baru'));
 
