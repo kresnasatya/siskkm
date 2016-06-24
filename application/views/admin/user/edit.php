@@ -84,7 +84,7 @@
                 <!-- /. box-body -->
                 <?php echo form_hidden('user_id',$current_user->id); ?>
                 <div class="box-footer">
-                    <?php echo anchor(site_url('admin/user/profil'), 'Kembali', 'class="btn btn-default"'); ?>
+                    <?php echo anchor(site_url('admin/user'), 'Kembali', 'class="btn btn-default"'); ?>
                     <?php echo form_submit('submit', 'Edit', 'class="btn btn-warning"'); ?>
                 </div>
                 <!-- /. box-footer -->

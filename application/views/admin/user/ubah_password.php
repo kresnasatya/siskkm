@@ -42,7 +42,7 @@
                         ?>
                     </div>
                     <?php echo form_hidden('user_id', $current_user->id) ?>
-                    <?php echo anchor(site_url('admin/user/profil'),'Kembali','class="btn btn-default"'); ?>
+                    <?php echo anchor(site_url('admin/user'),'Kembali','class="btn btn-default"'); ?>
                     <?php echo form_submit('submit','Ubah Password','class="btn btn-warning"'); ?>
                 </div>
                 <?php echo form_close(); ?>
