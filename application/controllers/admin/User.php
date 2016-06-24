@@ -23,7 +23,7 @@ class User extends Admin_Controller {
   {
     $current_user = $this->ion_auth->user()->row();
     $data['current_user'] = $current_user;
-    $this->rules_profil();
+    $this->rules_edit_profil();
     if ($this->form_validation->run() == FALSE) {
       $this->template->load('templates/admin/user_template','admin/user/edit', $data);
     }else{
@@ -56,7 +56,7 @@ class User extends Admin_Controller {
     }
   }
 
-  function rules_profil()
+  function rules_edit_profil()
   {
     $this->form_validation->set_rules('nama_depan', 'Nama depan', 'trim|required');
     $this->form_validation->set_rules('nama_belakang', 'Nama belakang', 'trim|required');
