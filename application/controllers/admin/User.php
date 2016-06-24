@@ -27,13 +27,17 @@ class User extends Admin_Controller {
     if ($this->form_validation->run() == FALSE) {
       $this->template->load('templates/admin/user_template','admin/user/edit', $data);
     }else{
+      $user_id = $this->input->post('user_id');
       $new_data = array(
                     'nama_depan' => $this->input->post('nama_depan'),
                     'nama_belakang' => $this->input->post('nama_belakang'),
-                    'nip' => $this->input->post('nip')
+                    'nip' => $this->input->post('nip'),
+                    'email' => $this->input->post('email'),
+                    'username' => $this->input->post('username')
       );
+      $this->ion_auth->update($current_user->id, $new_data);
       $this->session->set_flashdata('message', $this->ion_auth->messages());
-      redirect('admin/user/profil','refresh');
+      redirect('admin/user','refresh');
     }
   }
 
