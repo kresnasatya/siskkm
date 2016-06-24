@@ -1,11 +1,8 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
-  <h1>
-    Profil User
-  </h1>
+  <h1>Profil User</h1>
   <ol class="breadcrumb">
-    <li><a href="<?php echo site_url('up2kk/beranda');?>"><i class="fa fa-home"></i> Beranda</a></li>
-    <li><a href="<?php echo site_url('up2kk/user/profil');?>">Profil</a></li>
+    <li><a href="<?php echo site_url('up2kk/user');?>"><i class="fa fa-user"></i>Profil</a></li>
     <li class="active">Profil User</li>
   </ol>
 </section>
@@ -33,7 +30,7 @@
                 <b>Nip</b> <a class="pull-right"><?php echo $current_user->nip; ?></a>
               </li>
             </ul>
-            <?php echo anchor(site_url('up2kk/user/edit'),'Edit Profil','class="btn btn-primary btn-block"'); ?>
+            <?php echo anchor(site_url('up2kk/user/edit_profil'),'Edit Profil','class="btn btn-primary btn-block"'); ?>
             <?php echo anchor(site_url('up2kk/user/ubah_password'),'Ubah Password','class="btn btn-primary btn-block"'); ?>
           </div>
         </div>

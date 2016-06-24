@@ -12,14 +12,14 @@ class User extends UP2KK_Controller {
     $this->load->library('form_validation');
   }
 
-  public function profil()
+  public function index()
   {
     $current_user = $this->ion_auth->user()->row();
     $data['current_user'] = $current_user;
     $this->template->load('templates/up2kk/user_template','up2kk/user/profil', $data);
   }
 
-  function edit()
+  function edit_profil()
   {
     $current_user = $this->ion_auth->user()->row();
     $data['current_user'] = $current_user;
