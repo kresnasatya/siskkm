@@ -12,18 +12,18 @@ class User extends Admin_Controller {
     $this->load->library('form_validation');
   }
 
-  public function profil()
+  public function index()
   {
     $current_user = $this->ion_auth->user()->row();
     $data['current_user'] = $current_user;
     $this->template->load('templates/admin/user_template','admin/user/profil', $data);
   }
 
-  public function edit()
+  public function edit_profil()
   {
     $current_user = $this->ion_auth->user()->row();
     $data['current_user'] = $current_user;
-    $this->rules_edit_profil();
+    $this->rules_profil();
     if ($this->form_validation->run() == FALSE) {
       $this->template->load('templates/admin/user_template','admin/user/edit', $data);
     }else{
@@ -56,7 +56,7 @@ class User extends Admin_Controller {
     }
   }
 
-  function rules_edit_profil()
+  function rules_profil()
   {
     $this->form_validation->set_rules('nama_depan', 'Nama depan', 'trim|required');
     $this->form_validation->set_rules('nama_belakang', 'Nama belakang', 'trim|required');
