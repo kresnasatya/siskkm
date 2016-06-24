@@ -30,11 +30,14 @@ class User extends Mahasiswa_Controller {
       $new_data = array(
                     'nama_depan' => $this->input->post('nama_depan'),
                     'nama_belakang' => $this->input->post('nama_belakang'),
-                    'nim' => $this->input->post('nim'));
+                    'nim' => $this->input->post('nim'),
+                    'email' => $this->input->post('email'),
+                    'username' => $this->input->post('username')
+      );
       $this->ion_auth->update($current_user->id, $new_data);
 
       $this->session->set_flashdata('message', $this->ion_auth->messages());
-      redirect('mahasiswa/user/profil','refresh');
+      redirect('mahasiswa/user','refresh');
     }
   }
 
