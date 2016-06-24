@@ -1,8 +1,6 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
-  <h1>
-    Edit Profil
-  </h1>
+  <h1>Edit Profil</h1>
   <ol class="breadcrumb">
     <li><a href="<?php echo site_url('mahasiswa/user');?>"><i class="fa fa-user"></i>Profil</a></li>
     <li class="active">Edit Profil</li>
