@@ -100,7 +100,7 @@
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li class="treeview active">
-              <a href="<?php echo site_url('up2kk/beranda');?>">
+              <a href="<?php echo site_url('up2kk/dasbor');?>">
                 <i class="fa fa-dashboard"></i> <span>Dasbor</span>
               </a>
             </li>
