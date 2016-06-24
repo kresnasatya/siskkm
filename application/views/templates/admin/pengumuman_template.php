@@ -61,6 +61,7 @@
                     <img src="<?php echo base_url('adminlte/dist/img/user2-160x160.jpg');?>" class="img-circle" alt="User Image">
                     <p>
                       <?php echo $current_user->nama_depan.' '.$current_user->nama_belakang; ?>
+                      <small>Terdaftar pada tahun <?php echo date('Y', $current_user->created_on); ?></small>
                     </p>
                   </li>
                   <!-- Menu Footer-->
