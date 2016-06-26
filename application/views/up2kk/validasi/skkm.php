@@ -19,18 +19,15 @@
           <div class="form-group">
             <?php echo form_label('Status','status'); ?>
             <?php echo form_error('status'); ?>
-            <?php
-                $data = array(
-                                'type' => 'text',
-                                'name' => 'status',
-                                'value' => set_value('status', $status),
-                                'id' => 'status',
-                                'class' => 'form-control',
-                                'placeholder' => 'Status',
-                                'required' => 'required',
-                                'autofocus' => 'autofocus');
-                echo form_input($data);
-            ?>
+            <div class="radio">
+              <label for="">
+                <input type="radio" name="status" value="0" <?php echo set_radio('status', $status) == 0 ? "checked" : ""; ?> /> Tidak Valid
+              </label>
+              <br>
+              <label for="">
+                <input type="radio" name="status" value="1" <?php echo set_radio('status', $status) == 1 ? "checked" : ""; ?> /> Valid
+              </label>
+            </div>
           </div>
           <div class="form-group">
             <?php echo form_label('Keterangan','keterangan'); ?>
