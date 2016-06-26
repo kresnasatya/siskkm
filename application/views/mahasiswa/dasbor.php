@@ -19,10 +19,13 @@
           <div class="info-box-content">
               <span class="info-box-text"><a href="<?php echo site_url('mahasiswa/skkm'); ?>">skkm valid</a></span>
               <span class="info-box-number">
-                <?php if ($skkm_valid == NULL): ?>
-                    <?php echo 0; ?>
+                <?php
+                $number = 0;
+                $str = "poin";
+                if ($skkm_valid == NULL): ?>
+                    <?php echo $number.' '.$str; ?>
                   <?php else: ?>
-                    <?php echo $skkm_valid; ?>
+                    <?php echo $skkm_valid.' '.$str; ?>
                 <?php endif; ?>
               </span>
           </div>
@@ -36,10 +39,13 @@
           <div class="info-box-content">
               <span class="info-box-text"><a href="<?php echo site_url('mahasiswa/skkm'); ?>">skkm tidak valid</a></span>
               <span class="info-box-number">
-                <?php if ($skkm_tidak_valid == NULL): ?>
-                    <?php echo 0; ?>
+                <?php
+                $number = 0;
+                $str = "poin";
+                if ($skkm_tidak_valid == NULL): ?>
+                    <?php echo $number.' '.$str; ?>
                   <?php else: ?>
-                    <?php echo $skkm_tidak_valid; ?>
+                    <?php echo $skkm_tidak_valid.' '.$str; ?>
                 <?php endif; ?>
               </span>
           </div>
