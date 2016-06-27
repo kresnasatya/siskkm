@@ -47,7 +47,10 @@
                     <?php echo $row->nama_kegiatan; ?>
                   <?php endif; ?>
                 </td>
-                <td><img src="<?php echo base_url('fileskkm/resize/'.$row->filefoto); ?>" alt="" /></td>
+                <td>
+                <div class="anything" data-image="<?php echo base_url('fileskkm/'.$row->filefoto); ?>">
+                  <img src="<?php echo base_url('fileskkm/resize/'.$row->filefoto); ?>" />
+                </div></td>
                 <td><?php echo $row->jenis; ?></td>
                 <td><?php echo $row->tingkat; ?></td>
                 <td><?php echo $row->sebagai; ?></td>
