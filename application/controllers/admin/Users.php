@@ -35,12 +35,6 @@ class Users extends Admin_Controller {
 		echo '</select>';
   }
 
-  public function get_prodi_edit()
-  {
-    $id_jurusan = $this->input->post('row');
-    $prodi = $this->users_model->get_prodi($id_jurusan);
-  }
-
   public function tambah()
   {
         $this->rules_tambah();
