@@ -10,36 +10,23 @@ class Users_model extends CI_Model {
   // fungsi menampilkan semua jurusan
   public function get_jurusan()
   {
-      // ambil data jurusan
-      $this->db->order_by('nama_jurusan','ASC');
-      $result = $this->db->get('jurusan');
-
-      // membuat array
-      $dd[''] = 'Silahkan Pilih';
-      if ($result->num_rows() > 0) {
-        foreach ($result->result() as $row) {
-          // value di sebelah kiri dan label di sebelah kanan
-          $dd[$row->id] = $row->nama_jurusan;
-        }
-      }
-      return $dd;
+    $this->db->select('*');
+    $this->db->from('jurusan');
+    $result = $this->db->get();
+    return $result->result_array();
   }
 
   // fungsi menampilkan prodi berdasarkan jurusan
-  public function get_prodi()
+  public function get_prodi($id_jurusan)
   {
-      // ambil data prodi
-      $this->db->order_by('nama_prodi','asc');
-      $result = $this->db->get('prodi');
-      // membuat array
-      $dd[''] = 'Silahkan pilih';
-      if ($result->num_rows() > 0) {
-        foreach ($result->result() as $row) {
-          // value di sebelah kiri dan label di sebelah kanan
-          $dd[$row->id] = $row->nama_prodi;
-        }
-      }
-      return $dd;
+    if (isset($id_jurusan)) {
+      $this->db->where('id_jurusan', $id_jurusan);
+    }
+
+    $this->db->select('id, id_jurusan, nama_prodi');
+		$this->db->from('prodi');
+		$result = $this->db->get();
+		return $result->result_array();
   }
 
   // fungsi menampilkan kelas

@@ -133,24 +133,21 @@
                echo form_input($nip); ?>
             </div>
             <div class="form-group">
-              <div id="jurusan">
                 <?php echo form_label('Jurusan', 'id_jurusan'); ?>
                 <?php echo form_error('id_jurusan'); ?>
-                <?php
-                  $extra = array('class' => 'form-control select2');
-                  echo form_dropdown('id_jurusan', $dd_jurusan, $jurusan_selected, $extra);
-                 ?>
-              </div>
+                <select class="form-control select2" name="id_jurusan" id="jurusan" onchange="getProdi(this.value)">
+                  <option value="">Silahkan Pilih</option>
+                  <?php foreach ($dd_jurusan as $row): ?>
+                    <option value="<?php echo $row['id'] ?>"><?php echo $row['nama_jurusan'] ?></option>
+                  <?php endforeach; ?>
+                </select>
             </div>
             <div class="form-group">
-              <div id="prodi">
                 <?php echo form_label('Prodi', 'id_prodi'); ?>
                 <?php echo form_error('id_prodi'); ?>
-                <?php
-                  $extra = array('class' => 'form-control select2');
-                  echo form_dropdown('id_prodi', $dd_prodi, $prodi_selected, $extra);
-                 ?>
-              </div>
+                <select name="id_prodi" id="prodi" class="form-control select2">
+              		<option value="">Silahkan Pilih</option>
+              	</select>
             </div>
             <div class="form-group">
               <label for="kelas">Kelas <?php echo form_error('id_kelas'); ?></label>

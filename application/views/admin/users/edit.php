@@ -110,7 +110,9 @@
               <?php echo form_label('Jurusan', 'id_jurusan'); ?>
               <?php echo form_error('id_jurusan'); ?>
               <?php
-                $extra = array('class' => 'form-control select2');
+                $extra = array(
+                              'class' => 'form-control select2',
+                              'id' => 'jurusan');
                 echo form_dropdown('id_jurusan', $dd_jurusan, set_value('id_jurusan',$user->id_jurusan), $extra);
                ?>
             </div>
@@ -118,7 +120,9 @@
               <?php echo form_label('Prodi', 'id_prodi'); ?>
               <?php echo form_error('id_prodi'); ?>
               <?php
-                $extra = array('class' => 'form-control select2');
+                $extra = array(
+                              'class' => 'form-control select2',
+                              'id' => 'prodi');
                 echo form_dropdown('id_prodi', $dd_prodi, set_value('id_prodi',$user->id_prodi), $extra);
                ?>
             </div>
