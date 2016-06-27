@@ -52,9 +52,9 @@ class Users extends Admin_Controller {
 
           $this->template->load('templates/admin/users_template','admin/users/add',$data);
         }else {
+
           $username = $this->input->post('username');
           $email = $this->input->post('email');
-          $password = $this->input->post('password');
           $group_id = $this->input->post('groups');
 
           $additional_data = array(
@@ -69,7 +69,8 @@ class Users extends Admin_Controller {
           );
 
           // urutan parameter untuk register : username, password, email, data tambahan, id group
-           $this->ion_auth->register($username, $password, $email, $additional_data, $group_id);
+          // parameter $password diganti dengan 'password'. Jadi, password sudah tersetting otomatis dengan kata 'password'.
+           $this->ion_auth->register($username, 'password', $email, $additional_data, $group_id);
            $this->session->set_flashdata('message', $this->ion_auth->messages());
           redirect('admin/users','refresh');
         }
@@ -149,8 +150,6 @@ class Users extends Admin_Controller {
   {
       $this->form_validation->set_rules('username', 'Username', 'trim|required|is_unique[users.username]');
       $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[users.email]');
-      $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]|max_length[20]');
-      $this->form_validation->set_rules('confirm_password', 'Confirm password', 'trim|required|matches[password]');
       $this->form_validation->set_rules('nama_depan', 'Nama depan', 'trim|required');
       $this->form_validation->set_rules('nama_belakang', 'Nama belakang', 'trim|required');
       $this->form_validation->set_rules('groups[]','Groups','required|integer');

@@ -70,32 +70,6 @@
                echo form_input($email); ?>
             </div>
             <div class="form-group">
-              <?php echo form_label('Password','password'); ?>
-              <?php echo form_error('password'); ?>
-              <?php
-                  $password = array(
-                                    'type' => 'password',
-                                    'class' => 'form-control',
-                                    'name' => 'password',
-                                    'id' => 'password',
-                                    'placeholder' => 'Password',
-                                    'required' => 'required');
-               echo form_input($password); ?>
-            </div>
-            <div class="form-group">
-              <?php echo form_label('Confirm Password','confirm_password'); ?>
-              <?php echo form_error('confirm_password'); ?>
-              <?php
-                  $confirm_password = array(
-                                    'type' => 'password',
-                                    'class' => 'form-control',
-                                    'name' => 'confirm_password',
-                                    'id' => 'confirm_password',
-                                    'placeholder' => 'Confrim Password',
-                                    'required' => 'required');
-               echo form_input($confirm_password); ?>
-            </div>
-            <div class="form-group">
               <?php if (isset($groups)): ?>
                 <?php echo form_label('Groups', 'groups[]'); ?>
                 <?php foreach ($groups as $group): ?>
