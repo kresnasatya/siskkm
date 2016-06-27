@@ -172,5 +172,23 @@
         });
       });
     </script>
+    <script type="text/javascript">
+      function getProdi(value) {
+        console.log(value);
+        $.ajax({
+          type: "POST",
+          url: "<?php echo site_url('admin/users/get_prodi');?>",
+          data:"row="+value,
+          success: function(data) {
+            $("#prodi").html(data);
+            console.log(data);
+          },
+
+          error:function(XMLHttpRequest){
+            alert(XMLHttpRequest.responseText);
+          }
+        });
+      };
+    </script>
   </body>
 </html>

@@ -21,6 +21,26 @@ class Users extends Admin_Controller {
         $this->template->load('templates/admin/users_template','admin/users/list',$data);
   }
 
+  public function get_prodi()
+  {
+		$id_jurusan = $this->input->post('row'); // bukan 'id_jurusan' tetapi 'row'. Lihat fungsi get_prodi di javascript.
+		$prodi = $this->users_model->get_prodi($id_jurusan);
+
+		echo '<select name=""';
+		echo '<option value="">--Pilih Prodi--</option>';
+		foreach ($prodi as $row)
+		{
+			echo '<option value="'.$row['id'].'">'.$row['nama_prodi'].'</option>';
+		}
+		echo '</select>';
+  }
+
+  public function get_prodi_edit()
+  {
+    $id_jurusan = $this->input->post('row');
+    $prodi = $this->users_model->get_prodi($id_jurusan);
+  }
+
   public function tambah()
   {
         $this->rules_tambah();
@@ -29,7 +49,6 @@ class Users extends Admin_Controller {
                         'groups' => $this->ion_auth->groups()->result(),
                         'dd_jurusan' => $this->users_model->get_jurusan(),
                         'jurusan_selected' => $this->input->post('id_jurusan') ? $this->input->post('id_jurusan') : '',
-                        'dd_prodi' => $this->users_model->get_prodi(),
                         'prodi_selected' => $this->input->post('id_prodi') ? $this->input->post('id_prodi') : '',
                         'dd_semester' => $this->users_model->get_semester(),
                         'semester_selected' => $this->input->post('id_semester') ? $this->input->post('id_semester') : '',
