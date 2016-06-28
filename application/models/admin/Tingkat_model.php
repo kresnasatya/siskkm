@@ -11,8 +11,9 @@ class Tingkat_model extends CI_Model {
 
   public function get_all()
   {
-    $sql = 'SELECT id_tingkat, jenis.jenis, tingkat FROM tingkat
-              INNER JOIN jenis ON jenis.id_jenis = tingkat.id_jenis_fk';
+    $sql = "SELECT id_tingkat, jenis.jenis, tingkat
+            FROM tingkat
+            INNER JOIN jenis ON jenis.id_jenis = tingkat.id_jenis_fk";
     return $this->db->query($sql)->result();
   }
 
@@ -26,7 +27,6 @@ class Tingkat_model extends CI_Model {
   function get_jenis()
   {
     // ambil data jenis
-    $this->db->order_by('jenis','ASC');
     $result = $this->db->get('jenis');
 
     // membuat array

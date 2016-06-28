@@ -6,8 +6,8 @@ class User extends Admin_Controller {
   {
     parent::__construct();
     if (!$this->ion_auth->in_group('admin')) {
-      $this->session->set_flashdata('message','Kamu bukan admin!');
-      redirect('login','refresh');
+      $this->session->set_flashdata('message', 'Kamu bukan admin!');
+      redirect('login', 'refresh');
     }
     $this->load->library('form_validation');
   }

@@ -26,7 +26,6 @@ class Sebagai_model extends CI_Model {
   function get_tingkat()
   {
     // ambil data tingkat
-    $this->db->order_by('tingkat','ASC');
     $result = $this->db->get('tingkat');
 
     // membuat array

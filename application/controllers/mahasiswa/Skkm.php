@@ -6,6 +6,10 @@ class Skkm extends Mahasiswa_Controller {
   public function __construct()
   {
     parent::__construct();
+    if (!$this->ion_auth->in_group('mahasiswa')) {
+      $this->session->set_flashdata('message', 'Kamu bukan mahasiswa!');
+      redirect('login', 'refresh');
+    }
     $this->load->model('mahasiswa/Skkm_model', 'skkm');
     $this->load->library('form_validation');
   }

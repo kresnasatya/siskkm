@@ -6,13 +6,13 @@ class Beranda extends CI_Controller {
   public function __construct()
   {
     parent::__construct();
-    $this->load->model('Home_model','home');
+    $this->load->model('Beranda_model', 'beranda');
   }
 
   public function index()
   {
-    $data['pengumuman'] = $this->home->pengumuman();
-    $this->template->load('templates/home_template','beranda',$data);
+    $data['pengumuman'] = $this->beranda->pengumuman();
+    $this->template->load('templates/beranda_template', 'beranda', $data);
   }
 
 }

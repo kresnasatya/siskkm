@@ -5,6 +5,10 @@ class Pengumuman extends Admin_Controller {
   public function __construct()
   {
     parent::__construct();
+    if (!$this->ion_auth->in_group('admin')) {
+      $this->session->set_flashdata('message', 'Kamu bukan admin!');
+      redirect('login', 'refresh');
+    }
     $this->load->model('admin/Pengumuman_model','pengumuman');
     $this->load->library('form_validation');
   }
@@ -13,7 +17,7 @@ class Pengumuman extends Admin_Controller {
   {
     $data['pengumuman'] = $this->pengumuman->get_all();
     $data['current_user'] = $this->ion_auth->user()->row();
-    $this->template->load('templates/admin/pengumuman_template','admin/pengumuman/list',$data);
+    $this->template->load('templates/admin/pengumuman_template', 'admin/pengumuman/list', $data);
   }
 
   public function tambah()
@@ -21,7 +25,7 @@ class Pengumuman extends Admin_Controller {
     $this->rules();
     if ($this->form_validation->run() == FALSE) {
       $data = array('current_user' => $this->ion_auth->user()->row());
-      $this->template->load('templates/admin/pengumuman_template','admin/pengumuman/add',$data);
+      $this->template->load('templates/admin/pengumuman_template', 'admin/pengumuman/add', $data);
     }else {
       $judul = $this->input->post('judul');
       $isi_pengumuman = $this->input->post('isi_pengumuman');
@@ -34,7 +38,7 @@ class Pengumuman extends Admin_Controller {
                     'id_user' => $user->id, // baca dokumentasi ion auth
       );
       $this->pengumuman->insert($data);
-      $this->session->set_flashdata('message','Pengumuman berhasil ditambah.');
+      $this->session->set_flashdata('message', 'Pengumuman berhasil ditambah.');
       redirect(site_url('admin/pengumuman'));
     }
   }
@@ -53,7 +57,7 @@ class Pengumuman extends Admin_Controller {
                       'id_user' => set_value('id_user',$row->id_user),
                       'current_user' => $this->ion_auth->user()->row()
         );
-        $this->template->load('templates/admin/pengumuman_template','admin/pengumuman/edit',$data);
+        $this->template->load('templates/admin/pengumuman_template', 'admin/pengumuman/edit', $data);
 
       }else {
         $this->session->set_flashdata('message', 'Data tidak ditemukan.');

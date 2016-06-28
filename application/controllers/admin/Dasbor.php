@@ -6,7 +6,11 @@ class Dasbor extends Admin_Controller {
   public function __construct()
   {
     parent::__construct();
-    $this->load->model('admin/Dasbor_model','dasbor');
+    if (!$this->ion_auth->in_group('admin')) {
+      $this->session->set_flashdata('message', 'Kamu bukan admin!');
+      redirect('login', 'refresh');
+    }
+    $this->load->model('admin/Dasbor_model', 'dasbor');
   }
 
   function index()
@@ -18,7 +22,7 @@ class Dasbor extends Admin_Controller {
                   'count_jenis' => $this->dasbor->count_jenis(),
                   'count_tingkat' => $this->dasbor->count_tingkat(),
                   'count_sebagai' => $this->dasbor->count_sebagai());
-    $this->template->load('templates/admin/dasbor_template','admin/dasbor',$data);
+    $this->template->load('templates/admin/dasbor_template', 'admin/dasbor', $data);
   }
 
 }

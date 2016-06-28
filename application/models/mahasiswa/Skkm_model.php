@@ -28,7 +28,6 @@ class Skkm_model extends CI_Model {
   public function get_jenis()
   {
     // ambil data jenis
-    // $this->db->order_by('jenis','ASC');
     $result = $this->db->get('jenis');
 
     // membuat array
@@ -46,7 +45,6 @@ class Skkm_model extends CI_Model {
   public function get_tingkat()
   {
     // ambil data tingkat
-    // $this->db->order_by('tingkat','ASC');
     $result = $this->db->get('tingkat');
 
     // membuat array
@@ -64,7 +62,6 @@ class Skkm_model extends CI_Model {
   public function get_sebagai()
   {
     // ambil data sebagai
-    // $this->db->order_by('sebagai','ASC');
     $result = $this->db->get('sebagai');
 
     // membuat array

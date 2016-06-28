@@ -6,7 +6,11 @@ class Jenis extends CI_Controller {
   public function __construct()
   {
     parent::__construct();
-    $this->load->model('admin/Jenis_model','jenis');
+    if (!$this->ion_auth->in_group('admin')) {
+      $this->session->set_flashdata('message', 'Kamu bukan admin!');
+      redirect('login', 'refresh');
+    }
+    $this->load->model('admin/Jenis_model', 'jenis');
     $this->load->library('form_validation');
   }
 
@@ -25,12 +29,12 @@ class Jenis extends CI_Controller {
     $this->rules_tambah();
     if ($this->form_validation->run() == FALSE) {
       $data = array('current_user' => $this->ion_auth->user()->row());
-      $this->template->load('templates/admin/jenis_template','admin/jenis/add',$data);
-    }else {
+      $this->template->load('templates/admin/jenis_template', 'admin/jenis/add', $data);
+    } else {
       $jenis = $this->input->post('jenis');
       $data = array('jenis' => $jenis);
       $this->jenis->insert($data);
-      $this->session->set_flashdata('message','Jenis berhasil ditambah.');
+      $this->session->set_flashdata('message', 'Jenis berhasil ditambah.');
       redirect(site_url('admin/jenis'));
     }
   }
@@ -48,7 +52,7 @@ class Jenis extends CI_Controller {
                       'jenis'    => $row->jenis,
                       'current_user' => $this->ion_auth->user()->row()
         );
-        $this->template->load('templates/admin/jenis_template','admin/jenis/edit',$data);
+        $this->template->load('templates/admin/jenis_template', 'admin/jenis/edit', $data);
       }else {
         $this->session->set_flashdata('message', 'Data tidak ditemukan.');
         redirect(site_url('admin/jenis'));

@@ -24,7 +24,7 @@ class Login extends MY_Controller {
       // kalau user belum login
       if ($this->input->post()) {
         $this->_rules();
-        if ($this->form_validation->run() === TRUE) {
+        if ($this->form_validation->run() == TRUE) {
           $identity = $this->input->post('identity');
           $password = $this->input->post('password');
           if ($this->ion_auth->login($identity, $password)) {
@@ -37,24 +37,24 @@ class Login extends MY_Controller {
             }
           } else {
             $this->session->set_flashdata('message', $this->ion_auth->errors());
-            redirect('login','refresh');
+            redirect('login', 'refresh');
           }
         }
       }
     }
-    $this->template->load('templates/login_template','login');
+    $this->template->load('templates/login_template', 'login');
   }
 
   public function logout()
   {
     $this->ion_auth->logout();
-    redirect('login','refresh');
+    redirect('login', 'refresh');
   }
 
   public function _rules()
   {
     $this->form_validation->set_rules('identity', '', 'trim');
-    $this->form_validation->set_rules('password','','trim');
+    $this->form_validation->set_rules('password', '', 'trim');
   }
 
 }

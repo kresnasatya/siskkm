@@ -10,7 +10,7 @@ class Tentang extends CI_Controller {
 
   public function index()
   {
-    $this->template->load('templates/home_template','tentang');
+    $this->template->load('templates/beranda_template', 'tentang');
   }
 
 }

@@ -12,7 +12,7 @@ class Pengumuman_model extends CI_Model {
   {
     $sql = "SELECT pengumuman.id, judul, isi_pengumuman, tanggal, users.nama_depan, users.nama_belakang
             FROM pengumuman
-            INNER JOIN users ON users.id=pengumuman.id_user";
+            INNER JOIN users ON users.id = pengumuman.id_user";
     return $this->db->query($sql)->result();
   }
 

@@ -6,8 +6,8 @@ class User extends Mahasiswa_Controller {
   {
     parent::__construct();
     if (!$this->ion_auth->in_group('mahasiswa')) {
-      $this->session->set_flashdata('message','Kamu bukan mahasiswa!');
-      redirect('login','refresh');
+      $this->session->set_flashdata('message', 'Kamu bukan mahasiswa!');
+      redirect('login', 'refresh');
     }
     $this->load->library('form_validation');
   }
@@ -16,7 +16,7 @@ class User extends Mahasiswa_Controller {
   {
     $current_user = $this->ion_auth->user()->row();
     $data['current_user'] = $current_user;
-    $this->template->load('templates/mahasiswa/user_template','mahasiswa/user/profil', $data);
+    $this->template->load('templates/mahasiswa/user_template', 'mahasiswa/user/profil', $data);
   }
 
   function edit_profil()
@@ -25,7 +25,7 @@ class User extends Mahasiswa_Controller {
     $data['current_user'] = $current_user;
     $this->rules_edit_profil();
     if ($this->form_validation->run()===FALSE) {
-      $this->template->load('templates/mahasiswa/user_template','mahasiswa/user/edit', $data);
+      $this->template->load('templates/mahasiswa/user_template', 'mahasiswa/user/edit', $data);
     }else{
       $new_data = array(
                     'nama_depan' => $this->input->post('nama_depan'),
@@ -37,7 +37,7 @@ class User extends Mahasiswa_Controller {
       $this->ion_auth->update($current_user->id, $new_data);
 
       $this->session->set_flashdata('message', $this->ion_auth->messages());
-      redirect('mahasiswa/user','refresh');
+      redirect('mahasiswa/user', 'refresh');
     }
   }
 
@@ -47,7 +47,7 @@ class User extends Mahasiswa_Controller {
     $data['current_user'] = $current_user;
     $this->rules_ubah_password();
     if ($this->form_validation->run()===FALSE) {
-      $this->template->load('templates/mahasiswa/user_template','mahasiswa/user/ubah_password', $data);
+      $this->template->load('templates/mahasiswa/user_template', 'mahasiswa/user/ubah_password', $data);
     }else{
       $id_user = $this->input->post('user_id');
       $data = array('password' => $this->input->post('password_baru'));
@@ -56,7 +56,7 @@ class User extends Mahasiswa_Controller {
 
       $this->ion_auth->logout();
       $this->session->set_flashdata('message', $this->ion_auth->messages());
-      redirect('login','refresh');
+      redirect('login', 'refresh');
     }
   }
 

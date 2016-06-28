@@ -6,8 +6,8 @@ class Users extends Admin_Controller {
   {
         parent::__construct();
         if (!$this->ion_auth->in_group('admin')) {
-          $this->session->set_flashdata('message','Kamu bukan admin!');
-          redirect('login','refresh');
+          $this->session->set_flashdata('message', 'Kamu bukan admin!');
+          redirect('login', 'refresh');
         }
         $this->load->model('admin/users_model');
         $this->load->library('form_validation');
@@ -18,13 +18,13 @@ class Users extends Admin_Controller {
         $data['current_user'] = $this->ion_auth->user()->row();
         $data['users'] = $this->ion_auth->users($group_id)->result();
 
-        $this->template->load('templates/admin/users_template','admin/users/list',$data);
+        $this->template->load('templates/admin/users_template', 'admin/users/list', $data);
   }
 
   public function tambah()
   {
         $this->rules_tambah();
-        if ($this->form_validation->run() === FALSE) {
+        if ($this->form_validation->run() == FALSE) {
           $data = array(
                         'groups' => $this->ion_auth->groups()->result(),
                         'dd_jurusan' => $this->users_model->get_jurusan(),
@@ -37,8 +37,8 @@ class Users extends Admin_Controller {
                         'kelas_selected' => $this->input->post('id_kelas') ? $this->input->post('id_kelas') : '',
                         'current_user' => $this->ion_auth->user()->row());
 
-          $this->template->load('templates/admin/users_template','admin/users/add',$data);
-        }else {
+          $this->template->load('templates/admin/users_template', 'admin/users/add', $data);
+        } else {
 
           $username = $this->input->post('username');
           $email = $this->input->post('email');
@@ -59,7 +59,7 @@ class Users extends Admin_Controller {
           // parameter $password diganti dengan 'password'. Jadi, password sudah tersetting otomatis dengan kata 'password'.
            $this->ion_auth->register($username, 'password', $email, $additional_data, $group_id);
            $this->session->set_flashdata('message', $this->ion_auth->messages());
-          redirect('admin/users','refresh');
+          redirect('admin/users', 'refresh');
         }
   }
 
@@ -80,8 +80,8 @@ class Users extends Admin_Controller {
                         'dd_semester' => $this->users_model->get_semester(),
                         'current_user' => $this->ion_auth->user()->row());
         }else {
-          $this->session->set_flashdata('message','User tidak ada');
-          redirect('admin/users','refresh');
+          $this->session->set_flashdata('message', 'User tidak ada');
+          redirect('admin/users', 'refresh');
         }
         $data['groups'] = $this->ion_auth->groups()->result();
         $data['usergroups'] = array();
@@ -90,7 +90,7 @@ class Users extends Admin_Controller {
             $data['usergroups'][] = $group->id;
           }
         }
-        $this->template->load('templates/admin/users_template','admin/users/edit',$data);
+        $this->template->load('templates/admin/users_template', 'admin/users/edit', $data);
       }else {
         $user_id = $this->input->post('user_id');
         $new_data = array(
@@ -117,20 +117,20 @@ class Users extends Admin_Controller {
         }
 
         $this->session->set_flashdata('message',$this->ion_auth->messages());
-        redirect('admin/users','refresh');
+        redirect('admin/users', 'refresh');
     }
   }
 
   public function hapus($user_id = NULL)
   {
       if (is_null($user_id)) {
-        $this->session->set_flashdata('message','Tidak ada data user untuk dihapus');
+        $this->session->set_flashdata('message', 'Tidak ada data user untuk dihapus');
       }
       else {
         $this->ion_auth->delete_user($user_id);
         $this->session->set_flashdata('message', $this->ion_auth->messages());
       }
-      redirect('admin/users','refresh');
+      redirect('admin/users', 'refresh');
   }
 
   public function rules_tambah()

@@ -6,7 +6,11 @@ class Tingkat extends CI_Controller {
   public function __construct()
   {
     parent::__construct();
-    $this->load->model('admin/Tingkat_model','tingkat');
+    if (!$this->ion_auth->in_group('admin')) {
+      $this->session->set_flashdata('message', 'Kamu bukan admin!');
+      redirect('login', 'refresh');
+    }
+    $this->load->model('admin/Tingkat_model', 'tingkat');
     $this->load->library('form_validation');
   }
 
@@ -29,7 +33,7 @@ class Tingkat extends CI_Controller {
                     'dd_jenis' => $this->tingkat->get_jenis(),
                     'jenis_selected' => $this->input->post('id_jenis_fk') ? $this->input->post('id_jenis_fk') : '',
       );
-      $this->template->load('templates/admin/tingkat_template','admin/tingkat/add',$data);
+      $this->template->load('templates/admin/tingkat_template', 'admin/tingkat/add', $data);
     }else {
       $tingkat = $this->input->post('tingkat');
       $id_jenis_fk = $this->input->post('id_jenis_fk');
@@ -37,7 +41,7 @@ class Tingkat extends CI_Controller {
                     'tingkat' => $tingkat,
                     'id_jenis_fk' => $id_jenis_fk);
       $this->tingkat->insert($data);
-      $this->session->set_flashdata('message','Tingkat berhasil ditambah.');
+      $this->session->set_flashdata('message', 'Tingkat berhasil ditambah.');
       redirect(site_url('admin/tingkat'));
     }
   }
@@ -57,7 +61,7 @@ class Tingkat extends CI_Controller {
                       'dd_jenis' => $this->tingkat->get_jenis(),
                       'current_user' => $this->ion_auth->user()->row()
         );
-        $this->template->load('templates/admin/tingkat_template','admin/tingkat/edit',$data);
+        $this->template->load('templates/admin/tingkat_template', 'admin/tingkat/edit', $data);
       }else {
         $this->session->set_flashdata('message', 'Data tidak ditemukan.');
         redirect(site_url('admin/tingkat'));

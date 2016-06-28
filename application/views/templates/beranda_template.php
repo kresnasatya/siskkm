@@ -59,8 +59,8 @@
 	<!-- *****************************************************************************************************************
 	 HEADERWRAP
 	 ***************************************************************************************************************** -->
-	<?php echo $contents; ?>
 
+  <?php echo $contents; ?>
 
   <!-- *****************************************************************************************************************
    FOOTER
@@ -72,7 +72,7 @@
           <h4>Tentang</h4>
           <div class="hline-w"></div>
           <p>Peringatan!!!<br>
-            Sistem ini masih dalam status uji coba dan pengembangan. Belum siap untuk produksi.</p>
+            Sistem ini masih dalam status uji coba dan pengembangan. Belum untuk produksi.</p>
         </div>
         <div class="col-lg-6">
           <h4>Alamat</h4>

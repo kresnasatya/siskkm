@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Home_model extends CI_Model {
+class Beranda_model extends CI_Model {
 
   public function __construct()
   {
@@ -29,14 +29,11 @@ class Home_model extends CI_Model {
   public function single($id)
   {
     $sql = "SELECT
-              pengumuman.id, judul, isi_pengumuman, tanggal, slug, users.nama_depan, users.nama_belakang
-            FROM
-              pengumuman, users
-            WHERE
-              pengumuman.id = '$id'
-            AND
-              pengumuman.id_user=users.id";
+            pengumuman.id, judul, isi_pengumuman, tanggal, slug, users.nama_depan, users.nama_belakang
+            FROM pengumuman, users
+            WHERE pengumuman.id = '$id'
+            AND pengumuman.id_user=users.id";
     return $this->db->query($sql)->result();
   }
-  
+
 }

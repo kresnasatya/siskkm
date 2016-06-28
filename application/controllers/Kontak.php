@@ -10,7 +10,7 @@ class Kontak extends CI_Controller {
 
   function index()
   {
-    $this->template->load('templates/home_template','kontak');
+    $this->template->load('templates/beranda_template', 'kontak');
   }
 
 }

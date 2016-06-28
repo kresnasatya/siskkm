@@ -6,7 +6,11 @@ class Sebagai extends CI_Controller {
   public function __construct()
   {
     parent::__construct();
-    $this->load->model('admin/Sebagai_model','sebagai');
+    if (!$this->ion_auth->in_group('admin')) {
+      $this->session->set_flashdata('message', 'Kamu bukan admin!');
+      redirect('login', 'refresh');
+    }
+    $this->load->model('admin/Sebagai_model', 'sebagai');
     $this->load->library('form_validation');
   }
 
@@ -29,7 +33,7 @@ class Sebagai extends CI_Controller {
                     'dd_tingkat' => $this->sebagai->get_tingkat(),
                     'tingkat_selected' => $this->input->post('id_tingkat_fk') ? $this->input->post('id_tingkat_fk') : '',
       );
-      $this->template->load('templates/admin/sebagai_template','admin/sebagai/add',$data);
+      $this->template->load('templates/admin/sebagai_template', 'admin/sebagai/add', $data);
     }else {
       $sebagai = $this->input->post('sebagai');
       $bobot = $this->input->post('bobot');
@@ -39,7 +43,7 @@ class Sebagai extends CI_Controller {
                     'bobot'  => $bobot,
                     'id_tingkat_fk' => $id_tingkat_fk);
       $this->sebagai->insert($data);
-      $this->session->set_flashdata('message','Sebagai berhasil ditambah.');
+      $this->session->set_flashdata('message', 'Sebagai berhasil ditambah.');
       redirect(site_url('admin/sebagai'));
     }
   }
@@ -60,7 +64,7 @@ class Sebagai extends CI_Controller {
                       'dd_tingkat' => $this->sebagai->get_tingkat(),
                       'current_user' => $this->ion_auth->user()->row()
         );
-        $this->template->load('templates/admin/sebagai_template','admin/sebagai/edit',$data);
+        $this->template->load('templates/admin/sebagai_template', 'admin/sebagai/edit', $data);
       }else {
         $this->session->set_flashdata('message', 'Data tidak ditemukan.');
         redirect(site_url('admin/sebagai'));
