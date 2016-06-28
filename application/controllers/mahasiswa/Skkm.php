@@ -17,8 +17,8 @@ class Skkm extends Mahasiswa_Controller {
     $data = array(
                   'current_user' => $current_user,
                   'skkm' => $this->skkm->get_all($id_user),
-                  'skkm_valid' => $this->skkm->count_valid($id_user),
-                  'skkm_tidak_valid' => $this->skkm->count_tidak_valid($id_user),
+                  'skkm_valid' => $this->skkm->sum_valid($id_user),
+                  'skkm_tidak_valid' => $this->skkm->sum_tidak_valid($id_user),
                   'status_skkm' => $this->skkm->status_skkm($id_user));
     $this->template->load('templates/mahasiswa/skkm_template', 'mahasiswa/skkm/list', $data);
   }

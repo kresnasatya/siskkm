@@ -79,7 +79,7 @@ class Skkm_model extends CI_Model {
   }
 
   // menghitung skkm valid
-  public function count_valid($id_user)
+  public function sum_valid($id_user)
   {
     $this->db->select('SUM(nilai) as total');
     $this->db->from('skkm');
@@ -89,7 +89,7 @@ class Skkm_model extends CI_Model {
   }
 
   // menghitung skkm tidak valid
-  public function count_tidak_valid($id_user)
+  public function sum_tidak_valid($id_user)
   {
     $this->db->select('SUM(nilai) as total');
     $this->db->from('skkm');
