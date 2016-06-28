@@ -20,6 +20,9 @@
                     <div class="col-md-9">
                         <ul class="list-group list-group-unbordered">
                             <li class="list-group-item">
+                                <b>Nama</b> <a class="pull-right"><?php echo $current_user->nama_depan.' '.$current_user->nama_belakang; ?></a>
+                            </li>
+                            <li class="list-group-item">
                                 <b>Username</b> <a class="pull-right"><?php echo $current_user->username; ?></a>
                             </li>
                             <li class="list-group-item">
