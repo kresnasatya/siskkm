@@ -113,6 +113,11 @@
         </strong></p>
         <p>
           <strong>Status Kelulusan SKKM: </strong>
+          <?php if ($skkm_valid >= $status_skkm): ?>
+              <?php echo "LULUS"; ?>
+            <?php else: ?>
+              <?php echo "TIDAK LULUS"; ?>
+          <?php endif; ?>
         </p>
         </div>
       </div>

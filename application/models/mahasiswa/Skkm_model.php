@@ -98,6 +98,16 @@ class Skkm_model extends CI_Model {
     return $result = $this->db->get()->row()->total;
   }
 
+  public function status_skkm($id_user)
+  {
+    $this->db->select('u.id, p.jenjang, s.standar as total');
+    $this->db->from('users u');
+    $this->db->join('prodi p', 'u.id_prodi = p.id');
+    $this->db->join('standar s', 's.jenjang = p.jenjang');
+    $this->db->where('u.id', $id_user);
+    return $result = $this->db->get()->row()->total;
+  }
+
   public function insert($data)
   {
     $this->db->insert('skkm', $data);
