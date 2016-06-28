@@ -112,12 +112,13 @@
             <?php endif; ?>
         </strong></p>
         <p>
-          <strong>Status Kelulusan SKKM: </strong>
+          <strong>Status Kelulusan SKKM:
           <?php if ($skkm_valid >= $status_skkm): ?>
-              <?php echo "LULUS"; ?>
+                <?php echo "LULUS"; ?>
             <?php else: ?>
               <?php echo "TIDAK LULUS"; ?>
           <?php endif; ?>
+          </strong>
         </p>
         </div>
       </div>
