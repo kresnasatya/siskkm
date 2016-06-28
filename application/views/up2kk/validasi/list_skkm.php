@@ -75,6 +75,36 @@
               <?php endforeach; ?>
             </tbody>
           </table>
+          <p><strong>
+            SKKM yang valid:
+            <?php
+            $num = 0;
+            $str = "poin";
+            if ($skkm_valid == NULL): ?>
+              <?php echo $num.' '.$str; ?>
+            <?php else: ?>
+              <?php echo $skkm_valid.' '.$str; ?>
+            <?php endif; ?></strong></p>
+          <p><strong>
+            SKKM tidak valid:
+            <?php
+            $num = 0;
+            $str = "poin";
+            if ($skkm_tidak_valid == NULL): ?>
+              <?php echo $num.' '.$str; ?>
+            <?php else: ?>
+              <?php echo $skkm_tidak_valid.' '.$str; ?>
+            <?php endif; ?>
+        </strong></p>
+        <p>
+          <strong>Status Kelulusan SKKM:
+          <?php if ($skkm_valid >= $status_skkm): ?>
+                <?php echo "LULUS"; ?>
+            <?php else: ?>
+              <?php echo "TIDAK LULUS"; ?>
+          <?php endif; ?>
+          </strong>
+        </p>
         </div>
       </div>
     </div>
