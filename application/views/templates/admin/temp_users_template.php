@@ -172,5 +172,39 @@
         });
       });
     </script>
+    <!-- Ajax dropdown jurusan-prodi -->
+    <script type="text/javascript">
+      function getProdi(value) {
+        console.log(value);
+        $.ajax({
+          type: "POST",
+          url: "<?php echo site_url('admin/users/get_prodi');?>",
+          data:"row="+value,
+          success: function(data) {
+            $("#prodi").html(data);
+            console.log(data);
+          },
+
+          error:function(XMLHttpRequest){
+            alert(XMLHttpRequest.responseText);
+          }
+        });
+      };
+    </script>
+    <!-- Radio button selected group -->
+    <script>
+      function form_check() {
+        var myForm = document.forms.myForm;
+        var myControls = myForm.elements['groups[]'];
+        for (var i = 0; i < myControls.length; i++) {
+          var aControl = myControls[i];
+          // console.log(aControl.value);
+
+          if (aControl.value == '1') {
+            console.log('1');
+          }
+        }
+      }
+    </script>
   </body>
 </html>

@@ -14,7 +14,10 @@
     <div class="col-md-12">
       <div class="box box-primary">
         <!-- form start-->
-        <?php echo form_open('admin/users/tambah'); ?>
+        <?php
+        $attribute = array(
+                          'id' => 'myForm');
+        echo form_open('admin/users/tambah', $attribute); ?>
           <div class="box-body">
             <div class="form-group">
               <?php echo form_label('Nama depan','nama_depan'); ?>
@@ -111,30 +114,29 @@
             <div class="form-group">
                 <?php echo form_label('Jurusan', 'id_jurusan'); ?>
                 <?php echo form_error('id_jurusan'); ?>
-                <?php
-                  $extra = array('class' => 'form-control select2');
-                  echo form_dropdown('id_jurusan', $dd_jurusan, $jurusan_selected, $extra);
-                 ?>
+                <select class="form-control select2" name="id_jurusan" id="jurusan" onchange="getProdi(this.value)">
+                  <option value="">Silahkan Pilih</option>
+                  <?php foreach ($dd_jurusan as $row): ?>
+                    <option value="<?php echo $row['id'] ?>"><?php echo $row['nama_jurusan'] ?></option>
+                  <?php endforeach; ?>
+                </select>
             </div>
             <div class="form-group">
                 <?php echo form_label('Prodi', 'id_prodi'); ?>
                 <?php echo form_error('id_prodi'); ?>
-                <?php
-                  $extra = array('class' => 'form-control select2');
-                  echo form_dropdown('id_prodi', $dd_prodi, $prodi_selected, $extra);
-                 ?>
+                <select name="id_prodi" id="prodi" class="form-control select2">
+              		<option value="">Silahkan Pilih</option>
+              	</select>
             </div>
             <div class="form-group">
-              <?php echo form_label('Kelas', 'id_kelas'); ?>
-              <?php echo form_error('id_kelas'); ?>
+              <label for="kelas">Kelas <?php echo form_error('id_kelas'); ?></label>
               <?php
                 $extra = array('class' => 'form-control select2');
                 echo form_dropdown('id_kelas', $dd_kelas, $kelas_selected, $extra);
                ?>
             </div>
             <div class="form-group">
-              <?php echo form_label('Kelas', 'id_kelas'); ?>
-              <?php echo form_error('id_semester'); ?>
+              <label for="semester">Semester <?php echo form_error('id_semester'); ?></label>
               <?php
                 $extra = array('class' => 'form-control select2');
                 echo form_dropdown('id_semester', $dd_semester, $semester_selected, $extra);

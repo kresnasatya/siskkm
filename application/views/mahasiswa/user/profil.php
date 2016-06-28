@@ -17,6 +17,9 @@
           <div class="col-md-3">
             <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url('adminlte/dist/img/user2-160x160.jpg');?>" alt="gambar Profil User">
             <h3 class="profile-username text-center"><?php echo $current_user->nama_depan.' '.$current_user->nama_belakang; ?></h3>
+            <p><strong>Total Poin SKKM Valid: </strong></p>
+            <p><strong>Total Poin SKKM Tidak Valid: </strong></p>
+            <p><strong>Status SKKM: </strong></p>
           </div>
           <div class="col-md-9">
             <ul class="list-group list-group-unbordered">
