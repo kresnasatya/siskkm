@@ -26,13 +26,13 @@ class Beranda_model extends CI_Model {
     return $this->db->query($sql)->result();
   }
 
-  public function single($id)
+  public function single($slug)
   {
     $sql = "SELECT
             pengumuman.id, judul, isi_pengumuman, tanggal, slug, users.nama_depan, users.nama_belakang
             FROM pengumuman, users
-            WHERE pengumuman.id = '$id'
-            AND pengumuman.id_user=users.id";
+            WHERE slug = '$slug'
+            AND pengumuman.id_user = users.id";
     return $this->db->query($sql)->result();
   }
 
