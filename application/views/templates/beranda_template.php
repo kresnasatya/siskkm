@@ -27,7 +27,6 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <script src="<?php echo base_url('solid/assets/js/modernizr.js'); ?>"></script>
   </head>
 
   <body>
@@ -94,12 +93,12 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="<?php echo base_url('solid/assets/js/jquery.min.js'); ?>"></script>
     <script src="<?php echo base_url('solid/assets/js/bootstrap.min.js'); ?>"></script>
-	   <script src="<?php echo base_url('solid/assets/js/retina-1.1.0.js'); ?>"></script>
-	    <script src="<?php echo base_url('solid/assets/js/jquery.hoverdir.js'); ?>"></script>
-	<script src="<?php echo base_url('assets/js/jquery.hoverex.min.js'); ?>"></script>
-	<script src="<?php echo base_url('assets/js/jquery.prettyPhoto.js'); ?>"></script>
-  	<script src="<?php echo base_url('assets/js/jquery.isotope.min.js'); ?>"></script>
-  	<script src="<?php echo base_url('assets/js/custom.js'); ?>"></script>
+	  <script src="<?php echo base_url('solid/assets/js/retina-1.1.0.js'); ?>"></script>
+	  <script src="<?php echo base_url('solid/assets/js/jquery.hoverdir.js'); ?>"></script>
+	  <script src="<?php echo base_url('solid/assets/js/jquery.hoverex.min.js'); ?>"></script>
+	  <script src="<?php echo base_url('solid/assets/js/jquery.prettyPhoto.js'); ?>"></script>
+  	<script src="<?php echo base_url('solid/assets/js/jquery.isotope.min.js'); ?>"></script>
+  	<script src="<?php echo base_url('solid/assets/js/custom.js'); ?>"></script>
 
   </body>
 </html>
