@@ -166,7 +166,9 @@
     <!-- page script-->
     <script>
       $(document).ready(function(){
-        $("#userstable").DataTable();
+        $("#userstable").DataTable({
+          "scrollX": true;
+        });
         $(".select2").select2({
           placeholder: "Silahkan Pilih"
         });

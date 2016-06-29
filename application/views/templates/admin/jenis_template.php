@@ -165,7 +165,9 @@
     <!-- page script-->
     <script>
       $(document).ready(function () {
-        $("#jenistable").DataTable();
+        $("#jenistable").DataTable({
+          "scrollX": true;
+        });
       });
     </script>
   </body>

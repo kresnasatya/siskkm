@@ -151,8 +151,12 @@
     <!-- page script-->
     <script>
       $(document).ready(function(){
-        $("#mahasiswatable").DataTable();
-        $("#listskkmtable").DataTable();
+        $("#mahasiswatable").DataTable({
+          "scrollX": true;
+        });
+        $("#listskkmtable").DataTable({
+          "scrollX": true;
+        });
       });
     </script>
     <!-- script for intense-images -->

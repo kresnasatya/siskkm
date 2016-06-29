@@ -165,7 +165,9 @@
     <!-- page script-->
     <script>
       $(document).ready(function () {
-        $("#tingkattable").DataTable();
+        $("#tingkattable").DataTable({
+          "scrollX": true;
+        });
         $(".select2").select2({
           placeholder: "Silahkan Pilih"
         });

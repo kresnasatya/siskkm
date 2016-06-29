@@ -153,7 +153,9 @@
     <!-- page script-->
     <script>
       $(document).ready(function(){
-        $("#skkmtable").DataTable();
+        $("#skkmtable").DataTable({
+          "scrollX": true;
+        });
         $(".select2").select2({
           placeholder: "Silahkan Pilih"
         });
