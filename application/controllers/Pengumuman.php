@@ -7,6 +7,8 @@ class Pengumuman extends CI_Controller {
   {
     parent::__construct();
     $this->load->model('Beranda_model', 'beranda');
+    // load helper text for using character_limiter
+    $this->load->helper('text');
   }
 
   public function index($offset=0)
