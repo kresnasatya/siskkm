@@ -46,12 +46,14 @@
             <?php
                 $extra = array(
                                 'type' => 'number',
-                                'id' => 'bobot',
+                                'name' => 'bobot',
+                                'value' => set_value('bobot'),
+                                'id' => 'Bobot',
                                 'class' => 'form-control',
                                 'placeholder' => 'Bobot',
-                                'required' => 'required',
+                                'required' => 'required'
                 );
-                echo form_input('bobot', set_value('bobot'), $extra);
+                echo form_input($extra);
             ?>
           </div>
           <?php echo anchor(site_url('admin/sebagai'),'Kembali','class="btn btn-default"'); ?>
