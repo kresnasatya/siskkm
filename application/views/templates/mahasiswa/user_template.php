@@ -141,5 +141,24 @@
     <script src="<?php echo base_url('adminlte/plugins/fastclick/fastclick.min.js');?>"></script>
     <!-- AdminLTE App -->
     <script src="<?php echo base_url('adminlte/dist/js/app.min.js');?>"></script>
+    <script>
+    /* Ajax Dropdown Jurusan Prodi */
+    function getProdi(value) {
+      console.log(value);
+      $.ajax({
+        type: "POST",
+        url: "<?php echo site_url('mahasiswa/user/get_prodi');?>",
+        data:"row="+value,
+        success: function(data) {
+          $("#prodi").html(data);
+          console.log(data);
+        },
+
+        error:function(XMLHttpRequest){
+          alert(XMLHttpRequest.responseText);
+        }
+      });
+    };
+    </script>
   </body>
 </html>
