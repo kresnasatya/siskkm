@@ -110,6 +110,11 @@
                 <i class="fa fa-check-square-o"></i> <span>Validasi SKKM</span>
               </a>
             </li>
+            <li class="treeview">
+              <a href="<?php echo site_url('up2kk/skkm');?>">
+                <i class="fa fa-archive"></i> <span>Daftar SKKM</span>
+              </a>
+            </li>
           </ul>
         </section>
         <!-- /.sidebar -->
