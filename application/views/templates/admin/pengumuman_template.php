@@ -164,7 +164,7 @@
     <script>
       $(document).ready(function () {
         $("#pengumumantable").DataTable({
-          "scrollX": true;
+          "scrollX": true
         });
       });
     </script>

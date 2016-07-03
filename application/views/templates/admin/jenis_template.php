@@ -12,8 +12,6 @@
     <link rel="stylesheet" href="<?php echo base_url('adminlte/font-awesome/css/font-awesome.min.css');?>">
     <!-- Datatables -->
     <link rel="stylesheet" href="<?php echo base_url('adminlte/plugins/datatables/dataTables.bootstrap.css');?>">
-    <!-- Select2 CSS -->
-    <link rel="stylesheet" href="<?php echo base_url('adminlte/plugins/select2/select2.min.css');?>">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?php echo base_url('adminlte/dist/css/AdminLTE.min.css');?>">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -160,13 +158,11 @@
     <script src="<?php echo base_url('adminlte/plugins/fastclick/fastclick.min.js');?>"></script>
     <!-- AdminLTE App -->
     <script src="<?php echo base_url('adminlte/dist/js/app.min.js');?>"></script>
-    <!-- Select2 Js -->
-    <script src="<?php echo base_url('adminlte/plugins/select2/select2.min.js');?>"></script>
     <!-- page script-->
     <script>
       $(document).ready(function () {
         $("#jenistable").DataTable({
-          "scrollX": true;
+          "scrollX": true
         });
       });
     </script>
