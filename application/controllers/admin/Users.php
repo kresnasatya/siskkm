@@ -5,14 +5,20 @@ class Users extends Admin_Controller {
   public function __construct()
   {
     parent::__construct();
+    $this->load->model('admin/Users_model', 'users');
+    $this->load->library('form_validation');
   }
 
   public function index($group_id = NULL)
   {
-        $data['current_user'] = $this->ion_auth->user()->row();
-        $data['users'] = $this->ion_auth->users($group_id)->result();
-
-        $this->template->load('templates/admin/users_template','admin/users/list',$data);
+    $current_user = $this->ion_auth->user()->row();
+    $email = $current_user->email;
+    $data = array(
+                  'current_user' => $current_user,
+                  'users' => $this->ion_auth->users($group_id)->result(),
+                  'gravatar_url' => $this->gravatar->get($email)
+    );
+    $this->template->load('templates/admin/users_template','admin/users/list',$data);
   }
 
   public function get_prodi()
@@ -32,6 +38,8 @@ class Users extends Admin_Controller {
   public function tambah()
   {
         $this->rules_tambah();
+        $current_user = $this->ion_auth->user()->row();
+        $email = $current_user->email;
         if ($this->form_validation->run() === FALSE) {
           $data = array(
                         'groups' => $this->ion_auth->groups()->result(),
@@ -42,7 +50,9 @@ class Users extends Admin_Controller {
                         'semester_selected' => $this->input->post('id_semester'),
                         'dd_kelas' => $this->users->get_kelas(),
                         'kelas_selected' => $this->input->post('id_kelas'),
-                        'current_user' => $this->ion_auth->user()->row());
+                        'current_user' => $current_user,
+                        'gravatar_url' => $this->gravatar->get($email)
+        );
 
           $this->template->load('templates/admin/users_template','admin/users/add',$data);
         }else {
@@ -72,6 +82,8 @@ class Users extends Admin_Controller {
   public function ubah($user_id = NULL)
   {
       $this->rules_ubah();
+      $current_user = $this->ion_auth->user()->row();
+      $email = $current_user->email;
       if ($this->form_validation->run() === FALSE) {
         $user_id = $this->input->post('user_id') ? $this->input->post('user_id') : $user_id;
 
@@ -84,7 +96,9 @@ class Users extends Admin_Controller {
                         'dd_prodi' => $this->users->get_prodi($user->id_jurusan),
                         'dd_kelas' => $this->users->get_kelas(),
                         'dd_semester' => $this->users->get_semester(),
-                        'current_user' => $this->ion_auth->user()->row());
+                        'current_user' => $current_user,
+                        'gravatar_url' => $this->gravatar->get($email)
+          );
         }else {
           $this->session->set_flashdata('message','User tidak ada');
           redirect('admin/users','refresh');

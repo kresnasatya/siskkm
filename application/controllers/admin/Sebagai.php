@@ -12,9 +12,12 @@ class Sebagai extends Admin_Controller {
 
   function index()
   {
+    $current_user = $this->ion_auth->user()->row();
+    $email = $current_user->email;
     $data = array(
-                  'current_user' => $this->ion_auth->user()->row(),
-                  'sebagai'      => $this->sebagai->get_all()
+                  'current_user' => $current_user,
+                  'sebagai'      => $this->sebagai->get_all(),
+                  'gravatar_url' => $this->gravatar->get($email)
     );
     $this->template->load('templates/admin/sebagai_template', 'admin/sebagai/list', $data);
   }
@@ -23,11 +26,14 @@ class Sebagai extends Admin_Controller {
   public function tambah()
   {
     $this->rules_tambah();
+    $current_user = $this->ion_auth->user()->row();
+    $email = $current_user->email;
     if ($this->form_validation->run() == FALSE) {
       $data = array(
-                    'current_user' => $this->ion_auth->user()->row(),
+                    'current_user' => $current_user,
                     'dd_tingkat' => $this->sebagai->get_tingkat(),
                     'tingkat_selected' => $this->input->post('id_tingkat_fk') ? $this->input->post('id_tingkat_fk') : '',
+                    'gravatar_url' => $this->gravatar->get($email)
       );
       $this->template->load('templates/admin/sebagai_template', 'admin/sebagai/add', $data);
     }else {
@@ -37,7 +43,8 @@ class Sebagai extends Admin_Controller {
       $data = array(
                     'sebagai' => $sebagai,
                     'bobot'  => $bobot,
-                    'id_tingkat_fk' => $id_tingkat_fk);
+                    'id_tingkat_fk' => $id_tingkat_fk
+      );
       $this->sebagai->insert($data);
       $this->session->set_flashdata('message', 'Sebagai berhasil ditambah.');
       redirect(site_url('admin/sebagai'));
@@ -48,6 +55,8 @@ class Sebagai extends Admin_Controller {
   public function ubah($id = NULL)
   {
     $this->rules_ubah();
+    $current_user = $this->ion_auth->user()->row();
+    $email = $current_user->email;
     if ($this->form_validation->run() == FALSE) {
       $row = $this->sebagai->get_by_id($id);
 
@@ -58,7 +67,8 @@ class Sebagai extends Admin_Controller {
                       'bobot'      => $row->bobot,
                       'id_tingkat_fk' => $row->id_tingkat_fk,
                       'dd_tingkat' => $this->sebagai->get_tingkat(),
-                      'current_user' => $this->ion_auth->user()->row()
+                      'current_user' => $current_user,
+                      'gravatar_url' => $this->gravatar->get($email)
         );
         $this->template->load('templates/admin/sebagai_template', 'admin/sebagai/edit', $data);
       }else {

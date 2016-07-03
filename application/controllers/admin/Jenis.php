@@ -12,9 +12,12 @@ class Jenis extends Admin_Controller {
 
   function index()
   {
+    $current_user = $this->ion_auth->user()->row();
+    $email = $current_user->email;
     $data = array(
-                  'current_user' => $this->ion_auth->user()->row(),
-                  'jenis' => $this->jenis->get_all()
+                  'current_user' => $current_user,
+                  'jenis' => $this->jenis->get_all(),
+                  'gravatar_url' => $this->gravatar->get($email)
     );
     $this->template->load('templates/admin/jenis_template', 'admin/jenis/list', $data);
   }
@@ -23,8 +26,13 @@ class Jenis extends Admin_Controller {
   public function tambah()
   {
     $this->rules_tambah();
+    $current_user = $this->ion_auth->user()->row();
+    $email = $current_user->email;
     if ($this->form_validation->run() == FALSE) {
-      $data = array('current_user' => $this->ion_auth->user()->row());
+      $data = array(
+                    'current_user' => $current_user,
+                    'gravatar_url' => $this->gravatar->get($email)
+      );
       $this->template->load('templates/admin/jenis_template', 'admin/jenis/add', $data);
     } else {
       $jenis = $this->input->post('jenis');
@@ -39,6 +47,8 @@ class Jenis extends Admin_Controller {
   public function ubah($id = NULL)
   {
     $this->rules_ubah();
+    $current_user = $this->ion_auth->user()->row();
+    $email = $current_user->email;
     if ($this->form_validation->run() == FALSE) {
       $row = $this->jenis->get_by_id($id);
 
@@ -46,7 +56,8 @@ class Jenis extends Admin_Controller {
         $data = array(
                       'id_jenis' => $row->id_jenis,
                       'jenis'    => $row->jenis,
-                      'current_user' => $this->ion_auth->user()->row()
+                      'current_user' => $current_user,
+                      'gravatar_url' => $this->gravatar->get($email)
         );
         $this->template->load('templates/admin/jenis_template', 'admin/jenis/edit', $data);
       }else {

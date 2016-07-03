@@ -12,9 +12,12 @@ class Tingkat extends Admin_Controller {
 
   function index()
   {
+    $current_user = $this->ion_auth->user()->row();
+    $email = $current_user->email;
     $data = array(
-                  'current_user' => $this->ion_auth->user()->row(),
-                  'tingkat' => $this->tingkat->get_all()
+                  'current_user' => $current_user,
+                  'tingkat' => $this->tingkat->get_all(),
+                  'gravatar_url' => $this->gravatar->get($email)
     );
     $this->template->load('templates/admin/tingkat_template', 'admin/tingkat/list', $data);
   }
@@ -23,11 +26,14 @@ class Tingkat extends Admin_Controller {
   public function tambah()
   {
     $this->rules_tambah();
+    $current_user = $this->ion_auth->user()->row();
+    $email = $current_user->email;
     if ($this->form_validation->run() == FALSE) {
       $data = array(
-                    'current_user' => $this->ion_auth->user()->row(),
+                    'current_user' => $current_user,
                     'dd_jenis' => $this->tingkat->get_jenis(),
                     'jenis_selected' => $this->input->post('id_jenis_fk') ? $this->input->post('id_jenis_fk') : '',
+                    'gravatar_url' => $this->gravatar->get($email)
       );
       $this->template->load('templates/admin/tingkat_template', 'admin/tingkat/add', $data);
     }else {
@@ -46,6 +52,8 @@ class Tingkat extends Admin_Controller {
   public function ubah($id = NULL)
   {
     $this->rules_ubah();
+    $current_user = $this->ion_auth->user()->row();
+    $email = $current_user->email;
     if ($this->form_validation->run() == FALSE) {
       $row = $this->tingkat->get_by_id($id);
 
@@ -55,7 +63,8 @@ class Tingkat extends Admin_Controller {
                       'tingkat'    => $row->tingkat,
                       'id_jenis_fk' => $row->id_jenis_fk,
                       'dd_jenis' => $this->tingkat->get_jenis(),
-                      'current_user' => $this->ion_auth->user()->row()
+                      'current_user' => $current_user,
+                      'gravatar_url' => $this->gravatar->get($email)
         );
         $this->template->load('templates/admin/tingkat_template', 'admin/tingkat/edit', $data);
       }else {

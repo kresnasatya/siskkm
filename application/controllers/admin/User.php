@@ -11,15 +11,23 @@ class User extends Admin_Controller {
   public function index()
   {
     $current_user = $this->ion_auth->user()->row();
-    $data['current_user'] = $current_user;
+    $email = $current_user->email;
+    $data = array(
+                  'current_user' => $current_user,
+                  'gravatar_url' => $this->gravatar->get($email)
+    );
     $this->template->load('templates/admin/user_template','admin/user/profil', $data);
   }
 
   public function edit_profil()
   {
-    $current_user = $this->ion_auth->user()->row();
-    $data['current_user'] = $current_user;
     $this->rules_edit_profil();
+    $current_user = $this->ion_auth->user()->row();
+    $email = $current_user->email;
+    $data = array(
+                  'current_user' => $current_user,
+                  'gravatar_url' => $this->gravatar->get($email)
+    );
     if ($this->form_validation->run() == FALSE) {
       $this->template->load('templates/admin/user_template','admin/user/edit', $data);
     }else{
@@ -38,9 +46,13 @@ class User extends Admin_Controller {
 
   function ubah_password()
   {
-    $current_user = $this->ion_auth->user()->row();
-    $data['current_user'] = $current_user;
     $this->rules_ubah_password();
+    $current_user = $this->ion_auth->user()->row();
+    $email = $current_user->email;
+    $data = array(
+                  'current_user' => $current_user,
+                  'gravatar_url' => $this->gravatar->get($email)
+    );
     if ($this->form_validation->run() == FALSE) {
       $this->template->load('templates/admin/user_template','admin/user/ubah_password', $data);
     }else{
