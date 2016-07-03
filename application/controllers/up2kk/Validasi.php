@@ -29,6 +29,7 @@ class Validasi extends UP2KK_Controller {
     $row = $this->validasi->get_skkm_mahasiswa($id_user);
     $data = array('current_user' => $current_user,
                   'list_skkm' => $row,
+                  'skkm_belum_valid' => $this->validasi->sum_belum_valid($id_user),
                   'skkm_valid' => $this->validasi->sum_valid($id_user),
                   'skkm_tidak_valid' => $this->validasi->sum_tidak_valid($id_user),
                   'status_skkm' => $this->validasi->status_skkm($id_user)
@@ -52,6 +53,7 @@ class Validasi extends UP2KK_Controller {
                       'keterangan' => $row->keterangan
         );
         $this->template->load('templates/up2kk/validasi_template', 'up2kk/validasi/skkm', $data);
+        //print_r($data);
       } else {
         $this->session->set_flashdata('message', 'Data tidak ditemukan.');
         redirect(site_url('up2kk/validasi/list_skkm/'.$data['id_user']));

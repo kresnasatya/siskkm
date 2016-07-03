@@ -107,12 +107,12 @@
                 <i class="fa fa-dashboard"></i> <span>Dasbor</span>
               </a>
             </li>
-            <li class="treeview active">
+            <li class="treeview">
               <a href="<?php echo site_url('up2kk/validasi');?>">
                 <i class="fa fa-check-square-o"></i> <span>Validasi SKKM</span>
               </a>
             </li>
-            <li class="treeview">
+            <li class="treeview active">
               <a href="<?php echo site_url('up2kk/skkm');?>">
                 <i class="fa fa-archive"></i> <span>Daftar SKKM</span>
               </a>

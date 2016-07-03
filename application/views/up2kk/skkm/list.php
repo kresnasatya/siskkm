@@ -2,10 +2,10 @@
 <section class="content-header">
   <h1>
     Data Mahasiswa
-    <small>validasi data skkm di sini</small>
+    <small>lihat data skkm mahasiswa di sini</small>
   </h1>
   <ol class="breadcrumb">
-    <li><a href="<?php echo site_url('up2kk/validasi');?>"><i class="fa fa-check-square-o"></i> Validasi SKKM</a></li>
+    <li><a href="<?php echo site_url('up2kk/skkm');?>"><i class="fa fa-archive"></i> Daftar SKKM</a></li>
     <li class="active">Data Mahasiswa</li>
   </ol>
 </section>
@@ -36,7 +36,7 @@
               foreach ($mahasiswa as $row): ?>
               <tr>
                 <td><?php echo ++$start ?></td>
-                <td><a href="<?php echo site_url('up2kk/validasi/list_skkm/'.$row->id); ?>"><?php echo $row->nama_depan.' '.$row->nama_belakang; ?></a></td>
+                <td><a href="<?php echo site_url('up2kk/skkm/list_skkm/'.$row->id); ?>"><?php echo $row->nama_depan.' '.$row->nama_belakang; ?></a></td>
                 <td><?php echo $row->nim; ?></td>
                 <td><?php echo $row->nama_jurusan; ?></td>
                 <td><?php echo $row->nama_prodi; ?></td>

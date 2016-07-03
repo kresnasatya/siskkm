@@ -1,11 +1,8 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
-  <h1>
-    Daftar Data SKKM
-    <small>validasi data skkm di sini</small>
-  </h1>
+  <h1>Daftar Data SKKM</h1>
   <ol class="breadcrumb">
-    <li><a href="<?php echo site_url('up2kk/validasi');?>"><i class="fa fa-check-square-o"></i> Validasi SKKM</a></li>
+    <li><a href="<?php echo site_url('up2kk/skkm');?>"><i class="fa fa-archive"></i> Daftar SKKM</a></li>
     <li class="active">Data SKKM</li>
   </ol>
 </section>
@@ -31,7 +28,6 @@
                   <th>Nilai</th>
                   <th>Status</th>
                   <th>Keterangan</th>
-                  <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -58,22 +54,14 @@
                       <?php echo "Valid" ?>
                   <?php endif; ?>
                 </td>
-                <td>
-                  <?php echo $row->keterangan; ?>
-                </td>
-                <td>
-                  <?php
-                      $extra = array('class' => 'btn btn-sm btn-success');
-                      echo anchor(site_url('up2kk/validasi/skkm/'.$row->id),'Validasi',$extra);
-                    ?>
-                </td>
+                <td><?php echo $row->keterangan; ?></td>
               </tr>
               <?php endforeach; ?>
             </tbody>
           </table>
           <p>
             <strong>
-            SKKM yang valid:
+            Total Poin SKKM yang valid:
             <?php
             $num = 0;
             $str = "poin";
@@ -86,7 +74,7 @@
         </p>
         <p>
           <strong>
-            SKKM belum divalidasi:
+            Total Poin SKKM Belum Divalidasi:
             <?php
             $num = 0;
             $str = "poin";
@@ -99,7 +87,7 @@
         </p>
         <p>
           <strong>
-            SKKM tidak valid:
+            Total Poin SKKM tidak valid:
             <?php
             $num = 0;
             $str = "poin";
