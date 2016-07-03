@@ -102,12 +102,17 @@
             <li class="header">MAIN NAVIGATION</li>
             <li class="treeview">
               <a href="<?php echo site_url('up2kk/dasbor');?>">
-                <i class="fa fa-dasboard"></i> <span>Dasbor</span>
+                <i class="fa fa-dashboard"></i> <span>Dasbor</span>
               </a>
             </li>
             <li class="treeview">
               <a href="<?php echo site_url('up2kk/validasi');?>">
                 <i class="fa fa-check-square-o"></i> <span>Validasi SKKM</span>
+              </a>
+            </li>
+            <li class="treeview">
+              <a href="<?php echo site_url('up2kk/skkm');?>">
+                <i class="fa fa-archive"></i> <span>Daftar SKKM</span>
               </a>
             </li>
           </ul>
