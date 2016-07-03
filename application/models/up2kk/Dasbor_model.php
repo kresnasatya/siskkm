@@ -20,7 +20,7 @@ class Dasbor_model extends CI_Model{
     return $result = $this->db->get()->row()->total;
   }
 
-  public function count_non_valid($id_jurusan)
+  public function count_tidak_valid($id_jurusan)
   {
     $this->db->select('u.id, COUNT(s.nilai) as total, g.name, j.nama_jurusan');
     $this->db->from('users u');
@@ -30,7 +30,7 @@ class Dasbor_model extends CI_Model{
     $this->db->join('jurusan j', 'u.id_jurusan = j.id');
     $this->db->where('j.id', $id_jurusan);
     $this->db->where('g.id', 3);
-    $this->db->where('s.status', 0);
+    $this->db->where('s.status', 2);
     return $result = $this->db->get()->row()->total;
   }
 
@@ -45,6 +45,20 @@ class Dasbor_model extends CI_Model{
     $this->db->where('j.id', $id_jurusan);
     $this->db->where('g.id', 3);
     $this->db->where('s.status', 1);
+    return $result = $this->db->get()->row()->total;
+  }
+
+  public function count_belum_valid($id_jurusan)
+  {
+    $this->db->select('u.id, COUNT(s.nilai) as total, g.name, j.nama_jurusan');
+    $this->db->from('users u');
+    $this->db->join('skkm s', 's.id_user = u.id');
+    $this->db->join('users_groups ug', 'ug.user_id = u.id');
+    $this->db->join('groups g', 'ug.group_id = g.id');
+    $this->db->join('jurusan j', 'u.id_jurusan = j.id');
+    $this->db->where('j.id', $id_jurusan);
+    $this->db->where('g.id', 3);
+    $this->db->where('s.status', 0);
     return $result = $this->db->get()->row()->total;
   }
 

@@ -16,7 +16,8 @@ class Dasbor extends UP2KK_Controller {
     $data = array(
                   'current_user' => $current_user,
                   'count_mahasiswa' => $this->dasbor->count_mahasiswa($id_jurusan_user),
-                  'count_non_valid' => $this->dasbor->count_non_valid($id_jurusan_user),
+                  'count_belum_valid' => $this->dasbor->count_belum_valid($id_jurusan_user),
+                  'count_tidak_valid' => $this->dasbor->count_tidak_valid($id_jurusan_user),
                   'count_valid' => $this->dasbor->count_valid($id_jurusan_user));
     $this->template->load('templates/up2kk/dasbor_template', 'up2kk/dasbor', $data);
   }

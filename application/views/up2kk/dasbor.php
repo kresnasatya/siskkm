@@ -28,7 +28,7 @@
           <!-- Apply any bg-* class to to the icon to color it -->
           <span class="info-box-icon bg-green"><i class="fa fa-check-square-o"></i></span>
           <div class="info-box-content">
-              <span class="info-box-text"><a href="<?php echo site_url('up2kk/validasi'); ?>">skkm valid</a></span>
+              <span class="info-box-text">skkm valid</a></span>
               <span class="info-box-number">
                 <?php echo $count_valid; ?>
               </span>
@@ -41,9 +41,22 @@
           <!-- Apply any bg-* class to to the icon to color it -->
           <span class="info-box-icon bg-red"><i class="fa fa-times-circle-o"></i></span>
           <div class="info-box-content">
-              <span class="info-box-text"><a href="<?php echo site_url('up2kk/validasi'); ?>">skkm tidak valid</a></span>
+              <span class="info-box-text">skkm tidak valid</a></span>
               <span class="info-box-number">
-                <?php echo $count_non_valid; ?>
+                <?php echo $count_tidak_valid; ?>
+              </span>
+          </div>
+          <!-- /.info-box-content -->
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box">
+          <!-- Apply any bg-* class to to the icon to color it -->
+          <span class="info-box-icon bg-yellow"><i class="fa fa-question-circle"></i></span>
+          <div class="info-box-content">
+              <span class="info-box-text">skkm belum <br>divalidasi</span>
+              <span class="info-box-number">
+                <?php echo $count_belum_valid; ?>
               </span>
           </div>
           <!-- /.info-box-content -->
