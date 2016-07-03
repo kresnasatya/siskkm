@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Sebagai extends CI_Controller {
+class Sebagai extends Admin_Controller {
 
   public function __construct()
   {

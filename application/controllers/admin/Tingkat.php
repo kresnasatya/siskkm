@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Tingkat extends CI_Controller {
+class Tingkat extends Admin_Controller {
 
   public function __construct()
   {
