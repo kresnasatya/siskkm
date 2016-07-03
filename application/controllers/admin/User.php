@@ -28,8 +28,7 @@ class User extends Admin_Controller {
                     'nama_depan' => $this->input->post('nama_depan'),
                     'nama_belakang' => $this->input->post('nama_belakang'),
                     'nip' => $this->input->post('nip'),
-                    'email' => $this->input->post('email'),
-                    'username' => $this->input->post('username')
+                    'email' => $this->input->post('email')
       );
       $this->ion_auth->update($current_user->id, $new_data);
       $this->session->set_flashdata('message', $this->ion_auth->messages());
