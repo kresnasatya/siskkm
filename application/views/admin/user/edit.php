@@ -44,20 +44,6 @@
                         ?>
                     </div>
                     <div class="form-group">
-                        <?php echo form_label('Username','username'); ?>
-                        <?php echo form_error('username'); ?>
-                        <?php
-                            $username = array(
-                                              'type' => 'text',
-                                              'class' => 'form-control',
-                                              'name' => 'username',
-                                              'id' => 'username',
-                                              'placeholder' => 'Username',
-                                              'required' => 'required');
-                         echo form_input($username, set_value('username',$current_user->username));
-                        ?>
-                    </div>
-                    <div class="form-group">
                         <?php echo form_label('Email','email'); ?>
                         <?php echo form_error('email'); ?>
                         <?php
