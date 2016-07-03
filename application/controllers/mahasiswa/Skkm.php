@@ -18,9 +18,53 @@ class Skkm extends Mahasiswa_Controller {
                   'current_user' => $current_user,
                   'skkm' => $this->skkm->get_all($id_user),
                   'skkm_valid' => $this->skkm->sum_valid($id_user),
+                  'skkm_belum_valid' => $this->skkm->sum_belum_valid($id_user),
                   'skkm_tidak_valid' => $this->skkm->sum_tidak_valid($id_user),
                   'status_skkm' => $this->skkm->status_skkm($id_user));
     $this->template->load('templates/mahasiswa/skkm_template', 'mahasiswa/skkm/list', $data);
+  }
+
+  // get data tingkat
+  public function get_tingkat()
+  {
+    $id_jenis = $this->input->post('value');
+    $tingkat = $this->skkm->get_tingkat($id_jenis);
+
+    echo '<select name="">';
+    echo '<option value="">Pilih Tingkat</option>';
+		foreach ($tingkat as $row)
+		{
+    	echo '<option value="'.$row['id_tingkat'].'">'.$row['tingkat'].'</option>';
+		}
+		echo '</select>';
+  }
+
+  public function get_sebagai()
+  {
+    $id_tingkat = $this->input->post('value');
+    $sebagai = $this->skkm->get_sebagai($id_tingkat);
+
+    echo '<select name="">';
+    echo '<option value="">Pilih Sebagai</option>';
+		foreach ($sebagai as $row)
+		{
+    	echo '<option value="'.$row['id_sebagai'].'">'.$row['sebagai'].'</option>';
+		}
+		echo '</select>';
+  }
+
+  public function get_nilai()
+  {
+    $id_sebagai = $this->input->post('value');
+    $nilai = $this->skkm->get_nilai($id_sebagai);
+
+    $data = array();
+		foreach ($nilai as $row)
+		{
+      $data['value'] = $row['bobot'];
+      //$data['label'] = $row['id_sebagai'];
+		}
+    echo $data['value'];
   }
 
   public function tambah()
@@ -32,9 +76,9 @@ class Skkm extends Mahasiswa_Controller {
                   'current_user' => $current_user,
                   'dd_jenis' => $this->skkm->get_jenis(),
                   'jenis_selected' => $this->input->post('id_jenis') ? $this->input->post('id_jenis') : '',
-                  'dd_tingkat' => $this->skkm->get_tingkat(),
+                  // 'dd_tingkat' => $this->skkm->get_tingkat(),
                   'tingkat_selected' => $this->input->post('id_tingkat') ? $this->input->post('id_tingkat') : '',
-                  'dd_sebagai' => $this->skkm->get_sebagai(),
+                  // 'dd_sebagai' => $this->skkm->get_sebagai(),
                   'sebagai_selected' => $this->input->post('id_sebagai') ? $this->input->post('id_sebagai') : ''
       );
       $this->template->load('templates/mahasiswa/skkm_template', 'mahasiswa/skkm/add', $data);
@@ -44,10 +88,11 @@ class Skkm extends Mahasiswa_Controller {
       $config= array(
                     'upload_path' => './fileskkm/',
                     'allowed_types' => 'jpeg|jpg|png',
-                    'max_size' => '3072',
+                    'max_size' => '5120',
                     'max_width' => '5000',
                     'max_height' => '5000',
-                    'file_name' => $namafile);
+                    'file_name' => $namafile
+      );
       $this->upload->initialize($config);
 
       if ($_FILES['filefoto']['name']) {
@@ -101,11 +146,12 @@ class Skkm extends Mahasiswa_Controller {
                     'id_user' => $row->id_user,
                     'id' => $row->id,
                     'nama_kegiatan' => $row->nama_kegiatan,
+                    'filefoto' => $row->filefoto,
                     'dd_jenis' => $this->skkm->get_jenis(),
                     'id_jenis' => $row->id_jenis,
-                    'dd_tingkat' => $this->skkm->get_tingkat(),
+                    'dd_tingkat' => $this->skkm->get_tingkat($row->id_jenis),
                     'id_tingkat' => $row->id_tingkat,
-                    'dd_sebagai' => $this->skkm->get_sebagai(),
+                    'dd_sebagai' => $this->skkm->get_sebagai($row->id_tingkat),
                     'id_sebagai' => $row->id_sebagai,
                     'nilai' => $row->nilai,
                     'current_user' => $current_user

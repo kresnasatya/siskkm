@@ -27,55 +27,51 @@ class Skkm_model extends CI_Model {
   // mengambil data jenis
   public function get_jenis()
   {
-    // ambil data jenis
-    $result = $this->db->get('jenis');
-
-    // membuat array
-    $dd[''] = 'Silahkan Pilih';
-    if ($result->num_rows() > 0) {
-      foreach ($result->result() as $row) {
-        // value di sebelah kiri dan label di sebelah kanan
-        $dd[$row->id_jenis] = $row->jenis;
-      }
-    }
-    return $dd;
+    $this->db->select('*');
+    $this->db->from('jenis');
+    $result = $this->db->get();
+    return $result->result_array();
   }
 
   // mengambil data tingkat
-  public function get_tingkat()
+  public function get_tingkat($id_jenis)
   {
-    // ambil data tingkat
-    $result = $this->db->get('tingkat');
-
-    // membuat array
-    $dd[''] = 'Silahkan Pilih';
-    if ($result->num_rows() > 0) {
-      foreach ($result->result() as $row) {
-        // value di sebelah kiri dan label di sebelah kanan
-        $dd[$row->id_tingkat] = $row->tingkat;
-      }
+    if (isset($id_jenis)) {
+      $this->db->where('id_jenis_fk', $id_jenis);
     }
-    return $dd;
+
+    $this->db->select('*');
+		$this->db->from('tingkat');
+		$result = $this->db->get();
+		return $result->result_array();
   }
 
   // mengambil data sebagai
-  public function get_sebagai()
+  public function get_sebagai($id_tingkat)
   {
-    // ambil data sebagai
-    $result = $this->db->get('sebagai');
-
-    // membuat array
-    $dd[''] = 'Silahkan Pilih';
-    if ($result->num_rows() > 0) {
-      foreach ($result->result() as $row) {
-        // value di sebelah kiri dan label di sebelah kanan
-        $dd[$row->id_sebagai] = $row->sebagai;
-      }
+    if (isset($id_tingkat)) {
+      $this->db->where('id_tingkat_fk', $id_tingkat);
     }
-    return $dd;
+
+    $this->db->select('id_sebagai, sebagai');
+		$this->db->from('sebagai');
+		$result = $this->db->get();
+		return $result->result_array();
   }
 
-  // menghitung skkm valid
+  public function get_nilai($id_sebagai)
+  {
+    if (isset($id_sebagai)) {
+      $this->db->where('id_sebagai', $id_sebagai);
+    }
+
+    $this->db->select('id_sebagai, bobot');
+		$this->db->from('sebagai');
+		$result = $this->db->get();
+		return $result->result_array();
+  }
+
+  // menghitung total skkm valid
   public function sum_valid($id_user)
   {
     $this->db->select('SUM(nilai) as total');
@@ -85,12 +81,22 @@ class Skkm_model extends CI_Model {
     return $result = $this->db->get()->row()->total;
   }
 
-  // menghitung skkm tidak valid
+  // menghitung total skkm tidak valid
   public function sum_tidak_valid($id_user)
   {
     $this->db->select('SUM(nilai) as total');
     $this->db->from('skkm');
     $this->db->where('status', 0);
+    $this->db->where('id_user', $id_user);
+    return $result = $this->db->get()->row()->total;
+  }
+
+  // menghitung total skkm belum valid
+  public function sum_belum_valid($id_user)
+  {
+    $this->db->select('SUM(nilai) as total');
+    $this->db->from('skkm');
+    $this->db->where('status', 2);
     $this->db->where('id_user', $id_user);
     return $result = $this->db->get()->row()->total;
   }

@@ -33,47 +33,56 @@
             ?>
           </div>
           <div class="form-group">
-            <?php echo form_label('File', 'filefoto'); ?>
+            <label for="filefoto">Upload File</label> <span class="label label-success">Ukuran maksimal 5MB. Format file: jpeg, jpg, dan png.</span>
             <?php echo form_error('filefoto'); ?>
-            <?php
-              $data = array(
-                              'type' => 'file',
-                              'name' => 'filefoto',
-                              'id' => 'filefoto',
-                              'class' => 'form-control',
-                              'required' => 'required');
-              echo form_upload($data);
-             ?>
+            <input type="file" name="filefoto" value="<?php echo base_url('fileskkm/resize/'.$filefoto); ?>" id="filefoto" class="form-control" required="">
           </div>
           <div class="form-group">
             <?php echo form_label('Jenis Kegiatan', 'id_jenis'); ?>
             <?php echo form_error('id_jenis'); ?>
-            <?php
-              $extra = array(
-                            'class' => 'form-control select2',
-                            'id' => 'id_jenis');
-              echo form_dropdown('id_jenis', $dd_jenis, $id_jenis, $extra);
-             ?>
+            <select class="form-control" name="id_jenis" id="jenis" onchange="getTingkat(this.value)" required="">
+              <option value="">Silahkan Pilih</option>
+              <?php foreach ($dd_jenis as $row): ?>
+                <option value="<?php echo $row['id_jenis'] ?>"
+                  <?php if ($row['id_jenis'] == $id_jenis): ?>
+                    selected="selected"
+                  <?php endif; ?>>
+                  <?php echo $row['jenis'] ?>
+                </option>
+              <?php endforeach; ?>
+            </select>
           </div>
           <div class="form-group">
             <?php echo form_label('Tingkat Kegiatan', 'id_tingkat'); ?>
             <?php echo form_error('id_tingkat'); ?>
-            <?php
-              $extra = array(
-                            'class' => 'form-control select2',
-                            'id' => 'id_tingkat');
-              echo form_dropdown('id_tingkat', $dd_tingkat, $id_tingkat, $extra);
-             ?>
+            <select name="id_tingkat" id="tingkat" class="form-control" onchange="getSebagai(this.value)" required="">
+              <option value="">Silahkan Pilih</option>
+              <?php foreach ($dd_tingkat as $row): ?>
+                <option value="<?php echo $row['id_tingkat'] ?>"
+                  <?php if ($row['id_tingkat'] == $id_jenis): ?>
+                    selected="selected"
+                  <?php endif; ?>
+                >
+                  <?php echo $row['tingkat']; ?>
+                </option>
+              <?php endforeach; ?>
+            </select>
           </div>
           <div class="form-group">
             <?php echo form_label('Sebagai', 'id_sebagai'); ?>
             <?php echo form_error('id_sebagai'); ?>
-            <?php
-              $extra = array(
-                            'class' => 'form-control select2',
-                            'id' => 'id_sebagai');
-              echo form_dropdown('id_sebagai', $dd_jenis, $id_sebagai, $extra);
-             ?>
+            <select name="id_sebagai" id="sebagai" class="form-control" onchange="getNilai(this.value)" required="">
+              <option value="">Silahkan Pilih</option>
+              <?php foreach ($dd_sebagai as $row): ?>
+                <option value="<?php echo $row['id_sebagai'] ?>"
+                  <?php if ($row['id_sebagai'] == $id_sebagai): ?>
+                    selected="selected"
+                  <?php endif; ?>
+                >
+                  <?php echo $row['sebagai']; ?>
+                </option>
+              <?php endforeach; ?>
+            </select>
           </div>
           <div class="form-group">
             <?php echo form_label('Nilai','nilai'); ?>
@@ -86,7 +95,8 @@
                                 'value' => set_value('nilai', $nilai),
                                 'class' => 'form-control',
                                 'placeholder' => 'Bobot',
-                                'required' => 'required'
+                                'required' => 'required',
+                                'readonly' => 'readonly'
                 );
                 echo form_input($data);
             ?>
