@@ -6,14 +6,10 @@ class Dasbor extends Admin_Controller {
   public function __construct()
   {
     parent::__construct();
-    if (!$this->ion_auth->in_group('admin')) {
-      $this->session->set_flashdata('message', 'Kamu bukan admin!');
-      redirect('login', 'refresh');
-    }
     $this->load->model('admin/Dasbor_model', 'dasbor');
   }
 
-  function index()
+  public function index()
   {
     $data = array(
                   'current_user' => $this->ion_auth->user()->row(),
