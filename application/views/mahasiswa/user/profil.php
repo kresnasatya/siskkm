@@ -79,6 +79,9 @@
                 <b>Prodi</b> <a class="pull-right"><?php echo $profil->nama_prodi; ?></a>
               </li>
               <li class="list-group-item">
+                <b>Jenjang</b> <a class="pull-right"><?php echo $profil->jenjang; ?></a>
+              </li>
+              <li class="list-group-item">
                 <b>Kelas</b> <a class="pull-right"><?php echo $profil->kelas; ?></a>
               </li>
               <li class="list-group-item">

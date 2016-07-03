@@ -11,7 +11,7 @@ class User_model extends CI_Model{
 
   public function get_profil($id_user)
   {
-    $sql = "SELECT u.id, u.nama_depan, u.nama_belakang, u.nim, u.email, j.id, j.nama_jurusan, p.id, p.nama_prodi, s.id, s.semester, k.id, k.kelas
+    $sql = "SELECT u.id, u.nama_depan, u.nama_belakang, u.nim, u.email, j.id, j.nama_jurusan, p.id, p.nama_prodi, p.jenjang, s.id, s.semester, k.id, k.kelas
             FROM users u
             INNER JOIN jurusan j ON j.id = u.id_jurusan
             INNER JOIN prodi p ON p.id = u.id_prodi
