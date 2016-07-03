@@ -17,20 +17,72 @@
           <div class="col-md-3">
             <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url('adminlte/dist/img/user2-160x160.jpg');?>" alt="gambar Profil User">
             <h3 class="profile-username text-center"><?php echo $current_user->nama_depan.' '.$current_user->nama_belakang; ?></h3>
-            <p><strong>Total Poin SKKM Valid: </strong></p>
-            <p><strong>Total Poin SKKM Tidak Valid: </strong></p>
-            <p><strong>Status SKKM: </strong></p>
+            <p>
+            <strong>Total Poin SKKM Valid:
+              <?php
+              $num = 0;
+              $str = "poin";
+              if ($sum_valid == NULL): ?>
+                <?php echo $num.' '.$str; ?>
+              <?php else: ?>
+                <?php echo $sum_valid.' '.$str; ?>
+              <?php endif; ?>
+            </strong>
+            </p>
+            <p>
+            <strong>Total Poin SKKM Belum Divalidasi:
+              <br>
+              <?php
+              $num = 0;
+              $str = "poin";
+              if ($sum_belum_valid == NULL): ?>
+                <?php echo $num.' '.$str; ?>
+              <?php else: ?>
+                <?php echo $sum_belum_valid.' '.$str; ?>
+              <?php endif; ?>
+            </strong>
+            </p>
+            <p><strong>Total Poin SKKM Tidak Valid:
+              <?php
+              $num = 0;
+              $str = "poin";
+              if ($sum_tidak_valid == NULL): ?>
+                <?php echo $num.' '.$str; ?>
+              <?php else: ?>
+                <?php echo $sum_tidak_valid.' '.$str; ?>
+              <?php endif; ?>
+            </strong></p>
+            <p>
+            <strong>Status SKKM:
+              <?php if ($sum_valid >= $status_skkm): ?>
+                    <?php echo "LULUS"; ?>
+                <?php else: ?>
+                  <?php echo "TIDAK LULUS"; ?>
+              <?php endif; ?>
+            </strong></p>
           </div>
           <div class="col-md-9">
             <ul class="list-group list-group-unbordered">
               <li class="list-group-item">
-                <b>Username</b> <a class="pull-right"><?php echo $current_user->username; ?></a>
+                <b>Nama</b> <a class="pull-right"><?php echo $profil->nama_depan.' '.$profil->nama_belakang; ?></a>
               </li>
               <li class="list-group-item">
-                <b>Email</b> <a class="pull-right"><?php echo $current_user->email; ?></a>
+                <b>Email</b> <a class="pull-right"><?php echo $profil->email; ?></a>
               </li>
               <li class="list-group-item">
-                <b>Nim</b> <a class="pull-right"><?php echo $current_user->nim; ?></a>
+                <b>Nim</b> <a class="pull-right"><?php echo $profil->nim; ?></a>
+              </li>
+              <li class="list-group-item">
+                <b>Jurusan</b> <a class="pull-right"><?php echo $profil->nama_jurusan; ?></a>
+              </li>
+              <li class="list-group-item">
+                <b>Prodi</b> <a class="pull-right"><?php echo $profil->nama_prodi; ?></a>
+              </li>
+              <li class="list-group-item">
+                <b>Kelas</b> <a class="pull-right"><?php echo $profil->kelas; ?></a>
+              </li>
+              <li class="list-group-item">
+                <b>Semester</b> <a class="pull-right"><?php echo $profil->semester; ?></a>
               </li>
             </ul>
             <?php echo anchor(site_url('mahasiswa/user/edit_profil'),'Edit Profil','class="btn btn-primary btn-block"'); ?>
