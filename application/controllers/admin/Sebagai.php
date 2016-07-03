@@ -6,10 +6,6 @@ class Sebagai extends CI_Controller {
   public function __construct()
   {
     parent::__construct();
-    if (!$this->ion_auth->in_group('admin')) {
-      $this->session->set_flashdata('message', 'Kamu bukan admin!');
-      redirect('login', 'refresh');
-    }
     $this->load->model('admin/Sebagai_model', 'sebagai');
     $this->load->library('form_validation');
   }

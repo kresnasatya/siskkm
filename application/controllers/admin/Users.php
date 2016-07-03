@@ -4,13 +4,7 @@ class Users extends Admin_Controller {
 
   public function __construct()
   {
-        parent::__construct();
-        if (!$this->ion_auth->in_group('admin')) {
-          $this->session->set_flashdata('message', 'Kamu bukan admin!');
-          redirect('login', 'refresh');
-        }
-        $this->load->model('admin/users_model');
-        $this->load->library('form_validation');
+    parent::__construct();
   }
 
   public function index($group_id = NULL)
