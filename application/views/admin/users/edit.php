@@ -14,7 +14,9 @@
     <div class="col-md-12">
       <div class="box box-primary">
         <!-- form start-->
-        <?php echo form_open('admin/users/ubah'); ?>
+        <?php
+          $attribute = array('id' => 'usersForm');
+          echo form_open('admin/users/ubah', $attribute); ?>
           <div class="box-body">
             <div class="form-group">
               <?php echo form_label('Nama depan','nama_depan'); ?>
@@ -44,19 +46,6 @@
                echo form_input($nama_belakang, set_value('nama_belakang', $user->nama_belakang)); ?>
             </div>
             <div class="form-group">
-              <?php echo form_label('Username','username'); ?>
-              <?php echo form_error('username'); ?>
-              <?php
-                  $username = array(
-                                    'type' => 'text',
-                                    'class' => 'form-control',
-                                    'name' => 'username',
-                                    'id' => 'username',
-                                    'placeholder' => 'Username',
-                                    'required' => 'required');
-               echo form_input($username, set_value('username',$user->username)); ?>
-            </div>
-            <div class="form-group">
               <?php echo form_label('Email','email'); ?>
               <?php echo form_error('email'); ?>
               <?php
@@ -73,9 +62,11 @@
               <?php if (isset($groups)): ?>
                 <?php echo form_label('Groups', 'groups[]'); ?>
                 <?php foreach ($groups as $group): ?>
-                  <div class="checkbox">
+                  <div class="radio">
                     <label>
-                      <?php echo form_radio('groups[]', $group->id, set_radio('groups[]', $group->id, in_array($group->id,$usergroups))); ?>
+                      <?php
+                        $js = 'onclick="form_edit_check()"';
+                        echo form_radio('groups[]', $group->id, set_radio('groups[]', $group->id, in_array($group->id,$usergroups)), $js); ?>
                       <?php echo $group->name; ?>
                     </label>
                   </div>
@@ -109,34 +100,51 @@
             <div class="form-group">
               <?php echo form_label('Jurusan', 'id_jurusan'); ?>
               <?php echo form_error('id_jurusan'); ?>
-              <?php
-                $extra = array(
-                              'class' => 'form-control select2',
-                              'id' => 'jurusan');
-                echo form_dropdown('id_jurusan', $dd_jurusan, set_value('id_jurusan',$user->id_jurusan), $extra);
-               ?>
+              <select class="form-control" name="id_jurusan" id="jurusan" onchange="getProdi(this.value)">
+                <option value="">Silahkan Pilih</option>
+                <?php foreach ($dd_jurusan as $row): ?>
+                  <option value="<?php echo $row['id'] ?>"
+                    <?php if ($row['id'] == $user->id_jurusan): ?>
+                      selected="selected"
+                    <?php endif; ?>>
+                    <?php echo $row['nama_jurusan'] ?>
+                  </option>
+                <?php endforeach; ?>
+              </select>
             </div>
             <div class="form-group">
               <?php echo form_label('Prodi', 'id_prodi'); ?>
               <?php echo form_error('id_prodi'); ?>
-              <?php
-                $extra = array(
-                              'class' => 'form-control select2',
-                              'id' => 'prodi');
-                echo form_dropdown('id_prodi', $dd_prodi, set_value('id_prodi',$user->id_prodi), $extra);
-               ?>
+              <select name="id_prodi" id="prodi" class="form-control">
+                <option value="">Silahkan Pilih</option>
+                <?php foreach ($dd_prodi as $row): ?>
+                  <option value="<?php echo $row['id'] ?>"
+                    <?php if ($row['id'] == $user->id_prodi): ?>
+                      selected="selected"
+                    <?php endif; ?>
+                  >
+                    <?php echo $row['nama_prodi'] ?>
+                  </option>
+                <?php endforeach; ?>
+              </select>
             </div>
             <div class="form-group">
               <label for="kelas">Kelas <?php echo form_error('id_kelas'); ?></label>
               <?php
-                $extra = array('class' => 'form-control select2');
+                $extra = array(
+                              'class' => 'form-control',
+                              'id' => 'kelas'
+                );
                 echo form_dropdown('id_kelas', $dd_kelas, set_value('id_kelas',$user->id_kelas), $extra);
                ?>
             </div>
             <div class="form-group">
               <label for="semester">Semester <?php echo form_error('id_semester'); ?></label>
               <?php
-                $extra = array('class' => 'form-control select2');
+                $extra = array(
+                              'class' => 'form-control',
+                              'id' => 'semester'
+                );
                 echo form_dropdown('id_semester', $dd_semester, set_value('id_semester',$user->id_semester), $extra);
                ?>
             </div>

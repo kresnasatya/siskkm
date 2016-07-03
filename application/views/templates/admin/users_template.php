@@ -12,8 +12,6 @@
     <link rel="stylesheet" href="<?php echo base_url('adminlte/font-awesome/css/font-awesome.min.css');?>">
     <!-- Datatables -->
     <link rel="stylesheet" href="<?php echo base_url('adminlte/plugins/datatables/dataTables.bootstrap.css');?>">
-    <!-- Select2 CSS -->
-    <link rel="stylesheet" href="<?php echo base_url('adminlte/plugins/select2/select2.min.css');?>">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?php echo base_url('adminlte/dist/css/AdminLTE.min.css');?>">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -161,18 +159,140 @@
     <script src="<?php echo base_url('adminlte/plugins/fastclick/fastclick.min.js');?>"></script>
     <!-- AdminLTE App -->
     <script src="<?php echo base_url('adminlte/dist/js/app.min.js');?>"></script>
-    <!-- Select2 Js -->
-    <script src="<?php echo base_url('adminlte/plugins/select2/select2.min.js');?>"></script>
     <!-- page script-->
     <script>
       $(document).ready(function(){
-        $("#userstable").DataTable({
-          "scrollX": true;
-        });
-        $(".select2").select2({
-          placeholder: "Silahkan Pilih"
-        });
+        $("#userstable").DataTable();
+        var groups = document.querySelector('input[name = "groups[]"]:checked').value;
+        if (groups == 1) {
+          console.log("nilai groups: "+groups);
+          document.getElementById('nim').disabled=true;
+          document.getElementById('jurusan').disabled=true;
+          document.getElementById('prodi').disabled=true;
+          document.getElementById('kelas').disabled=true;
+          document.getElementById('semester').disabled=true;
+        } else if (groups == 2) {
+          console.log("nilai groups: "+groups);
+          document.getElementById('nim').disabled=true;
+          document.getElementById('jurusan').disabled=false;
+          document.getElementById('prodi').disabled=true;
+          document.getElementById('kelas').disabled=true;
+          document.getElementById('semester').disabled=true;
+        } else if (groups == 3) {
+          console.log("nilai groups: "+groups);
+          document.getElementById('nip').disabled=true;
+          document.getElementById('nim').disabled=false;
+          document.getElementById('jurusan').disabled=false;
+          document.getElementById('prodi').disabled=false;
+          document.getElementById('kelas').disabled=false;
+          document.getElementById('semester').disabled=false;
+        }
       });
+
+      /* Ajax Dropdown Jurusan Prodi */
+      function getProdi(value) {
+        console.log(value);
+        $.ajax({
+          type: "POST",
+          url: "<?php echo site_url('admin/users/get_prodi');?>",
+          data:"row="+value,
+          success: function(data) {
+            $("#prodi").html(data);
+            console.log(data);
+          },
+
+          error:function(XMLHttpRequest){
+            alert(XMLHttpRequest.responseText);
+          }
+        });
+      };
+
+      /* Radio button selected in form*/
+      function form_add_check() {
+        var usersForm = document.forms.usersForm;
+        var groups = usersForm.elements['groups[]'];
+
+        // bernilai 1 = admin
+        if (groups.value == 1) {
+          //console.log("test: "+myControls.value);
+          document.getElementById('nip').disabled=false;
+          document.getElementById('nim').disabled=true;
+          document.getElementById('jurusan').disabled=true;
+          document.getElementById('prodi').disabled=true;
+          document.getElementById('kelas').disabled=true;
+          document.getElementById('semester').disabled=true;
+
+          $("#nim").val("");
+        }
+        // bernilai 2 = up2kk
+        else if (groups.value == 2) {
+          //console.log("test: "+myControls.value);
+          document.getElementById('nip').disabled=false;
+          document.getElementById('nim').disabled=true;
+          document.getElementById('jurusan').disabled=false;
+          document.getElementById('prodi').disabled=true;
+          document.getElementById('kelas').disabled=true;
+          document.getElementById('semester').disabled=true;
+
+          $("#nim").val("");
+        }
+        // bernilai 3 = mahasiswa
+        else if (groups.value == 3) {
+          //console.log("test: "+myControls.value);
+          document.getElementById('nip').disabled=true;
+          document.getElementById('nim').disabled=false;
+          document.getElementById('jurusan').disabled=false;
+          document.getElementById('prodi').disabled=false;
+          document.getElementById('kelas').disabled=false;
+          document.getElementById('semester').disabled=false;
+
+          $("#nip").val("");
+        }
+      };
+
+      /* Radio button selected in form*/
+      function form_edit_check() {
+        var usersForm = document.forms.usersForm;
+        var groups = usersForm.elements['groups[]'];
+
+        // bernilai 1 = admin
+        if (groups.value == 1) {
+          //console.log("test: "+myControls.value);
+          document.getElementById('nip').disabled=false;
+          document.getElementById('nim').disabled=true;
+          document.getElementById('jurusan').disabled=true;
+          document.getElementById('prodi').disabled=true;
+          document.getElementById('kelas').disabled=true;
+          document.getElementById('semester').disabled=true;
+
+          $("#nim").val("");
+        }
+        // bernilai 2 = up2kk
+        else if (groups.value == 2) {
+          //console.log("test: "+myControls.value);
+          document.getElementById('nip').disabled=false;
+          document.getElementById('nim').disabled=true;
+          document.getElementById('jurusan').disabled=false;
+          document.getElementById('prodi').disabled=true;
+          document.getElementById('kelas').disabled=true;
+          document.getElementById('semester').disabled=true;
+
+          $("#nim").val("");
+        }
+        // bernilai 3 = mahasiswa
+        else if (groups.value == 3) {
+          //console.log("test: "+myControls.value);
+          document.getElementById('nip').disabled=true;
+          document.getElementById('nim').disabled=false;
+          document.getElementById('jurusan').disabled=false;
+          document.getElementById('prodi').disabled=false;
+          document.getElementById('kelas').disabled=false;
+          document.getElementById('semester').disabled=false;
+
+          $("#nip").val("");
+        }
+      };
+
     </script>
   </body>
 </html>
