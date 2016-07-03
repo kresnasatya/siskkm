@@ -23,23 +23,9 @@ class Admin_Controller extends MY_Controller
       $this->session->set_flashdata('message', 'Kamu bukan admin!');
       redirect('login');
     }
-      $event = 'logged_in';
-      $class = 'Admin_Controller';
-
-      $name = 'get_gravatar_hash';
-      $method = '_gravatar';
-      $this->ion_auth->set_hook($event, $name, $class, $method, array());
+    // menggunakan gravatar untuk profile picture
+    $this->load->library('gravatar');
   }
-
-  public function _gravatar()
-    {
-        if($this->form_validation->valid_email($_SESSION['email']))
-        {
-            $gravatar_url = md5(strtolower(trim($_SESSION['email'])));
-            $_SESSION['gravatar'] = $gravatar_url;
-        }
-        return TRUE;
-    }
 
 }
 
@@ -56,6 +42,8 @@ class UP2KK_Controller extends MY_Controller
       $this->session->set_flashdata('message','Kamu bukan up2kk!');
       redirect('login');
     }
+    // menggunakan gravatar untuk profile picture
+    $this->load->library('gravatar');
   }
 
 }
@@ -73,6 +61,8 @@ class Mahasiswa_Controller extends MY_Controller
       $this->session->set_flashdata('message','Kamu bukan mahasiswa!');
       redirect('login');
     }
+    // menggunakan gravatar untuk profile picture
+    $this->load->library('gravatar');
   }
 
 }
