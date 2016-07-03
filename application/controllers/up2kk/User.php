@@ -5,22 +5,30 @@ class User extends UP2KK_Controller {
   public function __construct()
   {
     parent::__construct();
+    $this->load->model('up2kk/User_model', 'user');
     $this->load->library('form_validation');
   }
 
   public function index()
   {
     $current_user = $this->ion_auth->user()->row();
-    $data['current_user'] = $current_user;
+    $id_user = $current_user->id;
+    $data = array(
+                  'current_user' => $current_user,
+                  'profil' => $this->user->get_profil($id_user)
+    );
     $this->template->load('templates/up2kk/user_template', 'up2kk/user/profil', $data);
   }
 
   function edit_profil()
   {
     $current_user = $this->ion_auth->user()->row();
-    $data['current_user'] = $current_user;
     $this->rules_edit_profil();
     if ($this->form_validation->run() == FALSE) {
+      $data = array(
+                    'dd_jurusan' => $this->user->get_jurusan(),
+                    'current_user' => $current_user
+      );
       $this->template->load('templates/up2kk/user_template', 'up2kk/user/edit',  $data);
     }else{
       $new_data = array(
@@ -28,7 +36,7 @@ class User extends UP2KK_Controller {
                     'nama_belakang' => $this->input->post('nama_belakang'),
                     'nip' => $this->input->post('nip'),
                     'email' => $this->input->post('email'),
-                    'username' => $this->input->post('username')
+                    'id_jurusan' => $this->input->post('id_jurusan')
       );
 
       $this->ion_auth->update($current_user->id,  $new_data);
