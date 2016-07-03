@@ -53,8 +53,9 @@ class Login extends MY_Controller {
 
   public function _rules()
   {
-    $this->form_validation->set_rules('identity', '', 'trim');
-    $this->form_validation->set_rules('password', '', 'trim');
+    $this->form_validation->set_rules('identity', '', 'trim|required');
+    $this->form_validation->set_rules('password', '', 'trim|required');
+    $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');
   }
 
 }
