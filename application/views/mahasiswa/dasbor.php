@@ -52,5 +52,26 @@
           <!-- /.info-box-content -->
       </div>
     </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box">
+          <!-- Apply any bg-* class to to the icon to color it -->
+          <span class="info-box-icon bg-yellow"><i class="fa fa-question-circle"></i></span>
+          <div class="info-box-content">
+              <span class="info-box-text"><a href="<?php echo site_url('mahasiswa/skkm'); ?>">skkm belum <br>
+                divalidasi</a></span>
+              <span class="info-box-number">
+                <?php
+                $number = 0;
+                $str = "poin";
+                if ($skkm_belum_valid == NULL): ?>
+                    <?php echo $number.' '.$str; ?>
+                  <?php else: ?>
+                    <?php echo $skkm_belum_valid.' '.$str; ?>
+                <?php endif; ?>
+              </span>
+          </div>
+          <!-- /.info-box-content -->
+      </div>
+    </div>
   </div>
 </section><!-- /.content -->

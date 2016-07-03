@@ -15,6 +15,7 @@ class Dasbor extends Mahasiswa_Controller {
     $id_user = $current_user->id;
     $data = array(
                   'current_user' => $current_user,
+                  'skkm_belum_valid' => $this->dasbor->skkm_belum_valid($id_user),
                   'skkm_valid' => $this->dasbor->skkm_valid($id_user),
                   'skkm_tidak_valid' => $this->dasbor->skkm_tidak_valid($id_user)
     );
