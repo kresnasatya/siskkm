@@ -155,6 +155,55 @@
           "scrollX": true
         });
       });
+
+      function getTingkat(value) {
+        $.ajax({
+          type: "POST",
+          url: "<?php echo site_url('mahasiswa/skkm/get_tingkat');?>",
+          data:"value="+value,
+          success: function(data) {
+            $("#sebagai option:gt(0)").remove();
+            $("#tingkat").html(data);
+            $("#nilai").val("");
+          },
+
+          error:function(XMLHttpRequest){
+            alert(XMLHttpRequest.responseText);
+          }
+        });
+      };
+
+      function getSebagai(value) {
+        //console.log(value);
+        $.ajax({
+          type: "POST",
+          url: "<?php echo site_url('mahasiswa/skkm/get_sebagai');?>",
+          data:"value="+value,
+          success: function(data) {
+            $("#sebagai").html(data);
+            $("#nilai").val("");
+          },
+
+          error:function(XMLHttpRequest){
+            alert(XMLHttpRequest.responseText);
+          }
+        });
+      }
+
+      function getNilai(value) {
+        $.ajax({
+          type: "POST",
+          url: "<?php echo site_url('mahasiswa/skkm/get_nilai');?>",
+          data:"value="+value,
+          success: function(data) {
+            document.getElementById('nilai').value = data;
+          },
+
+          error:function(XMLHttpRequest){
+            alert(XMLHttpRequest.responseText);
+          }
+        });
+      }
     </script>
     <!-- Intense-image -->
     <script>
