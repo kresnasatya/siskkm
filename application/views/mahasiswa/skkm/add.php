@@ -33,7 +33,7 @@
             ?>
           </div>
           <div class="form-group">
-            <label for="filefoto">Upload File </label> <span class="label label-success">Ukuran maksimal 5MB. Format file: jpeg, jpg, dan png.</span>
+            <label for="filefoto">Bukti Kegiatan</label> <span class="label label-success">Ukuran maksimal 5MB. Format file: jpeg, jpg, dan png.</span>
             <?php echo form_error('filefoto'); ?>
             <?php
                 $extra = array(
