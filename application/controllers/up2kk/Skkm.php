@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Skkm extends CI_Controller{
+class Skkm extends UP2KK_Controller{
 
   public function __construct()
   {
