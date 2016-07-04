@@ -21,7 +21,7 @@
             <?php echo form_error('status'); ?>
             <div class="radio">
               <label for="">
-                <input type="radio" name="status" value="0" <?php if ($status==0) echo "checked"; ?> /> Belum Valid
+                <input type="radio" name="status" value="0" <?php if ($status==0) echo "checked"; ?> /> Belum Divalidasi
               </label>
               <br>
               <label for="">
