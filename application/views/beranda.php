@@ -5,7 +5,7 @@
       <div class="col-lg-8 col-lg-offset-2">
         <h3>Sistem Informasi SKKM</h3>
         <h1>Politeknik Negeri Bali</h1>
-        <h5>Versi Alfa</h5>
+        <h5>Versi 0.1.1. Beta</h5>
       </div>
     </div><!-- /row -->
     </div> <!-- /container -->
