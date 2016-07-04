@@ -14,6 +14,7 @@
   <div class="row">
     <div class="col-md-12">
       <div class="box box-primary">
+        <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
         <?php echo form_open_multipart('mahasiswa/skkm/tambah'); ?>
         <div class="box-body">
           <div class="form-group">

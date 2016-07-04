@@ -14,8 +14,10 @@ class Skkm extends Mahasiswa_Controller {
   {
     $current_user = $this->ion_auth->user()->row();
     $id_user = $current_user->id;
+    $email = $current_user->email;
     $data = array(
                   'current_user' => $current_user,
+                  'gravatar_url' => $this->gravatar->get($email),
                   'skkm' => $this->skkm->get_all($id_user),
                   'skkm_valid' => $this->skkm->sum_valid($id_user),
                   'skkm_belum_valid' => $this->skkm->sum_belum_valid($id_user),
@@ -71,14 +73,14 @@ class Skkm extends Mahasiswa_Controller {
   {
     $this->rules_tambah();
     $current_user = $this->ion_auth->user()->row();
+    $email = $current_user->email;
     if ($this->form_validation->run() == FALSE) {
       $data = array(
                   'current_user' => $current_user,
+                  'gravatar_url' => $this->gravatar->get($email),
                   'dd_jenis' => $this->skkm->get_jenis(),
                   'jenis_selected' => $this->input->post('id_jenis') ? $this->input->post('id_jenis') : '',
-                  // 'dd_tingkat' => $this->skkm->get_tingkat(),
                   'tingkat_selected' => $this->input->post('id_tingkat') ? $this->input->post('id_tingkat') : '',
-                  // 'dd_sebagai' => $this->skkm->get_sebagai(),
                   'sebagai_selected' => $this->input->post('id_sebagai') ? $this->input->post('id_sebagai') : ''
       );
       $this->template->load('templates/mahasiswa/skkm_template', 'mahasiswa/skkm/add', $data);
@@ -129,7 +131,7 @@ class Skkm extends Mahasiswa_Controller {
           redirect('mahasiswa/skkm');
         } else {
           $this->session->set_flashdata('message', $this->upload->display_errors());
-          redirect('mahasiswa/skkm/add');
+          redirect('mahasiswa/skkm/tambah');
         }
       }
     }
@@ -139,6 +141,7 @@ class Skkm extends Mahasiswa_Controller {
   {
     $this->rules_ubah();
     $current_user = $this->ion_auth->user()->row();
+    $email = $current_user->email;
     if ($this->form_validation->run() == FALSE) {
       $row = $this->skkm->get_by_id($id);
       if ($row) {
@@ -154,7 +157,8 @@ class Skkm extends Mahasiswa_Controller {
                     'dd_sebagai' => $this->skkm->get_sebagai($row->id_tingkat),
                     'id_sebagai' => $row->id_sebagai,
                     'nilai' => $row->nilai,
-                    'current_user' => $current_user
+                    'current_user' => $current_user,
+                    'gravatar_url' => $this->gravatar->get($email)
         );
         $this->template->load('templates/mahasiswa/skkm_template', 'mahasiswa/skkm/edit', $data);
       }
@@ -206,7 +210,7 @@ class Skkm extends Mahasiswa_Controller {
         } else {
           $error = array('error' => $this->upload->display_errors());
           $this->session->set_flashdata('message', $error);
-          redirect('mahasiswa/skkm');
+          redirect('mahasiswa/skkm/ubah');
         }
       }
     }

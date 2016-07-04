@@ -14,8 +14,10 @@ class User extends Mahasiswa_Controller {
   {
     $current_user = $this->ion_auth->user()->row();
     $id_user = $current_user->id;
+    $email = $current_user->email;
     $data = array(
                   'current_user' => $current_user,
+                  'gravatar_url' => $this->gravatar->get($email),
                   'profil' => $this->user->get_profil($id_user),
                   'sum_valid' => $this->skkm->sum_valid($id_user),
                   'sum_tidak_valid' => $this->skkm->sum_tidak_valid($id_user),
@@ -41,15 +43,17 @@ class User extends Mahasiswa_Controller {
 
   function edit_profil()
   {
-    $current_user = $this->ion_auth->user()->row();
     $this->rules_edit_profil();
+    $current_user = $this->ion_auth->user()->row();
+    $email = $current_user->email;
     if ($this->form_validation->run() == FALSE) {
       $data = array(
                     'dd_jurusan' => $this->user->get_jurusan(),
                     'dd_prodi' => $this->user->get_prodi($current_user->id_jurusan),
                     'dd_kelas' => $this->user->get_kelas(),
                     'dd_semester' => $this->user->get_semester(),
-                    'current_user' => $current_user
+                    'current_user' => $current_user,
+                    'gravatar_url' => $this->gravatar->get($email)
       );
       $this->template->load('templates/mahasiswa/user_template', 'mahasiswa/user/edit', $data);
     }else{
@@ -72,9 +76,13 @@ class User extends Mahasiswa_Controller {
 
   function ubah_password()
   {
-    $current_user = $this->ion_auth->user()->row();
-    $data['current_user'] = $current_user;
     $this->rules_ubah_password();
+    $current_user = $this->ion_auth->user()->row();
+    $email = $current_user->email;
+    $data = array(
+                  'current_user' => $current_user,
+                  'gravatar_url' => $this->gravatar->get($email)
+    );
     if ($this->form_validation->run() == FALSE) {
       $this->template->load('templates/mahasiswa/user_template', 'mahasiswa/user/ubah_password', $data);
     }else{
