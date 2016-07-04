@@ -15,7 +15,7 @@
       <div class="box box-primary">
         <div class="box-body box-profile">
           <div class="col-md-3">
-            <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url('adminlte/dist/img/user2-160x160.jpg');?>" alt="gambar Profil User">
+            <img class="profile-user-img img-responsive img-circle" src="<?php echo $gravatar_url; ?>" alt="gambar Profil User">
             <h3 class="profile-username text-center"><?php echo $current_user->nama_depan.' '.$current_user->nama_belakang; ?></h3>
           </div>
           <div class="col-md-9">

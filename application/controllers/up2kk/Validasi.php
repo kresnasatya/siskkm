@@ -14,11 +14,13 @@ class Validasi extends UP2KK_Controller {
   {
     $current_user = $this->ion_auth->user()->row();
     // mengambil id jurusan up2kk
-    $jurusan_current_user = $current_user->id_jurusan;
-    $mahasiswa = $this->validasi->get_mahasiswa($jurusan_current_user);
+    $id_jurusan_user = $current_user->id_jurusan;
+    $email = $current_user->email;
+    $mahasiswa = $this->validasi->get_mahasiswa($id_jurusan_user);
     $data = array(
                   'current_user' => $current_user,
-                  'mahasiswa' => $mahasiswa
+                  'mahasiswa' => $mahasiswa,
+                  'gravatar_url' => $this->gravatar->get($email)
     );
     $this->template->load('templates/up2kk/validasi_template', 'up2kk/validasi/list', $data);
   }
@@ -26,13 +28,16 @@ class Validasi extends UP2KK_Controller {
   public function list_skkm($id_user = NULL)
   {
     $current_user = $this->ion_auth->user()->row();
+    $email = $current_user->email;
     $row = $this->validasi->get_skkm_mahasiswa($id_user);
-    $data = array('current_user' => $current_user,
+    $data = array(
+                  'current_user' => $current_user,
                   'list_skkm' => $row,
                   'skkm_belum_valid' => $this->validasi->sum_belum_valid($id_user),
                   'skkm_valid' => $this->validasi->sum_valid($id_user),
                   'skkm_tidak_valid' => $this->validasi->sum_tidak_valid($id_user),
-                  'status_skkm' => $this->validasi->status_skkm($id_user)
+                  'status_skkm' => $this->validasi->status_skkm($id_user),
+                  'gravatar_url' => $this->gravatar->get($email)
     );
     $this->template->load('templates/up2kk/validasi_template', 'up2kk/validasi/list_skkm', $data);
 
@@ -43,6 +48,7 @@ class Validasi extends UP2KK_Controller {
     $this->rules();
     if ($this->form_validation->run() == FALSE) {
       $current_user = $this->ion_auth->user()->row();
+      $email = $current_user->email;
       $row = $this->validasi->get_skkm($id_skkm);
       if ($row) {
         $data = array(
@@ -50,7 +56,8 @@ class Validasi extends UP2KK_Controller {
                       'id' => $row->id,
                       'id_user' => $row->id_user,
                       'status' => $row->status,
-                      'keterangan' => $row->keterangan
+                      'keterangan' => $row->keterangan,
+                      'gravatar_url' => $this->gravatar->get($email)
         );
         $this->template->load('templates/up2kk/validasi_template', 'up2kk/validasi/skkm', $data);
         //print_r($data);

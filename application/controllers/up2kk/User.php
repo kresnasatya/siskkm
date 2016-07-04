@@ -13,8 +13,10 @@ class User extends UP2KK_Controller {
   {
     $current_user = $this->ion_auth->user()->row();
     $id_user = $current_user->id;
+    $email = $current_user->email;
     $data = array(
                   'current_user' => $current_user,
+                  'gravatar_url' => $this->gravatar->get($email),
                   'profil' => $this->user->get_profil($id_user)
     );
     $this->template->load('templates/up2kk/user_template', 'up2kk/user/profil', $data);
@@ -22,12 +24,14 @@ class User extends UP2KK_Controller {
 
   function edit_profil()
   {
-    $current_user = $this->ion_auth->user()->row();
     $this->rules_edit_profil();
+    $current_user = $this->ion_auth->user()->row();
+    $email = $current_user->email;
     if ($this->form_validation->run() == FALSE) {
       $data = array(
                     'dd_jurusan' => $this->user->get_jurusan(),
-                    'current_user' => $current_user
+                    'current_user' => $current_user,
+                    'gravatar_url' => $this->gravatar->get($email)
       );
       $this->template->load('templates/up2kk/user_template', 'up2kk/user/edit',  $data);
     }else{
@@ -48,9 +52,13 @@ class User extends UP2KK_Controller {
 
   function ubah_password()
   {
-    $current_user = $this->ion_auth->user()->row();
-    $data['current_user'] = $current_user;
     $this->rules_ubah_password();
+    $current_user = $this->ion_auth->user()->row();
+    $email = $current_user->email;
+    $data = array(
+                  'current_user' => $current_user,
+                  'gravatar_url' => $this->gravatar->get($email)
+    );
     if ($this->form_validation->run() == FALSE) {
       $this->template->load('templates/up2kk/user_template', 'up2kk/user/ubah_password',  $data);
     }else{
