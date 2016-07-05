@@ -20,8 +20,9 @@
             <?php echo form_label('Tingkat','tingkat'); ?>
             <?php echo form_error('tingkat'); ?>
             <?php
-              $extra = array('class' => 'form-control select2',
-                             'required' => 'required'
+              $extra = array('class' => 'form-control',
+                             'required' => 'required',
+                             'autofocus' => 'autofocus'
               );
               echo form_dropdown('id_tingkat_fk', $dd_tingkat, $tingkat_selected, $extra);
             ?>
