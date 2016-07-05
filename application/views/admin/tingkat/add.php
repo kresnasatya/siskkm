@@ -1,11 +1,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Tambah Jenis
+    Tambah Tingkat
   </h1>
   <ol class="breadcrumb">
-    <li><a href="<?php echo site_url('admin/jenis');?>"><i class="fa fa-balance-scale"></i>Bobot SKKM</a></li>
-    <li class="active">Data Jenis</li>
+    <li><a href="<?php echo site_url('admin/tingkat');?>"><i class="fa fa-balance-scale"></i>Bobot SKKM</a></li>
+    <li class="active">Data Tingkat</li>
   </ol>
 </section>
 
