@@ -20,8 +20,9 @@
             <?php echo form_label('Jenis','jenis'); ?>
             <?php echo form_error('jenis'); ?>
             <?php
-              $extra = array('class' => 'form-control select2',
-                             'required' => 'required'
+              $extra = array('class' => 'form-control',
+                             'required' => 'required',
+                             'autofocus' => 'autofocus'
               );
               echo form_dropdown('id_jenis_fk', $dd_jenis, $jenis_selected, $extra);
             ?>
@@ -35,8 +36,7 @@
                                 'id' => 'tingkat',
                                 'class' => 'form-control',
                                 'placeholder' => 'Tingkat',
-                                'required' => 'required',
-                                'autofocus' => 'autofocus'
+                                'required' => 'required'
                 );
                 echo form_input('tingkat', set_value('tingkat'), $extra);
             ?>
