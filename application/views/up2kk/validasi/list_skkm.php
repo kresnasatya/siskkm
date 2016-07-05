@@ -1,7 +1,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Daftar Data SKKM
+    Daftar Validasi SKKM
     <small>validasi data skkm di sini</small>
   </h1>
   <ol class="breadcrumb">
@@ -16,7 +16,7 @@
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <h3>Daftar Data SKKM</h3>
+          <h3>Daftar Validasi SKKM</h3>
         </div>
         <div class="box-body">
           <table id="mahasiswatable" class="table table-bordered table-striped">
