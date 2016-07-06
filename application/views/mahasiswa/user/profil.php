@@ -82,10 +82,10 @@
                 <b>Jenjang</b> <a class="pull-right"><?php echo $profil->jenjang; ?></a>
               </li>
               <li class="list-group-item">
-                <b>Kelas</b> <a class="pull-right"><?php echo $profil->kelas; ?></a>
+                <b>Semester</b> <a class="pull-right"><?php echo $profil->semester; ?></a>
               </li>
               <li class="list-group-item">
-                <b>Semester</b> <a class="pull-right"><?php echo $profil->semester; ?></a>
+                <b>Kelas</b> <a class="pull-right"><?php echo $profil->kelas; ?></a>
               </li>
             </ul>
             <?php echo anchor(site_url('mahasiswa/user/edit_profil'),'Edit Profil','class="btn btn-primary btn-block"'); ?>

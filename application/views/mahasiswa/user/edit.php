@@ -98,6 +98,17 @@
               </select>
             </div>
             <div class="form-group">
+              <label for="semester">Semester <?php echo form_error('id_semester'); ?></label>
+              <?php
+              $extra = array(
+                'class' => 'form-control',
+                'id' => 'semester',
+                'required' => 'required'
+              );
+              echo form_dropdown('id_semester', $dd_semester, set_value('id_semester',$current_user->id_semester), $extra);
+              ?>
+            </div>
+            <div class="form-group">
               <label for="kelas">Kelas <?php echo form_error('id_kelas'); ?></label>
               <?php
                 $extra = array(
@@ -106,17 +117,6 @@
                               'required' => 'required'
                 );
                 echo form_dropdown('id_kelas', $dd_kelas, set_value('id_kelas',$current_user->id_kelas), $extra);
-               ?>
-            </div>
-            <div class="form-group">
-              <label for="semester">Semester <?php echo form_error('id_semester'); ?></label>
-              <?php
-                $extra = array(
-                              'class' => 'form-control',
-                              'id' => 'semester',
-                              'required' => 'required'
-                );
-                echo form_dropdown('id_semester', $dd_semester, set_value('id_semester',$current_user->id_semester), $extra);
                ?>
             </div>
           </div><!-- /. box-body -->

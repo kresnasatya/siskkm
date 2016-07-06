@@ -115,19 +115,19 @@
               	</select>
             </div>
             <div class="form-group">
-              <label for="kelas">Kelas <?php echo form_error('id_kelas'); ?></label>
-              <?php
-                $extra = array('class' => 'form-control',
-                               'id' => 'kelas');
-                echo form_dropdown('id_kelas', $dd_kelas, $kelas_selected, $extra);
-               ?>
-            </div>
-            <div class="form-group">
               <label for="semester">Semester <?php echo form_error('id_semester'); ?></label>
               <?php
                 $extra = array('class' => 'form-control',
                                'id' => 'semester');
                 echo form_dropdown('id_semester', $dd_semester, $semester_selected, $extra);
+               ?>
+            </div>
+            <div class="form-group">
+              <label for="kelas">Kelas <?php echo form_error('id_kelas'); ?></label>
+              <?php
+                $extra = array('class' => 'form-control',
+                               'id' => 'kelas');
+                echo form_dropdown('id_kelas', $dd_kelas, $kelas_selected, $extra);
                ?>
             </div>
           </div><!-- /. box-body -->
