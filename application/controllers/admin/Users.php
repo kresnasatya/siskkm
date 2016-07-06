@@ -40,7 +40,7 @@ class Users extends Admin_Controller {
         $this->rules_tambah();
         $current_user = $this->ion_auth->user()->row();
         $email = $current_user->email;
-        if ($this->form_validation->run() === FALSE) {
+        if ($this->form_validation->run() == FALSE) {
           $data = array(
                         'groups' => $this->ion_auth->groups()->result(),
                         'dd_jurusan' => $this->users->get_jurusan(),
@@ -84,7 +84,7 @@ class Users extends Admin_Controller {
       $this->rules_ubah();
       $current_user = $this->ion_auth->user()->row();
       $email = $current_user->email;
-      if ($this->form_validation->run() === FALSE) {
+      if ($this->form_validation->run() == FALSE) {
         $user_id = $this->input->post('user_id') ? $this->input->post('user_id') : $user_id;
 
         if ($user = $this->ion_auth->user((int) $user_id)->row()) {
