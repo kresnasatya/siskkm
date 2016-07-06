@@ -11,12 +11,14 @@ class Skkm_model extends CI_Model {
 
   public function get_mahasiswa($id_jurusan)
   {
-    $sql = "SELECT u.id, u.nama_depan, u.nama_belakang, u.nim, g.name, j.nama_jurusan, p.nama_prodi, p.jenjang
+    $sql = "SELECT u.id, u.nama_depan, u.nama_belakang, u.nim, g.name, j.nama_jurusan, p.nama_prodi, p.jenjang, s.semester, k.kelas
             FROM users u
             INNER JOIN users_groups ug ON ug.user_id = u.id
             INNER JOIN groups g ON g.id = ug.group_id
             INNER JOIN jurusan j ON j.id = u.id_jurusan
             INNER JOIN prodi p ON p.id = u.id_prodi
+            INNER JOIN semester s ON s.id = u.id_semester
+            INNER JOIN kelas k ON k.id = u.id_kelas
             WHERE j.id = $id_jurusan AND g.id = 3";
     return $this->db->query($sql)->result();
   }
