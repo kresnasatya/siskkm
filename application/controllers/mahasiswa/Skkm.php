@@ -237,7 +237,7 @@ class Skkm extends Mahasiswa_Controller {
     $this->form_validation->set_rules('id_tingkat', 'Tingkat', 'trim|required');
     $this->form_validation->set_rules('id_sebagai', 'Sebagai', 'trim|required');
     $this->form_validation->set_rules('nilai', 'Nilai', 'trim|required|numeric');
-    $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');
   }
 
   public function rules_ubah()
@@ -247,7 +247,7 @@ class Skkm extends Mahasiswa_Controller {
     $this->form_validation->set_rules('id_tingkat', 'Tingkat', 'trim|required');
     $this->form_validation->set_rules('id_sebagai', 'Sebagai', 'trim|required');
     $this->form_validation->set_rules('nilai', 'Nilai', 'trim|required|numeric');
-    $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');
   }
 
 }
