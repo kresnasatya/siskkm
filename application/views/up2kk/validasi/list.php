@@ -28,6 +28,8 @@
                     <th>Jurusan</th>
                     <th>Prodi</th>
                     <th>Jenjang</th>
+                    <th>Semester</th>
+                    <th>Kelas</th>
                 </tr>
             </thead>
             <tbody>
@@ -41,6 +43,8 @@
                 <td><?php echo $row->nama_jurusan; ?></td>
                 <td><?php echo $row->nama_prodi; ?></td>
                 <td><?php echo $row->jenjang; ?></td>
+                <td><?php echo $row->semester; ?></td>
+                <td><?php echo $row->kelas; ?></td>
               </tr>
               <?php endforeach; ?>
             </tbody>
