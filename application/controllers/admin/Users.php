@@ -157,7 +157,7 @@ class Users extends Admin_Controller {
       $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[users.email]');
       $this->form_validation->set_rules('nama_depan', 'Nama depan', 'trim|required');
       $this->form_validation->set_rules('nama_belakang', 'Nama belakang', 'trim|required');
-      $this->form_validation->set_rules('groups[]','Groups','required|integer');
+      $this->form_validation->set_rules('groups[]','Hak Akses','required|integer');
       $this->form_validation->set_rules('nim', 'Nim', 'trim|is_unique[users.nim]');
       $this->form_validation->set_rules('nip', 'Nip', 'trim|is_unique[users.nip]');
       $this->form_validation->set_rules('id_jurusan', 'Jurusan', 'trim');
@@ -172,7 +172,7 @@ class Users extends Admin_Controller {
       $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
       $this->form_validation->set_rules('nama_depan', 'Nama depan', 'trim|required');
       $this->form_validation->set_rules('nama_belakang', 'Nama belakang', 'trim|required');
-      $this->form_validation->set_rules('groups[]','Groups','required|integer');
+      $this->form_validation->set_rules('groups[]','Hak Akses','required|integer');
       $this->form_validation->set_rules('nim', 'Nim', 'trim');
       $this->form_validation->set_rules('nip', 'Nip', 'trim');
       $this->form_validation->set_rules('id_jurusan', 'Jurusan', 'trim');
