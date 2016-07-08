@@ -69,7 +69,7 @@ class User extends Mahasiswa_Controller {
       );
       $this->ion_auth->update($current_user->id, $new_data);
 
-      $this->session->set_flashdata('message', $this->ion_auth->messages());
+      $this->session->set_flashdata('message', "<div style='color:#00a65a;'>".$this->ion_auth->messages()."</div>");
       redirect('mahasiswa/user', 'refresh');
     }
   }
@@ -92,7 +92,7 @@ class User extends Mahasiswa_Controller {
       $this->ion_auth->update($id_user, $data);
 
       $this->ion_auth->logout();
-      $this->session->set_flashdata('message', $this->ion_auth->messages());
+      $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Password berhasil diubah.</div>");
       redirect('login', 'refresh');
     }
   }

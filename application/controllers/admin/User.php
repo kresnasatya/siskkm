@@ -39,7 +39,7 @@ class User extends Admin_Controller {
                     'email' => $this->input->post('email')
       );
       $this->ion_auth->update($current_user->id, $new_data);
-      $this->session->set_flashdata('message', $this->ion_auth->messages());
+      $this->session->set_flashdata('message', "<div style='color:#00a65a;'>".$this->ion_auth->messages()."</div>");
       redirect('admin/user','refresh');
     }
   }
@@ -62,7 +62,7 @@ class User extends Admin_Controller {
       $this->ion_auth->update($id_user, $data);
 
       $this->ion_auth->logout();
-      $this->session->set_flashdata('message', $this->ion_auth->messages());
+      $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Password berhasil diubah.</div>");
       redirect('login','refresh');
     }
   }
@@ -73,14 +73,14 @@ class User extends Admin_Controller {
     $this->form_validation->set_rules('nama_belakang', 'Nama belakang', 'trim|required');
     $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
     $this->form_validation->set_rules('nip', 'Nip', 'trim|required');
-    $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');
   }
 
   public function rules_ubah_password()
   {
     $this->form_validation->set_rules('password_baru', 'Password Baru', 'trim|required');
     $this->form_validation->set_rules('konfirmasi_password', 'Konfirmasi Password', 'trim|required|matches[password_baru]');
-    $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');
   }
 
 }

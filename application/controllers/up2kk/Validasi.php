@@ -76,7 +76,7 @@ class Validasi extends UP2KK_Controller {
                     'keterangan' => $keterangan,
                     'id_user' => $id_user);
       $this->validasi->validasi_skkm($id,  $data);
-      $this->session->set_flashdata('message', 'SKKM berhasil divalidasi.');
+      $this->session->set_flashdata('message', "<div style='color:#00a65a;'>SKKM berhasil divalidasi.</div>");
       redirect(site_url('up2kk/validasi/list_skkm/'.$data['id_user']));
     }
   }

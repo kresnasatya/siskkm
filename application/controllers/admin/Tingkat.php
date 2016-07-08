@@ -43,7 +43,7 @@ class Tingkat extends Admin_Controller {
                     'tingkat' => $tingkat,
                     'id_jenis_fk' => $id_jenis_fk);
       $this->tingkat->insert($data);
-      $this->session->set_flashdata('message', 'Tingkat berhasil ditambah.');
+      $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Tingkat berhasil ditambah.</div>");
       redirect(site_url('admin/tingkat'));
     }
   }
@@ -80,7 +80,7 @@ class Tingkat extends Admin_Controller {
                  'id_jenis_fk' => $id_jenis_fk
       );
       $this->tingkat->update($id, $data);
-      $this->session->set_flashdata('message', 'Tingkat berhasil diubah.');
+      $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Tingkat berhasil diubah.</div>");
       redirect(site_url('admin/tingkat'));
     }
   }
@@ -92,7 +92,7 @@ class Tingkat extends Admin_Controller {
 
     if ($row) {
       $this->tingkat->delete($id);
-      $this->session->set_flashdata('message', 'Tingkat berhasil dihapus.');
+      $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Tingkat berhasil dihapus.</div>");
       redirect(site_url('admin/tingkat'));
     } else {
       $this->session->set_flashdata('message', 'Data tidak ditemukan.');

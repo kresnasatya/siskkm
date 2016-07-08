@@ -45,7 +45,7 @@ class Pengumuman extends Admin_Controller {
                     'id_user' => $user->id, // baca dokumentasi ion auth
       );
       $this->pengumuman->insert($data);
-      $this->session->set_flashdata('message', 'Pengumuman berhasil ditambah.');
+      $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Pengumuman berhasil ditambah.</div>");
       redirect(site_url('admin/pengumuman'));
     }
   }
@@ -86,7 +86,7 @@ class Pengumuman extends Admin_Controller {
                  'id_user' => $user->id
       );
       $this->pengumuman->update($id, $data);
-      $this->session->set_flashdata('message', 'Pengumuman berhasil diubah.');
+      $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Pengumuman berhasil diubah.</div>");
       redirect(site_url('admin/pengumuman'));
     }
   }
@@ -96,7 +96,7 @@ class Pengumuman extends Admin_Controller {
 
     if ($row) {
       $this->pengumuman->delete($id);
-      $this->session->set_flashdata('message', 'Pengumuman berhasil dihapus.');
+      $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Pengumuman berhasil dihapus.</div>");
       redirect(site_url('admin/pengumuman'));
     } else {
       $this->session->set_flashdata('message', 'Data tidak ditemukan.');
@@ -109,7 +109,7 @@ class Pengumuman extends Admin_Controller {
   {
     $this->form_validation->set_rules('judul', 'Judul', 'trim|required');
     $this->form_validation->set_rules('isi_pengumuman', 'Isi', 'trim|required');
-    $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');
   }
 
 }

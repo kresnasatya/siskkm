@@ -46,7 +46,7 @@ class Sebagai extends Admin_Controller {
                     'id_tingkat_fk' => $id_tingkat_fk
       );
       $this->sebagai->insert($data);
-      $this->session->set_flashdata('message', 'Sebagai berhasil ditambah.');
+      $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Sebagai berhasil ditambah.</div>");
       redirect(site_url('admin/sebagai'));
     }
   }
@@ -86,7 +86,7 @@ class Sebagai extends Admin_Controller {
                  'id_tingkat_fk' => $id_tingkat_fk
       );
       $this->sebagai->update($id, $data);
-      $this->session->set_flashdata('message', 'Sebagai berhasil diubah.');
+      $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Sebagai berhasil diubah.</div>");
       redirect(site_url('admin/sebagai'));
     }
   }
@@ -98,7 +98,7 @@ class Sebagai extends Admin_Controller {
 
     if ($row) {
       $this->sebagai->delete($id);
-      $this->session->set_flashdata('message', 'Sebagai berhasil dihapus.');
+      $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Sebagai berhasil dihapus.</div>");
       redirect(site_url('admin/sebagai'));
     } else {
       $this->session->set_flashdata('message', 'Data tidak ditemukan.');
@@ -112,7 +112,7 @@ class Sebagai extends Admin_Controller {
     $this->form_validation->set_rules('sebagai', 'Sebagai', 'trim|required');
     $this->form_validation->set_rules('bobot', 'Bobot', 'trim|required');
     $this->form_validation->set_rules('id_tingkat_fk', 'Tingkat', 'trim|required');
-    $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');
   }
 
   // aturan mengubah sebagai
@@ -122,7 +122,7 @@ class Sebagai extends Admin_Controller {
     $this->form_validation->set_rules('bobot', 'Bobot', 'trim|required');
     $this->form_validation->set_rules('id_sebagai', 'Id Sebagai', 'trim|required');
     $this->form_validation->set_rules('id_tingkat_fk', 'Tingkat', 'trim|required');
-    $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');
   }
 
 }

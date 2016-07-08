@@ -74,7 +74,7 @@ class Users extends Admin_Controller {
           // urutan parameter untuk register : username, password, email, data tambahan, id group
           // parameter $password diganti dengan 'password'. Jadi, password sudah tersetting otomatis dengan kata 'password'.
            $this->ion_auth->register('', 'password', $email, $additional_data, $group_id);
-           $this->session->set_flashdata('message', $this->ion_auth->messages());
+           $this->session->set_flashdata('message', "<div style='color:#00a65a;'>".$this->ion_auth->messages()."</div>");
           redirect('admin/users','refresh');
         }
   }
@@ -135,7 +135,7 @@ class Users extends Admin_Controller {
           }
         }
 
-        $this->session->set_flashdata('message',$this->ion_auth->messages());
+        $this->session->set_flashdata('message', "<div style='color:#00a65a;'>".$this->ion_auth->messages()."</div>");
         redirect('admin/users','refresh');
     }
   }
@@ -147,7 +147,7 @@ class Users extends Admin_Controller {
       }
       else {
         $this->ion_auth->delete_user($user_id);
-        $this->session->set_flashdata('message', $this->ion_auth->messages());
+        $this->session->set_flashdata('message', "<div style='color:#00a65a;'>".$this->ion_auth->messages()."</div>");
       }
       redirect('admin/users','refresh');
   }

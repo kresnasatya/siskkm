@@ -36,7 +36,7 @@ class Login extends MY_Controller {
               redirect('up2kk/dasbor');
             }
           } else {
-            $this->session->set_flashdata('message', $this->ion_auth->errors());
+            $this->session->set_flashdata('message', "<div style='color:rgb(252, 0, 0);'>Kombinasi email dan password salah.</div>");
             redirect('login', 'refresh');
           }
         }
