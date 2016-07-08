@@ -104,7 +104,7 @@ class Tingkat extends Admin_Controller {
   public function rules_tambah()
   {
     $this->form_validation->set_rules('tingkat', 'Tingkat', 'trim|required');
-    $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');
   }
 
   // aturan mengubah tingkat
@@ -112,7 +112,7 @@ class Tingkat extends Admin_Controller {
   {
     $this->form_validation->set_rules('tingkat', 'Tingkat', 'trim|required');
     $this->form_validation->set_rules('id_tingkat', 'Id Tingkat', 'trim|required');
-    $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');
   }
 
 }

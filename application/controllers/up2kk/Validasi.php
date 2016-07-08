@@ -84,7 +84,7 @@ class Validasi extends UP2KK_Controller {
   {
     $this->form_validation->set_rules('status', 'Status', 'trim|required');
     $this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|required');
-    $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');
   }
 
 }
