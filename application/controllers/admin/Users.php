@@ -15,7 +15,7 @@ class Users extends Admin_Controller {
     $email = $current_user->email;
     $data = array(
                   'current_user' => $current_user,
-                  'users' => $this->ion_auth->users($group_id)->result(),
+                  'users' => $this->users->get_users(),
                   'gravatar_url' => $this->gravatar->get($email)
     );
     $this->template->load('templates/admin/users_template','admin/users/list',$data);
