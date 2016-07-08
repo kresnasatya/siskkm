@@ -59,11 +59,11 @@
                 <td><?php echo $row->nilai; ?></td>
                 <td>
                   <?php if ($row->status == 0): ?>
-                      <?php echo "Belum Divalidasi"; ?>
+                      <span class="label label-warning"><?php echo "Belum Divalidasi"; ?></span>
                     <?php elseif ($row->status == 2): ?>
-                      <?php echo "Tidak Valid"; ?>
+                      <span class="label label-danger"><?php echo "Tidak Valid"; ?></span>
                     <?php elseif ($row->status == 1): ?>
-                      <?php echo "Valid" ?>
+                      <span class="label label-success"><?php echo "Valid"; ?></span>
                   <?php endif; ?>
                 </td>
                 <td>
