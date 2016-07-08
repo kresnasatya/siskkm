@@ -20,9 +20,9 @@
             <a href="<?php echo site_url('admin/users/tambah');?>" class="btn btn-primary">Tambah Users</a>
           </div>
           <div class="col-md-4 text-center">
-              <div style="margin-top: 4px"  id="message">
-                  <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
-              </div>
+            <strong style="margin-top: 4px;"  id="message">
+                <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
+            </strong>
           </div>
         </div>
         <div class="box-body">

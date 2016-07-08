@@ -17,6 +17,14 @@
       <div class="box">
         <div class="box-header">
           <h3>Daftar Validasi SKKM</h3>
+          <div class="col-md-4">
+
+          </div>
+          <div class="col-md-4 text-center">
+              <strong style="margin-top: 4px;"  id="message">
+                  <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
+              </strong>
+          </div>
         </div>
         <div class="box-body">
           <table id="mahasiswatable" class="table table-bordered table-striped">

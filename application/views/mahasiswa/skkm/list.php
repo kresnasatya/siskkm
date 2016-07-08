@@ -21,9 +21,9 @@
             <a href="<?php echo site_url('mahasiswa/skkm/tambah');?>" class="btn btn-primary">Tambah SKKM</a>
           </div>
           <div class="col-md-4 text-center">
-              <div style="margin-top: 4px"  id="message">
+              <strong style="margin-top: 4px;"  id="message">
                   <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
-              </div>
+              </strong>
           </div>
         </div>
         <div class="box-body">
