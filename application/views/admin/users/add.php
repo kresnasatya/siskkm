@@ -60,7 +60,7 @@
             </div>
             <div class="form-group">
               <?php if (isset($groups)): ?>
-                <?php echo form_label('Groups', 'groups[]'); ?>
+                <?php echo form_label('Hak Akses', 'groups[]'); ?>
                 <?php foreach ($groups as $group): ?>
                   <div class="radio">
                     <label>
