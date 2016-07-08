@@ -70,7 +70,7 @@ class Pengumuman extends Admin_Controller {
         $this->template->load('templates/admin/pengumuman_template', 'admin/pengumuman/edit', $data);
 
       }else {
-        $this->session->set_flashdata('message', 'Data tidak ditemukan.');
+        $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
         redirect(site_url('admin/pengumuman'));
       }
     }else {
@@ -99,7 +99,7 @@ class Pengumuman extends Admin_Controller {
       $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Pengumuman berhasil dihapus.</div>");
       redirect(site_url('admin/pengumuman'));
     } else {
-      $this->session->set_flashdata('message', 'Data tidak ditemukan.');
+      $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
       redirect(site_url('admin/pengumuman'));
     }
 

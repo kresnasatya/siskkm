@@ -72,7 +72,7 @@ class Sebagai extends Admin_Controller {
         );
         $this->template->load('templates/admin/sebagai_template', 'admin/sebagai/edit', $data);
       }else {
-        $this->session->set_flashdata('message', 'Data tidak ditemukan.');
+        $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
         redirect(site_url('admin/sebagai'));
       }
     }else {
@@ -101,7 +101,7 @@ class Sebagai extends Admin_Controller {
       $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Sebagai berhasil dihapus.</div>");
       redirect(site_url('admin/sebagai'));
     } else {
-      $this->session->set_flashdata('message', 'Data tidak ditemukan.');
+      $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
       redirect(site_url('admin/sebagai'));
     }
   }

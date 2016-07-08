@@ -161,6 +161,9 @@ class Skkm extends Mahasiswa_Controller {
                     'gravatar_url' => $this->gravatar->get($email)
         );
         $this->template->load('templates/mahasiswa/skkm_template', 'mahasiswa/skkm/edit', $data);
+      } else {
+        $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
+        redirect(site_url('mahasiswa/skkm'));
       }
     } else {
       $this->load->library('upload');
@@ -225,7 +228,7 @@ class Skkm extends Mahasiswa_Controller {
       $this->session->set_flashdata('message', "<div style='color:#00a65a;'>SKKM berhasil dihapus.</div>");
       redirect(site_url('mahasiswa/skkm'));
     } else {
-      $this->session->set_flashdata('message', 'Data tidak ditemukan.');
+      $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
       redirect(site_url('mahasiswa/skkm'));
     }
   }

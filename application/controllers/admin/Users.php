@@ -100,7 +100,7 @@ class Users extends Admin_Controller {
                         'gravatar_url' => $this->gravatar->get($email)
           );
         }else {
-          $this->session->set_flashdata('message','User tidak ada');
+          $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>User tidak ada.</div>");
           redirect('admin/users','refresh');
         }
         $data['groups'] = $this->ion_auth->groups()->result();
@@ -143,7 +143,7 @@ class Users extends Admin_Controller {
   public function hapus($user_id = NULL)
   {
       if (is_null($user_id)) {
-        $this->session->set_flashdata('message','Tidak ada data user untuk dihapus');
+        $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Tidak ada data user untuk dihapus</div>");
       }
       else {
         $this->ion_auth->delete_user($user_id);

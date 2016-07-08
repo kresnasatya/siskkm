@@ -60,9 +60,8 @@ class Validasi extends UP2KK_Controller {
                       'gravatar_url' => $this->gravatar->get($email)
         );
         $this->template->load('templates/up2kk/validasi_template', 'up2kk/validasi/skkm', $data);
-        //print_r($data);
       } else {
-        $this->session->set_flashdata('message', 'Data tidak ditemukan.');
+        $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
         redirect(site_url('up2kk/validasi/list_skkm/'.$data['id_user']));
       }
     } else {
