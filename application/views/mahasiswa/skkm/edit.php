@@ -60,7 +60,7 @@
               <option value="">Silahkan Pilih</option>
               <?php foreach ($dd_tingkat as $row): ?>
                 <option value="<?php echo $row['id_tingkat'] ?>"
-                  <?php if ($row['id_tingkat'] == $id_jenis): ?>
+                  <?php if ($row['id_tingkat'] == $id_tingkat): ?>
                     selected="selected"
                   <?php endif; ?>
                 >
