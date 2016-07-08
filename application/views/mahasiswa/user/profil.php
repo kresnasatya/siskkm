@@ -25,7 +25,7 @@
               if ($sum_valid == NULL): ?>
                 <?php echo $num.' '.$str; ?>
               <?php else: ?>
-                <strong style="color:green;"><?php echo $sum_valid.' '.$str; ?></strong>
+                <?php echo $sum_valid.' '.$str; ?>
               <?php endif; ?>
             </strong>
             </p>
@@ -38,7 +38,7 @@
               if ($sum_belum_valid == NULL): ?>
                 <?php echo $num.' '.$str; ?>
               <?php else: ?>
-                <strong style="color:yellow;"><?php echo $sum_belum_valid.' '.$str; ?></strong>
+                <?php echo $sum_belum_valid.' '.$str; ?>
               <?php endif; ?>
             </strong>
             </p>
@@ -49,15 +49,15 @@
               if ($sum_tidak_valid == NULL): ?>
                 <?php echo $num.' '.$str; ?>
               <?php else: ?>
-                <strong style="color:red;"><?php echo $sum_tidak_valid.' '.$str; ?></strong>
+                <?php echo $sum_tidak_valid.' '.$str; ?>
               <?php endif; ?>
             </strong></p>
             <p>
             <strong>Status SKKM:
               <?php if ($sum_valid >= $status_skkm): ?>
-                  <strong style="color:green;"><?php echo "LULUS"; ?></strong>
+                    <?php echo "LULUS"; ?>
                 <?php else: ?>
-                  <strong style="color:red;"><?php echo "TIDAK LULUS"; ?></strong>
+                  <?php echo "TIDAK LULUS"; ?>
               <?php endif; ?>
             </strong></p>
           </div>
