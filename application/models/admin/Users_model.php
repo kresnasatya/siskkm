@@ -7,6 +7,17 @@ class Users_model extends CI_Model {
         parent::__construct();
   }
 
+  // fungsi menampilkan users
+  public function get_users()
+  {
+    $sql = 'SELECT u.id, u.nama_depan, u.nama_belakang, u.email, g.name, u.last_login
+            FROM users u
+            INNER JOIN users_groups ug ON u.id = ug.user_id
+            INNER JOIN groups g ON g.id = ug.group_id
+            ORDER BY u.id DESC';
+    return $this->db->query($sql)->result();
+  }
+
   // fungsi menampilkan semua jurusan
   public function get_jurusan()
   {

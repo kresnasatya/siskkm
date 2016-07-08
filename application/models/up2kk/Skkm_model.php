@@ -30,7 +30,8 @@ class Skkm_model extends CI_Model {
             INNER JOIN jenis ON jenis.id_jenis = skkm.id_jenis
             INNER JOIN tingkat ON tingkat.id_tingkat = skkm.id_tingkat
             INNER JOIN sebagai ON sebagai.id_sebagai = skkm.id_sebagai
-            WHERE id_user = $id_user";
+            WHERE id_user = $id_user
+            ORDER BY id DESC";
     return $this->db->query($sql)->result();
   }
 
