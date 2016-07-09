@@ -55,7 +55,7 @@
             </strong>
             </p>
             <p>
-            <strong>Status SKKM:
+            <strong>Status Kelulusan SKKM:
               <?php if ($sum_valid >= $status_skkm): ?>
                   <strong style="color:green;"><?php echo "LULUS"; ?></strong>
                 <?php else: ?>
