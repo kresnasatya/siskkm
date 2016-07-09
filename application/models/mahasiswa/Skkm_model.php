@@ -88,7 +88,7 @@ class Skkm_model extends CI_Model {
   {
     $this->db->select('SUM(nilai) as total');
     $this->db->from('skkm');
-    $this->db->where('status', 0);
+    $this->db->where('status', 2);
     $this->db->where('id_user', $id_user);
     return $result = $this->db->get()->row()->total;
   }
@@ -98,7 +98,7 @@ class Skkm_model extends CI_Model {
   {
     $this->db->select('SUM(nilai) as total');
     $this->db->from('skkm');
-    $this->db->where('status', 2);
+    $this->db->where('status', 0);
     $this->db->where('id_user', $id_user);
     return $result = $this->db->get()->row()->total;
   }
