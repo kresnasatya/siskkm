@@ -61,19 +61,6 @@
           </table>
           <p>
             <strong>
-            Total Poin SKKM yang valid:
-            <?php
-            $num = 0;
-            $str = "poin";
-            if ($skkm_valid == NULL): ?>
-              <?php echo $num.' '.$str; ?>
-            <?php else: ?>
-              <?php echo $skkm_valid.' '.$str; ?>
-            <?php endif; ?>
-          </strong>
-        </p>
-        <p>
-          <strong>
             Total Poin SKKM Belum Divalidasi:
             <?php
             $num = 0;
@@ -96,6 +83,19 @@
             <?php else: ?>
               <?php echo $skkm_tidak_valid.' '.$str; ?>
             <?php endif; ?>
+          </strong>
+        </p>
+        <p>
+          <strong>
+          Total Poin SKKM yang valid:
+          <?php
+          $num = 0;
+          $str = "poin";
+          if ($skkm_valid == NULL): ?>
+            <?php echo $num.' '.$str; ?>
+          <?php else: ?>
+            <?php echo $skkm_valid.' '.$str; ?>
+          <?php endif; ?>
           </strong>
         </p>
         <p>
