@@ -5,26 +5,33 @@ class Pengumuman extends Admin_Controller {
   public function __construct()
   {
     parent::__construct();
-    if (!$this->ion_auth->in_group('admin')) {
-      $this->session->set_flashdata('message', 'Kamu bukan admin!');
-      redirect('login', 'refresh');
-    }
     $this->load->model('admin/Pengumuman_model','pengumuman');
     $this->load->library('form_validation');
   }
 
   public function index()
   {
-    $data['pengumuman'] = $this->pengumuman->get_all();
-    $data['current_user'] = $this->ion_auth->user()->row();
+    $current_user = $this->ion_auth->user()->row();
+    $email = $current_user->email;
+    $data = array(
+                  'current_user' => $current_user,
+                  'pengumuman' => $this->pengumuman->get_all(),
+                  'gravatar_url' => $this->gravatar->get($email)
+    );
     $this->template->load('templates/admin/pengumuman_template', 'admin/pengumuman/list', $data);
   }
 
   public function tambah()
   {
     $this->rules();
+    $current_user = $this->ion_auth->user()->row();
+    $email = $current_user->email;
+
     if ($this->form_validation->run() == FALSE) {
-      $data = array('current_user' => $this->ion_auth->user()->row());
+      $data = array(
+                    'current_user' => $current_user,
+                    'gravatar_url' => $this->gravatar->get($email)
+      );
       $this->template->load('templates/admin/pengumuman_template', 'admin/pengumuman/add', $data);
     }else {
       $judul = $this->input->post('judul');
@@ -38,7 +45,7 @@ class Pengumuman extends Admin_Controller {
                     'id_user' => $user->id, // baca dokumentasi ion auth
       );
       $this->pengumuman->insert($data);
-      $this->session->set_flashdata('message', 'Pengumuman berhasil ditambah.');
+      $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Pengumuman berhasil ditambah.</div>");
       redirect(site_url('admin/pengumuman'));
     }
   }
@@ -46,6 +53,8 @@ class Pengumuman extends Admin_Controller {
   public function ubah($id)
   {
     $this->rules();
+    $current_user = $this->ion_auth->user()->row();
+    $email = $current_user->email;
     if ($this->form_validation->run() == FALSE) {
       $row = $this->pengumuman->get_by_id($id);
 
@@ -55,12 +64,13 @@ class Pengumuman extends Admin_Controller {
                       'judul' => set_value('judul',$row->judul),
                       'isi_pengumuman' => set_value('isi_pengumuman',$row->isi_pengumuman),
                       'id_user' => set_value('id_user',$row->id_user),
-                      'current_user' => $this->ion_auth->user()->row()
+                      'current_user' => $current_user,
+                      'gravatar_url' => $this->gravatar->get($email)
         );
         $this->template->load('templates/admin/pengumuman_template', 'admin/pengumuman/edit', $data);
 
       }else {
-        $this->session->set_flashdata('message', 'Data tidak ditemukan.');
+        $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
         redirect(site_url('admin/pengumuman'));
       }
     }else {
@@ -76,7 +86,7 @@ class Pengumuman extends Admin_Controller {
                  'id_user' => $user->id
       );
       $this->pengumuman->update($id, $data);
-      $this->session->set_flashdata('message', 'Pengumuman berhasil diubah.');
+      $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Pengumuman berhasil diubah.</div>");
       redirect(site_url('admin/pengumuman'));
     }
   }
@@ -86,10 +96,10 @@ class Pengumuman extends Admin_Controller {
 
     if ($row) {
       $this->pengumuman->delete($id);
-      $this->session->set_flashdata('message', 'Pengumuman berhasil dihapus.');
+      $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Pengumuman berhasil dihapus.</div>");
       redirect(site_url('admin/pengumuman'));
     } else {
-      $this->session->set_flashdata('message', 'Data tidak ditemukan.');
+      $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
       redirect(site_url('admin/pengumuman'));
     }
 
@@ -99,7 +109,7 @@ class Pengumuman extends Admin_Controller {
   {
     $this->form_validation->set_rules('judul', 'Judul', 'trim|required');
     $this->form_validation->set_rules('isi_pengumuman', 'Isi', 'trim|required');
-    $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');
   }
 
 }

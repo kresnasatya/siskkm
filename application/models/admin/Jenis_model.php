@@ -11,6 +11,7 @@ class Jenis_model extends CI_Model {
 
   public function get_all()
   {
+    $this->db->order_by('id_jenis', 'DESC');
     $query = $this->db->get('jenis');
     return $query->result();
   }

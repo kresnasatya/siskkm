@@ -14,7 +14,9 @@
     <div class="col-md-12">
       <div class="box box-primary">
         <!-- form start-->
-        <?php echo form_open('admin/users/tambah'); ?>
+        <?php
+        $attribute = array('id' => 'usersForm');
+        echo form_open('admin/users/tambah', $attribute); ?>
           <div class="box-body">
             <div class="form-group">
               <?php echo form_label('Nama depan','nama_depan'); ?>
@@ -44,19 +46,6 @@
                echo form_input($nama_belakang); ?>
             </div>
             <div class="form-group">
-              <?php echo form_label('Username','username'); ?>
-              <?php echo form_error('username'); ?>
-              <?php
-                  $username = array(
-                                    'type' => 'text',
-                                    'class' => 'form-control',
-                                    'name' => 'username',
-                                    'id' => 'username',
-                                    'placeholder' => 'Username',
-                                    'required' => 'required');
-               echo form_input($username); ?>
-            </div>
-            <div class="form-group">
               <?php echo form_label('Email','email'); ?>
               <?php echo form_error('email'); ?>
               <?php
@@ -71,12 +60,12 @@
             </div>
             <div class="form-group">
               <?php if (isset($groups)): ?>
-                <?php echo form_label('Groups', 'groups[]'); ?>
+                <?php echo form_label('Hak Akses', 'groups[]'); ?>
                 <?php foreach ($groups as $group): ?>
                   <div class="radio">
                     <label>
                       <?php
-                        $js = 'onClick="form_check()"';
+                        $js = 'onclick="form_add_check()"';
                         echo form_radio('groups[]', $group->id, set_radio('groups[]', $group->id), $js); ?>
                       <?php echo $group->name; ?>
                     </label>
@@ -111,33 +100,34 @@
             <div class="form-group">
                 <?php echo form_label('Jurusan', 'id_jurusan'); ?>
                 <?php echo form_error('id_jurusan'); ?>
-                <?php
-                  $extra = array('class' => 'form-control select2');
-                  echo form_dropdown('id_jurusan', $dd_jurusan, $jurusan_selected, $extra);
-                 ?>
+                <select class="form-control" name="id_jurusan" id="jurusan" onchange="getProdi(this.value)">
+                  <option value="">Silahkan Pilih</option>
+                  <?php foreach ($dd_jurusan as $row): ?>
+                    <option value="<?php echo $row['id'] ?>"><?php echo $row['nama_jurusan'] ?></option>
+                  <?php endforeach; ?>
+                </select>
             </div>
             <div class="form-group">
                 <?php echo form_label('Prodi', 'id_prodi'); ?>
                 <?php echo form_error('id_prodi'); ?>
-                <?php
-                  $extra = array('class' => 'form-control select2');
-                  echo form_dropdown('id_prodi', $dd_prodi, $prodi_selected, $extra);
-                 ?>
+                <select name="id_prodi" id="prodi" class="form-control">
+              		<option value="">Silahkan Pilih</option>
+              	</select>
             </div>
             <div class="form-group">
-              <?php echo form_label('Kelas', 'id_kelas'); ?>
-              <?php echo form_error('id_kelas'); ?>
+              <label for="semester">Semester <?php echo form_error('id_semester'); ?></label>
               <?php
-                $extra = array('class' => 'form-control select2');
-                echo form_dropdown('id_kelas', $dd_kelas, $kelas_selected, $extra);
+                $extra = array('class' => 'form-control',
+                               'id' => 'semester');
+                echo form_dropdown('id_semester', $dd_semester, $semester_selected, $extra);
                ?>
             </div>
             <div class="form-group">
-              <?php echo form_label('Kelas', 'id_kelas'); ?>
-              <?php echo form_error('id_semester'); ?>
+              <label for="kelas">Kelas <?php echo form_error('id_kelas'); ?></label>
               <?php
-                $extra = array('class' => 'form-control select2');
-                echo form_dropdown('id_semester', $dd_semester, $semester_selected, $extra);
+                $extra = array('class' => 'form-control',
+                               'id' => 'kelas');
+                echo form_dropdown('id_kelas', $dd_kelas, $kelas_selected, $extra);
                ?>
             </div>
           </div><!-- /. box-body -->

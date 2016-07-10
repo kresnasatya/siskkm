@@ -3,13 +3,17 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>SISKKM - Admin</title>
+    <title>SISKKM | UP2KK</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
     <link rel="stylesheet" href="<?php echo base_url('adminlte/bootstrap/css/bootstrap.min.css');?>">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="<?php echo base_url('adminlte/font-awesome/css/font-awesome.min.css');?>">
+    <!-- Datatables -->
+    <link rel="stylesheet" href="<?php echo base_url('adminlte/plugins/datatables/dataTables.bootstrap.css');?>">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="<?php echo base_url('adminlte/ionic/css/ionicons.min.css');?>">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?php echo base_url('adminlte/dist/css/AdminLTE.min.css');?>">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -25,17 +29,17 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body class="hold-transition skin-blue sidebar-mini">
+  <body class="hold-transition skin-purple sidebar-mini">
     <!-- Site wrapper -->
     <div class="wrapper">
 
       <header class="main-header">
         <!-- Logo -->
-        <a href="<?php echo site_url('admin/dasbor');?>" class="logo">
+        <a href="<?php echo site_url('up2kk/dasbor');?>" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>A</b>KM</span>
+          <span class="logo-mini"><b>U</b>KM</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>Admin</b>SKKM</span>
+          <span class="logo-lg"><b>UP2KK</b>SKKM</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -50,14 +54,14 @@
             <ul class="nav navbar-nav">
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
-                <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="<?php echo $gravatar_url ;?>" class="user-image" alt="User Image">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <img src="<?php echo $gravatar_url; ?>" class="user-image" alt="User Image">
                   <span class="hidden-xs"><?php echo $current_user->nama_depan.' '.$current_user->nama_belakang; ?></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
-                    <img src="<?php echo $gravatar_url ;?>" class="img-circle" alt="User Image">
+                    <img src="<?php echo $gravatar_url; ?>" class="img-circle" alt="User Image">
                     <p>
                       <?php echo $current_user->nama_depan.' '.$current_user->nama_belakang; ?>
                       <small>Terdaftar pada tahun <?php echo date('Y', $current_user->created_on); ?></small>
@@ -66,7 +70,7 @@
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
-                      <a href="<?php echo site_url('admin/user');?>" class="btn btn-default btn-flat">Profil</a>
+                      <a href="<?php echo site_url('up2kk/user'); ?>" class="btn btn-default btn-flat">Profil</a>
                     </div>
                     <div class="pull-right">
                       <a href="<?php echo site_url('login/logout');?>" class="btn btn-default btn-flat">Keluar</a>
@@ -88,7 +92,7 @@
           <!-- Sidebar user panel -->
           <div class="user-panel">
             <div class="pull-left image">
-              <img src="<?php echo $gravatar_url ;?>" class="img-circle" alt="User Image">
+              <img src="<?php echo $gravatar_url; ?>" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
               <p><?php echo $current_user->nama_depan.' '.$current_user->nama_belakang; ?></p>
@@ -99,28 +103,18 @@
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li class="treeview">
-              <a href="<?php echo site_url('admin/dasbor');?>">
+              <a href="<?php echo site_url('up2kk/dasbor');?>">
                 <i class="fa fa-dashboard"></i> <span>Dasbor</span>
               </a>
             </li>
             <li class="treeview">
-              <a href="<?php echo site_url('admin/users');?>">
-                <i class="fa fa-users"></i> <span>Users</span>
+              <a href="<?php echo site_url('up2kk/validasi');?>">
+                <i class="fa fa-check-square-o"></i> <span>Validasi SKKM</span>
               </a>
             </li>
-            <li class="treeview">
-              <a href="">
-                <i class="fa fa-balance-scale"></i> <span>Bobot SKKM</span> <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="<?php echo site_url('admin/jenis'); ?>"><i class="fa fa-circle-o"></i> Data Jenis</a></li>
-                <li><a href="<?php echo site_url('admin/tingkat'); ?>"><i class="fa fa-circle-o"></i> Data Tingkat</a></li>
-                <li><a href="<?php echo site_url('admin/sebagai'); ?>"><i class="fa fa-circle-o"></i> Data Sebagai</a></li>
-              </ul>
-            </li>
-            <li class="treeview">
-              <a href="<?php echo site_url('admin/pengumuman');?>">
-                <i class="fa fa-newspaper-o"></i> <span>Pengumuman</span>
+            <li class="treeview active">
+              <a href="<?php echo site_url('up2kk/skkm');?>">
+                <i class="fa fa-archive"></i> <span>Daftar SKKM</span>
               </a>
             </li>
           </ul>
@@ -148,11 +142,34 @@
     <script src="<?php echo base_url('adminlte/plugins/jQuery/jquery.min.js');?>"></script>
     <!-- Bootstrap 3.3.5 -->
     <script src="<?php echo base_url('adminlte/bootstrap/js/bootstrap.min.js');?>"></script>
+    <!-- Datatables -->
+    <script src="<?php echo base_url('adminlte/plugins/datatables/jquery.dataTables.min.js');?>"></script>
+    <script src="<?php echo base_url('adminlte/plugins/datatables/dataTables.bootstrap.min.js');?>"></script>
     <!-- SlimScroll -->
     <script src="<?php echo base_url('adminlte/plugins/slimScroll/jquery.slimscroll.min.js');?>"></script>
+    <!-- Intense Images -->
+    <script src="<?php echo base_url('intense-images/intense.min.js'); ?>"></script>
     <!-- FastClick -->
     <script src="<?php echo base_url('adminlte/plugins/fastclick/fastclick.min.js');?>"></script>
     <!-- AdminLTE App -->
     <script src="<?php echo base_url('adminlte/dist/js/app.min.js');?>"></script>
+    <!-- page script-->
+    <script>
+      $(document).ready(function(){
+        $("#mahasiswatable").DataTable({
+          "scrollX": true
+        });
+        $("#listskkmtable").DataTable({
+          "scrollX": true
+        });
+      });
+    </script>
+    <!-- script for intense-images -->
+    <script>
+      window.onload = function() {
+        var elements = document.querySelectorAll( '.anything' );
+        Intense( elements );
+      }
+    </script>
   </body>
 </html>

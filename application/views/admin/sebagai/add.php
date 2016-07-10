@@ -20,8 +20,9 @@
             <?php echo form_label('Tingkat','tingkat'); ?>
             <?php echo form_error('tingkat'); ?>
             <?php
-              $extra = array('class' => 'form-control select2',
-                             'required' => 'required'
+              $extra = array('class' => 'form-control',
+                             'required' => 'required',
+                             'autofocus' => 'autofocus'
               );
               echo form_dropdown('id_tingkat_fk', $dd_tingkat, $tingkat_selected, $extra);
             ?>
@@ -46,12 +47,14 @@
             <?php
                 $extra = array(
                                 'type' => 'number',
-                                'id' => 'bobot',
+                                'name' => 'bobot',
+                                'value' => set_value('bobot'),
+                                'id' => 'Bobot',
                                 'class' => 'form-control',
                                 'placeholder' => 'Bobot',
-                                'required' => 'required',
+                                'required' => 'required'
                 );
-                echo form_input('bobot', set_value('bobot'), $extra);
+                echo form_input($extra);
             ?>
           </div>
           <?php echo anchor(site_url('admin/sebagai'),'Kembali','class="btn btn-default"'); ?>

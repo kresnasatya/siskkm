@@ -12,7 +12,8 @@ class Sebagai_model extends CI_Model {
   public function get_all()
   {
     $sql = 'SELECT id_sebagai, tingkat.tingkat, sebagai, bobot FROM sebagai
-            INNER JOIN tingkat ON tingkat.id_tingkat = sebagai.id_tingkat_fk';
+            INNER JOIN tingkat ON tingkat.id_tingkat = sebagai.id_tingkat_fk
+            ORDER BY id_sebagai DESC';
     return $this->db->query($sql)->result();
   }
 

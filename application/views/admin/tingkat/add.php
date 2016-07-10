@@ -1,11 +1,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Tambah Jenis
+    Tambah Tingkat
   </h1>
   <ol class="breadcrumb">
-    <li><a href="<?php echo site_url('admin/jenis');?>"><i class="fa fa-balance-scale"></i>Bobot SKKM</a></li>
-    <li class="active">Data Jenis</li>
+    <li><a href="<?php echo site_url('admin/tingkat');?>"><i class="fa fa-balance-scale"></i>Bobot SKKM</a></li>
+    <li class="active">Data Tingkat</li>
   </ol>
 </section>
 
@@ -20,8 +20,9 @@
             <?php echo form_label('Jenis','jenis'); ?>
             <?php echo form_error('jenis'); ?>
             <?php
-              $extra = array('class' => 'form-control select2',
-                             'required' => 'required'
+              $extra = array('class' => 'form-control',
+                             'required' => 'required',
+                             'autofocus' => 'autofocus'
               );
               echo form_dropdown('id_jenis_fk', $dd_jenis, $jenis_selected, $extra);
             ?>
@@ -35,8 +36,7 @@
                                 'id' => 'tingkat',
                                 'class' => 'form-control',
                                 'placeholder' => 'Tingkat',
-                                'required' => 'required',
-                                'autofocus' => 'autofocus'
+                                'required' => 'required'
                 );
                 echo form_input('tingkat', set_value('tingkat'), $extra);
             ?>

@@ -21,11 +21,15 @@
             <?php echo form_error('status'); ?>
             <div class="radio">
               <label for="">
-                <input type="radio" name="status" value="0" <?php echo set_radio('status', $status) == 0 ? "checked" : ""; ?> /> Tidak Valid
+                <input type="radio" name="status" value="0" <?php if ($status==0) echo "checked"; ?> /> Belum Divalidasi
               </label>
               <br>
               <label for="">
-                <input type="radio" name="status" value="1" <?php echo set_radio('status', $status) == 1 ? "checked" : ""; ?> /> Valid
+                <input type="radio" name="status" value="1" <?php if ($status==1) echo "checked"; ?> /> Valid
+              </label>
+              <br>
+              <label for="">
+                <input type="radio" name="status" value="2" <?php if ($status==2) echo "checked"; ?> /> Tidak Valid
               </label>
             </div>
           </div>

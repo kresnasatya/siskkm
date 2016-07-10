@@ -21,9 +21,9 @@
             <a href="<?php echo site_url('mahasiswa/skkm/tambah');?>" class="btn btn-primary">Tambah SKKM</a>
           </div>
           <div class="col-md-4 text-center">
-              <div style="margin-top: 4px"  id="message">
+              <strong style="margin-top: 4px;"  id="message">
                   <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
-              </div>
+              </strong>
           </div>
         </div>
         <div class="box-body">
@@ -49,32 +49,35 @@
                 <tr>
                   <td><?php echo ++$start ?></td>
                   <td>
-                    <?php if ($row->status == 0): ?>
+                    <?php if ($row->status == 0 OR $row->status == 2): ?>
                       <a href="<?php echo site_url('mahasiswa/skkm/ubah/'.$row->id); ?>"><?php echo $row->nama_kegiatan; ?></a>
                     <?php else: ?>
                       <?php echo $row->nama_kegiatan; ?>
                     <?php endif; ?>
                   </td>
                   <td>
-                  <div class="anything" data-image="<?php echo base_url('fileskkm/'.$row->filefoto); ?>">
-                    <img src="<?php echo base_url('fileskkm/resize/'.$row->filefoto); ?>" alt="" />
-                  </div></td>
+                    <div class="anything" data-image="<?php echo base_url('fileskkm/'.$row->filefoto); ?>">
+                      <img src="<?php echo base_url('fileskkm/resize/'.$row->filefoto); ?>" alt="" />
+                    </div>
+                  </td>
                   <td><?php echo $row->jenis; ?></td>
                   <td><?php echo $row->tingkat; ?></td>
                   <td><?php echo $row->sebagai; ?></td>
                   <td><?php echo $row->nilai; ?></td>
                   <td>
                     <?php if ($row->status == 0): ?>
-                        <?php echo "Tidak Valid"; ?>
-                      <?php else: ?>
-                        <?php echo "Valid"; ?>
+                        <span class="label label-warning"><?php echo "Belum Divalidasi"; ?></span>
+                      <?php elseif ($row->status == 2): ?>
+                        <span class="label label-danger"><?php echo "Tidak Valid"; ?></span>
+                      <?php elseif ($row->status == 1): ?>
+                        <span class="label label-success"><?php echo "Valid"; ?></span>
                     <?php endif; ?>
                   </td>
                   <td>
                     <?php echo $row->keterangan; ?>
                   </td>
                   <td>
-                    <?php if ($row->status == 0): ?>
+                    <?php if ($row->status == 0 OR $row->status == 2): ?>
                       <?php
                           $hapus = array(
                                     'class' => 'btn btn-sm btn-danger',
@@ -90,8 +93,35 @@
               <?php endforeach; ?>
             </tbody>
           </table>
-          <p><strong>
-            SKKM yang valid:
+          <p>
+            <strong>
+              Total Poin SKKM belum divalidasi:
+              <?php
+              $num = 0;
+              $str = "poin";
+              if ($skkm_belum_valid == NULL): ?>
+                <?php echo $num.' '.$str; ?>
+              <?php else: ?>
+                <?php echo $skkm_belum_valid.' '.$str; ?>
+              <?php endif; ?>
+            </strong>
+          </p>
+          <p>
+            <strong>
+              Total Poin SKKM tidak valid:
+              <?php
+              $num = 0;
+              $str = "poin";
+              if ($skkm_tidak_valid == NULL): ?>
+                <?php echo $num.' '.$str; ?>
+              <?php else: ?>
+                <?php echo $skkm_tidak_valid.' '.$str; ?>
+              <?php endif; ?>
+            </strong>
+          </p>
+          <p>
+            <strong>
+            Total Poin SKKM yang valid:
             <?php
             $num = 0;
             $str = "poin";
@@ -99,27 +129,18 @@
               <?php echo $num.' '.$str; ?>
             <?php else: ?>
               <?php echo $skkm_valid.' '.$str; ?>
-            <?php endif; ?></strong></p>
-          <p><strong>
-            SKKM tidak valid:
-            <?php
-            $num = 0;
-            $str = "poin";
-            if ($skkm_tidak_valid == NULL): ?>
-              <?php echo $num.' '.$str; ?>
-            <?php else: ?>
-              <?php echo $skkm_tidak_valid.' '.$str; ?>
             <?php endif; ?>
-        </strong></p>
-        <p>
-          <strong>Status Kelulusan SKKM:
-          <?php if ($skkm_valid >= $status_skkm): ?>
-                <?php echo "LULUS"; ?>
-            <?php else: ?>
-              <?php echo "TIDAK LULUS"; ?>
-          <?php endif; ?>
-          </strong>
-        </p>
+            </strong>
+          </p>
+          <p>
+            <strong>Status Kelulusan SKKM:
+            <?php if ($skkm_valid >= $status_skkm): ?>
+                <strong style="color:#00a65a;"><?php echo "LULUS"; ?></strong>
+              <?php else: ?>
+                <strong style="color:#dd4b39;"><?php echo "TIDAK LULUS"; ?></strong>
+            <?php endif; ?>
+            </strong>
+          </p>
         </div>
       </div>
     </div>

@@ -6,10 +6,6 @@ class Skkm extends Mahasiswa_Controller {
   public function __construct()
   {
     parent::__construct();
-    if (!$this->ion_auth->in_group('mahasiswa')) {
-      $this->session->set_flashdata('message', 'Kamu bukan mahasiswa!');
-      redirect('login', 'refresh');
-    }
     $this->load->model('mahasiswa/Skkm_model', 'skkm');
     $this->load->library('form_validation');
   }
@@ -18,27 +14,73 @@ class Skkm extends Mahasiswa_Controller {
   {
     $current_user = $this->ion_auth->user()->row();
     $id_user = $current_user->id;
+    $email = $current_user->email;
     $data = array(
                   'current_user' => $current_user,
+                  'gravatar_url' => $this->gravatar->get($email),
                   'skkm' => $this->skkm->get_all($id_user),
                   'skkm_valid' => $this->skkm->sum_valid($id_user),
+                  'skkm_belum_valid' => $this->skkm->sum_belum_valid($id_user),
                   'skkm_tidak_valid' => $this->skkm->sum_tidak_valid($id_user),
                   'status_skkm' => $this->skkm->status_skkm($id_user));
     $this->template->load('templates/mahasiswa/skkm_template', 'mahasiswa/skkm/list', $data);
+  }
+
+  // get data tingkat
+  public function get_tingkat()
+  {
+    $id_jenis = $this->input->post('value');
+    $tingkat = $this->skkm->get_tingkat($id_jenis);
+
+    echo '<select name="">';
+    echo '<option value="">Pilih Tingkat</option>';
+		foreach ($tingkat as $row)
+		{
+    	echo '<option value="'.$row['id_tingkat'].'">'.$row['tingkat'].'</option>';
+		}
+		echo '</select>';
+  }
+
+  public function get_sebagai()
+  {
+    $id_tingkat = $this->input->post('value');
+    $sebagai = $this->skkm->get_sebagai($id_tingkat);
+
+    echo '<select name="">';
+    echo '<option value="">Pilih Sebagai</option>';
+		foreach ($sebagai as $row)
+		{
+    	echo '<option value="'.$row['id_sebagai'].'">'.$row['sebagai'].'</option>';
+		}
+		echo '</select>';
+  }
+
+  public function get_nilai()
+  {
+    $id_sebagai = $this->input->post('value');
+    $nilai = $this->skkm->get_nilai($id_sebagai);
+
+    $data = array();
+		foreach ($nilai as $row)
+		{
+      $data['value'] = $row['bobot'];
+      //$data['label'] = $row['id_sebagai'];
+		}
+    echo $data['value'];
   }
 
   public function tambah()
   {
     $this->rules_tambah();
     $current_user = $this->ion_auth->user()->row();
+    $email = $current_user->email;
     if ($this->form_validation->run() == FALSE) {
       $data = array(
                   'current_user' => $current_user,
+                  'gravatar_url' => $this->gravatar->get($email),
                   'dd_jenis' => $this->skkm->get_jenis(),
                   'jenis_selected' => $this->input->post('id_jenis') ? $this->input->post('id_jenis') : '',
-                  'dd_tingkat' => $this->skkm->get_tingkat(),
                   'tingkat_selected' => $this->input->post('id_tingkat') ? $this->input->post('id_tingkat') : '',
-                  'dd_sebagai' => $this->skkm->get_sebagai(),
                   'sebagai_selected' => $this->input->post('id_sebagai') ? $this->input->post('id_sebagai') : ''
       );
       $this->template->load('templates/mahasiswa/skkm_template', 'mahasiswa/skkm/add', $data);
@@ -48,10 +90,11 @@ class Skkm extends Mahasiswa_Controller {
       $config= array(
                     'upload_path' => './fileskkm/',
                     'allowed_types' => 'jpeg|jpg|png',
-                    'max_size' => '3072',
+                    'max_size' => '5120',
                     'max_width' => '5000',
                     'max_height' => '5000',
-                    'file_name' => $namafile);
+                    'file_name' => $namafile
+      );
       $this->upload->initialize($config);
 
       if ($_FILES['filefoto']['name']) {
@@ -84,11 +127,11 @@ class Skkm extends Mahasiswa_Controller {
             $this->session->set_flashdata('errors', $this->image_lib->display_errors('', ''));
           }
           //pesan yang muncul jika berhasil diupload pada session flashdata
-          $this->session->set_flashdata('message', 'SKKM berhasil ditambah.');
+          $this->session->set_flashdata('message', "<div style='color:#00a65a;'>SKKM berhasil ditambah.</div>");
           redirect('mahasiswa/skkm');
         } else {
-          $this->session->set_flashdata('message', $this->upload->display_errors());
-          redirect('mahasiswa/skkm/add');
+          $this->session->set_flashdata('message', "<div style='color:rgb(255, 252, 0);'>".$this->upload->display_errors()."</div>");
+          redirect('mahasiswa/skkm/tambah');
         }
       }
     }
@@ -98,6 +141,7 @@ class Skkm extends Mahasiswa_Controller {
   {
     $this->rules_ubah();
     $current_user = $this->ion_auth->user()->row();
+    $email = $current_user->email;
     if ($this->form_validation->run() == FALSE) {
       $row = $this->skkm->get_by_id($id);
       if ($row) {
@@ -105,16 +149,21 @@ class Skkm extends Mahasiswa_Controller {
                     'id_user' => $row->id_user,
                     'id' => $row->id,
                     'nama_kegiatan' => $row->nama_kegiatan,
+                    'filefoto' => $row->filefoto,
                     'dd_jenis' => $this->skkm->get_jenis(),
                     'id_jenis' => $row->id_jenis,
-                    'dd_tingkat' => $this->skkm->get_tingkat(),
+                    'dd_tingkat' => $this->skkm->get_tingkat($row->id_jenis),
                     'id_tingkat' => $row->id_tingkat,
-                    'dd_sebagai' => $this->skkm->get_sebagai(),
+                    'dd_sebagai' => $this->skkm->get_sebagai($row->id_tingkat),
                     'id_sebagai' => $row->id_sebagai,
                     'nilai' => $row->nilai,
-                    'current_user' => $current_user
+                    'current_user' => $current_user,
+                    'gravatar_url' => $this->gravatar->get($email)
         );
         $this->template->load('templates/mahasiswa/skkm_template', 'mahasiswa/skkm/edit', $data);
+      } else {
+        $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
+        redirect(site_url('mahasiswa/skkm'));
       }
     } else {
       $this->load->library('upload');
@@ -159,12 +208,12 @@ class Skkm extends Mahasiswa_Controller {
             $this->session->set_flashdata('errors', $this->image_lib->display_errors('', ''));
           }
           //pesan yang muncul jika berhasil diupload pada session flashdata
-          $this->session->set_flashdata('message', 'SKKM berhasil diubah.');
+          $this->session->set_flashdata('message', "<div style='color:#00a65a;'>SKKM berhasil diubah.</div>");
           redirect('mahasiswa/skkm');
         } else {
           $error = array('error' => $this->upload->display_errors());
           $this->session->set_flashdata('message', $error);
-          redirect('mahasiswa/skkm');
+          redirect('mahasiswa/skkm/ubah');
         }
       }
     }
@@ -176,10 +225,10 @@ class Skkm extends Mahasiswa_Controller {
 
     if ($row) {
       $this->skkm->delete($id);
-      $this->session->set_flashdata('message', 'SKKM berhasil dihapus.');
+      $this->session->set_flashdata('message', "<div style='color:#00a65a;'>SKKM berhasil dihapus.</div>");
       redirect(site_url('mahasiswa/skkm'));
     } else {
-      $this->session->set_flashdata('message', 'Data tidak ditemukan.');
+      $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
       redirect(site_url('mahasiswa/skkm'));
     }
   }
@@ -191,7 +240,7 @@ class Skkm extends Mahasiswa_Controller {
     $this->form_validation->set_rules('id_tingkat', 'Tingkat', 'trim|required');
     $this->form_validation->set_rules('id_sebagai', 'Sebagai', 'trim|required');
     $this->form_validation->set_rules('nilai', 'Nilai', 'trim|required|numeric');
-    $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');
   }
 
   public function rules_ubah()
@@ -201,7 +250,7 @@ class Skkm extends Mahasiswa_Controller {
     $this->form_validation->set_rules('id_tingkat', 'Tingkat', 'trim|required');
     $this->form_validation->set_rules('id_sebagai', 'Sebagai', 'trim|required');
     $this->form_validation->set_rules('nilai', 'Nilai', 'trim|required|numeric');
-    $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');
   }
 
 }

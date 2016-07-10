@@ -7,6 +7,8 @@ class Pengumuman extends CI_Controller {
   {
     parent::__construct();
     $this->load->model('Beranda_model', 'beranda');
+    // load helper text for using character_limiter
+    $this->load->helper('text');
   }
 
   public function index($offset=0)
@@ -30,11 +32,11 @@ class Pengumuman extends CI_Controller {
     $this->template->load('templates/beranda_template', 'pengumuman', $data);
   }
 
-  public function single($id)
+  public function single($slug)
   {
-    $data['pengumuman'] = $this->home->pengumuman();
-    $data['single'] = $this->home->single($id);
-    $this->template->load('templates/home_template', 'single', $data);
+    $data['pengumuman'] = $this->beranda->pengumuman();
+    $data['single'] = $this->beranda->single($slug);
+    $this->template->load('templates/beranda_template', 'single', $data);
   }
 
 }

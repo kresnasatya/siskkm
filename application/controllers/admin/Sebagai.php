@@ -1,24 +1,23 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Sebagai extends CI_Controller {
+class Sebagai extends Admin_Controller {
 
   public function __construct()
   {
     parent::__construct();
-    if (!$this->ion_auth->in_group('admin')) {
-      $this->session->set_flashdata('message', 'Kamu bukan admin!');
-      redirect('login', 'refresh');
-    }
     $this->load->model('admin/Sebagai_model', 'sebagai');
     $this->load->library('form_validation');
   }
 
   function index()
   {
+    $current_user = $this->ion_auth->user()->row();
+    $email = $current_user->email;
     $data = array(
-                  'current_user' => $this->ion_auth->user()->row(),
-                  'sebagai'      => $this->sebagai->get_all()
+                  'current_user' => $current_user,
+                  'sebagai'      => $this->sebagai->get_all(),
+                  'gravatar_url' => $this->gravatar->get($email)
     );
     $this->template->load('templates/admin/sebagai_template', 'admin/sebagai/list', $data);
   }
@@ -27,11 +26,14 @@ class Sebagai extends CI_Controller {
   public function tambah()
   {
     $this->rules_tambah();
+    $current_user = $this->ion_auth->user()->row();
+    $email = $current_user->email;
     if ($this->form_validation->run() == FALSE) {
       $data = array(
-                    'current_user' => $this->ion_auth->user()->row(),
+                    'current_user' => $current_user,
                     'dd_tingkat' => $this->sebagai->get_tingkat(),
                     'tingkat_selected' => $this->input->post('id_tingkat_fk') ? $this->input->post('id_tingkat_fk') : '',
+                    'gravatar_url' => $this->gravatar->get($email)
       );
       $this->template->load('templates/admin/sebagai_template', 'admin/sebagai/add', $data);
     }else {
@@ -41,9 +43,10 @@ class Sebagai extends CI_Controller {
       $data = array(
                     'sebagai' => $sebagai,
                     'bobot'  => $bobot,
-                    'id_tingkat_fk' => $id_tingkat_fk);
+                    'id_tingkat_fk' => $id_tingkat_fk
+      );
       $this->sebagai->insert($data);
-      $this->session->set_flashdata('message', 'Sebagai berhasil ditambah.');
+      $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Sebagai berhasil ditambah.</div>");
       redirect(site_url('admin/sebagai'));
     }
   }
@@ -52,6 +55,8 @@ class Sebagai extends CI_Controller {
   public function ubah($id = NULL)
   {
     $this->rules_ubah();
+    $current_user = $this->ion_auth->user()->row();
+    $email = $current_user->email;
     if ($this->form_validation->run() == FALSE) {
       $row = $this->sebagai->get_by_id($id);
 
@@ -62,11 +67,12 @@ class Sebagai extends CI_Controller {
                       'bobot'      => $row->bobot,
                       'id_tingkat_fk' => $row->id_tingkat_fk,
                       'dd_tingkat' => $this->sebagai->get_tingkat(),
-                      'current_user' => $this->ion_auth->user()->row()
+                      'current_user' => $current_user,
+                      'gravatar_url' => $this->gravatar->get($email)
         );
         $this->template->load('templates/admin/sebagai_template', 'admin/sebagai/edit', $data);
       }else {
-        $this->session->set_flashdata('message', 'Data tidak ditemukan.');
+        $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
         redirect(site_url('admin/sebagai'));
       }
     }else {
@@ -80,7 +86,7 @@ class Sebagai extends CI_Controller {
                  'id_tingkat_fk' => $id_tingkat_fk
       );
       $this->sebagai->update($id, $data);
-      $this->session->set_flashdata('message', 'Sebagai berhasil diubah.');
+      $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Sebagai berhasil diubah.</div>");
       redirect(site_url('admin/sebagai'));
     }
   }
@@ -92,10 +98,10 @@ class Sebagai extends CI_Controller {
 
     if ($row) {
       $this->sebagai->delete($id);
-      $this->session->set_flashdata('message', 'Sebagai berhasil dihapus.');
+      $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Sebagai berhasil dihapus.</div>");
       redirect(site_url('admin/sebagai'));
     } else {
-      $this->session->set_flashdata('message', 'Data tidak ditemukan.');
+      $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
       redirect(site_url('admin/sebagai'));
     }
   }
@@ -106,7 +112,7 @@ class Sebagai extends CI_Controller {
     $this->form_validation->set_rules('sebagai', 'Sebagai', 'trim|required');
     $this->form_validation->set_rules('bobot', 'Bobot', 'trim|required');
     $this->form_validation->set_rules('id_tingkat_fk', 'Tingkat', 'trim|required');
-    $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');
   }
 
   // aturan mengubah sebagai
@@ -116,7 +122,7 @@ class Sebagai extends CI_Controller {
     $this->form_validation->set_rules('bobot', 'Bobot', 'trim|required');
     $this->form_validation->set_rules('id_sebagai', 'Id Sebagai', 'trim|required');
     $this->form_validation->set_rules('id_tingkat_fk', 'Tingkat', 'trim|required');
-    $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');
   }
 
 }

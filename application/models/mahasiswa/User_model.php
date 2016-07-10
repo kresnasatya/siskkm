@@ -1,24 +1,26 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Users_model extends CI_Model {
+class User_model extends CI_Model{
 
   public function __construct()
   {
-        parent::__construct();
+    parent::__construct();
+
   }
 
-  // fungsi menampilkan users
-  public function get_users()
+  public function get_profil($id_user)
   {
-    $sql = 'SELECT u.id, u.nama_depan, u.nama_belakang, u.email, g.name, u.last_login
+    $sql = "SELECT u.id, u.nama_depan, u.nama_belakang, u.nim, u.email, j.id, j.nama_jurusan, p.id, p.nama_prodi, p.jenjang, s.id, s.semester, k.id, k.kelas
             FROM users u
-            INNER JOIN users_groups ug ON u.id = ug.user_id
-            INNER JOIN groups g ON g.id = ug.group_id
-            ORDER BY u.id DESC';
-    return $this->db->query($sql)->result();
+            INNER JOIN jurusan j ON j.id = u.id_jurusan
+            INNER JOIN prodi p ON p.id = u.id_prodi
+            INNER JOIN kelas k ON k.id = u.id_kelas
+            INNER JOIN semester s ON s.id = u.id_semester
+            WHERE u.id = $id_user";
+    return $this->db->query($sql)->row();
   }
 
-  // fungsi menampilkan semua jurusan
   public function get_jurusan()
   {
     $this->db->select('*');
@@ -27,7 +29,6 @@ class Users_model extends CI_Model {
     return $result->result_array();
   }
 
-  // fungsi menampilkan prodi berdasarkan jurusan
   public function get_prodi($id_jurusan)
   {
     if (isset($id_jurusan)) {
@@ -40,7 +41,6 @@ class Users_model extends CI_Model {
 		return $result->result_array();
   }
 
-  // fungsi menampilkan kelas
   public function get_kelas()
   {
       // ambil data kelas
@@ -74,4 +74,5 @@ class Users_model extends CI_Model {
       }
       return $dd;
   }
+
 }

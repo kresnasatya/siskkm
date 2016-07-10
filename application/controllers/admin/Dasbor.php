@@ -6,22 +6,22 @@ class Dasbor extends Admin_Controller {
   public function __construct()
   {
     parent::__construct();
-    if (!$this->ion_auth->in_group('admin')) {
-      $this->session->set_flashdata('message', 'Kamu bukan admin!');
-      redirect('login', 'refresh');
-    }
     $this->load->model('admin/Dasbor_model', 'dasbor');
   }
 
-  function index()
+  public function index()
   {
+    $current_user = $this->ion_auth->user()->row();
+    $email = $current_user->email;
     $data = array(
-                  'current_user' => $this->ion_auth->user()->row(),
+                  'current_user' => $current_user,
                   'count_user' => $this->dasbor->count_user(),
                   'count_pengumuman' => $this->dasbor->count_pengumuman(),
                   'count_jenis' => $this->dasbor->count_jenis(),
                   'count_tingkat' => $this->dasbor->count_tingkat(),
-                  'count_sebagai' => $this->dasbor->count_sebagai());
+                  'count_sebagai' => $this->dasbor->count_sebagai(),
+                  'gravatar_url' => $this->gravatar->get($email)
+    );
     $this->template->load('templates/admin/dasbor_template', 'admin/dasbor', $data);
   }
 

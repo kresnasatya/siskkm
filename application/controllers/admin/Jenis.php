@@ -1,24 +1,23 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Jenis extends CI_Controller {
+class Jenis extends Admin_Controller {
 
   public function __construct()
   {
     parent::__construct();
-    if (!$this->ion_auth->in_group('admin')) {
-      $this->session->set_flashdata('message', 'Kamu bukan admin!');
-      redirect('login', 'refresh');
-    }
     $this->load->model('admin/Jenis_model', 'jenis');
     $this->load->library('form_validation');
   }
 
   function index()
   {
+    $current_user = $this->ion_auth->user()->row();
+    $email = $current_user->email;
     $data = array(
-                  'current_user' => $this->ion_auth->user()->row(),
-                  'jenis' => $this->jenis->get_all()
+                  'current_user' => $current_user,
+                  'jenis' => $this->jenis->get_all(),
+                  'gravatar_url' => $this->gravatar->get($email)
     );
     $this->template->load('templates/admin/jenis_template', 'admin/jenis/list', $data);
   }
@@ -27,14 +26,19 @@ class Jenis extends CI_Controller {
   public function tambah()
   {
     $this->rules_tambah();
+    $current_user = $this->ion_auth->user()->row();
+    $email = $current_user->email;
     if ($this->form_validation->run() == FALSE) {
-      $data = array('current_user' => $this->ion_auth->user()->row());
+      $data = array(
+                    'current_user' => $current_user,
+                    'gravatar_url' => $this->gravatar->get($email)
+      );
       $this->template->load('templates/admin/jenis_template', 'admin/jenis/add', $data);
     } else {
       $jenis = $this->input->post('jenis');
       $data = array('jenis' => $jenis);
       $this->jenis->insert($data);
-      $this->session->set_flashdata('message', 'Jenis berhasil ditambah.');
+      $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Jenis berhasil ditambah.</div>");
       redirect(site_url('admin/jenis'));
     }
   }
@@ -43,6 +47,8 @@ class Jenis extends CI_Controller {
   public function ubah($id = NULL)
   {
     $this->rules_ubah();
+    $current_user = $this->ion_auth->user()->row();
+    $email = $current_user->email;
     if ($this->form_validation->run() == FALSE) {
       $row = $this->jenis->get_by_id($id);
 
@@ -50,11 +56,12 @@ class Jenis extends CI_Controller {
         $data = array(
                       'id_jenis' => $row->id_jenis,
                       'jenis'    => $row->jenis,
-                      'current_user' => $this->ion_auth->user()->row()
+                      'current_user' => $current_user,
+                      'gravatar_url' => $this->gravatar->get($email)
         );
         $this->template->load('templates/admin/jenis_template', 'admin/jenis/edit', $data);
       }else {
-        $this->session->set_flashdata('message', 'Data tidak ditemukan.');
+        $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
         redirect(site_url('admin/jenis'));
       }
     }else {
@@ -65,7 +72,7 @@ class Jenis extends CI_Controller {
                  'id_jenis' => $id
       );
       $this->jenis->update($id, $data);
-      $this->session->set_flashdata('message', 'Jenis berhasil diubah.');
+      $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Jenis berhasil diubah.</div>");
       redirect(site_url('admin/jenis'));
     }
   }
@@ -77,10 +84,10 @@ class Jenis extends CI_Controller {
 
     if ($row) {
       $this->jenis->delete($id);
-      $this->session->set_flashdata('message', 'Jenis berhasil dihapus.');
+      $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Jenis berhasil dihapus.</div>");
       redirect(site_url('admin/jenis'));
     } else {
-      $this->session->set_flashdata('message', 'Data tidak ditemukan.');
+      $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
       redirect(site_url('admin/jenis'));
     }
   }
@@ -89,7 +96,7 @@ class Jenis extends CI_Controller {
   public function rules_tambah()
   {
     $this->form_validation->set_rules('jenis', 'Jenis', 'trim|required');
-    $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');
   }
 
   // aturan mengubah jenis
@@ -97,7 +104,7 @@ class Jenis extends CI_Controller {
   {
     $this->form_validation->set_rules('jenis', 'Jenis', 'trim|required');
     $this->form_validation->set_rules('id_jenis', 'Id Jenis', 'trim|required');
-    $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');
   }
 
 }

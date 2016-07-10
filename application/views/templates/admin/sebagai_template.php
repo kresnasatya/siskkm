@@ -12,8 +12,6 @@
     <link rel="stylesheet" href="<?php echo base_url('adminlte/font-awesome/css/font-awesome.min.css');?>">
     <!-- Datatables -->
     <link rel="stylesheet" href="<?php echo base_url('adminlte/plugins/datatables/dataTables.bootstrap.css');?>">
-    <!-- Select2 CSS -->
-    <link rel="stylesheet" href="<?php echo base_url('adminlte/plugins/select2/select2.min.css');?>">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?php echo base_url('adminlte/dist/css/AdminLTE.min.css');?>">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -54,13 +52,13 @@
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="<?php echo base_url('adminlte/dist/img/user2-160x160.jpg');?>" class="user-image" alt="User Image">
+                  <img src="<?php echo $gravatar_url; ?>" class="user-image" alt="User Image">
                   <span class="hidden-xs"><?php echo $current_user->nama_depan.' '.$current_user->nama_belakang; ?></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
-                    <img src="<?php echo base_url('adminlte/dist/img/user2-160x160.jpg');?>" class="img-circle" alt="User Image">
+                    <img src="<?php echo $gravatar_url; ?>" class="img-circle" alt="User Image">
                     <p>
                       <?php echo $current_user->nama_depan.' '.$current_user->nama_belakang; ?>
                       <small>Terdaftar pada tahun <?php echo date('Y', $current_user->created_on); ?></small>
@@ -91,7 +89,7 @@
           <!-- Sidebar user panel -->
           <div class="user-panel">
             <div class="pull-left image">
-              <img src="<?php echo base_url('adminlte/dist/img/user2-160x160.jpg');?>" class="img-circle" alt="User Image">
+              <img src="<?php echo $gravatar_url; ?>" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
               <p><?php echo $current_user->nama_depan.' '.$current_user->nama_belakang; ?></p>
@@ -160,14 +158,11 @@
     <script src="<?php echo base_url('adminlte/plugins/fastclick/fastclick.min.js');?>"></script>
     <!-- AdminLTE App -->
     <script src="<?php echo base_url('adminlte/dist/js/app.min.js');?>"></script>
-    <!-- Select2 Js -->
-    <script src="<?php echo base_url('adminlte/plugins/select2/select2.min.js');?>"></script>
     <!-- page script-->
     <script>
       $(document).ready(function () {
-        $("#sebagaitable").DataTable();
-        $(".select2").select2({
-          placeholder: "Silahkan Pilih"
+        $("#sebagaitable").DataTable({
+          "scrollX": true
         });
       });
     </script>

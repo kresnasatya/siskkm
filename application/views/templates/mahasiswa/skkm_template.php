@@ -12,8 +12,6 @@
     <link rel="stylesheet" href="<?php echo base_url('adminlte/font-awesome/css/font-awesome.min.css');?>">
     <!-- Datatables -->
     <link rel="stylesheet" href="<?php echo base_url('adminlte/plugins/datatables/dataTables.bootstrap.css');?>">
-    <!-- Select2 CSS -->
-    <link rel="stylesheet" href="<?php echo base_url('adminlte/plugins/select2/select2.min.css');?>">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?php echo base_url('adminlte/dist/css/AdminLTE.min.css');?>">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -35,7 +33,7 @@
 
       <header class="main-header">
         <!-- Logo -->
-        <a href="<?php echo site_url('mahasiswa/beranda'); ?>" class="logo">
+        <a href="<?php echo site_url('mahasiswa/dasbor'); ?>" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>M</b>KM</span>
           <!-- logo for regular state and mobile devices -->
@@ -55,13 +53,13 @@
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="<?php echo base_url('adminlte/dist/img/user2-160x160.jpg');?>" class="user-image" alt="User Image">
+                  <img src="<?php echo $gravatar_url; ?>" class="user-image" alt="User Image">
                   <span class="hidden-xs"><?php echo $current_user->nama_depan.' '.$current_user->nama_belakang; ?></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
-                    <img src="<?php echo base_url('adminlte/dist/img/user2-160x160.jpg');?>" class="img-circle" alt="User Image">
+                    <img src="<?php echo $gravatar_url; ?>" class="img-circle" alt="User Image">
                     <p>
                       <?php echo $current_user->nama_depan.' '.$current_user->nama_belakang; ?>
                       <small>Terdaftar pada tahun <?php echo date('Y', $current_user->created_on); ?></small>
@@ -92,7 +90,7 @@
           <!-- Sidebar user panel -->
           <div class="user-panel">
             <div class="pull-left image">
-              <img src="<?php echo base_url('adminlte/dist/img/user2-160x160.jpg');?>" class="img-circle" alt="User Image">
+              <img src="<?php echo $gravatar_url; ?>" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
               <p><?php echo $current_user->nama_depan.' '.$current_user->nama_belakang; ?></p>
@@ -153,11 +151,59 @@
     <!-- page script-->
     <script>
       $(document).ready(function(){
-        $("#skkmtable").DataTable();
-        $(".select2").select2({
-          placeholder: "Silahkan Pilih"
+        $("#skkmtable").DataTable({
+          "scrollX": true
         });
       });
+
+      function getTingkat(value) {
+        $.ajax({
+          type: "POST",
+          url: "<?php echo site_url('mahasiswa/skkm/get_tingkat');?>",
+          data:"value="+value,
+          success: function(data) {
+            $("#sebagai option:gt(0)").remove();
+            $("#tingkat").html(data);
+            $("#nilai").val("");
+          },
+
+          error:function(XMLHttpRequest){
+            alert(XMLHttpRequest.responseText);
+          }
+        });
+      };
+
+      function getSebagai(value) {
+        //console.log(value);
+        $.ajax({
+          type: "POST",
+          url: "<?php echo site_url('mahasiswa/skkm/get_sebagai');?>",
+          data:"value="+value,
+          success: function(data) {
+            $("#sebagai").html(data);
+            $("#nilai").val("");
+          },
+
+          error:function(XMLHttpRequest){
+            alert(XMLHttpRequest.responseText);
+          }
+        });
+      }
+
+      function getNilai(value) {
+        $.ajax({
+          type: "POST",
+          url: "<?php echo site_url('mahasiswa/skkm/get_nilai');?>",
+          data:"value="+value,
+          success: function(data) {
+            document.getElementById('nilai').value = data;
+          },
+
+          error:function(XMLHttpRequest){
+            alert(XMLHttpRequest.responseText);
+          }
+        });
+      }
     </script>
     <!-- Intense-image -->
     <script>

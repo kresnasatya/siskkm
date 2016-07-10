@@ -46,12 +46,14 @@
             <?php
                 $extra = array(
                                 'type' => 'number',
+                                'name' => 'bobot',
+                                'value' => set_value('bobot', $bobot),
                                 'id' => 'bobot',
                                 'class' => 'form-control',
                                 'placeholder' => 'Bobot',
-                                'required' => 'required',
+                                'required' => 'required'
                 );
-                echo form_input('bobot', set_value('bobot',$bobot), $extra);
+                echo form_input($extra);
             ?>
           </div>
           <?php echo form_hidden('id_sebagai', set_value('id_sebagai', $id_sebagai)); ?>

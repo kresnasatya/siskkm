@@ -42,19 +42,6 @@
                echo form_input($nama_belakang, set_value('nama_belakang', $current_user->nama_belakang)); ?>
             </div>
             <div class="form-group">
-              <?php echo form_label('Username','username'); ?>
-              <?php echo form_error('username'); ?>
-              <?php
-                  $username = array(
-                                    'type' => 'text',
-                                    'class' => 'form-control',
-                                    'name' => 'username',
-                                    'id' => 'username',
-                                    'placeholder' => 'Username',
-                                    'required' => 'required');
-               echo form_input($username, set_value('username',$current_user->username)); ?>
-            </div>
-            <div class="form-group">
               <?php echo form_label('Email','email'); ?>
               <?php echo form_error('email'); ?>
               <?php
@@ -79,11 +66,26 @@
                                 'placeholder' => 'Nip');
                echo form_input($nip, set_value('nip',$current_user->nip)); ?>
             </div>
+            <div class="form-group">
+              <?php echo form_label('Jurusan', 'id_jurusan'); ?>
+              <?php echo form_error('id_jurusan'); ?>
+              <select class="form-control" name="id_jurusan" id="jurusan">
+                <option value="">Silahkan Pilih</option>
+                <?php foreach ($dd_jurusan as $row): ?>
+                  <option value="<?php echo $row['id'] ?>"
+                    <?php if ($row['id'] == $current_user->id_jurusan): ?>
+                      selected="selected"
+                    <?php endif; ?>>
+                    <?php echo $row['nama_jurusan'] ?>
+                  </option>
+                <?php endforeach; ?>
+              </select>
+            </div>
           </div><!-- /. box-body -->
           <?php echo form_hidden('user_id',$current_user->id); ?>
           <div class="box-footer">
-            <?php echo form_submit('submit', 'Edit', 'class="btn btn-warning"'); ?>
             <a href="<?php echo site_url('up2kk/user') ?>" class="btn btn-default">Kembali</a>
+            <?php echo form_submit('submit', 'Edit', 'class="btn btn-warning"'); ?>
           </div><!-- /. box-footer -->
         <?php echo form_close(); ?>
         <!-- /.form end -->

@@ -14,6 +14,7 @@
   <div class="row">
     <div class="col-md-12">
       <div class="box box-primary">
+        <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
         <?php echo form_open_multipart('mahasiswa/skkm/tambah'); ?>
         <div class="box-body">
           <div class="form-group">
@@ -32,7 +33,7 @@
             ?>
           </div>
           <div class="form-group">
-            <?php echo form_label('File','filefoto'); ?>
+            <label for="filefoto">Bukti Kegiatan</label> <span class="label label-success">Ukuran maksimal 5MB. Format file: jpeg, jpg, dan png.</span>
             <?php echo form_error('filefoto'); ?>
             <?php
                 $extra = array(
@@ -44,38 +45,26 @@
           <div class="form-group">
             <?php echo form_label('Jenis Kegiatan', 'id_jenis'); ?>
             <?php echo form_error('id_jenis'); ?>
-            <?php
-              $extra = array(
-                            'class' => 'form-control select2',
-                            'id' => 'id_jenis',
-                            'required' => 'required'
-              );
-              echo form_dropdown('id_jenis', $dd_jenis, set_value('id_jenis'), $extra);
-             ?>
+            <select class="form-control" name="id_jenis" id="jenis" onchange="getTingkat(this.value)" required="">
+              <option value="">Silahkan Pilih</option>
+              <?php foreach ($dd_jenis as $row): ?>
+                <option value="<?php echo $row['id_jenis'] ?>"><?php echo $row['jenis']; ?></option>
+              <?php endforeach; ?>
+            </select>
           </div>
           <div class="form-group">
             <?php echo form_label('Tingkat Kegiatan', 'id_tingkat'); ?>
             <?php echo form_error('id_tingkat'); ?>
-            <?php
-              $extra = array(
-                            'class' => 'form-control select2',
-                            'id' => 'id_tingkat',
-                            'required' => 'required'
-              );
-              echo form_dropdown('id_tingkat', $dd_tingkat, set_value('id_tingkat'), $extra);
-             ?>
+            <select name="id_tingkat" id="tingkat" class="form-control" onchange="getSebagai(this.value)" required="">
+              <option value="">Silahkan Pilih</option>
+            </select>
           </div>
           <div class="form-group">
             <?php echo form_label('Sebagai', 'id_sebagai'); ?>
             <?php echo form_error('id_sebagai'); ?>
-            <?php
-              $extra = array(
-                            'class' => 'form-control select2',
-                            'id' => 'id_sebagai',
-                            'required' => 'required'
-              );
-              echo form_dropdown('id_sebagai', $dd_sebagai, set_value('id_sebagai'), $extra);
-             ?>
+            <select name="id_sebagai" id="sebagai" class="form-control" onchange="getNilai(this.value)" required="">
+              <option value="">Silahkan Pilih</option>
+            </select>
           </div>
           <div class="form-group">
             <?php echo form_label('Nilai','nilai'); ?>
@@ -88,7 +77,8 @@
                                 'id' => 'nilai',
                                 'class' => 'form-control',
                                 'placeholder' => 'Nilai',
-                                'required' => 'required'
+                                'required' => 'required',
+                                'readonly' => 'readonly'
                 );
                 echo form_input($extra);
             ?>
