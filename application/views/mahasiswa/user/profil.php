@@ -57,9 +57,9 @@
             <p>
             <strong>Status Kelulusan SKKM:
               <?php if ($sum_valid >= $status_skkm): ?>
-                  <strong style="color:green;"><?php echo "LULUS"; ?></strong>
-                <?php else: ?>
-                  <strong style="color:red;"><?php echo "TIDAK LULUS"; ?></strong>
+                <strong style="color:#00a65a;"><?php echo "LULUS"; ?></strong>
+              <?php else: ?>
+                <strong style="color:#dd4b39;"><?php echo "TIDAK LULUS"; ?></strong>
               <?php endif; ?>
             </strong>
             </p>
