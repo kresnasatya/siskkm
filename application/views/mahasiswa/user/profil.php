@@ -18,18 +18,6 @@
             <img class="profile-user-img img-responsive img-circle" src="<?php echo $gravatar_url; ?>" alt="gambar Profil User">
             <h3 class="profile-username text-center"><?php echo $current_user->nama_depan.' '.$current_user->nama_belakang; ?></h3>
             <p>
-            <strong>Total Poin SKKM Valid:
-              <?php
-              $num = 0;
-              $str = "poin";
-              if ($sum_valid == NULL): ?>
-                <?php echo $num.' '.$str; ?>
-              <?php else: ?>
-                <strong style="color:green;"><?php echo $sum_valid.' '.$str; ?></strong>
-              <?php endif; ?>
-            </strong>
-            </p>
-            <p>
             <strong>Total Poin SKKM Belum Divalidasi:
               <br>
               <?php
@@ -38,7 +26,7 @@
               if ($sum_belum_valid == NULL): ?>
                 <?php echo $num.' '.$str; ?>
               <?php else: ?>
-                <strong style="color:yellow;"><?php echo $sum_belum_valid.' '.$str; ?></strong>
+                <?php echo $sum_belum_valid.' '.$str; ?>
               <?php endif; ?>
             </strong>
             </p>
@@ -50,7 +38,19 @@
               if ($sum_tidak_valid == NULL): ?>
                 <?php echo $num.' '.$str; ?>
               <?php else: ?>
-                <strong style="color:red;"><?php echo $sum_tidak_valid.' '.$str; ?></strong>
+                <?php echo $sum_tidak_valid.' '.$str; ?>
+              <?php endif; ?>
+            </strong>
+            </p>
+            <p>
+            <strong>Total Poin SKKM Valid:
+              <?php
+              $num = 0;
+              $str = "poin";
+              if ($sum_valid == NULL): ?>
+                <?php echo $num.' '.$str; ?>
+              <?php else: ?>
+                <?php echo $sum_valid.' '.$str; ?>
               <?php endif; ?>
             </strong>
             </p>
