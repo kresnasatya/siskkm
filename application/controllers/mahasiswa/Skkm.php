@@ -130,7 +130,7 @@ class Skkm extends Mahasiswa_Controller {
           $this->session->set_flashdata('message', "<div style='color:#00a65a;'>SKKM berhasil ditambah.</div>");
           redirect('mahasiswa/skkm');
         } else {
-          $this->session->set_flashdata('message', "<div style='color:rgb(255, 252, 0);'>".$this->upload->display_errors()."</div>");
+          $this->session->set_flashdata('message', "<div style='color:#fffc00;'>".$this->upload->display_errors()."</div>");
           redirect('mahasiswa/skkm/tambah');
         }
       }
