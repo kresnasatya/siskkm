@@ -207,8 +207,7 @@ class Skkm extends Mahasiswa_Controller {
           $this->session->set_flashdata('message', "<div style='color:#00a65a;'>SKKM berhasil diubah.</div>");
           redirect('mahasiswa/skkm');
         } else {
-          $error = array('error' => $this->upload->display_errors());
-          $this->session->set_flashdata('message', $error);
+          $this->session->set_flashdata('message', "<div style='color:#fffc00;'>".$this->upload->display_errors()."</div>");
           redirect('mahasiswa/skkm/ubah');
         }
       }
