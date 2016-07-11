@@ -23,20 +23,17 @@ class Pengumuman_model extends CI_Model {
     return $this->db->get('pengumuman')->row();
   }
 
-  // insert pengumuman
   public function insert($data)
   {
     $this->db->insert('pengumuman', $data);
   }
 
-  // update pengumuman
   public function update($id, $data)
   {
     $this->db->where('id', $id);
     $this->db->update('pengumuman', $data);
   }
 
-  // hapus pengumuman
   public function delete($id){
     $this->db->where('id', $id);
     $this->db->delete('pengumuman');

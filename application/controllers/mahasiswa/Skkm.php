@@ -134,7 +134,7 @@ class Skkm extends Mahasiswa_Controller {
     }
   }
 
-  public function ubah($id = NULL)
+  public function ubah($id)
   {
     $this->rules_ubah();
     $current_user = $this->ion_auth->user()->row();
@@ -214,7 +214,7 @@ class Skkm extends Mahasiswa_Controller {
     }
   }
 
-  public function hapus($id = NULL)
+  public function hapus($id)
   {
     $row = $this->skkm->get_by_id($id);
 

@@ -25,7 +25,7 @@ class Validasi extends UP2KK_Controller {
     $this->template->load('templates/up2kk/validasi_template', 'up2kk/validasi/list', $data);
   }
 
-  public function list_skkm($id_user = NULL)
+  public function list_skkm($id_user)
   {
     $current_user = $this->ion_auth->user()->row();
     $email = $current_user->email;
@@ -43,7 +43,7 @@ class Validasi extends UP2KK_Controller {
 
   }
 
-  public function skkm($id_skkm = NULL)
+  public function skkm($id_skkm)
   {
     $this->rules();
     if ($this->form_validation->run() == FALSE) {

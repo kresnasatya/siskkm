@@ -22,7 +22,6 @@ class Tingkat extends Admin_Controller {
     $this->template->load('templates/admin/tingkat_template', 'admin/tingkat/list', $data);
   }
 
-  // menambah data tingkat
   public function tambah()
   {
     $this->rules_tambah();
@@ -36,20 +35,20 @@ class Tingkat extends Admin_Controller {
                     'gravatar_url' => $this->gravatar->get($email)
       );
       $this->template->load('templates/admin/tingkat_template', 'admin/tingkat/add', $data);
-    }else {
+    } else {
       $tingkat = $this->input->post('tingkat');
       $id_jenis_fk = $this->input->post('id_jenis_fk');
       $data = array(
                     'tingkat' => $tingkat,
-                    'id_jenis_fk' => $id_jenis_fk);
+                    'id_jenis_fk' => $id_jenis_fk
+      );
       $this->tingkat->insert($data);
       $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Tingkat berhasil ditambah.</div>");
       redirect(site_url('admin/tingkat'));
     }
   }
 
-  // mengedit data tingkat
-  public function ubah($id = NULL)
+  public function ubah($id)
   {
     $this->rules_ubah();
     $current_user = $this->ion_auth->user()->row();
@@ -67,11 +66,12 @@ class Tingkat extends Admin_Controller {
                       'gravatar_url' => $this->gravatar->get($email)
         );
         $this->template->load('templates/admin/tingkat_template', 'admin/tingkat/edit', $data);
-      }else {
+      } else {
         $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
         redirect(site_url('admin/tingkat'));
       }
-    }else {
+
+    } else {
       $id = $this->input->post('id_tingkat');
       $tingkat = $this->input->post('tingkat');
       $id_jenis_fk = $this->input->post('id_jenis_fk');
@@ -85,8 +85,7 @@ class Tingkat extends Admin_Controller {
     }
   }
 
-  // menghapus data tingkat
-  public function hapus($id = NULL)
+  public function hapus($id)
   {
     $row = $this->tingkat->get_by_id($id);
 
@@ -100,14 +99,12 @@ class Tingkat extends Admin_Controller {
     }
   }
 
-  // aturan menambah tingkat
   public function rules_tambah()
   {
     $this->form_validation->set_rules('tingkat', 'Tingkat', 'trim|required');
     $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');
   }
 
-  // aturan mengubah tingkat
   public function rules_ubah()
   {
     $this->form_validation->set_rules('tingkat', 'Tingkat', 'trim|required');

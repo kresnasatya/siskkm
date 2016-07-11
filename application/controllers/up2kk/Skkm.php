@@ -23,7 +23,7 @@ class Skkm extends UP2KK_Controller{
     $this->template->load('templates/up2kk/skkm_template', 'up2kk/skkm/list', $data);
   }
 
-  public function list_skkm($id_user = NULL)
+  public function list_skkm($id_user)
   {
     $current_user = $this->ion_auth->user()->row();
     $email = $current_user->email;

@@ -26,7 +26,6 @@ class Skkm_model extends CI_Model {
     return $this->db->get('skkm')->row();
   }
 
-  // mengambil data jenis
   public function get_jenis()
   {
     $this->db->select('*');
@@ -35,7 +34,6 @@ class Skkm_model extends CI_Model {
     return $result->result_array();
   }
 
-  // mengambil data tingkat
   public function get_tingkat($id_jenis)
   {
     if (isset($id_jenis)) {
@@ -48,7 +46,6 @@ class Skkm_model extends CI_Model {
 		return $result->result_array();
   }
 
-  // mengambil data sebagai
   public function get_sebagai($id_tingkat)
   {
     if (isset($id_tingkat)) {
@@ -93,7 +90,7 @@ class Skkm_model extends CI_Model {
     return $result = $this->db->get()->row()->total;
   }
 
-  // menghitung total skkm belum valid
+  // menghitung total skkm belum divalidasi
   public function sum_belum_valid($id_user)
   {
     $this->db->select('SUM(nilai) as total');

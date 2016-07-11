@@ -7,7 +7,6 @@ class Users_model extends CI_Model {
         parent::__construct();
   }
 
-  // fungsi menampilkan users
   public function get_users()
   {
     $sql = 'SELECT u.id, u.nama_depan, u.nama_belakang, u.email, g.name, u.last_login
@@ -18,7 +17,6 @@ class Users_model extends CI_Model {
     return $this->db->query($sql)->result();
   }
 
-  // fungsi menampilkan semua jurusan
   public function get_jurusan()
   {
     $this->db->select('*');
@@ -27,7 +25,7 @@ class Users_model extends CI_Model {
     return $result->result_array();
   }
 
-  // fungsi menampilkan prodi berdasarkan jurusan
+  // menampilkan prodi berdasarkan jurusan
   public function get_prodi($id_jurusan)
   {
     if (isset($id_jurusan)) {
@@ -40,14 +38,12 @@ class Users_model extends CI_Model {
 		return $result->result_array();
   }
 
-  // fungsi menampilkan kelas
+  // menampilkan kelas
   public function get_kelas()
   {
-      // ambil data kelas
       $this->db->order_by('kelas','asc');
       $result = $this->db->get('kelas');
 
-      // membuat array
       $dd[''] = 'Silahkan Pilih';
       if ($result->num_rows() > 0) {
         foreach ($result->result() as $row) {
@@ -60,11 +56,9 @@ class Users_model extends CI_Model {
 
   public function get_semester()
   {
-      // ambil data semester
       $this->db->order_by('semester','asc');
       $result = $this->db->get('semester');
 
-      // membuat array
       $dd[''] = 'Silahkan Pilih';
       if ($result->num_rows() > 0) {
         foreach ($result->result() as $row) {
@@ -74,4 +68,5 @@ class Users_model extends CI_Model {
       }
       return $dd;
   }
+  
 }

@@ -56,7 +56,7 @@ class User extends Mahasiswa_Controller {
                     'gravatar_url' => $this->gravatar->get($email)
       );
       $this->template->load('templates/mahasiswa/user_template', 'mahasiswa/user/edit', $data);
-    }else{
+    } else{
       $new_data = array(
                     'nama_depan' => $this->input->post('nama_depan'),
                     'nama_belakang' => $this->input->post('nama_belakang'),
@@ -85,7 +85,7 @@ class User extends Mahasiswa_Controller {
     );
     if ($this->form_validation->run() == FALSE) {
       $this->template->load('templates/mahasiswa/user_template', 'mahasiswa/user/ubah_password', $data);
-    }else{
+    } else{
       $id_user = $this->input->post('user_id');
       $data = array('password' => $this->input->post('password_baru'));
 

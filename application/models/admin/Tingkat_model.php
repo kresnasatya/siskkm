@@ -24,13 +24,10 @@ class Tingkat_model extends CI_Model {
     return $this->db->get('tingkat')->row();
   }
 
-  // mendapatkan data jenis
   function get_jenis()
   {
-    // ambil data jenis
     $result = $this->db->get('jenis');
 
-    // membuat array
     $dd[''] = 'Silahkan Pilih';
     if ($result->num_rows() > 0) {
       foreach ($result->result() as $row) {

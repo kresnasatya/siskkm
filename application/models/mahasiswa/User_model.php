@@ -43,11 +43,9 @@ class User_model extends CI_Model{
 
   public function get_kelas()
   {
-      // ambil data kelas
       $this->db->order_by('kelas','asc');
       $result = $this->db->get('kelas');
 
-      // membuat array
       $dd[''] = 'Silahkan Pilih';
       if ($result->num_rows() > 0) {
         foreach ($result->result() as $row) {
@@ -60,11 +58,9 @@ class User_model extends CI_Model{
 
   public function get_semester()
   {
-      // ambil data semester
       $this->db->order_by('semester','asc');
       $result = $this->db->get('semester');
 
-      // membuat array
       $dd[''] = 'Silahkan Pilih';
       if ($result->num_rows() > 0) {
         foreach ($result->result() as $row) {

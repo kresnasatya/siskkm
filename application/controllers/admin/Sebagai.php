@@ -22,7 +22,6 @@ class Sebagai extends Admin_Controller {
     $this->template->load('templates/admin/sebagai_template', 'admin/sebagai/list', $data);
   }
 
-  // menambah data sebagai
   public function tambah()
   {
     $this->rules_tambah();
@@ -36,7 +35,7 @@ class Sebagai extends Admin_Controller {
                     'gravatar_url' => $this->gravatar->get($email)
       );
       $this->template->load('templates/admin/sebagai_template', 'admin/sebagai/add', $data);
-    }else {
+    } else {
       $sebagai = $this->input->post('sebagai');
       $bobot = $this->input->post('bobot');
       $id_tingkat_fk = $this->input->post('id_tingkat_fk');
@@ -51,8 +50,7 @@ class Sebagai extends Admin_Controller {
     }
   }
 
-  // mengedit data sebagai
-  public function ubah($id = NULL)
+  public function ubah($id)
   {
     $this->rules_ubah();
     $current_user = $this->ion_auth->user()->row();
@@ -71,11 +69,12 @@ class Sebagai extends Admin_Controller {
                       'gravatar_url' => $this->gravatar->get($email)
         );
         $this->template->load('templates/admin/sebagai_template', 'admin/sebagai/edit', $data);
-      }else {
+      } else {
         $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
         redirect(site_url('admin/sebagai'));
       }
-    }else {
+
+    } else {
       $id = $this->input->post('id_sebagai');
       $sebagai = $this->input->post('sebagai');
       $bobot = $this->input->post('bobot');
@@ -91,8 +90,7 @@ class Sebagai extends Admin_Controller {
     }
   }
 
-  // menghapus data sebagai
-  public function hapus($id = NULL)
+  public function hapus($id)
   {
     $row = $this->sebagai->get_by_id($id);
 
@@ -106,7 +104,6 @@ class Sebagai extends Admin_Controller {
     }
   }
 
-  // aturan menambah sebagai
   public function rules_tambah()
   {
     $this->form_validation->set_rules('sebagai', 'Sebagai', 'trim|required');
@@ -115,7 +112,6 @@ class Sebagai extends Admin_Controller {
     $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');
   }
 
-  // aturan mengubah sebagai
   public function rules_ubah()
   {
     $this->form_validation->set_rules('sebagai', 'Sebagai', 'trim|required');

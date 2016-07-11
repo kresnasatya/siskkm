@@ -23,13 +23,10 @@ class Sebagai_model extends CI_Model {
     return $this->db->get('sebagai')->row();
   }
 
-  // mendapatkan data tingkat
   function get_tingkat()
   {
-    // ambil data tingkat
     $result = $this->db->get('tingkat');
 
-    // membuat array
     $dd[''] = 'Silahkan Pilih';
     if ($result->num_rows() > 0) {
       foreach ($result->result() as $row) {
