@@ -26,7 +26,6 @@ class Skkm extends Mahasiswa_Controller {
     $this->template->load('templates/mahasiswa/skkm_template', 'mahasiswa/skkm/list', $data);
   }
 
-  // get data tingkat
   public function get_tingkat()
   {
     $id_jenis = $this->input->post('value');
@@ -64,7 +63,6 @@ class Skkm extends Mahasiswa_Controller {
 		foreach ($nilai as $row)
 		{
       $data['value'] = $row['bobot'];
-      //$data['label'] = $row['id_sebagai'];
 		}
     echo $data['value'];
   }
@@ -126,7 +124,6 @@ class Skkm extends Mahasiswa_Controller {
           if ( !$this->image_lib->resize()){
             $this->session->set_flashdata('errors', $this->image_lib->display_errors('', ''));
           }
-          //pesan yang muncul jika berhasil diupload pada session flashdata
           $this->session->set_flashdata('message', "<div style='color:#00a65a;'>SKKM berhasil ditambah.</div>");
           redirect('mahasiswa/skkm');
         } else {
@@ -207,7 +204,6 @@ class Skkm extends Mahasiswa_Controller {
           if ( !$this->image_lib->resize()){
             $this->session->set_flashdata('errors', $this->image_lib->display_errors('', ''));
           }
-          //pesan yang muncul jika berhasil diupload pada session flashdata
           $this->session->set_flashdata('message', "<div style='color:#00a65a;'>SKKM berhasil diubah.</div>");
           redirect('mahasiswa/skkm');
         } else {
