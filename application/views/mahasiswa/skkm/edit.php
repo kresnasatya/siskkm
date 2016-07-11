@@ -36,12 +36,12 @@
           <div class="form-group">
             <label for="filefoto">Bukti Kegiatan</label> <span class="label label-success">Ukuran maksimal 5MB. Format file: jpeg, jpg, dan png.</span>
             <?php echo form_error('filefoto'); ?>
-            <input type="file" name="filefoto" value="<?php echo base_url('fileskkm/resize/'.$filefoto); ?>" id="filefoto" class="form-control" required="">
+            <input type="file" name="filefoto" value="<?php echo base_url('fileskkm/resize/'.$filefoto); ?>" id="filefoto" class="form-control" required>
           </div>
           <div class="form-group">
             <?php echo form_label('Jenis Kegiatan', 'id_jenis'); ?>
             <?php echo form_error('id_jenis'); ?>
-            <select class="form-control" name="id_jenis" id="jenis" onchange="getTingkat(this.value)" required="">
+            <select class="form-control" name="id_jenis" id="jenis" onchange="getTingkat(this.value)" required>
               <option value="">Silahkan Pilih</option>
               <?php foreach ($dd_jenis as $row): ?>
                 <option value="<?php echo $row['id_jenis'] ?>"
@@ -56,7 +56,7 @@
           <div class="form-group">
             <?php echo form_label('Tingkat Kegiatan', 'id_tingkat'); ?>
             <?php echo form_error('id_tingkat'); ?>
-            <select name="id_tingkat" id="tingkat" class="form-control" onchange="getSebagai(this.value)" required="">
+            <select name="id_tingkat" id="tingkat" class="form-control" onchange="getSebagai(this.value)" required>
               <option value="">Silahkan Pilih</option>
               <?php foreach ($dd_tingkat as $row): ?>
                 <option value="<?php echo $row['id_tingkat'] ?>"
@@ -72,7 +72,7 @@
           <div class="form-group">
             <?php echo form_label('Sebagai', 'id_sebagai'); ?>
             <?php echo form_error('id_sebagai'); ?>
-            <select name="id_sebagai" id="sebagai" class="form-control" onchange="getNilai(this.value)" required="">
+            <select name="id_sebagai" id="sebagai" class="form-control" onchange="getNilai(this.value)" required>
               <option value="">Silahkan Pilih</option>
               <?php foreach ($dd_sebagai as $row): ?>
                 <option value="<?php echo $row['id_sebagai'] ?>"
