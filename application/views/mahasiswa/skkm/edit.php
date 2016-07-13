@@ -62,8 +62,7 @@
                 <option value="<?php echo $row['id_tingkat'] ?>"
                   <?php if ($row['id_tingkat'] == $id_tingkat): ?>
                     selected="selected"
-                  <?php endif; ?>
-                >
+                  <?php endif; ?>>
                   <?php echo $row['tingkat']; ?>
                 </option>
               <?php endforeach; ?>
@@ -78,8 +77,7 @@
                 <option value="<?php echo $row['id_sebagai'] ?>"
                   <?php if ($row['id_sebagai'] == $id_sebagai): ?>
                     selected="selected"
-                  <?php endif; ?>
-                >
+                  <?php endif; ?>>
                   <?php echo $row['sebagai']; ?>
                 </option>
               <?php endforeach; ?>
