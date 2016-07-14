@@ -15,7 +15,7 @@
     <div class="col-md-12">
       <div class="box box-primary">
         <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
-        <?php echo form_open_multipart('mahasiswa/skkm/ubah'); ?>
+        <?php echo form_open_multipart(); ?>
         <div class="box-body">
           <div class="form-group">
             <?php echo form_label('Nama Kegiatan','nama_kegiatan'); ?>
@@ -35,8 +35,13 @@
           </div>
           <div class="form-group">
             <label for="filefoto">Bukti Kegiatan</label> <span class="label label-success">Ukuran maksimal 5MB. Format file: jpeg, jpg, dan png.</span>
+            <div class="row" style="margin-bottom:5px;">
+              <div class="anything col-xs-12 col-sm-6 col-md-3" data-image="<?php echo base_url('fileskkm/'.$filefoto); ?>">
+                <img src="<?php echo base_url('fileskkm/resize/'.$filefoto); ?>" alt="<?php echo $filefoto; ?>" />
+              </div>
+            </div>
             <?php echo form_error('filefoto'); ?>
-            <input type="file" name="filefoto" value="<?php echo base_url('fileskkm/resize/'.$filefoto); ?>" id="filefoto" class="form-control" required>
+            <input type="file" name="filefoto" id="filefoto" class="form-control">
           </div>
           <div class="form-group">
             <?php echo form_label('Jenis Kegiatan', 'id_jenis'); ?>
