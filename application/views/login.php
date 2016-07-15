@@ -8,25 +8,27 @@
     <?php echo form_open(); ?>
       <div class="form-group has-feedback">
         <?php
-          $email = array(
+          $data = array(
                       'type' => 'email',
                       'name' => 'identity',
                       'class' => 'form-control',
                       'placeholder' => 'Email',
                       'required' => 'required',
-                      'autofocus' => 'autofocus');
-        echo form_input($email); ?>
+                      'autofocus' => 'autofocus'
+          );
+        echo form_input($data); ?>
         <span class="fa fa-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
         <?php
-          $pass = array(
+          $data = array(
                       'type' => 'password',
                       'name' => 'password',
                       'class' => 'form-control',
                       'placeholder' => 'Password',
-                      'required' => 'required');
-          echo form_input($pass);?>
+                      'required' => 'required'
+          );
+          echo form_input($data);?>
         <span class="fa fa-unlock-alt form-control-feedback"></span>
       </div>
       <div class="row">

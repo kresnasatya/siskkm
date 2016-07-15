@@ -34,8 +34,10 @@ class Pengumuman extends CI_Controller {
 
   public function single($slug)
   {
-    $data['pengumuman'] = $this->beranda->pengumuman();
-    $data['single'] = $this->beranda->single($slug);
+    $data = array(
+                'pengumuman' => $this->beranda->pengumuman(),
+                'single' => $this->beranda->single($slug)
+    );
     $this->template->load('templates/beranda_template', 'single', $data);
   }
 

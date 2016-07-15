@@ -31,8 +31,7 @@
 									<em>Posted on <?php echo $row->tanggal; ?></em>
 								</li>
 						<?php endforeach; ?>
-		      </ul>
-
+		      		</ul>
 	 		</div>
 	 	</div><! --/row -->
 	 </div><! --/container -->

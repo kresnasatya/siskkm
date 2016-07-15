@@ -14,11 +14,11 @@
   <div class="row">
     <div class="col-md-12">
       <div class="box box-primary">
-        <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
-        <?php echo form_open_multipart('mahasiswa/skkm/ubah'); ?>
+        <?php echo $this->session->userdata('message'); ?>
+        <?php echo form_open_multipart('mahasiswa/skkm/ubah/'.$id); ?>
         <div class="box-body">
           <div class="form-group">
-            <?php echo form_label('Nama Kegiatan','nama_kegiatan'); ?>
+            <?php echo form_label('Nama Kegiatan', 'nama_kegiatan'); ?>
             <?php echo form_error('nama_kegiatan'); ?>
             <?php
                 $data = array(
@@ -35,20 +35,25 @@
           </div>
           <div class="form-group">
             <label for="filefoto">Bukti Kegiatan</label> <span class="label label-success">Ukuran maksimal 5MB. Format file: jpeg, jpg, dan png.</span>
+            <div class="row" style="margin-bottom:5px;">
+              <div class="anything col-xs-12 col-sm-6 col-md-3" data-image="<?php echo base_url('fileskkm/'.$filefoto); ?>">
+                <img src="<?php echo base_url('fileskkm/resize/'.$filefoto); ?>" alt="<?php echo $filefoto; ?>" />
+              </div>
+            </div>
             <?php echo form_error('filefoto'); ?>
-            <input type="file" name="filefoto" value="<?php echo base_url('fileskkm/resize/'.$filefoto); ?>" id="filefoto" class="form-control" required="">
+            <input type="file" name="filefoto" id="filefoto" class="form-control">
           </div>
           <div class="form-group">
             <?php echo form_label('Jenis Kegiatan', 'id_jenis'); ?>
             <?php echo form_error('id_jenis'); ?>
-            <select class="form-control" name="id_jenis" id="jenis" onchange="getTingkat(this.value)" required="">
+            <select class="form-control" name="id_jenis" id="jenis" onchange="getTingkat(this.value)" required>
               <option value="">Silahkan Pilih</option>
               <?php foreach ($dd_jenis as $row): ?>
-                <option value="<?php echo $row['id_jenis'] ?>"
-                  <?php if ($row['id_jenis'] == $id_jenis): ?>
+                <option value="<?php echo $row->id_jenis; ?>"
+                  <?php if ($row->id_jenis == $id_jenis): ?>
                     selected="selected"
                   <?php endif; ?>>
-                  <?php echo $row['jenis'] ?>
+                  <?php echo $row->jenis; ?>
                 </option>
               <?php endforeach; ?>
             </select>
@@ -56,15 +61,14 @@
           <div class="form-group">
             <?php echo form_label('Tingkat Kegiatan', 'id_tingkat'); ?>
             <?php echo form_error('id_tingkat'); ?>
-            <select name="id_tingkat" id="tingkat" class="form-control" onchange="getSebagai(this.value)" required="">
+            <select name="id_tingkat" id="tingkat" class="form-control" onchange="getSebagai(this.value)" required>
               <option value="">Silahkan Pilih</option>
               <?php foreach ($dd_tingkat as $row): ?>
-                <option value="<?php echo $row['id_tingkat'] ?>"
-                  <?php if ($row['id_tingkat'] == $id_tingkat): ?>
+                <option value="<?php echo $row->id_tingkat; ?>"
+                  <?php if ($row->id_tingkat == $id_tingkat): ?>
                     selected="selected"
-                  <?php endif; ?>
-                >
-                  <?php echo $row['tingkat']; ?>
+                  <?php endif; ?>>
+                  <?php echo $row->tingkat; ?>
                 </option>
               <?php endforeach; ?>
             </select>
@@ -72,21 +76,20 @@
           <div class="form-group">
             <?php echo form_label('Sebagai', 'id_sebagai'); ?>
             <?php echo form_error('id_sebagai'); ?>
-            <select name="id_sebagai" id="sebagai" class="form-control" onchange="getNilai(this.value)" required="">
+            <select name="id_sebagai" id="sebagai" class="form-control" onchange="getNilai(this.value)" required>
               <option value="">Silahkan Pilih</option>
               <?php foreach ($dd_sebagai as $row): ?>
-                <option value="<?php echo $row['id_sebagai'] ?>"
-                  <?php if ($row['id_sebagai'] == $id_sebagai): ?>
+                <option value="<?php echo $row->id_sebagai; ?>"
+                  <?php if ($row->id_sebagai == $id_sebagai): ?>
                     selected="selected"
-                  <?php endif; ?>
-                >
-                  <?php echo $row['sebagai']; ?>
+                  <?php endif; ?>>
+                  <?php echo $row->sebagai; ?>
                 </option>
               <?php endforeach; ?>
             </select>
           </div>
           <div class="form-group">
-            <?php echo form_label('Nilai','nilai'); ?>
+            <?php echo form_label('Nilai', 'nilai'); ?>
             <?php echo form_error('nilai'); ?>
             <?php
                 $data = array(
@@ -103,8 +106,8 @@
             ?>
           </div>
           <?php echo form_hidden('id', set_value('id', $id)); ?>
-          <?php echo anchor(site_url('mahasiswa/skkm'),'Kembali','class="btn btn-default"'); ?>
-          <?php echo form_submit('submit','Edit','class="btn btn-warning"'); ?>
+          <?php echo anchor(site_url('mahasiswa/skkm'), 'Kembali', 'class="btn btn-default"'); ?>
+          <?php echo form_submit('submit', 'Edit', 'class="btn btn-warning"'); ?>
         </div>
         <?php echo form_close(); ?>
       </div>

@@ -22,7 +22,7 @@
           </div>
           <div class="col-md-4 text-center">
               <div style="margin-top: 4px"  id="message">
-                  <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
+                  <?php echo $this->session->userdata('message'); ?>
               </div>
           </div>
         </div>
@@ -50,8 +50,8 @@
                         $hapus = array(
                                   'class' => 'btn btn-sm btn-danger',
                                   'onclick' => 'javascript: return confirm(\'Kamu Yakin ?\')'
-                                );
-                                echo anchor(site_url('admin/pengumuman/hapus/'.$row->id),'Hapus',$hapus);?></td>
+                        );
+                                echo anchor(site_url('admin/pengumuman/hapus/'.$row->id), 'Hapus', $hapus);?></td>
                 </tr>
               <?php endforeach; ?>
             </tbody>

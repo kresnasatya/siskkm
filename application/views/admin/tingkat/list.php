@@ -22,7 +22,7 @@
                     </div>
                     <div class="col-md-4 text-center">
                         <div style="margin-top: 4px" id="message">
-                            <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
+                            <?php echo $this->session->userdata('message'); ?>
                         </div>
                     </div>
                 </div>
@@ -42,16 +42,15 @@
                             foreach ($tingkat as $row): ?>
                             <tr>
                               <td><?php echo ++$start ?></td>
-                              <td>
-                                <?php echo $row->jenis; ?>
-                              </td>
+                              <td><?php echo $row->jenis; ?></td>
                               <td><a href="<?php echo site_url('admin/tingkat/ubah/'.$row->id_tingkat); ?>"><?php echo $row->tingkat; ?></a></td>
                               <td><?php
                                     $hapus = array(
                                               'class' => 'btn btn-sm btn-danger',
                                               'onclick' => 'javascript: return confirm(\'Kamu Yakin ?\')'
-                                            );
-                                            echo anchor(site_url('admin/tingkat/hapus/'.$row->id_tingkat),'Hapus',$hapus);?></td>
+                                    );
+                                            echo anchor(site_url('admin/tingkat/hapus/'.$row->id_tingkat), 'Hapus', $hapus);?>
+                              </td>
                             </tr>
                           <?php endforeach; ?>
                         </tbody>

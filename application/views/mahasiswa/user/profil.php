@@ -23,10 +23,10 @@
               <?php
               $num = 0;
               $str = "poin";
-              if ($sum_belum_valid == NULL): ?>
+              if ($sum_belum_divalidasi == NULL): ?>
                 <?php echo $num.' '.$str; ?>
               <?php else: ?>
-                <?php echo $sum_belum_valid.' '.$str; ?>
+                <?php echo $sum_belum_divalidasi.' '.$str; ?>
               <?php endif; ?>
             </strong>
             </p>

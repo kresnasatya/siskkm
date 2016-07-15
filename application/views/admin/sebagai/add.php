@@ -17,10 +17,11 @@
         <?php echo form_open('admin/sebagai/tambah'); ?>
         <div class="box-body">
           <div class="form-group">
-            <?php echo form_label('Tingkat','tingkat'); ?>
+            <?php echo form_label('Tingkat', 'tingkat'); ?>
             <?php echo form_error('tingkat'); ?>
             <?php
-              $extra = array('class' => 'form-control',
+              $extra = array(
+                             'class' => 'form-control',
                              'required' => 'required',
                              'autofocus' => 'autofocus'
               );
@@ -28,37 +29,38 @@
             ?>
           </div>
           <div class="form-group">
-            <?php echo form_label('Sebagai','sebagai'); ?>
+            <?php echo form_label('Sebagai', 'sebagai'); ?>
             <?php echo form_error('sebagai'); ?>
             <?php
-                $extra = array(
+                $data = array(
                                 'type' => 'text',
                                 'id' => 'sebagai',
+                                'name' => 'sebagai',
+                                'value' => set_value('sebagai'),
                                 'class' => 'form-control',
                                 'placeholder' => 'Sebagai',
                                 'required' => 'required',
                 );
-                echo form_input('sebagai', set_value('sebagai'), $extra);
+                echo form_input($data);
             ?>
           </div>
           <div class="form-group">
-            <?php echo form_label('Bobot','bobot'); ?>
+            <?php echo form_label('Bobot', 'bobot'); ?>
             <?php echo form_error('bobot'); ?>
             <?php
-                $extra = array(
+                $data = array(
                                 'type' => 'number',
                                 'name' => 'bobot',
-                                'value' => set_value('bobot'),
                                 'id' => 'Bobot',
                                 'class' => 'form-control',
                                 'placeholder' => 'Bobot',
                                 'required' => 'required'
                 );
-                echo form_input($extra);
+                echo form_input($data);
             ?>
           </div>
-          <?php echo anchor(site_url('admin/sebagai'),'Kembali','class="btn btn-default"'); ?>
-          <?php echo form_submit('submit','Tambah','class="btn btn-primary"'); ?>
+          <?php echo anchor(site_url('admin/sebagai'), 'Kembali', 'class="btn btn-default"'); ?>
+          <?php echo form_submit('submit', 'Tambah', 'class="btn btn-primary"'); ?>
         <?php echo form_close(); ?>
       </div>
     </div>

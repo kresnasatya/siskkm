@@ -11,10 +11,9 @@ class User extends Admin_Controller {
   public function index()
   {
     $current_user = $this->ion_auth->user()->row();
-    $email = $current_user->email;
     $data = array(
                   'current_user' => $current_user,
-                  'gravatar_url' => $this->gravatar->get($email)
+                  'gravatar_url' => $this->gravatar->get($current_user->email)
     );
     $this->template->load('templates/admin/user_template','admin/user/profil', $data);
   }
@@ -23,15 +22,13 @@ class User extends Admin_Controller {
   {
     $this->rules_edit_profil();
     $current_user = $this->ion_auth->user()->row();
-    $email = $current_user->email;
     $data = array(
                   'current_user' => $current_user,
-                  'gravatar_url' => $this->gravatar->get($email)
+                  'gravatar_url' => $this->gravatar->get($current_user->email)
     );
     if ($this->form_validation->run() == FALSE) {
       $this->template->load('templates/admin/user_template','admin/user/edit', $data);
     }else{
-      $user_id = $this->input->post('user_id');
       $new_data = array(
                     'nama_depan' => $this->input->post('nama_depan'),
                     'nama_belakang' => $this->input->post('nama_belakang'),
@@ -40,7 +37,7 @@ class User extends Admin_Controller {
       );
       $this->ion_auth->update($current_user->id, $new_data);
       $this->session->set_flashdata('message', "<div style='color:#00a65a;'>".$this->ion_auth->messages()."</div>");
-      redirect('admin/user','refresh');
+      redirect(site_url('admin/user'));
     }
   }
 
@@ -48,22 +45,21 @@ class User extends Admin_Controller {
   {
     $this->rules_ubah_password();
     $current_user = $this->ion_auth->user()->row();
-    $email = $current_user->email;
     $data = array(
                   'current_user' => $current_user,
-                  'gravatar_url' => $this->gravatar->get($email)
+                  'gravatar_url' => $this->gravatar->get($current_user->email)
     );
     if ($this->form_validation->run() == FALSE) {
       $this->template->load('templates/admin/user_template','admin/user/ubah_password', $data);
     }else{
-      $id_user = $this->input->post('user_id');
+      $user_id = $this->input->post('user_id');
       $data = array('password' => $this->input->post('password_baru'));
 
-      $this->ion_auth->update($id_user, $data);
+      $this->ion_auth->update($user_id, $data);
 
       $this->ion_auth->logout();
       $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Password berhasil diubah.</div>");
-      redirect('login','refresh');
+      redirect(site_url('login'));
     }
   }
 

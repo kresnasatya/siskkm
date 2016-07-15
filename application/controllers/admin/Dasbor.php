@@ -12,7 +12,6 @@ class Dasbor extends Admin_Controller {
   public function index()
   {
     $current_user = $this->ion_auth->user()->row();
-    $email = $current_user->email;
     $data = array(
                   'current_user' => $current_user,
                   'count_user' => $this->dasbor->count_user(),
@@ -20,7 +19,7 @@ class Dasbor extends Admin_Controller {
                   'count_jenis' => $this->dasbor->count_jenis(),
                   'count_tingkat' => $this->dasbor->count_tingkat(),
                   'count_sebagai' => $this->dasbor->count_sebagai(),
-                  'gravatar_url' => $this->gravatar->get($email)
+                  'gravatar_url' => $this->gravatar->get($current_user->email)
     );
     $this->template->load('templates/admin/dasbor_template', 'admin/dasbor', $data);
   }

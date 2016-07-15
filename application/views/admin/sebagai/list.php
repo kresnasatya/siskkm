@@ -22,7 +22,7 @@
                     </div>
                     <div class="col-md-4 text-center">
                         <div style="margin-top: 4px" id="message">
-                            <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
+                            <?php echo $this->session->userdata('message'); ?>
                         </div>
                     </div>
                 </div>
@@ -43,17 +43,16 @@
                             foreach ($sebagai as $row): ?>
                             <tr>
                               <td><?php echo ++$start ?></td>
-                              <td>
-                                <?php echo $row->tingkat; ?>
-                              </td>
+                              <td><?php echo $row->tingkat; ?></td>
                               <td><a href="<?php echo site_url('admin/sebagai/ubah/'.$row->id_sebagai); ?>"><?php echo $row->sebagai; ?></a></td>
                               <td><?php echo $row->bobot; ?></td>
                               <td><?php
                                     $hapus = array(
                                               'class' => 'btn btn-sm btn-danger',
                                               'onclick' => 'javascript: return confirm(\'Kamu Yakin ?\')'
-                                            );
-                                            echo anchor(site_url('admin/sebagai/hapus/'.$row->id_sebagai),'Hapus',$hapus);?></td>
+                                    );
+                                            echo anchor(site_url('admin/sebagai/hapus/'.$row->id_sebagai), 'Hapus', $hapus);?>
+                              </td>
                             </tr>
                           <?php endforeach; ?>
                         </tbody>

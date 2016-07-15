@@ -14,31 +14,33 @@
   <div class="row">
     <div class="col-md-12">
       <div class="box box-primary">
-        <?php echo form_open('admin/pengumuman/ubah'); ?>
+        <?php echo form_open('admin/pengumuman/ubah/'.$id); ?>
         <div class="box-body">
           <div class="form-group">
-            <?php echo form_label('Judul Pengumuman','judul'); ?>
+            <?php echo form_label('Judul Pengumuman', 'judul'); ?>
             <?php echo form_error('judul'); ?>
             <?php
-                $input = array(
+                $data = array(
                                 'type' => 'text',
                                 'name' => 'judul',
+                                'value' => set_value('judul', $judul),
                                 'id' => 'judul',
                                 'class' => 'form-control',
                                 'placeholder' => 'Judul Pengumuman',
                                 'required' => 'required',
-                                'autofocus' => 'autofocus');
-                echo form_input($input, $judul);
+                                'autofocus' => 'autofocus'
+                );
+                echo form_input($data);
             ?>
           </div>
           <div class="form-group">
-            <?php echo form_label('Isi','isi_pengumuman'); ?>
+            <?php echo form_label('Isi', 'isi_pengumuman'); ?>
             <?php echo form_error('isi_pengumuman'); ?>
-            <textarea name="isi_pengumuman" rows="8" cols="40" class="ckeditor" id="ckeditor"><?php echo $isi_pengumuman; ?></textarea>
+            <textarea name="isi_pengumuman" class="ckeditor" id="ckeditor"><?php echo $isi_pengumuman; ?></textarea>
           </div>
-          <?php echo form_hidden('id',$id); ?>
-          <?php echo anchor(site_url('admin/pengumuman'),'Kembali','class="btn btn-default"'); ?>
-          <?php echo form_submit('submit','Edit','class="btn btn-warning"'); ?>
+          <?php echo form_hidden('id', $id); ?>
+          <?php echo anchor(site_url('admin/pengumuman'), 'Kembali', 'class="btn btn-default"'); ?>
+          <?php echo form_submit('submit', 'Edit', 'class="btn btn-warning"'); ?>
         </div>
         <?php echo form_close(); ?>
       </div>

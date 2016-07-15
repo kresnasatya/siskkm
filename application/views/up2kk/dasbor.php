@@ -56,7 +56,7 @@
           <div class="info-box-content">
               <span class="info-box-text">skkm belum <br>divalidasi</span>
               <span class="info-box-number">
-                <?php echo $count_belum_valid; ?>
+                <?php echo $count_belum_divalidasi; ?>
               </span>
           </div>
           <!-- /.info-box-content -->

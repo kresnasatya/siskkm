@@ -13,58 +13,52 @@ class Jenis extends Admin_Controller {
   function index()
   {
     $current_user = $this->ion_auth->user()->row();
-    $email = $current_user->email;
     $data = array(
                   'current_user' => $current_user,
                   'jenis' => $this->jenis->get_all(),
-                  'gravatar_url' => $this->gravatar->get($email)
+                  'gravatar_url' => $this->gravatar->get($current_user->email)
     );
     $this->template->load('templates/admin/jenis_template', 'admin/jenis/list', $data);
   }
 
-  // menambah data jenis
   public function tambah()
   {
-    $this->rules_tambah();
+    $this->rules();
     $current_user = $this->ion_auth->user()->row();
-    $email = $current_user->email;
     if ($this->form_validation->run() == FALSE) {
       $data = array(
                     'current_user' => $current_user,
-                    'gravatar_url' => $this->gravatar->get($email)
+                    'gravatar_url' => $this->gravatar->get($current_user->email)
       );
       $this->template->load('templates/admin/jenis_template', 'admin/jenis/add', $data);
     } else {
       $jenis = $this->input->post('jenis');
-      $data = array('jenis' => $jenis);
+      $data['jenis'] = $jenis;
       $this->jenis->insert($data);
       $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Jenis berhasil ditambah.</div>");
       redirect(site_url('admin/jenis'));
     }
   }
 
-  // mengedit data jenis
-  public function ubah($id = NULL)
+  public function ubah($id)
   {
-    $this->rules_ubah();
+    $this->rules();
     $current_user = $this->ion_auth->user()->row();
-    $email = $current_user->email;
+    $row = $this->jenis->get_by_id($id);
     if ($this->form_validation->run() == FALSE) {
-      $row = $this->jenis->get_by_id($id);
-
       if ($row) {
         $data = array(
                       'id_jenis' => $row->id_jenis,
                       'jenis'    => $row->jenis,
                       'current_user' => $current_user,
-                      'gravatar_url' => $this->gravatar->get($email)
+                      'gravatar_url' => $this->gravatar->get($current_user->email)
         );
         $this->template->load('templates/admin/jenis_template', 'admin/jenis/edit', $data);
-      }else {
+      } else {
         $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
         redirect(site_url('admin/jenis'));
       }
-    }else {
+    } else {
       $id = $this->input->post('id_jenis');
       $jenis = $this->input->post('jenis');
       $data = array(
@@ -77,8 +71,7 @@ class Jenis extends Admin_Controller {
     }
   }
 
-  // menghapus data jenis
-  public function hapus($id = NULL)
+  public function hapus($id)
   {
     $row = $this->jenis->get_by_id($id);
 
@@ -92,18 +85,9 @@ class Jenis extends Admin_Controller {
     }
   }
 
-  // aturan menambah jenis
-  public function rules_tambah()
+  public function rules()
   {
     $this->form_validation->set_rules('jenis', 'Jenis', 'trim|required');
-    $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');
-  }
-
-  // aturan mengubah jenis
-  public function rules_ubah()
-  {
-    $this->form_validation->set_rules('jenis', 'Jenis', 'trim|required');
-    $this->form_validation->set_rules('id_jenis', 'Id Jenis', 'trim|required');
     $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');
   }
 

@@ -10,14 +10,14 @@ class Skkm_model extends CI_Model {
 
   public function get_all($id_user)
   {
-    $sql =   "SELECT id, id_user, nama_kegiatan, filefoto, jenis.jenis, tingkat.tingkat, sebagai.sebagai, nilai, status, keterangan
-              FROM skkm
-              INNER JOIN jenis ON jenis.id_jenis = skkm.id_jenis
-              INNER JOIN tingkat ON tingkat.id_tingkat = skkm.id_tingkat
-              INNER JOIN sebagai ON sebagai.id_sebagai = skkm.id_sebagai
-              WHERE id_user=$id_user
-              ORDER BY id DESC";
-    return $this->db->query($sql)->result();
+    $this->db->select('id, id_user, nama_kegiatan, filefoto, j.jenis, t.tingkat, s.sebagai, nilai, status, keterangan');
+    $this->db->from('skkm');
+    $this->db->join('jenis j', 'j.id_jenis = skkm.id_jenis');
+    $this->db->join('tingkat t', 't.id_tingkat = skkm.id_tingkat');
+    $this->db->join('sebagai s', 's.id_sebagai = skkm.id_sebagai');
+    $this->db->where('id_user', $id_user);
+    $this->db->order_by('id', 'DESC');
+    return $this->db->get()->result();
   }
 
   public function get_by_id($id)
@@ -26,16 +26,14 @@ class Skkm_model extends CI_Model {
     return $this->db->get('skkm')->row();
   }
 
-  // mengambil data jenis
   public function get_jenis()
   {
     $this->db->select('*');
     $this->db->from('jenis');
     $result = $this->db->get();
-    return $result->result_array();
+    return $result->result();
   }
 
-  // mengambil data tingkat
   public function get_tingkat($id_jenis)
   {
     if (isset($id_jenis)) {
@@ -43,12 +41,11 @@ class Skkm_model extends CI_Model {
     }
 
     $this->db->select('*');
-		$this->db->from('tingkat');
-		$result = $this->db->get();
-		return $result->result_array();
+	$this->db->from('tingkat');
+	$result = $this->db->get();
+	return $result->result();
   }
 
-  // mengambil data sebagai
   public function get_sebagai($id_tingkat)
   {
     if (isset($id_tingkat)) {
@@ -56,9 +53,9 @@ class Skkm_model extends CI_Model {
     }
 
     $this->db->select('id_sebagai, sebagai');
-		$this->db->from('sebagai');
-		$result = $this->db->get();
-		return $result->result_array();
+	$this->db->from('sebagai');
+	$result = $this->db->get();
+	return $result->result();
   }
 
   public function get_nilai($id_sebagai)
@@ -68,9 +65,9 @@ class Skkm_model extends CI_Model {
     }
 
     $this->db->select('id_sebagai, bobot');
-		$this->db->from('sebagai');
-		$result = $this->db->get();
-		return $result->result_array();
+    $this->db->from('sebagai');
+	$result = $this->db->get();
+	return $result->result();
   }
 
   // menghitung total skkm valid
@@ -93,8 +90,8 @@ class Skkm_model extends CI_Model {
     return $result = $this->db->get()->row()->total;
   }
 
-  // menghitung total skkm belum valid
-  public function sum_belum_valid($id_user)
+  // menghitung total skkm belum divalidasi
+  public function sum_belum_divalidasi($id_user)
   {
     $this->db->select('SUM(nilai) as total');
     $this->db->from('skkm');
@@ -103,6 +100,7 @@ class Skkm_model extends CI_Model {
     return $result = $this->db->get()->row()->total;
   }
 
+  // mengetahui status kelulusan skkm
   public function status_skkm($id_user)
   {
     $this->db->select('u.id, p.jenjang, s.standar as total');

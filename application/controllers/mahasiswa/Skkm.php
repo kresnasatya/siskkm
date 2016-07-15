@@ -13,20 +13,18 @@ class Skkm extends Mahasiswa_Controller {
   public function index()
   {
     $current_user = $this->ion_auth->user()->row();
-    $id_user = $current_user->id;
-    $email = $current_user->email;
     $data = array(
                   'current_user' => $current_user,
-                  'gravatar_url' => $this->gravatar->get($email),
-                  'skkm' => $this->skkm->get_all($id_user),
-                  'skkm_valid' => $this->skkm->sum_valid($id_user),
-                  'skkm_belum_valid' => $this->skkm->sum_belum_valid($id_user),
-                  'skkm_tidak_valid' => $this->skkm->sum_tidak_valid($id_user),
-                  'status_skkm' => $this->skkm->status_skkm($id_user));
+                  'gravatar_url' => $this->gravatar->get($current_user->email),
+                  'skkm' => $this->skkm->get_all($current_user->id),
+                  'skkm_valid' => $this->skkm->sum_valid($current_user->id),
+                  'sum_belum_divalidasi' => $this->skkm->sum_belum_divalidasi($current_user->id),
+                  'skkm_tidak_valid' => $this->skkm->sum_tidak_valid($current_user->id),
+                  'status_skkm' => $this->skkm->status_skkm($current_user->id)
+    );
     $this->template->load('templates/mahasiswa/skkm_template', 'mahasiswa/skkm/list', $data);
   }
 
-  // get data tingkat
   public function get_tingkat()
   {
     $id_jenis = $this->input->post('value');
@@ -34,11 +32,11 @@ class Skkm extends Mahasiswa_Controller {
 
     echo '<select name="">';
     echo '<option value="">Pilih Tingkat</option>';
-		foreach ($tingkat as $row)
-		{
-    	echo '<option value="'.$row['id_tingkat'].'">'.$row['tingkat'].'</option>';
-		}
-		echo '</select>';
+	foreach ($tingkat as $row)
+	{
+        echo '<option value="'.$row->id_tingkat.'">'.$row->tingkat.'</option>';
+	}
+	echo '</select>';
   }
 
   public function get_sebagai()
@@ -48,11 +46,11 @@ class Skkm extends Mahasiswa_Controller {
 
     echo '<select name="">';
     echo '<option value="">Pilih Sebagai</option>';
-		foreach ($sebagai as $row)
-		{
-    	echo '<option value="'.$row['id_sebagai'].'">'.$row['sebagai'].'</option>';
-		}
-		echo '</select>';
+	foreach ($sebagai as $row)
+	{
+        echo '<option value="'.$row->id_sebagai.'">'.$row->sebagai.'</option>';
+	}
+	echo '</select>';
   }
 
   public function get_nilai()
@@ -61,23 +59,21 @@ class Skkm extends Mahasiswa_Controller {
     $nilai = $this->skkm->get_nilai($id_sebagai);
 
     $data = array();
-		foreach ($nilai as $row)
-		{
-      $data['value'] = $row['bobot'];
-      //$data['label'] = $row['id_sebagai'];
-		}
+	foreach ($nilai as $row)
+	{
+       $data['value'] = $row->bobot;
+	}
     echo $data['value'];
   }
 
   public function tambah()
   {
-    $this->rules_tambah();
+    $this->rules();
     $current_user = $this->ion_auth->user()->row();
-    $email = $current_user->email;
     if ($this->form_validation->run() == FALSE) {
       $data = array(
                   'current_user' => $current_user,
-                  'gravatar_url' => $this->gravatar->get($email),
+                  'gravatar_url' => $this->gravatar->get($current_user->email),
                   'dd_jenis' => $this->skkm->get_jenis(),
                   'jenis_selected' => $this->input->post('id_jenis') ? $this->input->post('id_jenis') : '',
                   'tingkat_selected' => $this->input->post('id_tingkat') ? $this->input->post('id_tingkat') : '',
@@ -85,106 +81,99 @@ class Skkm extends Mahasiswa_Controller {
       );
       $this->template->load('templates/mahasiswa/skkm_template', 'mahasiswa/skkm/add', $data);
     } else {
-      $this->load->library('upload');
-      $namafile = "file_".time();
-      $config= array(
-                    'upload_path' => './fileskkm/',
-                    'allowed_types' => 'jpeg|jpg|png',
-                    'max_size' => '5120',
-                    'max_width' => '5000',
-                    'max_height' => '5000',
-                    'file_name' => $namafile
+      $config = array(
+                      'upload_path' => './fileskkm/',
+                      'allowed_types' => 'jpeg|jpg|png',
+                      'max_size' => '5120',
+                      'max_width' => '5000',
+                      'max_height' => '5000'
       );
-      $this->upload->initialize($config);
+      $this->load->library('upload', $config);
 
-      if ($_FILES['filefoto']['name']) {
-        if ($this->upload->do_upload('filefoto')) {
-          $gambar = $this->upload->data();
-          $data = array(
-                        'id_user' => $current_user->id,
-                        'nama_kegiatan' => $this->input->post('nama_kegiatan'),
-                        'filefoto' => $gambar['file_name'],
-                        'id_jenis' => $this->input->post('id_jenis'),
-                        'id_tingkat' => $this->input->post('id_tingkat'),
-                        'id_sebagai' => $this->input->post('id_sebagai'),
-                        'nilai' => $this->input->post('nilai'),
-                        'status' => $this->input->post('status') ? $this->input->post('status') : 0,
-                        'keterangan' => $this->input->post('keterangan') ? $this->input->post('keterangan') : '-'
-          );
-          $this->skkm->insert($data);
+      if ( ! $this->upload->do_upload('filefoto')) {
+        $this->session->set_flashdata('message', "<div style='color:#ff0000;'>".$this->upload->display_errors()."</div>");
+        redirect(site_url('mahasiswa/skkm/tambah'));
+      } else {
+        $file = $this->upload->data();
+        $data = array(
+                      'id_user' => $current_user->id,
+                      'nama_kegiatan' => $this->input->post('nama_kegiatan'),
+                      'filefoto' => $file['file_name'],
+                      'id_jenis' => $this->input->post('id_jenis'),
+                      'id_tingkat' => $this->input->post('id_tingkat'),
+                      'id_sebagai' => $this->input->post('id_sebagai'),
+                      'nilai' => $this->input->post('nilai'),
+                      'status' => $this->input->post('status') ? $this->input->post('status') : 0,
+                      'keterangan' => $this->input->post('keterangan') ? $this->input->post('keterangan') : '-'
+        );
 
-          // resize gambar
-          $resize = array(
-                          'image_library' => 'gd2',
-                          'source_image' => $this->upload->upload_path.$this->upload->file_name,
-                          'new_image' => './fileskkm/resize',
-                          'maintain_ratio' => TRUE,
-                          'width' => 100,
-                          'height' => 100);
-          $this->load->library('image_lib', $resize);
+        $this->skkm->insert($data);
 
-          if ( !$this->image_lib->resize()){
-            $this->session->set_flashdata('errors', $this->image_lib->display_errors('', ''));
-          }
-          //pesan yang muncul jika berhasil diupload pada session flashdata
-          $this->session->set_flashdata('message', "<div style='color:#00a65a;'>SKKM berhasil ditambah.</div>");
-          redirect('mahasiswa/skkm');
-        } else {
-          $this->session->set_flashdata('message', "<div style='color:rgb(255, 252, 0);'>".$this->upload->display_errors()."</div>");
-          redirect('mahasiswa/skkm/tambah');
+        // resize file
+        $resize = array(
+                        'image_library' => 'gd2',
+                        'source_image' => $this->upload->upload_path.$this->upload->file_name,
+                        'new_image' => './fileskkm/resize',
+                        'maintain_ratio' => TRUE,
+                        'width' => 100,
+                        'height' => 100
+        );
+        $this->load->library('image_lib', $resize);
+
+        if ( ! $this->image_lib->resize()){
+          $this->session->set_flashdata('errors', $this->image_lib->display_errors('', ''));
         }
+        $this->session->set_flashdata('message', "<div style='color:#00a65a;'>SKKM berhasil ditambah.</div>");
+        redirect(site_url('mahasiswa/skkm'));
       }
     }
   }
 
-  public function ubah($id = NULL)
+  public function ubah($id)
   {
-    $this->rules_ubah();
+    $this->rules();
     $current_user = $this->ion_auth->user()->row();
-    $email = $current_user->email;
+    $row = $this->skkm->get_by_id($id);
     if ($this->form_validation->run() == FALSE) {
-      $row = $this->skkm->get_by_id($id);
-      if ($row) {
-        $data = array(
-                    'id_user' => $row->id_user,
+      $data = array(
+                    'current_user' => $current_user,
+                    'gravatar_url' => $this->gravatar->get($current_user->email),
                     'id' => $row->id,
                     'nama_kegiatan' => $row->nama_kegiatan,
                     'filefoto' => $row->filefoto,
-                    'dd_jenis' => $this->skkm->get_jenis(),
                     'id_jenis' => $row->id_jenis,
-                    'dd_tingkat' => $this->skkm->get_tingkat($row->id_jenis),
+                    'dd_jenis' => $this->skkm->get_jenis(),
                     'id_tingkat' => $row->id_tingkat,
-                    'dd_sebagai' => $this->skkm->get_sebagai($row->id_tingkat),
+                    'dd_tingkat' => $this->skkm->get_tingkat($row->id_jenis),
                     'id_sebagai' => $row->id_sebagai,
-                    'nilai' => $row->nilai,
-                    'current_user' => $current_user,
-                    'gravatar_url' => $this->gravatar->get($email)
-        );
+                    'dd_sebagai' => $this->skkm->get_sebagai($row->id_tingkat),
+                    'nilai' => $row->nilai
+      );
         $this->template->load('templates/mahasiswa/skkm_template', 'mahasiswa/skkm/edit', $data);
-      } else {
-        $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
-        redirect(site_url('mahasiswa/skkm'));
-      }
     } else {
-      $this->load->library('upload');
-      $namafile = "file_".time();
-      $config= array(
-                    'upload_path' => './fileskkm/',
-                    'allowed_types' => 'jpeg|jpg|png',
-                    'max_size' => '3072',
-                    'max_width' => '5000',
-                    'max_height' => '5000',
-                    'file_name' => $namafile);
-      $this->upload->initialize($config);
+      // TODO: Figure out make upload file is optional
+      if ($_FILES AND $_FILES['filefoto']['name']) {
+        // Start uploading file
+        $config = array(
+                        'upload_path' => './fileskkm/',
+                        'allowed_types' => 'jpeg|jpg|png',
+                        'max_size' => '5120',
+                        'max_width' => '5000',
+                        'max_height' => '5000'
+        );
+        $this->load->library('upload', $config);
 
-      if ($_FILES['filefoto']['name']) {
-        if ($this->upload->do_upload('filefoto')) {
-          $gambar = $this->upload->data();
+        if ( ! $this->upload->do_upload('filefoto')) {
+          $this->session->set_flashdata('message', "<div style='color:#ff0000;'>".$this->upload->display_errors()."</div>");
+          redirect(site_url('mahasiswa/skkm/ubah/'.$row->id));
+        } else {
+          // Uploaded file here
+          $file = $this->upload->data();
           $id = $this->input->post('id');
           $data = array(
                         'id_user' => $current_user->id,
                         'nama_kegiatan' => $this->input->post('nama_kegiatan'),
-                        'filefoto' => $gambar['file_name'],
+                        'filefoto' => $file['file_name'],
                         'id_jenis' => $this->input->post('id_jenis'),
                         'id_tingkat' => $this->input->post('id_tingkat'),
                         'id_sebagai' => $this->input->post('id_sebagai'),
@@ -192,34 +181,48 @@ class Skkm extends Mahasiswa_Controller {
                         'status' => $this->input->post('status') ? $this->input->post('status') : 0,
                         'keterangan' => $this->input->post('keterangan') ? $this->input->post('keterangan') : '-'
           );
+
           $this->skkm->update($id, $data);
 
-          // resize gambar
+          // resize file
           $resize = array(
                           'image_library' => 'gd2',
                           'source_image' => $this->upload->upload_path.$this->upload->file_name,
                           'new_image' => './fileskkm/resize',
                           'maintain_ratio' => TRUE,
                           'width' => 100,
-                          'height' => 100);
+                          'height' => 100
+          );
           $this->load->library('image_lib', $resize);
 
-          if ( !$this->image_lib->resize()){
+          if ( ! $this->image_lib->resize()){
             $this->session->set_flashdata('errors', $this->image_lib->display_errors('', ''));
           }
-          //pesan yang muncul jika berhasil diupload pada session flashdata
           $this->session->set_flashdata('message', "<div style='color:#00a65a;'>SKKM berhasil diubah.</div>");
-          redirect('mahasiswa/skkm');
-        } else {
-          $error = array('error' => $this->upload->display_errors());
-          $this->session->set_flashdata('message', $error);
-          redirect('mahasiswa/skkm/ubah');
+          redirect(site_url('mahasiswa/skkm'));
         }
+      } else {
+        // No file uploaded
+        $id = $this->input->post('id');
+        $data = array(
+                      'id_user' => $current_user->id,
+                      'nama_kegiatan' => $this->input->post('nama_kegiatan'),
+                      'id_jenis' => $this->input->post('id_jenis'),
+                      'id_tingkat' => $this->input->post('id_tingkat'),
+                      'id_sebagai' => $this->input->post('id_sebagai'),
+                      'nilai' => $this->input->post('nilai'),
+                      'status' => $this->input->post('status') ? $this->input->post('status') : 0,
+                      'keterangan' => $this->input->post('keterangan') ? $this->input->post('keterangan') : '-'
+        );
+        $this->skkm->update($id, $data);
+
+        $this->session->set_flashdata('message', "<div style='color:#00a65a;'>SKKM berhasil diubah.</div>");
+        redirect(site_url('mahasiswa/skkm'));
       }
     }
   }
 
-  public function hapus($id = NULL)
+  public function hapus($id)
   {
     $row = $this->skkm->get_by_id($id);
 
@@ -233,17 +236,7 @@ class Skkm extends Mahasiswa_Controller {
     }
   }
 
-  public function rules_tambah()
-  {
-    $this->form_validation->set_rules('nama_kegiatan', 'Nama Kegiatan', 'trim|required');
-    $this->form_validation->set_rules('id_jenis', 'Jenis', 'trim|required');
-    $this->form_validation->set_rules('id_tingkat', 'Tingkat', 'trim|required');
-    $this->form_validation->set_rules('id_sebagai', 'Sebagai', 'trim|required');
-    $this->form_validation->set_rules('nilai', 'Nilai', 'trim|required|numeric');
-    $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');
-  }
-
-  public function rules_ubah()
+  public function rules()
   {
     $this->form_validation->set_rules('nama_kegiatan', 'Nama Kegiatan', 'trim|required');
     $this->form_validation->set_rules('id_jenis', 'Jenis', 'trim|required');

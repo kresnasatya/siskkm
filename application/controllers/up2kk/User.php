@@ -12,12 +12,10 @@ class User extends UP2KK_Controller {
   public function index()
   {
     $current_user = $this->ion_auth->user()->row();
-    $id_user = $current_user->id;
-    $email = $current_user->email;
     $data = array(
                   'current_user' => $current_user,
-                  'gravatar_url' => $this->gravatar->get($email),
-                  'profil' => $this->user->get_profil($id_user)
+                  'gravatar_url' => $this->gravatar->get($current_user->email),
+                  'profil' => $this->user->get_profil($current_user->id)
     );
     $this->template->load('templates/up2kk/user_template', 'up2kk/user/profil', $data);
   }
@@ -26,15 +24,14 @@ class User extends UP2KK_Controller {
   {
     $this->rules_edit_profil();
     $current_user = $this->ion_auth->user()->row();
-    $email = $current_user->email;
     if ($this->form_validation->run() == FALSE) {
       $data = array(
                     'dd_jurusan' => $this->user->get_jurusan(),
                     'current_user' => $current_user,
-                    'gravatar_url' => $this->gravatar->get($email)
+                    'gravatar_url' => $this->gravatar->get($current_user->email)
       );
       $this->template->load('templates/up2kk/user_template', 'up2kk/user/edit',  $data);
-    }else{
+    } else {
       $new_data = array(
                     'nama_depan' => $this->input->post('nama_depan'),
                     'nama_belakang' => $this->input->post('nama_belakang'),
@@ -42,7 +39,6 @@ class User extends UP2KK_Controller {
                     'email' => $this->input->post('email'),
                     'id_jurusan' => $this->input->post('id_jurusan')
       );
-
       $this->ion_auth->update($current_user->id,  $new_data);
 
       $this->session->set_flashdata('message', "<div style='color:#00a65a;'>".$this->ion_auth->messages()."</div>");
@@ -54,14 +50,13 @@ class User extends UP2KK_Controller {
   {
     $this->rules_ubah_password();
     $current_user = $this->ion_auth->user()->row();
-    $email = $current_user->email;
     $data = array(
                   'current_user' => $current_user,
-                  'gravatar_url' => $this->gravatar->get($email)
+                  'gravatar_url' => $this->gravatar->get($current_user->email)
     );
     if ($this->form_validation->run() == FALSE) {
       $this->template->load('templates/up2kk/user_template', 'up2kk/user/ubah_password',  $data);
-    }else{
+    } else {
       $id_user = $this->input->post('user_id');
       $data = array('password' => $this->input->post('password_baru'));
 

@@ -22,7 +22,7 @@
           </div>
           <div class="col-md-4 text-center">
               <strong style="margin-top: 4px;"  id="message">
-                  <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
+                  <?php echo $this->session->userdata('message'); ?>
               </strong>
           </div>
         </div>
@@ -82,8 +82,8 @@
                           $hapus = array(
                                     'class' => 'btn btn-sm btn-danger',
                                     'onclick' => 'javascript: return confirm(\'Kamu Yakin ?\')'
-                                  );
-                                  echo anchor(site_url('mahasiswa/skkm/hapus/'.$row->id),'Hapus',$hapus);
+                          );
+                                  echo anchor(site_url('mahasiswa/skkm/hapus/'.$row->id), 'Hapus', $hapus);
                       ?>
                     <?php else: ?>
                       -
@@ -99,10 +99,10 @@
               <?php
               $num = 0;
               $str = "poin";
-              if ($skkm_belum_valid == NULL): ?>
+              if ($sum_belum_divalidasi == NULL): ?>
                 <?php echo $num.' '.$str; ?>
               <?php else: ?>
-                <?php echo $skkm_belum_valid.' '.$str; ?>
+                <?php echo $sum_belum_divalidasi.' '.$str; ?>
               <?php endif; ?>
             </strong>
           </p>

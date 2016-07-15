@@ -21,7 +21,7 @@
           </div>
           <div class="col-md-4 text-center">
             <strong style="margin-top: 4px;"  id="message">
-                <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
+                <?php echo $this->session->userdata('message'); ?>
             </strong>
           </div>
         </div>
@@ -43,7 +43,7 @@
                       $start = 0;
                       foreach($users as $user):  ?>
                       <tr>
-          		            <td><?php echo ++$start ?></td>
+                          <td><?php echo ++$start ?></td>
                           <td>
                             <?php if ($current_user->id != $user->id): ?>
                               <a href="<?php echo site_url('admin/users/ubah/'.$user->id); ?>"><?php echo $user->nama_depan.' '.$user->nama_belakang; ?></a>
@@ -59,8 +59,9 @@
                               <?php
                                   $hapus = array(
                                                 'class' => 'btn btn-sm btn-danger',
-                                                'onclick' => 'javascript: return confirm(\'Kamu Yakin ?\')');
-                                  echo anchor(site_url('admin/users/hapus/'.$user->id),'Hapus',$hapus);
+                                                'onclick' => 'javascript: return confirm(\'Kamu Yakin ?\')'
+                                  );
+                                  echo anchor(site_url('admin/users/hapus/'.$user->id), 'Hapus', $hapus);
                                ?>
                               <?php endif; ?>
                           </td>

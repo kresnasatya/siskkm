@@ -19,44 +19,50 @@
         echo form_open('admin/users/tambah', $attribute); ?>
           <div class="box-body">
             <div class="form-group">
-              <?php echo form_label('Nama depan','nama_depan'); ?>
+              <?php echo form_label('Nama depan', 'nama_depan'); ?>
               <?php echo form_error('nama_depan'); ?>
               <?php
-                  $nama_depan = array(
-                                    'type' => 'text',
-                                    'class' => 'form-control',
-                                    'name' => 'nama_depan',
-                                    'id' => 'nama_depan',
-                                    'placeholder' => 'Nama depan',
-                                    'required' => 'required',
-                                    'autofocus' => 'autofocus');
-               echo form_input($nama_depan); ?>
+                  $data = array(
+                                'type' => 'text',
+                                'class' => 'form-control',
+                                'name' => 'nama_depan',
+                                'value' => set_value('nama_depan'),
+                                'id' => 'nama_depan',
+                                'placeholder' => 'Nama depan',
+                                'required' => 'required',
+                                'autofocus' => 'autofocus'
+                  );
+               echo form_input($data); ?>
             </div>
             <div class="form-group">
-              <?php echo form_label('Nama belakang','nama_belakang'); ?>
+              <?php echo form_label('Nama belakang', 'nama_belakang'); ?>
               <?php echo form_error('nama_belakang'); ?>
               <?php
-                  $nama_belakang = array(
-                                    'type' => 'text',
-                                    'class' => 'form-control',
-                                    'name' => 'nama_belakang',
-                                    'id' => 'nama_belakang',
-                                    'placeholder' => 'Nama belakang',
-                                    'required' => 'required');
-               echo form_input($nama_belakang); ?>
+                  $data = array(
+                                'type' => 'text',
+                                'class' => 'form-control',
+                                'name' => 'nama_belakang',
+                                'value' => set_value('nama_belakang'),
+                                'id' => 'nama_belakang',
+                                'placeholder' => 'Nama belakang',
+                                'required' => 'required'
+                  );
+               echo form_input($data); ?>
             </div>
             <div class="form-group">
-              <?php echo form_label('Email','email'); ?>
+              <?php echo form_label('Email', 'email'); ?>
               <?php echo form_error('email'); ?>
               <?php
-                  $email = array(
-                                    'type' => 'email',
-                                    'class' => 'form-control',
-                                    'name' => 'email',
-                                    'id' => 'email',
-                                    'placeholder' => 'Email',
-                                    'required' => 'required');
-               echo form_input($email); ?>
+                  $data = array(
+                                 'type' => 'email',
+                                 'class' => 'form-control',
+                                 'name' => 'email',
+                                 'value' => set_value('email'),
+                                 'id' => 'email',
+                                 'placeholder' => 'Email',
+                                 'required' => 'required'
+                  );
+               echo form_input($data); ?>
             </div>
             <div class="form-group">
               <?php if (isset($groups)): ?>
@@ -74,28 +80,32 @@
               <?php endif; ?>
             </div>
             <div class="form-group">
-              <?php echo form_label('Nim','nim'); ?>
+              <?php echo form_label('Nim', 'nim'); ?>
               <?php echo form_error('nim'); ?>
               <?php
-                  $nim = array(
+                  $data = array(
                                 'type' => 'text',
                                 'class' => 'form-control',
                                 'name' => 'nim',
+                                'value' => set_value('nim'),
                                 'id' => 'nim',
-                                'placeholder' => 'Nim');
-               echo form_input($nim); ?>
+                                'placeholder' => 'Nim'
+                  );
+               echo form_input($data); ?>
             </div>
             <div class="form-group">
-              <?php echo form_label('Nip','nip'); ?>
+              <?php echo form_label('Nip', 'nip'); ?>
               <?php echo form_error('nip'); ?>
               <?php
-                  $nip = array(
+                  $data = array(
                                 'type' => 'text',
                                 'class' => 'form-control',
                                 'name' => 'nip',
+                                'value' => set_value('nip'),
                                 'id' => 'nip',
-                                'placeholder' => 'Nip');
-               echo form_input($nip); ?>
+                                'placeholder' => 'Nip'
+                  );
+              echo form_input($data); ?>
             </div>
             <div class="form-group">
                 <?php echo form_label('Jurusan', 'id_jurusan'); ?>
@@ -103,7 +113,7 @@
                 <select class="form-control" name="id_jurusan" id="jurusan" onchange="getProdi(this.value)">
                   <option value="">Silahkan Pilih</option>
                   <?php foreach ($dd_jurusan as $row): ?>
-                    <option value="<?php echo $row['id'] ?>"><?php echo $row['nama_jurusan'] ?></option>
+                    <option value="<?php echo $row->id; ?>"><?php echo $row->nama_jurusan; ?></option>
                   <?php endforeach; ?>
                 </select>
             </div>
@@ -115,24 +125,30 @@
               	</select>
             </div>
             <div class="form-group">
-              <label for="semester">Semester <?php echo form_error('id_semester'); ?></label>
+              <?php echo form_label('Semester', 'id_semester'); ?>
+              <?php echo form_error('id_semester'); ?>
               <?php
-                $extra = array('class' => 'form-control',
-                               'id' => 'semester');
+                $extra = array(
+                               'class' => 'form-control',
+                               'id' => 'semester'
+                );
                 echo form_dropdown('id_semester', $dd_semester, $semester_selected, $extra);
                ?>
             </div>
             <div class="form-group">
-              <label for="kelas">Kelas <?php echo form_error('id_kelas'); ?></label>
+              <?php echo form_label('Kelas', 'id_kelas'); ?>
+              <?php echo form_error('id_kelas'); ?>
               <?php
-                $extra = array('class' => 'form-control',
-                               'id' => 'kelas');
+                $extra = array(
+                               'class' => 'form-control',
+                               'id' => 'kelas'
+                );
                 echo form_dropdown('id_kelas', $dd_kelas, $kelas_selected, $extra);
                ?>
             </div>
           </div><!-- /. box-body -->
           <div class="box-footer">
-            <?php echo anchor(site_url('admin/users'),'Kembali','class="btn btn-default"'); ?>
+            <?php echo anchor(site_url('admin/users'), 'Kembali', 'class="btn btn-default"'); ?>
             <?php echo form_submit('submit', 'Tambah', 'class="btn btn-primary"'); ?>
           </div><!-- /. box-footer -->
         <?php echo form_close(); ?>

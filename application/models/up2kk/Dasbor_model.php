@@ -8,6 +8,7 @@ class Dasbor_model extends CI_Model{
     parent::__construct();
   }
 
+  // menghitung jumlah mahasiswa
   public function count_mahasiswa($id_jurusan)
   {
     $this->db->select('COUNT(users.id) as total, groups.name, jurusan.nama_jurusan');
@@ -20,6 +21,7 @@ class Dasbor_model extends CI_Model{
     return $result = $this->db->get()->row()->total;
   }
 
+  // menghitung jumlah skkm yang tidak valid
   public function count_tidak_valid($id_jurusan)
   {
     $this->db->select('u.id, COUNT(s.nilai) as total, g.name, j.nama_jurusan');
@@ -34,6 +36,7 @@ class Dasbor_model extends CI_Model{
     return $result = $this->db->get()->row()->total;
   }
 
+  // menghitung jumlah skkm yang valid
   public function count_valid($id_jurusan)
   {
     $this->db->select('u.id, COUNT(s.nilai) as total, g.name, j.nama_jurusan');
@@ -48,7 +51,8 @@ class Dasbor_model extends CI_Model{
     return $result = $this->db->get()->row()->total;
   }
 
-  public function count_belum_valid($id_jurusan)
+  // menghitung jumlah skkm yang belum divalidasi
+  public function count_belum_divalidasi($id_jurusan)
   {
     $this->db->select('u.id, COUNT(s.nilai) as total, g.name, j.nama_jurusan');
     $this->db->from('users u');

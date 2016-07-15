@@ -15,38 +15,39 @@
         <?php echo form_open('up2kk/user/ubah_password'); ?>
         <div class="box-body">
           <div class="form-group">
-            <?php echo form_label('Password Baru','password_baru'); ?>
+            <?php echo form_label('Password Baru', 'password_baru'); ?>
             <?php echo form_error('password_baru'); ?>
             <?php
-                $input = array(
+                $data = array(
                                 'type' => 'password',
                                 'name' => 'password_baru',
                                 'id' => 'password_baru',
                                 'class' => 'form-control',
                                 'placeholder' => 'Password Baru',
                                 'required' => 'required',
-                                'autofocus' => 'autofocus');
-                echo form_input($input);
+                                'autofocus' => 'autofocus'
+                );
+                echo form_input($data);
             ?>
           </div>
           <div class="form-group">
-            <?php echo form_label('Konfirmasi Password','konfirmasi_password'); ?>
+            <?php echo form_label('Konfirmasi Password', 'konfirmasi_password'); ?>
             <?php echo form_error('konfirmasi_password'); ?>
             <?php
-                $input = array(
+                $data = array(
                                 'type' => 'password',
                                 'name' => 'konfirmasi_password',
                                 'id' => 'konfirmasi_password',
                                 'class' => 'form-control',
                                 'placeholder' => 'Konfirmasi Password',
-                                'required' => 'required',
+                                'required' => 'required'
                 );
-                echo form_input($input);
+                echo form_input($data);
             ?>
           </div>
           <?php echo form_hidden('user_id', $current_user->id); ?>
-          <?php echo anchor(site_url('up2kk/user'),'Kembali','class="btn btn-default"'); ?>
-          <?php echo form_submit('submit','Ubah Password','class="btn btn-warning"'); ?>
+          <?php echo anchor(site_url('up2kk/user'), 'Kembali', 'class="btn btn-default"'); ?>
+          <?php echo form_submit('submit', 'Ubah Password', 'class="btn btn-warning"'); ?>
         </div>
         <?php echo form_close(); ?>
       </div>
