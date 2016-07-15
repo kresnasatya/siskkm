@@ -23,6 +23,7 @@ class Skkm extends Mahasiswa_Controller {
                   'skkm_belum_valid' => $this->skkm->sum_belum_valid($id_user),
                   'skkm_tidak_valid' => $this->skkm->sum_tidak_valid($id_user),
                   'status_skkm' => $this->skkm->status_skkm($id_user));
+                  'sum_belum_divalidasi' => $this->skkm->sum_belum_divalidasi($current_user->id),
     $this->template->load('templates/mahasiswa/skkm_template', 'mahasiswa/skkm/list', $data);
   }
 

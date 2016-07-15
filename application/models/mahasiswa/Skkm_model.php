@@ -91,7 +91,7 @@ class Skkm_model extends CI_Model {
   }
 
   // menghitung total skkm belum divalidasi
-  public function sum_belum_valid($id_user)
+  public function sum_belum_divalidasi($id_user)
   {
     $this->db->select('SUM(nilai) as total');
     $this->db->from('skkm');
