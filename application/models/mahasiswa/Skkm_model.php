@@ -100,6 +100,7 @@ class Skkm_model extends CI_Model {
     return $result = $this->db->get()->row()->total;
   }
 
+  // mengetahui status kelulusan skkm
   public function status_skkm($id_user)
   {
     $this->db->select('u.id, p.jenjang, s.standar as total');
