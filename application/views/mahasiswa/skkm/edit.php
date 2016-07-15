@@ -14,8 +14,8 @@
   <div class="row">
     <div class="col-md-12">
       <div class="box box-primary">
-        <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
-        <?php echo form_open_multipart(); ?>
+        <?php echo $this->session->userdata('message'); ?>
+        <?php echo form_open_multipart('mahasiswa/skkm/ubah/'.$id); ?>
         <div class="box-body">
           <div class="form-group">
             <?php echo form_label('Nama Kegiatan','nama_kegiatan'); ?>
@@ -49,11 +49,11 @@
             <select class="form-control" name="id_jenis" id="jenis" onchange="getTingkat(this.value)" required>
               <option value="">Silahkan Pilih</option>
               <?php foreach ($dd_jenis as $row): ?>
-                <option value="<?php echo $row['id_jenis'] ?>"
-                  <?php if ($row['id_jenis'] == $id_jenis): ?>
+                <option value="<?php echo $row->id_jenis; ?>"
+                  <?php if ($row->id_jenis == $id_jenis): ?>
                     selected="selected"
                   <?php endif; ?>>
-                  <?php echo $row['jenis'] ?>
+                  <?php echo $row->jenis; ?>
                 </option>
               <?php endforeach; ?>
             </select>
@@ -64,11 +64,11 @@
             <select name="id_tingkat" id="tingkat" class="form-control" onchange="getSebagai(this.value)" required>
               <option value="">Silahkan Pilih</option>
               <?php foreach ($dd_tingkat as $row): ?>
-                <option value="<?php echo $row['id_tingkat'] ?>"
-                  <?php if ($row['id_tingkat'] == $id_tingkat): ?>
+                <option value="<?php echo $row->id_tingkat; ?>"
+                  <?php if ($row->id_tingkat == $id_tingkat): ?>
                     selected="selected"
                   <?php endif; ?>>
-                  <?php echo $row['tingkat']; ?>
+                  <?php echo $row->tingkat; ?>
                 </option>
               <?php endforeach; ?>
             </select>
@@ -79,11 +79,11 @@
             <select name="id_sebagai" id="sebagai" class="form-control" onchange="getNilai(this.value)" required>
               <option value="">Silahkan Pilih</option>
               <?php foreach ($dd_sebagai as $row): ?>
-                <option value="<?php echo $row['id_sebagai'] ?>"
-                  <?php if ($row['id_sebagai'] == $id_sebagai): ?>
+                <option value="<?php echo $row->id_sebagai; ?>"
+                  <?php if ($row->id_sebagai == $id_sebagai): ?>
                     selected="selected"
                   <?php endif; ?>>
-                  <?php echo $row['sebagai']; ?>
+                  <?php echo $row->sebagai; ?>
                 </option>
               <?php endforeach; ?>
             </select>
