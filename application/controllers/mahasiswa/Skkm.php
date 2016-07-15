@@ -34,11 +34,11 @@ class Skkm extends Mahasiswa_Controller {
 
     echo '<select name="">';
     echo '<option value="">Pilih Tingkat</option>';
-		foreach ($tingkat as $row)
-		{
-    	echo '<option value="'.$row['id_tingkat'].'">'.$row['tingkat'].'</option>';
-		}
-		echo '</select>';
+	foreach ($tingkat as $row)
+	{
+        echo '<option value="'.$row->id_tingkat.'">'.$row->tingkat.'</option>';
+	}
+	echo '</select>';
   }
 
   public function get_sebagai()
@@ -48,11 +48,11 @@ class Skkm extends Mahasiswa_Controller {
 
     echo '<select name="">';
     echo '<option value="">Pilih Sebagai</option>';
-		foreach ($sebagai as $row)
-		{
-    	echo '<option value="'.$row['id_sebagai'].'">'.$row['sebagai'].'</option>';
-		}
-		echo '</select>';
+	foreach ($sebagai as $row)
+	{
+        echo '<option value="'.$row->id_sebagai.'">'.$row->sebagai.'</option>';
+	}
+	echo '</select>';
   }
 
   public function get_nilai()
@@ -61,10 +61,10 @@ class Skkm extends Mahasiswa_Controller {
     $nilai = $this->skkm->get_nilai($id_sebagai);
 
     $data = array();
-		foreach ($nilai as $row)
-		{
-      $data['value'] = $row['bobot'];
-		}
+	foreach ($nilai as $row)
+	{
+       $data['value'] = $row->bobot;
+	}
     echo $data['value'];
   }
 
