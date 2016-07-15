@@ -237,17 +237,7 @@ class Skkm extends Mahasiswa_Controller {
     }
   }
 
-  public function rules_tambah()
-  {
-    $this->form_validation->set_rules('nama_kegiatan', 'Nama Kegiatan', 'trim|required');
-    $this->form_validation->set_rules('id_jenis', 'Jenis', 'trim|required');
-    $this->form_validation->set_rules('id_tingkat', 'Tingkat', 'trim|required');
-    $this->form_validation->set_rules('id_sebagai', 'Sebagai', 'trim|required');
-    $this->form_validation->set_rules('nilai', 'Nilai', 'trim|required|numeric');
-    $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');
-  }
-
-  public function rules_ubah()
+  public function rules()
   {
     $this->form_validation->set_rules('nama_kegiatan', 'Nama Kegiatan', 'trim|required');
     $this->form_validation->set_rules('id_jenis', 'Jenis', 'trim|required');
