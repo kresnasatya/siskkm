@@ -31,21 +31,23 @@
             <?php echo form_label('Sebagai','sebagai'); ?>
             <?php echo form_error('sebagai'); ?>
             <?php
-                $extra = array(
+                $data = array(
                                 'type' => 'text',
                                 'id' => 'sebagai',
+                                'name' => 'sebagai',
+                                'value' => set_value('sebagai'),
                                 'class' => 'form-control',
                                 'placeholder' => 'Sebagai',
                                 'required' => 'required',
                 );
-                echo form_input('sebagai', set_value('sebagai'), $extra);
+                echo form_input($data);
             ?>
           </div>
           <div class="form-group">
             <?php echo form_label('Bobot','bobot'); ?>
             <?php echo form_error('bobot'); ?>
             <?php
-                $extra = array(
+                $data = array(
                                 'type' => 'number',
                                 'name' => 'bobot',
                                 'value' => set_value('bobot'),
@@ -54,7 +56,7 @@
                                 'placeholder' => 'Bobot',
                                 'required' => 'required'
                 );
-                echo form_input($extra);
+                echo form_input($data);
             ?>
           </div>
           <?php echo anchor(site_url('admin/sebagai'),'Kembali','class="btn btn-default"'); ?>

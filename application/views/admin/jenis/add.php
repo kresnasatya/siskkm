@@ -20,15 +20,17 @@
             <?php echo form_label('Jenis','jenis'); ?>
             <?php echo form_error('jenis'); ?>
             <?php
-                $extra = array(
+                $data = array(
                                 'type' => 'text',
                                 'id' => 'jenis',
+                                'name' => 'jenis',
+                                'value' => set_value('jenis'),
                                 'class' => 'form-control',
                                 'placeholder' => 'Jenis',
                                 'required' => 'required',
                                 'autofocus' => 'autofocus'
                 );
-                echo form_input('jenis', set_value('jenis'), $extra);
+                echo form_input($data);
             ?>
           </div>
           <?php echo anchor(site_url('admin/jenis'),'Kembali','class="btn btn-default"'); ?>

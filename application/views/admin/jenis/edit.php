@@ -14,21 +14,23 @@
   <div class="row">
     <div class="col-md-12">
       <div class="box box-primary">
-        <?php echo form_open('admin/jenis/ubah'); ?>
+        <?php echo form_open('admin/jenis/ubah/'.$id_jenis); ?>
         <div class="box-body">
           <div class="form-group">
             <?php echo form_label('Jenis','jenis'); ?>
             <?php echo form_error('jenis'); ?>
             <?php
-                $extra = array(
+                $data = array(
                                 'type' => 'text',
                                 'id' => 'judul',
+                                'name' => 'jenis',
+                                'value' => set_value('jenis', $jenis),
                                 'class' => 'form-control',
                                 'placeholder' => 'Jenis',
                                 'required' => 'required',
                                 'autofocus' => 'autofocus'
                 );
-                echo form_input('jenis', set_value('jenis', $jenis), $extra);
+                echo form_input($data);
             ?>
           </div>
           <?php echo form_hidden('id_jenis', set_value('id_jenis', $id_jenis)) ?>

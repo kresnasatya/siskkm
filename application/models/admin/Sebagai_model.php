@@ -11,10 +11,10 @@ class Sebagai_model extends CI_Model {
 
   public function get_all()
   {
-    $sql = 'SELECT id_sebagai, tingkat.tingkat, sebagai, bobot FROM sebagai
-            INNER JOIN tingkat ON tingkat.id_tingkat = sebagai.id_tingkat_fk
-            ORDER BY id_sebagai DESC';
-    return $this->db->query($sql)->result();
+    $this->db->select('id_sebagai, tingkat.tingkat, sebagai, bobot');
+    $this->db->join('tingkat', 'tingkat.id_tingkat = sebagai.id_tingkat_fk');
+    $this->db->order_by('id_sebagai', 'DESC');
+    return $this->db->get('sebagai')->result();
   }
 
   public function get_by_id($id)

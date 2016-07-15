@@ -13,26 +13,24 @@ class Sebagai extends Admin_Controller {
   function index()
   {
     $current_user = $this->ion_auth->user()->row();
-    $email = $current_user->email;
     $data = array(
                   'current_user' => $current_user,
                   'sebagai'      => $this->sebagai->get_all(),
-                  'gravatar_url' => $this->gravatar->get($email)
+                  'gravatar_url' => $this->gravatar->get($current_user->email)
     );
     $this->template->load('templates/admin/sebagai_template', 'admin/sebagai/list', $data);
   }
 
   public function tambah()
   {
-    $this->rules_tambah();
+    $this->rules();
     $current_user = $this->ion_auth->user()->row();
-    $email = $current_user->email;
     if ($this->form_validation->run() == FALSE) {
       $data = array(
                     'current_user' => $current_user,
                     'dd_tingkat' => $this->sebagai->get_tingkat(),
                     'tingkat_selected' => $this->input->post('id_tingkat_fk') ? $this->input->post('id_tingkat_fk') : '',
-                    'gravatar_url' => $this->gravatar->get($email)
+                    'gravatar_url' => $this->gravatar->get($current_user->email)
       );
       $this->template->load('templates/admin/sebagai_template', 'admin/sebagai/add', $data);
     } else {
@@ -52,12 +50,10 @@ class Sebagai extends Admin_Controller {
 
   public function ubah($id)
   {
-    $this->rules_ubah();
+    $this->rules();
     $current_user = $this->ion_auth->user()->row();
-    $email = $current_user->email;
+    $row = $this->sebagai->get_by_id($id);
     if ($this->form_validation->run() == FALSE) {
-      $row = $this->sebagai->get_by_id($id);
-
       if ($row) {
         $data = array(
                       'id_sebagai' => $row->id_sebagai,
@@ -66,14 +62,13 @@ class Sebagai extends Admin_Controller {
                       'id_tingkat_fk' => $row->id_tingkat_fk,
                       'dd_tingkat' => $this->sebagai->get_tingkat(),
                       'current_user' => $current_user,
-                      'gravatar_url' => $this->gravatar->get($email)
+                      'gravatar_url' => $this->gravatar->get($current_user->email)
         );
         $this->template->load('templates/admin/sebagai_template', 'admin/sebagai/edit', $data);
       } else {
         $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
         redirect(site_url('admin/sebagai'));
       }
-
     } else {
       $id = $this->input->post('id_sebagai');
       $sebagai = $this->input->post('sebagai');
@@ -104,19 +99,10 @@ class Sebagai extends Admin_Controller {
     }
   }
 
-  public function rules_tambah()
+  public function rules()
   {
     $this->form_validation->set_rules('sebagai', 'Sebagai', 'trim|required');
     $this->form_validation->set_rules('bobot', 'Bobot', 'trim|required');
-    $this->form_validation->set_rules('id_tingkat_fk', 'Tingkat', 'trim|required');
-    $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');
-  }
-
-  public function rules_ubah()
-  {
-    $this->form_validation->set_rules('sebagai', 'Sebagai', 'trim|required');
-    $this->form_validation->set_rules('bobot', 'Bobot', 'trim|required');
-    $this->form_validation->set_rules('id_sebagai', 'Id Sebagai', 'trim|required');
     $this->form_validation->set_rules('id_tingkat_fk', 'Tingkat', 'trim|required');
     $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');
   }

@@ -9,12 +9,12 @@ class Users_model extends CI_Model {
 
   public function get_users()
   {
-    $sql = 'SELECT u.id, u.nama_depan, u.nama_belakang, u.email, g.name, u.last_login
-            FROM users u
-            INNER JOIN users_groups ug ON u.id = ug.user_id
-            INNER JOIN groups g ON g.id = ug.group_id
-            ORDER BY u.id DESC';
-    return $this->db->query($sql)->result();
+    $this->db->select('u.id, u.nama_depan, u.nama_belakang, u.email, g.name, u.last_login');
+    $this->db->from('users u');
+    $this->db->join('users_groups ug', 'u.id = ug.user_id');
+    $this->db->join('groups g', 'g.id = ug.group_id');
+    $this->db->order_by('u.id', 'DESC');
+    return $this->db->get()->result();
   }
 
   public function get_jurusan()
@@ -22,7 +22,7 @@ class Users_model extends CI_Model {
     $this->db->select('*');
     $this->db->from('jurusan');
     $result = $this->db->get();
-    return $result->result_array();
+    return $result->result();
   }
 
   // menampilkan prodi berdasarkan jurusan
@@ -35,7 +35,7 @@ class Users_model extends CI_Model {
     $this->db->select('id, id_jurusan, nama_prodi');
 		$this->db->from('prodi');
 		$result = $this->db->get();
-		return $result->result_array();
+		return $result->result();
   }
 
   // menampilkan kelas

@@ -10,11 +10,10 @@ class Pengumuman_model extends CI_Model {
 
   public function get_all()
   {
-    $sql = "SELECT pengumuman.id, judul, isi_pengumuman, tanggal, users.nama_depan, users.nama_belakang
-            FROM pengumuman
-            INNER JOIN users ON users.id = pengumuman.id_user
-            ORDER BY pengumuman.id DESC";
-    return $this->db->query($sql)->result();
+    $this->db->select('pengumuman.id, judul, isi_pengumuman, tanggal, users.nama_depan, users.nama_belakang');
+    $this->db->join('users', 'users.id = pengumuman.id_user');
+    $this->db->order_by('pengumuman.id', 'DESC');
+    return $this->db->get('pengumuman')->result();
   }
 
   public function get_by_id($id)

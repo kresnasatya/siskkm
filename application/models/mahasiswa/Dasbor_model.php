@@ -20,7 +20,7 @@ class Dasbor_model extends CI_Model {
   }
 
   // menghitung total nilai skkm tidak valid
-  public function skkm_belum_valid($id_user)
+  public function skkm_tidak_valid($id_user)
   {
     $this->db->select('SUM(nilai) as total');
     $this->db->from('skkm');
@@ -30,7 +30,7 @@ class Dasbor_model extends CI_Model {
   }
 
   // menghitung total nilai skkm belum divalidasi
-  public function skkm_tidak_valid($id_user)
+  public function skkm_belum_divalidasi($id_user)
   {
     $this->db->select('SUM(nilai) as total');
     $this->db->from('skkm');

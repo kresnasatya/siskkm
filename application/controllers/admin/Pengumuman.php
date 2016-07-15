@@ -12,11 +12,10 @@ class Pengumuman extends Admin_Controller {
   public function index()
   {
     $current_user = $this->ion_auth->user()->row();
-    $email = $current_user->email;
     $data = array(
                   'current_user' => $current_user,
                   'pengumuman' => $this->pengumuman->get_all(),
-                  'gravatar_url' => $this->gravatar->get($email)
+                  'gravatar_url' => $this->gravatar->get($current_user->email)
     );
     $this->template->load('templates/admin/pengumuman_template', 'admin/pengumuman/list', $data);
   }
@@ -25,12 +24,11 @@ class Pengumuman extends Admin_Controller {
   {
     $this->rules();
     $current_user = $this->ion_auth->user()->row();
-    $email = $current_user->email;
 
     if ($this->form_validation->run() == FALSE) {
       $data = array(
                     'current_user' => $current_user,
-                    'gravatar_url' => $this->gravatar->get($email)
+                    'gravatar_url' => $this->gravatar->get($current_user->email)
       );
       $this->template->load('templates/admin/pengumuman_template', 'admin/pengumuman/add', $data);
     } else {
@@ -53,10 +51,8 @@ class Pengumuman extends Admin_Controller {
   {
     $this->rules();
     $current_user = $this->ion_auth->user()->row();
-    $email = $current_user->email;
+    $row = $this->pengumuman->get_by_id($id);
     if ($this->form_validation->run() == FALSE) {
-      $row = $this->pengumuman->get_by_id($id);
-
       if ($row) {
         $data = array(
                       'id' => set_value('id',$row->id),
@@ -64,14 +60,13 @@ class Pengumuman extends Admin_Controller {
                       'isi_pengumuman' => set_value('isi_pengumuman',$row->isi_pengumuman),
                       'id_user' => set_value('id_user',$row->id_user),
                       'current_user' => $current_user,
-                      'gravatar_url' => $this->gravatar->get($email)
+                      'gravatar_url' => $this->gravatar->get($current_user->email)
         );
         $this->template->load('templates/admin/pengumuman_template', 'admin/pengumuman/edit', $data);
       } else {
         $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
         redirect(site_url('admin/pengumuman'));
       }
-
     } else {
       $id = $this->input->post('id');
       $judul = $this->input->post('judul');

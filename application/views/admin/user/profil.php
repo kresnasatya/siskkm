@@ -29,8 +29,8 @@
                                 <b>Nip</b> <a class="pull-right"><?php echo $current_user->nip; ?></a>
                             </li>
                         </ul>
-                        <?php echo anchor(site_url('admin/user/edit_profil'),'Edit Profil','class="btn btn-primary btn-block"'); ?>
-                        <?php echo anchor(site_url('admin/user/ubah_password'),'Ubah Password','class="btn btn-primary btn-block"'); ?>
+                        <?php echo anchor(site_url('admin/user/edit_profil'), 'Edit Profil', 'class="btn btn-primary btn-block"'); ?>
+                        <?php echo anchor(site_url('admin/user/ubah_password'), 'Ubah Password', 'class="btn btn-primary btn-block"'); ?>
                     </div>
                 </div>
             </div>

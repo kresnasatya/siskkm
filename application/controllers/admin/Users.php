@@ -12,34 +12,32 @@ class Users extends Admin_Controller {
   public function index($group_id = NULL)
   {
     $current_user = $this->ion_auth->user()->row();
-    $email = $current_user->email;
     $data = array(
                   'current_user' => $current_user,
                   'users' => $this->users->get_users(),
-                  'gravatar_url' => $this->gravatar->get($email)
+                  'gravatar_url' => $this->gravatar->get($current_user->email)
     );
     $this->template->load('templates/admin/users_template','admin/users/list',$data);
   }
 
   public function get_prodi()
   {
-		$id_jurusan = $this->input->post('row'); // bukan 'id_jurusan' tetapi 'row'. Lihat fungsi get_prodi di javascript.
-		$prodi = $this->users->get_prodi($id_jurusan);
+      $id_jurusan = $this->input->post('row'); // bukan 'id_jurusan' tetapi 'row'. Lihat fungsi get_prodi di javascript.
+      $prodi = $this->users->get_prodi($id_jurusan);
 
-		echo '<select name="">';
+	echo '<select name="">';
     echo '<option value="">Pilih Prodi</option>';
-		foreach ($prodi as $row)
-		{
-    	echo '<option value="'.$row['id'].'">'.$row['nama_prodi'].'</option>';
-		}
-		echo '</select>';
+	foreach ($prodi as $row)
+	{
+        echo '<option value="'.$row->id.'">'.$row->nama_prodi.'</option>';
+    }
+	echo '</select>';
   }
 
   public function tambah()
   {
     $this->rules_tambah();
     $current_user = $this->ion_auth->user()->row();
-    $email = $current_user->email;
     if ($this->form_validation->run() == FALSE) {
       $data = array(
                     'groups' => $this->ion_auth->groups()->result(),
@@ -51,7 +49,7 @@ class Users extends Admin_Controller {
                     'dd_kelas' => $this->users->get_kelas(),
                     'kelas_selected' => $this->input->post('id_kelas'),
                     'current_user' => $current_user,
-                    'gravatar_url' => $this->gravatar->get($email)
+                    'gravatar_url' => $this->gravatar->get($current_user->email)
       );
       $this->template->load('templates/admin/users_template','admin/users/add',$data);
     } else {
@@ -73,7 +71,7 @@ class Users extends Admin_Controller {
       // parameter $password diganti dengan 'password'. Jadi, password sudah tersetting otomatis dengan kata 'password'.
       $this->ion_auth->register('', 'password', $email, $additional_data, $group_id);
       $this->session->set_flashdata('message', "<div style='color:#00a65a;'>".$this->ion_auth->messages()."</div>");
-      redirect('admin/users','refresh');
+      redirect(site_url('admin/users'));
     }
   }
 
@@ -81,7 +79,6 @@ class Users extends Admin_Controller {
   {
     $this->rules_ubah();
     $current_user = $this->ion_auth->user()->row();
-    $email = $current_user->email;
     if ($this->form_validation->run() == FALSE) {
       $user_id = $this->input->post('user_id') ? $this->input->post('user_id') : $user_id;
 
@@ -95,11 +92,11 @@ class Users extends Admin_Controller {
                       'dd_kelas' => $this->users->get_kelas(),
                       'dd_semester' => $this->users->get_semester(),
                       'current_user' => $current_user,
-                      'gravatar_url' => $this->gravatar->get($email)
+                      'gravatar_url' => $this->gravatar->get($current_user->email)
         );
       } else {
-        $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>User tidak ada.</div>");
-        redirect('admin/users','refresh');
+        $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
+        redirect(site_url('admin/users'));
       }
       $data['groups'] = $this->ion_auth->groups()->result();
       $data['usergroups'] = array();
@@ -134,19 +131,19 @@ class Users extends Admin_Controller {
       }
 
       $this->session->set_flashdata('message', "<div style='color:#00a65a;'>".$this->ion_auth->messages()."</div>");
-      redirect('admin/users','refresh');
+      redirect(site_url('admin/users'));
     }
   }
 
   public function hapus($user_id)
   {
     if (is_null($user_id)) {
-      $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Tidak ada data user untuk dihapus</div>");
+      $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
     } else {
       $this->ion_auth->delete_user($user_id);
       $this->session->set_flashdata('message', "<div style='color:#00a65a;'>".$this->ion_auth->messages()."</div>");
     }
-    redirect('admin/users','refresh');
+    redirect(site_url('admin/users'));
   }
 
   public function rules_tambah()

@@ -31,14 +31,16 @@
             <?php echo form_label('Tingkat','tingkat'); ?>
             <?php echo form_error('tingkat'); ?>
             <?php
-                $extra = array(
+                $data = array(
                                 'type' => 'text',
                                 'id' => 'tingkat',
+                                'name' => 'tingkat',
+                                'value' => set_value('tingkat'),
                                 'class' => 'form-control',
                                 'placeholder' => 'Tingkat',
                                 'required' => 'required'
                 );
-                echo form_input('tingkat', set_value('tingkat'), $extra);
+                echo form_input($data);
             ?>
           </div>
           <?php echo anchor(site_url('admin/tingkat'),'Kembali','class="btn btn-default"'); ?>

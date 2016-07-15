@@ -17,7 +17,7 @@ class Skkm_model extends CI_Model {
     $this->db->join('sebagai s', 's.id_sebagai = skkm.id_sebagai');
     $this->db->where('id_user', $id_user);
     $this->db->order_by('id', 'DESC');
-    return $query = $this->db->get()->result();
+    return $this->db->get()->result();
   }
 
   public function get_by_id($id)

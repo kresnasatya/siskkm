@@ -20,22 +20,32 @@
             <?php echo form_label('Judul Pengumuman','judul'); ?>
             <?php echo form_error('judul'); ?>
             <?php
-                $input = array(
+                $data = array(
                                 'type' => 'text',
                                 'name' => 'judul',
+                                'value' => set_value('judul'),
                                 'id' => 'judul',
                                 'class' => 'form-control',
                                 'placeholder' => 'Judul Pengumuman',
                                 'required' => 'required',
                                 'autofocus' => 'autofocus'
                 );
-                echo form_input($input);
+                echo form_input($data);
             ?>
           </div>
           <div class="form-group">
             <?php echo form_label('Isi','isi_pengumuman'); ?>
             <?php echo form_error('isi_pengumuman'); ?>
-            <textarea name="isi_pengumuman" class="ckeditor" id="ckeditor"></textarea>
+            <?php
+                $data = array(
+                        'name' => 'isi_pengumuman',
+                        'value' => set_value('isi_pengumuman'),
+                        'id' => 'ckeditor judul',
+                        'class' => 'ckeditor',
+                        'required' => 'required'
+                );
+                echo form_textarea($data);
+            ?>
           </div>
           <?php echo anchor(site_url('admin/pengumuman'),'Kembali','class="btn btn-default"'); ?>
           <?php echo form_submit('submit','Tambah','class="btn btn-primary"'); ?>

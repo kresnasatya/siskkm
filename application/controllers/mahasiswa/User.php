@@ -13,47 +13,43 @@ class User extends Mahasiswa_Controller {
   function index()
   {
     $current_user = $this->ion_auth->user()->row();
-    $id_user = $current_user->id;
-    $email = $current_user->email;
     $data = array(
                   'current_user' => $current_user,
-                  'gravatar_url' => $this->gravatar->get($email),
-                  'profil' => $this->user->get_profil($id_user),
-                  'sum_valid' => $this->skkm->sum_valid($id_user),
-                  'sum_tidak_valid' => $this->skkm->sum_tidak_valid($id_user),
-                  'sum_belum_valid' => $this->skkm->sum_belum_valid($id_user),
-                  'status_skkm' => $this->skkm->status_skkm($id_user)
+                  'gravatar_url' => $this->gravatar->get($current_user->email),
+                  'profil' => $this->user->get_profil($current_user->id),
+                  'sum_valid' => $this->skkm->sum_valid($current_user->id),
+                  'sum_tidak_valid' => $this->skkm->sum_tidak_valid($current_user->id),
+                  'sum_belum_divalidasi' => $this->skkm->sum_belum_divalidasi($current_user->id),
+                  'status_skkm' => $this->skkm->status_skkm($current_user->id)
     );
     $this->template->load('templates/mahasiswa/user_template', 'mahasiswa/user/profil', $data);
   }
 
   public function get_prodi()
   {
-		$id_jurusan = $this->input->post('row'); // bukan 'id_jurusan' tetapi 'row'. Lihat fungsi get_prodi di javascript.
-		$prodi = $this->user->get_prodi($id_jurusan);
-
-		echo '<select name="">';
-    echo '<option value="">Pilih Prodi</option>';
-		foreach ($prodi as $row)
-		{
-    	echo '<option value="'.$row['id'].'">'.$row['nama_prodi'].'</option>';
-		}
-		echo '</select>';
+     $id_jurusan = $this->input->post('row'); // bukan 'id_jurusan' tetapi 'row'. Lihat fungsi getProdi di javascript.
+	 $prodi = $this->user->get_prodi($id_jurusan);
+     echo '<select name="">';
+     echo '<option value="">Pilih Prodi</option>';
+	 foreach ($prodi as $row)
+	 {
+        echo '<option value="'.$row->id.'">'.$row->nama_prodi.'</option>';
+	 }
+	 echo '</select>';
   }
 
   function edit_profil()
   {
     $this->rules_edit_profil();
     $current_user = $this->ion_auth->user()->row();
-    $email = $current_user->email;
     if ($this->form_validation->run() == FALSE) {
       $data = array(
+                    'current_user' => $current_user,
                     'dd_jurusan' => $this->user->get_jurusan(),
                     'dd_prodi' => $this->user->get_prodi($current_user->id_jurusan),
                     'dd_kelas' => $this->user->get_kelas(),
                     'dd_semester' => $this->user->get_semester(),
-                    'current_user' => $current_user,
-                    'gravatar_url' => $this->gravatar->get($email)
+                    'gravatar_url' => $this->gravatar->get($current_user->email)
       );
       $this->template->load('templates/mahasiswa/user_template', 'mahasiswa/user/edit', $data);
     } else{
@@ -70,7 +66,7 @@ class User extends Mahasiswa_Controller {
       $this->ion_auth->update($current_user->id, $new_data);
 
       $this->session->set_flashdata('message', "<div style='color:#00a65a;'>".$this->ion_auth->messages()."</div>");
-      redirect('mahasiswa/user', 'refresh');
+      redirect(site_url('mahasiswa/user'));
     }
   }
 
@@ -78,10 +74,9 @@ class User extends Mahasiswa_Controller {
   {
     $this->rules_ubah_password();
     $current_user = $this->ion_auth->user()->row();
-    $email = $current_user->email;
     $data = array(
                   'current_user' => $current_user,
-                  'gravatar_url' => $this->gravatar->get($email)
+                  'gravatar_url' => $this->gravatar->get($current_user->email)
     );
     if ($this->form_validation->run() == FALSE) {
       $this->template->load('templates/mahasiswa/user_template', 'mahasiswa/user/ubah_password', $data);
@@ -93,7 +88,7 @@ class User extends Mahasiswa_Controller {
 
       $this->ion_auth->logout();
       $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Password berhasil diubah.</div>");
-      redirect('login', 'refresh');
+      redirect(site_url('login'));
     }
   }
 

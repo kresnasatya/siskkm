@@ -63,10 +63,10 @@
                 <?php
                 $number = 0;
                 $str = "poin";
-                if ($skkm_belum_valid == NULL): ?>
+                if ($skkm_belum_divalidasi == NULL): ?>
                     <?php echo $number.' '.$str; ?>
                   <?php else: ?>
-                    <?php echo $skkm_belum_valid.' '.$str; ?>
+                    <?php echo $skkm_belum_divalidasi.' '.$str; ?>
                 <?php endif; ?>
               </span>
           </div>

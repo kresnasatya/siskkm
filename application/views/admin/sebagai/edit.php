@@ -14,7 +14,7 @@
   <div class="row">
     <div class="col-md-12">
       <div class="box box-primary">
-        <?php echo form_open('admin/sebagai/ubah'); ?>
+        <?php echo form_open('admin/sebagai/ubah/'.$id_sebagai); ?>
         <div class="box-body">
           <div class="form-group">
             <?php echo form_label('Tingkat','tingkat'); ?>
@@ -30,21 +30,23 @@
             <?php echo form_label('Sebagai','sebagai'); ?>
             <?php echo form_error('sebagai'); ?>
             <?php
-                $extra = array(
+                $data = array(
                                 'type' => 'text',
                                 'id' => 'sebagai',
+                                'name' => 'sebagai',
+                                'value' => set_value('sebagai', $sebagai),
                                 'class' => 'form-control',
                                 'placeholder' => 'Sebagai',
                                 'required' => 'required',
                 );
-                echo form_input('sebagai', set_value('sebagai', $sebagai), $extra);
+                echo form_input($data);
             ?>
           </div>
           <div class="form-group">
             <?php echo form_label('Bobot','bobot'); ?>
             <?php echo form_error('bobot'); ?>
             <?php
-                $extra = array(
+                $data = array(
                                 'type' => 'number',
                                 'name' => 'bobot',
                                 'value' => set_value('bobot', $bobot),
@@ -53,7 +55,7 @@
                                 'placeholder' => 'Bobot',
                                 'required' => 'required'
                 );
-                echo form_input($extra);
+                echo form_input($data);
             ?>
           </div>
           <?php echo form_hidden('id_sebagai', set_value('id_sebagai', $id_sebagai)); ?>
