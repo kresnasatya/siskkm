@@ -11,11 +11,11 @@ class User_model extends CI_Model{
 
   public function get_profil($id_user)
   {
-    $sql = "SELECT u.id, u.nama_depan, u.nama_belakang, u.nip, u.email, j.id, j.nama_jurusan
-            FROM users u
-            INNER JOIN jurusan j ON j.id = u.id_jurusan
-            WHERE u.id = $id_user";
-    return $this->db->query($sql)->row();
+    $this->db->select('u.id, u.nama_depan, u.nama_belakang, u.nip, u.email, j.id, j.nama_jurusan');
+    $this->db->from('users u');
+    $this->db->join('jurusan j', 'j.id = u.id_jurusan');
+    $this->db->where('u.id', $id_user);
+    return $this->db->get()->row();
   }
 
   public function get_jurusan()
@@ -23,7 +23,7 @@ class User_model extends CI_Model{
     $this->db->select('*');
     $this->db->from('jurusan');
     $result = $this->db->get();
-    return $result->result_array();
+    return $result->result();
   }
 
 }

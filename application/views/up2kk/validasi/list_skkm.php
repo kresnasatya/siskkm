@@ -22,7 +22,7 @@
           </div>
           <div class="col-md-4 text-center">
               <strong style="margin-top: 4px;"  id="message">
-                  <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
+                  <?php echo $this->session->userdata('message'); ?>
               </strong>
           </div>
         </div>
@@ -81,53 +81,53 @@
           </table>
           <p>
             <strong>
-            SKKM yang valid:
-            <?php
-            $num = 0;
-            $str = "poin";
-            if ($skkm_valid == NULL): ?>
-              <?php echo $num.' '.$str; ?>
-            <?php else: ?>
-              <?php echo $skkm_valid.' '.$str; ?>
-            <?php endif; ?>
-          </strong>
-        </p>
-        <p>
-          <strong>
             SKKM belum divalidasi:
-            <?php
-            $num = 0;
-            $str = "poin";
-            if ($skkm_belum_valid == NULL): ?>
-              <?php echo $num.' '.$str; ?>
-            <?php else: ?>
-              <?php echo $skkm_belum_valid.' '.$str; ?>
-            <?php endif; ?>
-          </strong>
-        </p>
-        <p>
-          <strong>
+              <?php
+              $num = 0;
+              $str = "poin";
+              if ($sum_belum_divalidasi == NULL): ?>
+                <?php echo $num.' '.$str; ?>
+              <?php else: ?>
+                <?php echo $sum_belum_divalidasi.' '.$str; ?>
+              <?php endif; ?>
+            </strong>
+          </p>
+          <p>
+            <strong>
             SKKM tidak valid:
             <?php
             $num = 0;
             $str = "poin";
-            if ($skkm_tidak_valid == NULL): ?>
+            if ($sum_tidak_valid == NULL): ?>
               <?php echo $num.' '.$str; ?>
             <?php else: ?>
-              <?php echo $skkm_tidak_valid.' '.$str; ?>
+              <?php echo $sum_tidak_valid.' '.$str; ?>
             <?php endif; ?>
           </strong>
-        </p>
-        <p>
-          <strong>
-            Status Kelulusan SKKM:
-          <?php if ($skkm_valid >= $status_skkm): ?>
-                <?php echo "LULUS"; ?>
-            <?php else: ?>
-              <?php echo "TIDAK LULUS"; ?>
-          <?php endif; ?>
-          </strong>
-        </p>
+          </p>
+          <p>
+            <strong>
+              SKKM yang valid:
+              <?php
+              $num = 0;
+              $str = "poin";
+              if ($sum_valid == NULL): ?>
+                <?php echo $num.' '.$str; ?>
+              <?php else: ?>
+                <?php echo $sum_valid.' '.$str; ?>
+              <?php endif; ?>
+            </strong>
+          </p>
+          <p>
+            <strong>
+              Status Kelulusan SKKM:
+              <?php if ($sum_valid >= $status_skkm): ?>
+                <strong style="color:#00a65a;"><?php echo "LULUS"; ?></strong>
+              <?php else: ?>
+                <strong style="color:#dd4b39;"><?php echo "TIDAK LULUS"; ?></strong>
+              <?php endif; ?>
+            </strong>
+          </p>
         </div>
       </div>
     </div>

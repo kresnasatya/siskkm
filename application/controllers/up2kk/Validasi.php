@@ -13,14 +13,11 @@ class Validasi extends UP2KK_Controller {
   public function index()
   {
     $current_user = $this->ion_auth->user()->row();
-    // mengambil id jurusan up2kk
-    $id_jurusan_user = $current_user->id_jurusan;
-    $email = $current_user->email;
-    $mahasiswa = $this->validasi->get_mahasiswa($id_jurusan_user);
+    $mahasiswa = $this->validasi->get_mahasiswa($current_user->id_jurusan);
     $data = array(
                   'current_user' => $current_user,
                   'mahasiswa' => $mahasiswa,
-                  'gravatar_url' => $this->gravatar->get($email)
+                  'gravatar_url' => $this->gravatar->get($current_user->email)
     );
     $this->template->load('templates/up2kk/validasi_template', 'up2kk/validasi/list', $data);
   }
@@ -28,16 +25,15 @@ class Validasi extends UP2KK_Controller {
   public function list_skkm($id_user)
   {
     $current_user = $this->ion_auth->user()->row();
-    $email = $current_user->email;
     $row = $this->validasi->get_skkm_mahasiswa($id_user);
     $data = array(
                   'current_user' => $current_user,
                   'list_skkm' => $row,
-                  'skkm_belum_valid' => $this->validasi->sum_belum_valid($id_user),
-                  'skkm_valid' => $this->validasi->sum_valid($id_user),
-                  'skkm_tidak_valid' => $this->validasi->sum_tidak_valid($id_user),
+                  'sum_belum_divalidasi' => $this->validasi->sum_belum_divalidasi($id_user),
+                  'sum_valid' => $this->validasi->sum_valid($id_user),
+                  'sum_tidak_valid' => $this->validasi->sum_tidak_valid($id_user),
                   'status_skkm' => $this->validasi->status_skkm($id_user),
-                  'gravatar_url' => $this->gravatar->get($email)
+                  'gravatar_url' => $this->gravatar->get($current_user->email)
     );
     $this->template->load('templates/up2kk/validasi_template', 'up2kk/validasi/list_skkm', $data);
 
@@ -46,10 +42,9 @@ class Validasi extends UP2KK_Controller {
   public function skkm($id_skkm)
   {
     $this->rules();
+    $current_user = $this->ion_auth->user()->row();
+    $row = $this->validasi->get_skkm($id_skkm);
     if ($this->form_validation->run() == FALSE) {
-      $current_user = $this->ion_auth->user()->row();
-      $email = $current_user->email;
-      $row = $this->validasi->get_skkm($id_skkm);
       if ($row) {
         $data = array(
                       'current_user' => $current_user,
@@ -57,12 +52,12 @@ class Validasi extends UP2KK_Controller {
                       'id_user' => $row->id_user,
                       'status' => $row->status,
                       'keterangan' => $row->keterangan,
-                      'gravatar_url' => $this->gravatar->get($email)
+                      'gravatar_url' => $this->gravatar->get($current_user->email)
         );
         $this->template->load('templates/up2kk/validasi_template', 'up2kk/validasi/skkm', $data);
       } else {
         $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
-        redirect(site_url('up2kk/validasi/list_skkm/'.$data['id_user']));
+        redirect(site_url('up2kk/validasi/list_skkm/'.$row->id_user));
       }
     } else {
       $id_user = $this->input->post('id_user');
@@ -73,10 +68,11 @@ class Validasi extends UP2KK_Controller {
                     'id' => $id,
                     'status' => $status,
                     'keterangan' => $keterangan,
-                    'id_user' => $id_user);
+                    'id_user' => $id_user
+      );
       $this->validasi->validasi_skkm($id,  $data);
       $this->session->set_flashdata('message', "<div style='color:#00a65a;'>SKKM berhasil divalidasi.</div>");
-      redirect(site_url('up2kk/validasi/list_skkm/'.$data['id_user']));
+      redirect(site_url('up2kk/validasi/list_skkm/'.$row->id_user));
     }
   }
 

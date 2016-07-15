@@ -33,8 +33,8 @@
                 <b>Jurusan</b> <a class="pull-right"><?php echo $profil->nama_jurusan; ?></a>
               </li>
             </ul>
-            <?php echo anchor(site_url('up2kk/user/edit_profil'),'Edit Profil','class="btn btn-primary btn-block"'); ?>
-            <?php echo anchor(site_url('up2kk/user/ubah_password'),'Ubah Password','class="btn btn-primary btn-block"'); ?>
+            <?php echo anchor(site_url('up2kk/user/edit_profil'), 'Edit Profil', 'class="btn btn-primary btn-block"'); ?>
+            <?php echo anchor(site_url('up2kk/user/ubah_password'), 'Ubah Password',  'class="btn btn-primary btn-block"'); ?>
           </div>
         </div>
       </div>
