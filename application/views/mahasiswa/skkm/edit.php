@@ -18,7 +18,7 @@
         <?php echo form_open_multipart('mahasiswa/skkm/ubah/'.$id); ?>
         <div class="box-body">
           <div class="form-group">
-            <?php echo form_label('Nama Kegiatan','nama_kegiatan'); ?>
+            <?php echo form_label('Nama Kegiatan', 'nama_kegiatan'); ?>
             <?php echo form_error('nama_kegiatan'); ?>
             <?php
                 $data = array(
@@ -89,7 +89,7 @@
             </select>
           </div>
           <div class="form-group">
-            <?php echo form_label('Nilai','nilai'); ?>
+            <?php echo form_label('Nilai', 'nilai'); ?>
             <?php echo form_error('nilai'); ?>
             <?php
                 $data = array(
@@ -106,8 +106,8 @@
             ?>
           </div>
           <?php echo form_hidden('id', set_value('id', $id)); ?>
-          <?php echo anchor(site_url('mahasiswa/skkm'),'Kembali','class="btn btn-default"'); ?>
-          <?php echo form_submit('submit','Edit','class="btn btn-warning"'); ?>
+          <?php echo anchor(site_url('mahasiswa/skkm'), 'Kembali', 'class="btn btn-default"'); ?>
+          <?php echo form_submit('submit', 'Edit', 'class="btn btn-warning"'); ?>
         </div>
         <?php echo form_close(); ?>
       </div>

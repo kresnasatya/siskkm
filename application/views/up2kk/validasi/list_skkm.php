@@ -72,7 +72,7 @@
                 <td>
                   <?php
                       $extra = array('class' => 'btn btn-sm btn-success');
-                      echo anchor(site_url('up2kk/validasi/skkm/'.$row->id),'Validasi',$extra);
+                      echo anchor(site_url('up2kk/validasi/skkm/'.$row->id), 'Validasi', $extra);
                     ?>
                 </td>
               </tr>

@@ -48,8 +48,8 @@
                                     $hapus = array(
                                               'class' => 'btn btn-sm btn-danger',
                                               'onclick' => 'javascript: return confirm(\'Kamu Yakin ?\')'
-                                            );
-                                            echo anchor(site_url('admin/tingkat/hapus/'.$row->id_tingkat),'Hapus',$hapus);?>
+                                    );
+                                            echo anchor(site_url('admin/tingkat/hapus/'.$row->id_tingkat), 'Hapus', $hapus);?>
                               </td>
                             </tr>
                           <?php endforeach; ?>

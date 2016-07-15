@@ -17,7 +17,7 @@
         <?php echo form_open('admin/pengumuman/ubah/'.$id); ?>
         <div class="box-body">
           <div class="form-group">
-            <?php echo form_label('Judul Pengumuman','judul'); ?>
+            <?php echo form_label('Judul Pengumuman', 'judul'); ?>
             <?php echo form_error('judul'); ?>
             <?php
                 $data = array(
@@ -34,13 +34,13 @@
             ?>
           </div>
           <div class="form-group">
-            <?php echo form_label('Isi','isi_pengumuman'); ?>
+            <?php echo form_label('Isi', 'isi_pengumuman'); ?>
             <?php echo form_error('isi_pengumuman'); ?>
             <textarea name="isi_pengumuman" class="ckeditor" id="ckeditor"><?php echo $isi_pengumuman; ?></textarea>
           </div>
           <?php echo form_hidden('id', $id); ?>
-          <?php echo anchor(site_url('admin/pengumuman'),'Kembali','class="btn btn-default"'); ?>
-          <?php echo form_submit('submit','Edit','class="btn btn-warning"'); ?>
+          <?php echo anchor(site_url('admin/pengumuman'), 'Kembali', 'class="btn btn-default"'); ?>
+          <?php echo form_submit('submit', 'Edit', 'class="btn btn-warning"'); ?>
         </div>
         <?php echo form_close(); ?>
       </div>

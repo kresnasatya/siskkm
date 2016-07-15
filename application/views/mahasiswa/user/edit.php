@@ -15,7 +15,7 @@
         <?php echo form_open(); ?>
           <div class="box-body">
             <div class="form-group">
-              <?php echo form_label('Nama depan','nama_depan'); ?>
+              <?php echo form_label('Nama depan', 'nama_depan'); ?>
               <?php echo form_error('nama_depan'); ?>
               <?php
                   $data = array(
@@ -31,7 +31,7 @@
                echo form_input($data); ?>
             </div>
             <div class="form-group">
-              <?php echo form_label('Nama belakang','nama_belakang'); ?>
+              <?php echo form_label('Nama belakang', 'nama_belakang'); ?>
               <?php echo form_error('nama_belakang'); ?>
               <?php
                   $data = array(
@@ -46,7 +46,7 @@
                echo form_input($data); ?>
             </div>
             <div class="form-group">
-              <?php echo form_label('Email','email'); ?>
+              <?php echo form_label('Email', 'email'); ?>
               <?php echo form_error('email'); ?>
               <?php
                 $data = array(
@@ -61,7 +61,7 @@
                 echo form_input($data); ?>
             </div>
             <div class="form-group">
-              <?php echo form_label('Nim','nim'); ?>
+              <?php echo form_label('Nim', 'nim'); ?>
               <?php echo form_error('nim'); ?>
               <?php
                $data = array(
@@ -75,7 +75,7 @@
                echo form_input($data); ?>
             </div>
             <div class="form-group">
-              <?php echo form_label('Jurusan','id_jurusan'); ?>
+              <?php echo form_label('Jurusan', 'id_jurusan'); ?>
               <?php echo form_error('id_jurusan'); ?>
               <select class="form-control" name="id_jurusan" id="jurusan" onchange="getProdi(this.value)" required="">
                 <option value="">Silahkan Pilih</option>
@@ -127,7 +127,7 @@
                ?>
             </div>
           </div><!-- /. box-body -->
-          <?php echo form_hidden('user_id',$current_user->id); ?>
+          <?php echo form_hidden('user_id', $current_user->id); ?>
           <div class="box-footer">
             <a href="<?php echo site_url('mahasiswa/user') ?>" class="btn btn-default">Kembali</a>
             <?php echo form_submit('submit', 'Edit', 'class="btn btn-warning"'); ?>

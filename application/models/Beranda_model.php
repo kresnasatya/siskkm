@@ -10,10 +10,9 @@ class Beranda_model extends CI_Model {
 
   public function pengumuman()
   {
-    $sql = "SELECT pengumuman.id, judul, isi_pengumuman, slug, tanggal, users.nama_depan, users.nama_belakang
-            FROM pengumuman
-            INNER JOIN users ON users.id=pengumuman.id_user";
-    return $this->db->query($sql)->result();
+    $this->db->select('pengumuman.id, judul, isi_pengumuman, slug, tanggal, users.nama_depan, users.nama_belakang');
+    $this->db->join('users', 'users.id = pengumuman.id_user');
+    return $this->db->get('pengumuman')->result();
   }
 
   public function pengumuman_paging($limit)
@@ -28,12 +27,10 @@ class Beranda_model extends CI_Model {
 
   public function single($slug)
   {
-    $sql = "SELECT
-            pengumuman.id, judul, isi_pengumuman, tanggal, slug, users.nama_depan, users.nama_belakang
-            FROM pengumuman, users
-            WHERE slug = '$slug'
-            AND pengumuman.id_user = users.id";
-    return $this->db->query($sql)->result();
+    $this->db->select('pengumuman.id, judul, isi_pengumuman, tanggal, slug, users.nama_depan, users.nama_belakang');
+    $this->db->join('users', 'pengumuman.id_user = users.id');
+    $this->db->where('slug', $slug);
+    return $this->db->get('pengumuman')->result();
   }
 
 }

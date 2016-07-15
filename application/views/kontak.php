@@ -12,7 +12,7 @@
 	 	<div class="row">
 	 		<div class="col-lg-8">
 	 			<h4>Kritik dan Saran</h4>
-				<?php echo $this->session->userdata('email_sent') <> '' ? $this->session->userdata('email_sent') : ''; ?>
+				<?php echo $this->session->userdata('email_sent'); ?>
 	 			<div class="hline"></div>
 		 			<p>Pengembang sangat terbuka dengan kritik dan saran yang membangun untuk sistem informasi ini.</p>
 					<?php

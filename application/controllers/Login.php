@@ -48,7 +48,7 @@ class Login extends MY_Controller {
   public function logout()
   {
     $this->ion_auth->logout();
-    redirect('login', 'refresh');
+    redirect(site_url('login'));
   }
 
   public function _rules()

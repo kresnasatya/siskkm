@@ -19,7 +19,7 @@
         echo form_open('admin/users/tambah', $attribute); ?>
           <div class="box-body">
             <div class="form-group">
-              <?php echo form_label('Nama depan','nama_depan'); ?>
+              <?php echo form_label('Nama depan', 'nama_depan'); ?>
               <?php echo form_error('nama_depan'); ?>
               <?php
                   $data = array(
@@ -35,7 +35,7 @@
                echo form_input($data); ?>
             </div>
             <div class="form-group">
-              <?php echo form_label('Nama belakang','nama_belakang'); ?>
+              <?php echo form_label('Nama belakang', 'nama_belakang'); ?>
               <?php echo form_error('nama_belakang'); ?>
               <?php
                   $data = array(
@@ -50,7 +50,7 @@
                echo form_input($data); ?>
             </div>
             <div class="form-group">
-              <?php echo form_label('Email','email'); ?>
+              <?php echo form_label('Email', 'email'); ?>
               <?php echo form_error('email'); ?>
               <?php
                   $data = array(
@@ -80,7 +80,7 @@
               <?php endif; ?>
             </div>
             <div class="form-group">
-              <?php echo form_label('Nim','nim'); ?>
+              <?php echo form_label('Nim', 'nim'); ?>
               <?php echo form_error('nim'); ?>
               <?php
                   $data = array(
@@ -94,7 +94,7 @@
                echo form_input($data); ?>
             </div>
             <div class="form-group">
-              <?php echo form_label('Nip','nip'); ?>
+              <?php echo form_label('Nip', 'nip'); ?>
               <?php echo form_error('nip'); ?>
               <?php
                   $data = array(
@@ -125,24 +125,30 @@
               	</select>
             </div>
             <div class="form-group">
-              <label for="semester">Semester <?php echo form_error('id_semester'); ?></label>
+              <?php echo form_label('Semester', 'id_semester'); ?>
+              <?php echo form_error('id_semester'); ?>
               <?php
-                $extra = array('class' => 'form-control',
-                               'id' => 'semester');
+                $extra = array(
+                               'class' => 'form-control',
+                               'id' => 'semester'
+                );
                 echo form_dropdown('id_semester', $dd_semester, $semester_selected, $extra);
                ?>
             </div>
             <div class="form-group">
-              <label for="kelas">Kelas <?php echo form_error('id_kelas'); ?></label>
+              <?php echo form_label('Kelas', 'id_kelas'); ?>
+              <?php echo form_error('id_kelas'); ?>
               <?php
-                $extra = array('class' => 'form-control',
-                               'id' => 'kelas');
+                $extra = array(
+                               'class' => 'form-control',
+                               'id' => 'kelas'
+                );
                 echo form_dropdown('id_kelas', $dd_kelas, $kelas_selected, $extra);
                ?>
             </div>
           </div><!-- /. box-body -->
           <div class="box-footer">
-            <?php echo anchor(site_url('admin/users'),'Kembali','class="btn btn-default"'); ?>
+            <?php echo anchor(site_url('admin/users'), 'Kembali', 'class="btn btn-default"'); ?>
             <?php echo form_submit('submit', 'Tambah', 'class="btn btn-primary"'); ?>
           </div><!-- /. box-footer -->
         <?php echo form_close(); ?>

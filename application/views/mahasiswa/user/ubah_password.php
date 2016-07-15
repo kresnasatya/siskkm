@@ -15,7 +15,7 @@
         <?php echo form_open('mahasiswa/user/ubah_password'); ?>
         <div class="box-body">
           <div class="form-group">
-            <?php echo form_label('Password Baru','password_baru'); ?>
+            <?php echo form_label('Password Baru', 'password_baru'); ?>
             <?php echo form_error('password_baru'); ?>
             <?php
                 $data = array(
@@ -31,7 +31,7 @@
             ?>
           </div>
           <div class="form-group">
-            <?php echo form_label('Konfirmasi Password','konfirmasi_password'); ?>
+            <?php echo form_label('Konfirmasi Password', 'konfirmasi_password'); ?>
             <?php echo form_error('konfirmasi_password'); ?>
             <?php
                 $data = array(

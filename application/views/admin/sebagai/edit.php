@@ -17,7 +17,7 @@
         <?php echo form_open('admin/sebagai/ubah/'.$id_sebagai); ?>
         <div class="box-body">
           <div class="form-group">
-            <?php echo form_label('Tingkat','tingkat'); ?>
+            <?php echo form_label('Tingkat', 'tingkat'); ?>
             <?php echo form_error('tingkat'); ?>
             <?php
               $extra = array('class' => 'form-control select2',
@@ -27,7 +27,7 @@
             ?>
           </div>
           <div class="form-group">
-            <?php echo form_label('Sebagai','sebagai'); ?>
+            <?php echo form_label('Sebagai', 'sebagai'); ?>
             <?php echo form_error('sebagai'); ?>
             <?php
                 $data = array(
@@ -43,7 +43,7 @@
             ?>
           </div>
           <div class="form-group">
-            <?php echo form_label('Bobot','bobot'); ?>
+            <?php echo form_label('Bobot', 'bobot'); ?>
             <?php echo form_error('bobot'); ?>
             <?php
                 $data = array(
@@ -59,8 +59,8 @@
             ?>
           </div>
           <?php echo form_hidden('id_sebagai', set_value('id_sebagai', $id_sebagai)); ?>
-          <?php echo anchor(site_url('admin/sebagai'),'Kembali','class="btn btn-default"'); ?>
-          <?php echo form_submit('submit','Edit','class="btn btn-warning"'); ?>
+          <?php echo anchor(site_url('admin/sebagai'), 'Kembali', 'class="btn btn-default"'); ?>
+          <?php echo form_submit('submit', 'Edit', 'class="btn btn-warning"'); ?>
         <?php echo form_close(); ?>
       </div>
     </div>

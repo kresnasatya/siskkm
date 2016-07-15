@@ -17,10 +17,11 @@
         <?php echo form_open('admin/tingkat/tambah'); ?>
         <div class="box-body">
           <div class="form-group">
-            <?php echo form_label('Jenis','jenis'); ?>
+            <?php echo form_label('Jenis', 'jenis'); ?>
             <?php echo form_error('jenis'); ?>
             <?php
-              $extra = array('class' => 'form-control',
+              $extra = array(
+                             'class' => 'form-control',
                              'required' => 'required',
                              'autofocus' => 'autofocus'
               );
@@ -28,7 +29,7 @@
             ?>
           </div>
           <div class="form-group">
-            <?php echo form_label('Tingkat','tingkat'); ?>
+            <?php echo form_label('Tingkat', 'tingkat'); ?>
             <?php echo form_error('tingkat'); ?>
             <?php
                 $data = array(
@@ -43,8 +44,8 @@
                 echo form_input($data);
             ?>
           </div>
-          <?php echo anchor(site_url('admin/tingkat'),'Kembali','class="btn btn-default"'); ?>
-          <?php echo form_submit('submit','Tambah','class="btn btn-primary"'); ?>
+          <?php echo anchor(site_url('admin/tingkat'), 'Kembali', 'class="btn btn-default"'); ?>
+          <?php echo form_submit('submit', 'Tambah', 'class="btn btn-primary"'); ?>
         <?php echo form_close(); ?>
       </div>
     </div>

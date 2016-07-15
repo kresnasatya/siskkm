@@ -17,7 +17,7 @@
         <?php echo form_open('admin/jenis/tambah'); ?>
         <div class="box-body">
           <div class="form-group">
-            <?php echo form_label('Jenis','jenis'); ?>
+            <?php echo form_label('Jenis', 'jenis'); ?>
             <?php echo form_error('jenis'); ?>
             <?php
                 $data = array(
@@ -33,8 +33,8 @@
                 echo form_input($data);
             ?>
           </div>
-          <?php echo anchor(site_url('admin/jenis'),'Kembali','class="btn btn-default"'); ?>
-          <?php echo form_submit('submit','Tambah','class="btn btn-primary"'); ?>
+          <?php echo anchor(site_url('admin/jenis'), 'Kembali', 'class="btn btn-default"'); ?>
+          <?php echo form_submit('submit', 'Tambah', 'class="btn btn-primary"'); ?>
         </div>
         <?php echo form_close(); ?>
       </div>

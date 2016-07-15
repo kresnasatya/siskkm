@@ -17,7 +17,7 @@
         <?php echo form_open('admin/jenis/ubah/'.$id_jenis); ?>
         <div class="box-body">
           <div class="form-group">
-            <?php echo form_label('Jenis','jenis'); ?>
+            <?php echo form_label('Jenis', 'jenis'); ?>
             <?php echo form_error('jenis'); ?>
             <?php
                 $data = array(
@@ -34,8 +34,8 @@
             ?>
           </div>
           <?php echo form_hidden('id_jenis', set_value('id_jenis', $id_jenis)) ?>
-          <?php echo anchor(site_url('admin/jenis'),'Kembali','class="btn btn-default"'); ?>
-          <?php echo form_submit('submit','Edit','class="btn btn-warning"'); ?>
+          <?php echo anchor(site_url('admin/jenis'), 'Kembali', 'class="btn btn-default"'); ?>
+          <?php echo form_submit('submit', 'Edit', 'class="btn btn-warning"'); ?>
         </div>
         <?php echo form_close(); ?>
       </div>

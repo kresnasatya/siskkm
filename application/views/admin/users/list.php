@@ -59,8 +59,9 @@
                               <?php
                                   $hapus = array(
                                                 'class' => 'btn btn-sm btn-danger',
-                                                'onclick' => 'javascript: return confirm(\'Kamu Yakin ?\')');
-                                  echo anchor(site_url('admin/users/hapus/'.$user->id),'Hapus',$hapus);
+                                                'onclick' => 'javascript: return confirm(\'Kamu Yakin ?\')'
+                                  );
+                                  echo anchor(site_url('admin/users/hapus/'.$user->id), 'Hapus', $hapus);
                                ?>
                               <?php endif; ?>
                           </td>
