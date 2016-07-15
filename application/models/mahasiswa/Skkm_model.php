@@ -31,7 +31,7 @@ class Skkm_model extends CI_Model {
     $this->db->select('*');
     $this->db->from('jenis');
     $result = $this->db->get();
-    return $result->result_array();
+    return $result->result();
   }
 
   public function get_tingkat($id_jenis)
@@ -41,9 +41,9 @@ class Skkm_model extends CI_Model {
     }
 
     $this->db->select('*');
-		$this->db->from('tingkat');
-		$result = $this->db->get();
-		return $result->result_array();
+	$this->db->from('tingkat');
+	$result = $this->db->get();
+	return $result->result();
   }
 
   public function get_sebagai($id_tingkat)
@@ -53,9 +53,9 @@ class Skkm_model extends CI_Model {
     }
 
     $this->db->select('id_sebagai, sebagai');
-		$this->db->from('sebagai');
-		$result = $this->db->get();
-		return $result->result_array();
+	$this->db->from('sebagai');
+	$result = $this->db->get();
+	return $result->result();
   }
 
   public function get_nilai($id_sebagai)
@@ -65,9 +65,9 @@ class Skkm_model extends CI_Model {
     }
 
     $this->db->select('id_sebagai, bobot');
-		$this->db->from('sebagai');
-		$result = $this->db->get();
-		return $result->result_array();
+    $this->db->from('sebagai');
+	$result = $this->db->get();
+	return $result->result();
   }
 
   // menghitung total skkm valid
