@@ -26,16 +26,14 @@ class Validasi_model extends CI_Model {
 
   public function get_skkm_mahasiswa($id_user)
   {
-    $this->db->select('id, id_user, nama_kegiatan, filefoto, jenis.jenis, tingkat.tingkat, sebagai.sebagai, nilai, status, keterangan');
-    $this->db->from('skkm');
-    $this->db->join('jenis', 'jenis.id_jenis = skkm.id_jenis');
-    $this->db->join('tingkat', 'tingkat.id_tingkat = skkm.id_tingkat');
-    $this->db->join('sebagai', 'sebagai.id_sebagai = skkm.id_sebagai');
-    $this->db->where('id_user', $id_user);
-    $this->db->where('status', 2);
-    $this->db->or_where('status', 0);
-    $this->db->order_by('id', 'DESC');
-    return $this->db->get()->result();
+      $sql = "SELECT id, id_user, nama_kegiatan, filefoto, jenis.jenis, tingkat.tingkat, sebagai.sebagai, nilai, status, keterangan
+      FROM skkm
+      INNER JOIN jenis ON jenis.id_jenis = skkm.id_jenis
+      INNER JOIN tingkat ON  tingkat.id_tingkat = skkm.id_tingkat
+      INNER JOIN sebagai ON  sebagai.id_sebagai = skkm.id_sebagai
+      WHERE id_user = $id_user
+      AND (status = 2 OR  status = 0)";
+      return $this->db->query($sql)->result();
   }
 
   // menghitung total skkm valid
