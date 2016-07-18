@@ -5,7 +5,7 @@
     <small>kelola data SKKM di sini</small>
   </h1>
   <ol class="breadcrumb">
-    <li><a href="<?php echo site_url('mahasiswa/skkm');?>"><i class="fa fa-archive"></i>SKKKM</a></li>
+    <li><a href="<?php echo site_url('mahasiswa/skkm');?>"><i class="fa fa-archive"></i>SKKM</a></li>
     <li class="active">Data SKKM</li>
   </ol>
 </section>
