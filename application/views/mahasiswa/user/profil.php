@@ -18,8 +18,7 @@
             <img class="profile-user-img img-responsive img-circle" src="<?php echo $gravatar_url; ?>" alt="gambar Profil User">
             <h3 class="profile-username text-center"><?php echo $current_user->nama_depan.' '.$current_user->nama_belakang; ?></h3>
             <p>
-            <strong>Total Poin SKKM Belum Divalidasi:
-              <br>
+            <strong>Total poin belum divalidasi:
               <?php
               $num = 0;
               $str = "poin";
@@ -31,7 +30,7 @@
             </strong>
             </p>
             <p>
-            <strong>Total Poin SKKM Tidak Valid:
+            <strong>Total poin tidak valid:
               <?php
               $num = 0;
               $str = "poin";
@@ -43,7 +42,7 @@
             </strong>
             </p>
             <p>
-            <strong>Total Poin SKKM Valid:
+            <strong>Total poin valid:
               <?php
               $num = 0;
               $str = "poin";

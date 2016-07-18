@@ -61,7 +61,7 @@
           </table>
           <p>
             <strong>
-            Total Poin SKKM Belum Divalidasi:
+              Total poin belum divalidasi:
             <?php
             $num = 0;
             $str = "poin";
@@ -74,7 +74,7 @@
         </p>
         <p>
           <strong>
-            Total Poin SKKM tidak valid:
+            Total poin tidak valid:
             <?php
             $num = 0;
             $str = "poin";
@@ -87,7 +87,7 @@
         </p>
         <p>
           <strong>
-          Total Poin SKKM yang valid:
+            Total poin valid:
           <?php
           $num = 0;
           $str = "poin";
