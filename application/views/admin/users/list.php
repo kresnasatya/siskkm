@@ -34,6 +34,8 @@
                       <th>Nama</th>
                       <th>Email</th>
                       <th>Hak Akses</th>
+                      <th>Jurusan</th>
+                      <th>Prodi</th>
                       <th>Login Terakhir</th>
                       <th>Aksi</th>
                   </tr>
@@ -53,6 +55,20 @@
                           </td>
                           <td><?php echo $user->email; ?></td>
                           <td><?php echo $user->name; ?></td>
+                          <td>
+                              <?php if($user->nama_jurusan == NULL): ?>
+                                <?php echo '-'; ?>
+                                  <?php else: ?>
+                                  <?php echo $user->nama_jurusan; ?>
+                              <?php endif; ?>
+                          </td>
+                          <td>
+                              <?php if($user->nama_prodi == NULL): ?>
+                                  <?php echo '-'; ?>
+                              <?php else: ?>
+                                  <?php echo $user->nama_prodi; ?>
+                              <?php endif; ?>
+                          </td>
                           <td><?php echo date('Y-m-d H:i:s', $user->last_login); ?></td>
                           <td>
                               <?php if ($current_user->id != $user->id): ?>

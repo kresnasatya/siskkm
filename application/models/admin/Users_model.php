@@ -9,12 +9,13 @@ class Users_model extends CI_Model {
 
   public function get_users()
   {
-    $this->db->select('u.id, u.nama_depan, u.nama_belakang, u.email, g.name, u.last_login');
-    $this->db->from('users u');
-    $this->db->join('users_groups ug', 'u.id = ug.user_id');
-    $this->db->join('groups g', 'g.id = ug.group_id');
-    $this->db->order_by('u.id', 'DESC');
-    return $this->db->get()->result();
+      $sql = "SELECT u.id, u.nama_depan, u.nama_belakang, u.email, u.last_login, u.nim, u.nip, g.name, j.nama_jurusan, p.nama_prodi
+              FROM users u 
+              INNER JOIN users_groups ug ON ug.user_id = u.id
+              INNER JOIN groups g ON g.id = ug.group_id
+              LEFT OUTER JOIN jurusan j ON j.id = u.id_jurusan
+              LEFT OUTER JOIN prodi p ON p.id = u.id_prodi";
+    return $this->db->query($sql)->result();
   }
 
   public function get_jurusan()
