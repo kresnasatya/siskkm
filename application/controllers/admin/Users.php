@@ -22,7 +22,7 @@ class Users extends Admin_Controller {
 
   public function get_prodi()
   {
-      $id_jurusan = $this->input->post('row'); // bukan 'id_jurusan' tetapi 'row'. Lihat fungsi get_prodi di javascript.
+      $id_jurusan = $this->input->post('row'); // bukan 'id_jurusan' tetapi 'row'. Lihat fungsi getProdi di javascript.
       $prodi = $this->users->get_prodi($id_jurusan);
 
 	echo '<select name="">';

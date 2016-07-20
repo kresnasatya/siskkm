@@ -61,10 +61,7 @@ class Jenis extends Admin_Controller {
     } else {
       $id = $this->input->post('id_jenis');
       $jenis = $this->input->post('jenis');
-      $data = array(
-                 'jenis' => $jenis,
-                 'id_jenis' => $id
-      );
+      $data = array('jenis' => $jenis);
       $this->jenis->update($id, $data);
       $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Jenis berhasil diubah.</div>");
       redirect(site_url('admin/jenis'));
