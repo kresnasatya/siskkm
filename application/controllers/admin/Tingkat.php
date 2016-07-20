@@ -70,10 +70,7 @@ class Tingkat extends Admin_Controller {
       $id = $this->input->post('id_tingkat');
       $tingkat = $this->input->post('tingkat');
       $id_jenis_fk = $this->input->post('id_jenis_fk');
-      $data = array(
-                 'tingkat' => $tingkat,
-                 'id_jenis_fk' => $id_jenis_fk
-      );
+      $data = array('tingkat' => $tingkat);
       $this->tingkat->update($id, $data);
       $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Tingkat berhasil diubah.</div>");
       redirect(site_url('admin/tingkat'));
