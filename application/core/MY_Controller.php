@@ -19,7 +19,7 @@ class Admin_Controller extends MY_Controller
   function __construct()
   {
     parent::__construct();
-    if (!$this->ion_auth->logged_in()) {
+    if (!$this->ion_auth->is_admin()) {
       $this->session->set_flashdata('message', "<div style='color:red;'>Kamu bukan admin!</div>");
       redirect('login');
     }
