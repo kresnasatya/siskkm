@@ -60,14 +60,14 @@
           <div class="form-group">
             <?php echo form_label('Tingkat Kegiatan', 'id_tingkat'); ?>
             <?php echo form_error('id_tingkat'); ?>
-            <select name="id_tingkat" id="tingkat" class="form-control" onchange="getSebagai(this.value)" required="">
+            <select name="id_tingkat" id="tingkat" class="form-control" onchange="getPrestasi(this.value)" required="">
               <option value="">Silahkan Pilih</option>
             </select>
           </div>
           <div class="form-group">
-            <?php echo form_label('Sebagai', 'id_sebagai'); ?>
-            <?php echo form_error('id_sebagai'); ?>
-            <select name="id_sebagai" id="sebagai" class="form-control" onchange="getNilai(this.value)" required="">
+            <?php echo form_label('Prestasi', 'id_prestasi'); ?>
+            <?php echo form_error('id_prestasi'); ?>
+            <select name="id_prestasi" id="prestasi" class="form-control" onchange="getNilai(this.value)" required="">
               <option value="">Silahkan Pilih</option>
             </select>
           </div>

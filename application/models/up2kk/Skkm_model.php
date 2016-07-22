@@ -26,11 +26,11 @@ class Skkm_model extends CI_Model {
 
   public function get_skkm_mahasiswa($id_user)
   {
-    $this->db->select('id, id_user, nama_kegiatan, filefoto, jenis.jenis, tingkat.tingkat, sebagai.sebagai, nilai, status, keterangan');
+    $this->db->select('id, id_user, nama_kegiatan, filefoto, jenis.jenis, tingkat.tingkat, prestasi.prestasi, nilai, status, keterangan');
     $this->db->from('skkm');
     $this->db->join('jenis', 'jenis.id_jenis = skkm.id_jenis');
     $this->db->join('tingkat', 'tingkat.id_tingkat = skkm.id_tingkat');
-    $this->db->join('sebagai', 'sebagai.id_sebagai = skkm.id_sebagai');
+    $this->db->join('prestasi', 'prestasi.id_prestasi = skkm.id_prestasi');
     $this->db->where('id_user', $id_user);
     $this->db->order_by('id', 'DESC');
     return $this->db->get()->result();

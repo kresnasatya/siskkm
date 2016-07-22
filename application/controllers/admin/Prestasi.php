@@ -1,12 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Sebagai extends Admin_Controller {
+class Prestasi extends Admin_Controller {
 
   public function __construct()
   {
     parent::__construct();
-    $this->load->model('admin/Sebagai_model', 'sebagai');
+    $this->load->model('admin/Prestasi_model', 'prestasi');
     $this->load->library('form_validation');
   }
 
@@ -15,10 +15,10 @@ class Sebagai extends Admin_Controller {
     $current_user = $this->ion_auth->user()->row();
     $data = array(
                   'current_user' => $current_user,
-                  'sebagai'      => $this->sebagai->get_all(),
+                  'prestasi'      => $this->prestasi->get_all(),
                   'gravatar_url' => $this->gravatar->get($current_user->email)
     );
-    $this->template->load('templates/admin/sebagai_template', 'admin/sebagai/list', $data);
+    $this->template->load('templates/admin/prestasi_template', 'admin/prestasi/list', $data);
   }
 
   public function tambah()
@@ -28,23 +28,23 @@ class Sebagai extends Admin_Controller {
     if ($this->form_validation->run() == FALSE) {
       $data = array(
                     'current_user' => $current_user,
-                    'dd_tingkat' => $this->sebagai->get_tingkat(),
+                    'dd_tingkat' => $this->prestasi->get_tingkat(),
                     'tingkat_selected' => $this->input->post('id_tingkat_fk') ? $this->input->post('id_tingkat_fk') : '',
                     'gravatar_url' => $this->gravatar->get($current_user->email)
       );
-      $this->template->load('templates/admin/sebagai_template', 'admin/sebagai/add', $data);
+      $this->template->load('templates/admin/prestasi_template', 'admin/prestasi/add', $data);
     } else {
-      $sebagai = $this->input->post('sebagai');
+      $prestasi = $this->input->post('prestasi');
       $bobot = $this->input->post('bobot');
       $id_tingkat_fk = $this->input->post('id_tingkat_fk');
       $data = array(
-                    'sebagai' => $sebagai,
+                    'prestasi' => $prestasi,
                     'bobot'  => $bobot,
                     'id_tingkat_fk' => $id_tingkat_fk
       );
-      $this->sebagai->insert($data);
-      $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Sebagai berhasil ditambah.</div>");
-      redirect(site_url('admin/sebagai'));
+      $this->prestasi->insert($data);
+      $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Prestasi berhasil ditambah.</div>");
+      redirect(site_url('admin/prestasi'));
     }
   }
 
@@ -52,56 +52,56 @@ class Sebagai extends Admin_Controller {
   {
     $this->rules();
     $current_user = $this->ion_auth->user()->row();
-    $row = $this->sebagai->get_by_id($id);
+    $row = $this->prestasi->get_by_id($id);
     if ($this->form_validation->run() == FALSE) {
       if ($row) {
         $data = array(
-                      'id_sebagai' => $row->id_sebagai,
-                      'sebagai'    => $row->sebagai,
+                      'id_prestasi' => $row->id_prestasi,
+                      'prestasi'    => $row->prestasi,
                       'bobot'      => $row->bobot,
                       'id_tingkat_fk' => $row->id_tingkat_fk,
-                      'dd_tingkat' => $this->sebagai->get_tingkat(),
+                      'dd_tingkat' => $this->prestasi->get_tingkat(),
                       'current_user' => $current_user,
                       'gravatar_url' => $this->gravatar->get($current_user->email)
         );
-        $this->template->load('templates/admin/sebagai_template', 'admin/sebagai/edit', $data);
+        $this->template->load('templates/admin/prestasi_template', 'admin/prestasi/edit', $data);
       } else {
         $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
-        redirect(site_url('admin/sebagai'));
+        redirect(site_url('admin/prestasi'));
       }
     } else {
-      $id = $this->input->post('id_sebagai');
-      $sebagai = $this->input->post('sebagai');
+      $id = $this->input->post('id_prestasi');
+      $prestasi = $this->input->post('prestasi');
       $bobot = $this->input->post('bobot');
       $id_tingkat_fk = $this->input->post('id_tingkat_fk');
       $data = array(
-                 'sebagai' => $sebagai,
+                 'prestasi' => $prestasi,
                  'bobot' => $bobot,
                  'id_tingkat_fk' => $id_tingkat_fk
       );
-      $this->sebagai->update($id, $data);
-      $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Sebagai berhasil diubah.</div>");
-      redirect(site_url('admin/sebagai'));
+      $this->prestasi->update($id, $data);
+      $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Prestasi berhasil diubah.</div>");
+      redirect(site_url('admin/prestasi'));
     }
   }
 
   public function hapus($id)
   {
-    $row = $this->sebagai->get_by_id($id);
+    $row = $this->prestasi->get_by_id($id);
 
     if ($row) {
-      $this->sebagai->delete($id);
-      $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Sebagai berhasil dihapus.</div>");
-      redirect(site_url('admin/sebagai'));
+      $this->prestasi->delete($id);
+      $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Prestasi berhasil dihapus.</div>");
+      redirect(site_url('admin/prestasi'));
     } else {
       $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
-      redirect(site_url('admin/sebagai'));
+      redirect(site_url('admin/prestasi'));
     }
   }
 
   public function rules()
   {
-    $this->form_validation->set_rules('sebagai', 'Sebagai', 'trim|required');
+    $this->form_validation->set_rules('prestasi', 'Prestasi', 'trim|required');
     $this->form_validation->set_rules('bobot', 'Bobot', 'trim|required');
     $this->form_validation->set_rules('id_tingkat_fk', 'Tingkat', 'trim|required');
     $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');

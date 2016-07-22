@@ -1,11 +1,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Edit User
+    Ubah User
   </h1>
   <ol class="breadcrumb">
     <li><a href="<?php echo site_url('admin/users');?>"><i class="fa fa-users"></i>Users</a></li>
-    <li class="active">Data Users</li>
+    <li class="active">Data User</li>
   </ol>
 </section>
 <!-- Main content -->

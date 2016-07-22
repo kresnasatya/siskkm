@@ -1,11 +1,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Tambah Sebagai
+    Tambah Prestasi
   </h1>
   <ol class="breadcrumb">
-    <li><a href="<?php echo site_url('admin/sebagai');?>"><i class="fa fa-balance-scale"></i>Bobot SKKM</a></li>
-    <li class="active">Data Sebagai</li>
+    <li><a href="<?php echo site_url('admin/prestasi');?>"><i class="fa fa-balance-scale"></i>Bobot SKKM</a></li>
+    <li class="active">Data Prestasi</li>
   </ol>
 </section>
 
@@ -14,7 +14,7 @@
   <div class="row">
     <div class="col-md-12">
       <div class="box box-primary">
-        <?php echo form_open('admin/sebagai/tambah'); ?>
+        <?php echo form_open('admin/prestasi/tambah'); ?>
         <div class="box-body">
           <div class="form-group">
             <?php echo form_label('Tingkat', 'tingkat'); ?>
@@ -29,16 +29,16 @@
             ?>
           </div>
           <div class="form-group">
-            <?php echo form_label('Sebagai', 'sebagai'); ?>
-            <?php echo form_error('sebagai'); ?>
+            <?php echo form_label('Prestasi', 'prestasi'); ?>
+            <?php echo form_error('prestasi'); ?>
             <?php
                 $data = array(
                                 'type' => 'text',
-                                'id' => 'sebagai',
-                                'name' => 'sebagai',
-                                'value' => set_value('sebagai'),
+                                'id' => 'prestasi',
+                                'name' => 'prestasi',
+                                'value' => set_value('prestasi'),
                                 'class' => 'form-control',
-                                'placeholder' => 'Sebagai',
+                                'placeholder' => 'prestasi',
                                 'required' => 'required',
                 );
                 echo form_input($data);
@@ -59,7 +59,7 @@
                 echo form_input($data);
             ?>
           </div>
-          <?php echo anchor(site_url('admin/sebagai'), 'Kembali', 'class="btn btn-default"'); ?>
+          <?php echo anchor(site_url('admin/prestasi'), 'Kembali', 'class="btn btn-default"'); ?>
           <?php echo form_submit('submit', 'Tambah', 'class="btn btn-primary"'); ?>
         <?php echo form_close(); ?>
       </div>

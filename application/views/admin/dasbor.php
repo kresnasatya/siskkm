@@ -26,7 +26,7 @@
             <!-- Apply any bg-* class to to the icon to color it -->
             <span class="info-box-icon bg-red"><i class="fa fa-newspaper-o"></i></span>
             <div class="info-box-content">
-                <span class="info-box-text"><a href="<?php echo site_url('admin/pengumuman'); ?>">pengumuman </a></span>
+                <span class="info-box-text"><a href="<?php echo site_url('admin/pengumuman'); ?>">pengumuman</a></span>
                 <span class="info-box-number"><?php echo $count_pengumuman; ?></span>
             </div>
             <!-- /.info-box-content -->
@@ -37,7 +37,7 @@
             <!-- Apply any bg-* class to to the icon to color it -->
             <span class="info-box-icon bg-green"><i class="fa fa-files-o"></i></span>
             <div class="info-box-content">
-                <span class="info-box-text"><a href="<?php echo site_url('admin/jenis'); ?>">jenis </a></span>
+                <span class="info-box-text"><a href="<?php echo site_url('admin/jenis'); ?>">jenis</a></span>
                 <span class="info-box-number"><?php echo $count_jenis; ?></span>
             </div>
             <!-- /.info-box-content -->
@@ -61,8 +61,8 @@
             <!-- Apply any bg-* class to to the icon to color it -->
             <span class="info-box-icon bg-aqua"><i class="fa fa-files-o"></i></span>
             <div class="info-box-content">
-                <span class="info-box-text"><a href="<?php echo site_url('admin/sebagai'); ?>">sebagai </a></span>
-                <span class="info-box-number"><?php echo $count_sebagai; ?></span>
+                <span class="info-box-text"><a href="<?php echo site_url('admin/prestasi'); ?>">prestasi</a></span>
+                <span class="info-box-number"><?php echo $count_prestasi; ?></span>
             </div>
             <!-- /.info-box-content -->
         </div>

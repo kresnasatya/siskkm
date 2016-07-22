@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Sebagai_model extends CI_Model {
+class Prestasi_model extends CI_Model {
 
   public function __construct()
   {
@@ -11,16 +11,16 @@ class Sebagai_model extends CI_Model {
 
   public function get_all()
   {
-    $this->db->select('id_sebagai, tingkat.tingkat, sebagai, bobot');
-    $this->db->join('tingkat', 'tingkat.id_tingkat = sebagai.id_tingkat_fk');
-    $this->db->order_by('id_sebagai', 'DESC');
-    return $this->db->get('sebagai')->result();
+    $this->db->select('id_prestasi, tingkat.tingkat, prestasi, bobot');
+    $this->db->join('tingkat', 'tingkat.id_tingkat = prestasi.id_tingkat_fk');
+    $this->db->order_by('id_prestasi', 'DESC');
+    return $this->db->get('prestasi')->result();
   }
 
   public function get_by_id($id)
   {
-    $this->db->where('id_sebagai', $id);
-    return $this->db->get('sebagai')->row();
+    $this->db->where('id_prestasi', $id);
+    return $this->db->get('prestasi')->row();
   }
 
   function get_tingkat()
@@ -39,19 +39,19 @@ class Sebagai_model extends CI_Model {
 
   public function insert($data)
   {
-    $this->db->insert('sebagai', $data);
+    $this->db->insert('prestasi', $data);
   }
 
   public function update($id, $data)
   {
-    $this->db->where('id_sebagai', $id);
-    $this->db->update('sebagai', $data);
+    $this->db->where('id_prestasi', $id);
+    $this->db->update('prestasi', $data);
   }
 
   public function delete($id)
   {
-    $this->db->where('id_sebagai', $id);
-    $this->db->delete('sebagai');
+    $this->db->where('id_prestasi', $id);
+    $this->db->delete('prestasi');
   }
 
 }

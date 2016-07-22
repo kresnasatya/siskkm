@@ -34,9 +34,9 @@ class Dasbor_model extends CI_Model {
   }
 
   // menghitung jumlah sebagai
-  public function count_sebagai()
+  public function count_prestasi()
   {
-    return $this->db->count_all('sebagai');
+    return $this->db->count_all('prestasi');
   }
 
 }

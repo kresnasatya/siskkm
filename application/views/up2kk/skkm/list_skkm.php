@@ -24,7 +24,7 @@
                   <th>File</th>
                   <th>Jenis</th>
                   <th>Tingkat</th>
-                  <th>Sebagai</th>
+                  <th>Prestasi</th>
                   <th>Nilai</th>
                   <th>Status</th>
                   <th>Keterangan</th>
@@ -43,7 +43,7 @@
                 </div></td>
                 <td><?php echo $row->jenis; ?></td>
                 <td><?php echo $row->tingkat; ?></td>
-                <td><?php echo $row->sebagai; ?></td>
+                <td><?php echo $row->prestasi; ?></td>
                 <td><?php echo $row->nilai; ?></td>
                 <td>
                   <?php if ($row->status == 0): ?>

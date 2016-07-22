@@ -1,7 +1,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Tambah Jenis
+    Ubah Jenis
   </h1>
   <ol class="breadcrumb">
     <li><a href="<?php echo site_url('admin/jenis');?>"><i class="fa fa-balance-scale"></i>Bobot SKKM</a></li>

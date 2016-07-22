@@ -1,12 +1,12 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-    Data Sebagai
-    <small>kelola data sebagai di sini</small>
+    Data Prestasi
+    <small>kelola data prestasi di sini</small>
   </h1>
     <ol class="breadcrumb">
-        <li><a href="<?php echo site_url('admin/sebagai'); ?>"><i class="fa fa-balance-scale"></i>Bobot SKKM</a></li>
-        <li class="active">Data Sebagai</li>
+        <li><a href="<?php echo site_url('admin/prestasi'); ?>"><i class="fa fa-balance-scale"></i>Bobot SKKM</a></li>
+        <li class="active">Data Prestasi</li>
     </ol>
 </section>
 
@@ -16,23 +16,23 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3>Daftar Data Sebagai</h3>
+                    <h3>Daftar Data Prestasi</h3>
                     <div class="col-md-4">
-                        <a href="<?php echo site_url('admin/sebagai/tambah');?>" class="btn btn-primary">Tambah Sebagai</a>
+                        <a href="<?php echo site_url('admin/prestasi/tambah');?>" class="btn btn-primary">Tambah Prestasi</a>
                     </div>
                     <div class="col-md-4 text-center">
                         <div style="margin-top: 4px" id="message">
-                            <?php echo $this->session->userdata('message'); ?>
+                            <strong><?php echo $this->session->userdata('message'); ?></strong>
                         </div>
                     </div>
                 </div>
                 <div class="box-body">
-                    <table id="sebagaitable" class="table table-bordered table-striped">
+                    <table id="prestasitable" class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>No</th>
                                 <th>Tingkat</th>
-                                <th>Sebagai</th>
+                                <th>Prestasi</th>
                                 <th>Bobot</th>
                                 <th>Aksi</th>
                             </tr>
@@ -40,18 +40,18 @@
                         <tbody>
                           <?php
                             $start = 0;
-                            foreach ($sebagai as $row): ?>
+                            foreach ($prestasi as $row): ?>
                             <tr>
                               <td><?php echo ++$start ?></td>
                               <td><?php echo $row->tingkat; ?></td>
-                              <td><a href="<?php echo site_url('admin/sebagai/ubah/'.$row->id_sebagai); ?>"><?php echo $row->sebagai; ?></a></td>
+                              <td><a href="<?php echo site_url('admin/prestasi/ubah/'.$row->id_prestasi); ?>"><?php echo $row->prestasi; ?></a></td>
                               <td><?php echo $row->bobot; ?></td>
                               <td><?php
                                     $hapus = array(
                                               'class' => 'btn btn-sm btn-danger',
                                               'onclick' => 'javascript: return confirm(\'Kamu Yakin ?\')'
                                     );
-                                            echo anchor(site_url('admin/sebagai/hapus/'.$row->id_sebagai), 'Hapus', $hapus);?>
+                                            echo anchor(site_url('admin/prestasi/hapus/'.$row->id_prestasi), 'Hapus', $hapus);?>
                               </td>
                             </tr>
                           <?php endforeach; ?>
