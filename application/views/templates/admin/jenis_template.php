@@ -116,7 +116,7 @@
               <ul class="treeview-menu">
                 <li class="active"><a href="<?php echo site_url('admin/jenis'); ?>"><i class="fa fa-circle-o"></i> Data Jenis</a></li>
                 <li><a href="<?php echo site_url('admin/tingkat'); ?>"><i class="fa fa-circle-o"></i> Data Tingkat</a></li>
-                <li><a href="<?php echo site_url('admin/sebagai'); ?>"><i class="fa fa-circle-o"></i> Data Sebagai</a></li>
+                <li><a href="<?php echo site_url('admin/prestasi'); ?>"><i class="fa fa-circle-o"></i> Data Prestasi</a></li>
               </ul>
             </li>
             <li class="treeview">

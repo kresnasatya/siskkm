@@ -18,7 +18,7 @@ class Dasbor extends Admin_Controller {
                   'count_pengumuman' => $this->dasbor->count_pengumuman(),
                   'count_jenis' => $this->dasbor->count_jenis(),
                   'count_tingkat' => $this->dasbor->count_tingkat(),
-                  'count_sebagai' => $this->dasbor->count_sebagai(),
+                  'count_prestasi' => $this->dasbor->count_prestasi(),
                   'gravatar_url' => $this->gravatar->get($current_user->email)
     );
     $this->template->load('templates/admin/dasbor_template', 'admin/dasbor', $data);
