@@ -107,7 +107,7 @@
             </li>
             <li class="treeview">
               <a href="<?php echo site_url('mahasiswa/skkm');?>">
-                <i class="fa fa-archive"></i> <span>SKKKM</span>
+                <i class="fa fa-archive"></i> <span>SKKM</span>
               </a>
             </li>
           </ul>
