@@ -162,7 +162,7 @@
           url: "<?php echo site_url('mahasiswa/skkm/get_tingkat');?>",
           data:"value="+value,
           success: function(data) {
-            $("#sebagai option:gt(0)").remove();
+            $("#prestasi option:gt(0)").remove();
             $("#tingkat").html(data);
             $("#nilai").val("");
           },
@@ -173,14 +173,14 @@
         });
       };
 
-      function getSebagai(value) {
+      function getPrestasi(value) {
         //console.log(value);
         $.ajax({
           type: "POST",
-          url: "<?php echo site_url('mahasiswa/skkm/get_sebagai');?>",
+          url: "<?php echo site_url('mahasiswa/skkm/get_prestasi');?>",
           data:"value="+value,
           success: function(data) {
-            $("#sebagai").html(data);
+            $("#prestasi").html(data);
             $("#nilai").val("");
           },
 

@@ -1,7 +1,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Edit SKKM
+    Ubah SKKM
   </h1>
   <ol class="breadcrumb">
     <li><a href="<?php echo site_url('mahasiswa/skkm');?>"><i class="fa fa-archive"></i>SKKM</a></li>
@@ -61,7 +61,7 @@
           <div class="form-group">
             <?php echo form_label('Tingkat Kegiatan', 'id_tingkat'); ?>
             <?php echo form_error('id_tingkat'); ?>
-            <select name="id_tingkat" id="tingkat" class="form-control" onchange="getSebagai(this.value)" required>
+            <select name="id_tingkat" id="tingkat" class="form-control" onchange="getPrestasi(this.value)" required>
               <option value="">Silahkan Pilih</option>
               <?php foreach ($dd_tingkat as $row): ?>
                 <option value="<?php echo $row->id_tingkat; ?>"
@@ -74,16 +74,16 @@
             </select>
           </div>
           <div class="form-group">
-            <?php echo form_label('Sebagai', 'id_sebagai'); ?>
-            <?php echo form_error('id_sebagai'); ?>
-            <select name="id_sebagai" id="sebagai" class="form-control" onchange="getNilai(this.value)" required>
+            <?php echo form_label('Prestasi', 'id_prestasi'); ?>
+            <?php echo form_error('id_prestasi'); ?>
+            <select name="id_prestasi" id="prestasi" class="form-control" onchange="getNilai(this.value)" required>
               <option value="">Silahkan Pilih</option>
-              <?php foreach ($dd_sebagai as $row): ?>
-                <option value="<?php echo $row->id_sebagai; ?>"
-                  <?php if ($row->id_sebagai == $id_sebagai): ?>
+              <?php foreach ($dd_prestasi as $row): ?>
+                <option value="<?php echo $row->id_prestasi; ?>"
+                  <?php if ($row->id_prestasi == $id_prestasi): ?>
                     selected="selected"
                   <?php endif; ?>>
-                  <?php echo $row->sebagai; ?>
+                  <?php echo $row->prestasi; ?>
                 </option>
               <?php endforeach; ?>
             </select>

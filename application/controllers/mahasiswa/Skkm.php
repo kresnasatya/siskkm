@@ -39,24 +39,24 @@ class Skkm extends Mahasiswa_Controller {
 	echo '</select>';
   }
 
-  public function get_sebagai()
+  public function get_prestasi()
   {
     $id_tingkat = $this->input->post('value');
-    $sebagai = $this->skkm->get_sebagai($id_tingkat);
+    $prestasi = $this->skkm->get_prestasi($id_tingkat);
 
     echo '<select name="">';
-    echo '<option value="">Pilih Sebagai</option>';
-	foreach ($sebagai as $row)
+    echo '<option value="">Pilih Prestasi</option>';
+	foreach ($prestasi as $row)
 	{
-        echo '<option value="'.$row->id_sebagai.'">'.$row->sebagai.'</option>';
+        echo '<option value="'.$row->id_prestasi.'">'.$row->prestasi.'</option>';
 	}
 	echo '</select>';
   }
 
   public function get_nilai()
   {
-    $id_sebagai = $this->input->post('value');
-    $nilai = $this->skkm->get_nilai($id_sebagai);
+    $id_prestasi = $this->input->post('value');
+    $nilai = $this->skkm->get_nilai($id_prestasi);
 
     $data = array();
 	foreach ($nilai as $row)
@@ -77,7 +77,7 @@ class Skkm extends Mahasiswa_Controller {
                   'dd_jenis' => $this->skkm->get_jenis(),
                   'jenis_selected' => $this->input->post('id_jenis') ? $this->input->post('id_jenis') : '',
                   'tingkat_selected' => $this->input->post('id_tingkat') ? $this->input->post('id_tingkat') : '',
-                  'sebagai_selected' => $this->input->post('id_sebagai') ? $this->input->post('id_sebagai') : ''
+                  'prestasi_selected' => $this->input->post('id_prestasi') ? $this->input->post('id_prestasi') : ''
       );
       $this->template->load('templates/mahasiswa/skkm_template', 'mahasiswa/skkm/add', $data);
     } else {
@@ -101,7 +101,7 @@ class Skkm extends Mahasiswa_Controller {
                       'filefoto' => $file['file_name'],
                       'id_jenis' => $this->input->post('id_jenis'),
                       'id_tingkat' => $this->input->post('id_tingkat'),
-                      'id_sebagai' => $this->input->post('id_sebagai'),
+                      'id_prestasi' => $this->input->post('id_prestasi'),
                       'nilai' => $this->input->post('nilai'),
                       'status' => $this->input->post('status') ? $this->input->post('status') : 0,
                       'keterangan' => $this->input->post('keterangan') ? $this->input->post('keterangan') : '-'
@@ -145,8 +145,8 @@ class Skkm extends Mahasiswa_Controller {
                     'dd_jenis' => $this->skkm->get_jenis(),
                     'id_tingkat' => $row->id_tingkat,
                     'dd_tingkat' => $this->skkm->get_tingkat($row->id_jenis),
-                    'id_sebagai' => $row->id_sebagai,
-                    'dd_sebagai' => $this->skkm->get_sebagai($row->id_tingkat),
+                    'id_prestasi' => $row->id_prestasi,
+                    'dd_prestasi' => $this->skkm->get_prestasi($row->id_tingkat),
                     'nilai' => $row->nilai
       );
         $this->template->load('templates/mahasiswa/skkm_template', 'mahasiswa/skkm/edit', $data);
@@ -176,7 +176,7 @@ class Skkm extends Mahasiswa_Controller {
                         'filefoto' => $file['file_name'],
                         'id_jenis' => $this->input->post('id_jenis'),
                         'id_tingkat' => $this->input->post('id_tingkat'),
-                        'id_sebagai' => $this->input->post('id_sebagai'),
+                        'id_prestasi' => $this->input->post('id_prestasi'),
                         'nilai' => $this->input->post('nilai'),
                         'status' => $this->input->post('status') ? $this->input->post('status') : 0,
                         'keterangan' => $this->input->post('keterangan') ? $this->input->post('keterangan') : '-'
@@ -209,7 +209,7 @@ class Skkm extends Mahasiswa_Controller {
                       'nama_kegiatan' => $this->input->post('nama_kegiatan'),
                       'id_jenis' => $this->input->post('id_jenis'),
                       'id_tingkat' => $this->input->post('id_tingkat'),
-                      'id_sebagai' => $this->input->post('id_sebagai'),
+                      'id_prestasi' => $this->input->post('id_prestasi'),
                       'nilai' => $this->input->post('nilai'),
                       'status' => $this->input->post('status') ? $this->input->post('status') : 0,
                       'keterangan' => $this->input->post('keterangan') ? $this->input->post('keterangan') : '-'
@@ -241,7 +241,7 @@ class Skkm extends Mahasiswa_Controller {
     $this->form_validation->set_rules('nama_kegiatan', 'Nama Kegiatan', 'trim|required');
     $this->form_validation->set_rules('id_jenis', 'Jenis', 'trim|required');
     $this->form_validation->set_rules('id_tingkat', 'Tingkat', 'trim|required');
-    $this->form_validation->set_rules('id_sebagai', 'Sebagai', 'trim|required');
+    $this->form_validation->set_rules('id_prestasi', 'Prestasi', 'trim|required');
     $this->form_validation->set_rules('nilai', 'Nilai', 'trim|required|numeric');
     $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');
   }
