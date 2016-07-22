@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 04 Jul 2016 pada 06.32
--- Versi Server: 10.1.13-MariaDB
+-- Generation Time: Jul 22, 2016 at 12:48 PM
+-- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `groups`
+-- Table structure for table `groups`
 --
 
 CREATE TABLE `groups` (
@@ -33,7 +33,7 @@ CREATE TABLE `groups` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `groups`
+-- Dumping data for table `groups`
 --
 
 INSERT INTO `groups` (`id`, `name`, `description`) VALUES
@@ -44,7 +44,7 @@ INSERT INTO `groups` (`id`, `name`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jenis`
+-- Table structure for table `jenis`
 --
 
 CREATE TABLE `jenis` (
@@ -53,7 +53,7 @@ CREATE TABLE `jenis` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `jenis`
+-- Dumping data for table `jenis`
 --
 
 INSERT INTO `jenis` (`id_jenis`, `jenis`) VALUES
@@ -71,7 +71,7 @@ INSERT INTO `jenis` (`id_jenis`, `jenis`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jurusan`
+-- Table structure for table `jurusan`
 --
 
 CREATE TABLE `jurusan` (
@@ -80,7 +80,7 @@ CREATE TABLE `jurusan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `jurusan`
+-- Dumping data for table `jurusan`
 --
 
 INSERT INTO `jurusan` (`id`, `nama_jurusan`) VALUES
@@ -94,7 +94,7 @@ INSERT INTO `jurusan` (`id`, `nama_jurusan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kelas`
+-- Table structure for table `kelas`
 --
 
 CREATE TABLE `kelas` (
@@ -103,7 +103,7 @@ CREATE TABLE `kelas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `kelas`
+-- Dumping data for table `kelas`
 --
 
 INSERT INTO `kelas` (`id`, `kelas`) VALUES
@@ -114,7 +114,7 @@ INSERT INTO `kelas` (`id`, `kelas`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `login_attempts`
+-- Table structure for table `login_attempts`
 --
 
 CREATE TABLE `login_attempts` (
@@ -127,7 +127,7 @@ CREATE TABLE `login_attempts` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pengumuman`
+-- Table structure for table `pengumuman`
 --
 
 CREATE TABLE `pengumuman` (
@@ -142,53 +142,21 @@ CREATE TABLE `pengumuman` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `prodi`
+-- Table structure for table `prestasi`
 --
 
-CREATE TABLE `prodi` (
-  `id` int(11) NOT NULL,
-  `nama_prodi` varchar(255) NOT NULL,
-  `jenjang` char(2) NOT NULL,
-  `id_jurusan` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data untuk tabel `prodi`
---
-
-INSERT INTO `prodi` (`id`, `nama_prodi`, `jenjang`, `id_jurusan`) VALUES
-(11, 'Teknik Sipil', 'D3', 5),
-(12, 'Manajemen Proyek Konstruksi', 'D4', 5),
-(21, 'Teknik Mesin', 'D3', 4),
-(22, 'Tata Pendingin dan Tata Udara', 'D3', 4),
-(31, 'Teknik Listrik', 'D3', 1),
-(32, 'Manajemen Informatika', 'D3', 1),
-(61, 'Akuntansi', 'D3', 3),
-(64, 'Akuntansi Manajerial', 'D4', 3),
-(71, 'Administrasi Bisnis', 'D3', 6),
-(74, 'Manajemen Bisnis Internasional', 'D4', 6),
-(81, 'Usaha Perjalanan Wisata', 'D3', 2),
-(82, 'Perhotelan', 'D3', 2),
-(83, 'Manajemen Bisnis Pariwisata', 'D4', 2);
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `sebagai`
---
-
-CREATE TABLE `sebagai` (
-  `id_sebagai` int(11) NOT NULL,
+CREATE TABLE `prestasi` (
+  `id_prestasi` int(11) NOT NULL,
   `id_tingkat_fk` int(11) NOT NULL,
-  `sebagai` varchar(255) NOT NULL,
+  `prestasi` varchar(255) NOT NULL,
   `bobot` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `sebagai`
+-- Dumping data for table `prestasi`
 --
 
-INSERT INTO `sebagai` (`id_sebagai`, `id_tingkat_fk`, `sebagai`, `bobot`) VALUES
+INSERT INTO `prestasi` (`id_prestasi`, `id_tingkat_fk`, `prestasi`, `bobot`) VALUES
 (1, 1, 'Ketua', 5),
 (2, 1, 'BPH Lainnya', 4),
 (3, 1, 'Anggota', 1),
@@ -286,7 +254,39 @@ INSERT INTO `sebagai` (`id_sebagai`, `id_tingkat_fk`, `sebagai`, `bobot`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `semester`
+-- Table structure for table `prodi`
+--
+
+CREATE TABLE `prodi` (
+  `id` int(11) NOT NULL,
+  `nama_prodi` varchar(255) NOT NULL,
+  `jenjang` char(2) NOT NULL,
+  `id_jurusan` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `prodi`
+--
+
+INSERT INTO `prodi` (`id`, `nama_prodi`, `jenjang`, `id_jurusan`) VALUES
+(11, 'Teknik Sipil', 'D3', 5),
+(12, 'Manajemen Proyek Konstruksi', 'D4', 5),
+(21, 'Teknik Mesin', 'D3', 4),
+(22, 'Tata Pendingin dan Tata Udara', 'D3', 4),
+(31, 'Teknik Listrik', 'D3', 1),
+(32, 'Manajemen Informatika', 'D3', 1),
+(61, 'Akuntansi', 'D3', 3),
+(64, 'Akuntansi Manajerial', 'D4', 3),
+(71, 'Administrasi Bisnis', 'D3', 6),
+(74, 'Manajemen Bisnis Internasional', 'D4', 6),
+(81, 'Usaha Perjalanan Wisata', 'D3', 2),
+(82, 'Perhotelan', 'D3', 2),
+(83, 'Manajemen Bisnis Pariwisata', 'D4', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `semester`
 --
 
 CREATE TABLE `semester` (
@@ -295,7 +295,7 @@ CREATE TABLE `semester` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `semester`
+-- Dumping data for table `semester`
 --
 
 INSERT INTO `semester` (`id`, `semester`) VALUES
@@ -311,7 +311,7 @@ INSERT INTO `semester` (`id`, `semester`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `skkm`
+-- Table structure for table `skkm`
 --
 
 CREATE TABLE `skkm` (
@@ -321,16 +321,24 @@ CREATE TABLE `skkm` (
   `filefoto` text NOT NULL,
   `id_jenis` int(11) NOT NULL,
   `id_tingkat` int(11) NOT NULL,
-  `id_sebagai` int(11) NOT NULL,
+  `id_prestasi` int(11) NOT NULL,
   `nilai` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL,
   `keterangan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `skkm`
+--
+
+INSERT INTO `skkm` (`id_user`, `id`, `nama_kegiatan`, `filefoto`, `id_jenis`, `id_tingkat`, `id_prestasi`, `nilai`, `status`, `keterangan`) VALUES
+(3, 1, 'XYZ', 'Change_password.png', 3, 14, 40, 6, 0, '-'),
+(3, 2, 'BNM', 'Data_SKKM_berhasil_disimpan.png', 1, 1, 2, 4, 0, '-');
+
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `standar`
+-- Table structure for table `standar`
 --
 
 CREATE TABLE `standar` (
@@ -340,7 +348,7 @@ CREATE TABLE `standar` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `standar`
+-- Dumping data for table `standar`
 --
 
 INSERT INTO `standar` (`id`, `jenjang`, `standar`) VALUES
@@ -350,7 +358,7 @@ INSERT INTO `standar` (`id`, `jenjang`, `standar`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tingkat`
+-- Table structure for table `tingkat`
 --
 
 CREATE TABLE `tingkat` (
@@ -360,7 +368,7 @@ CREATE TABLE `tingkat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `tingkat`
+-- Dumping data for table `tingkat`
 --
 
 INSERT INTO `tingkat` (`id_tingkat`, `id_jenis_fk`, `tingkat`) VALUES
@@ -398,7 +406,7 @@ INSERT INTO `tingkat` (`id_tingkat`, `id_jenis_fk`, `tingkat`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -426,18 +434,19 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `nama_depan`, `nama_belakang`, `nim`, `nip`, `id_jurusan`, `id_prodi`, `id_kelas`, `id_semester`) VALUES
-(1, '127.0.0.1', 'administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', '', NULL, NULL, NULL, 1268889823, 1467583316, 1, 'Admin', 'istrator', '', '12345678960', NULL, NULL, NULL, NULL),
-(3, '::1', NULL, '$2y$08$gxicTaM8gyqf6HzEmXTptO/7p2/1YRZHiq8snTI.8vc1SVm5DVGxO', NULL, 'satyakresna6295@gmail.com', NULL, NULL, NULL, NULL, 1467583344, 1467590482, 1, 'Satya', 'Kresna', '1315323051', NULL, 1, 32, 5, 6),
-(4, '::1', NULL, '$2y$08$blQgLi.0auwMWg3QgIBYJu/SUhRlWwuDWmOH6.D1fNgpNxzojkTXq', NULL, 'indahcpt@gmail.com', NULL, NULL, NULL, NULL, 1467583389, 1467601367, 1, 'Indah', 'Ciptayani', NULL, '12345678987659', 1, NULL, NULL, NULL);
+(1, '127.0.0.1', 'administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', '', NULL, NULL, NULL, 1268889823, 1469181919, 1, 'Admin', 'istrator', '', '12345678960', NULL, NULL, NULL, NULL),
+(3, '::1', NULL, '$2y$08$gxicTaM8gyqf6HzEmXTptO/7p2/1YRZHiq8snTI.8vc1SVm5DVGxO', NULL, 'satyakresna6295@gmail.com', NULL, NULL, NULL, NULL, 1467583344, 1469183520, 1, 'Satya', 'Kresna', '1315323051', NULL, 1, 32, 5, 6),
+(4, '::1', NULL, '$2y$08$blQgLi.0auwMWg3QgIBYJu/SUhRlWwuDWmOH6.D1fNgpNxzojkTXq', NULL, 'indahcpt@gmail.com', NULL, NULL, NULL, NULL, 1467583389, 1469184193, 1, 'Indah', 'Ciptayani', NULL, '12345678987659', 1, NULL, NULL, NULL),
+(5, '::1', NULL, '$2y$08$1GjljuH9MXGpZXhRQebBf.cBxzIloMbs7AaWLI7VbOPT5LAVjf/Ci', NULL, 'sumertaagus@gmail.com', NULL, NULL, NULL, NULL, 1469167144, NULL, 1, 'Sumerta', 'Agus', '1234567890', NULL, 1, 32, 1, 4);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users_groups`
+-- Table structure for table `users_groups`
 --
 
 CREATE TABLE `users_groups` (
@@ -447,14 +456,14 @@ CREATE TABLE `users_groups` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `users_groups`
+-- Dumping data for table `users_groups`
 --
 
 INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 (1, 1, 1),
-(2, 1, 2),
 (5, 3, 3),
-(4, 4, 2);
+(4, 4, 2),
+(7, 5, 3);
 
 --
 -- Indexes for dumped tables
@@ -498,18 +507,18 @@ ALTER TABLE `pengumuman`
   ADD KEY `slug` (`slug`);
 
 --
+-- Indexes for table `prestasi`
+--
+ALTER TABLE `prestasi`
+  ADD PRIMARY KEY (`id_prestasi`),
+  ADD KEY `id_tingkat` (`id_tingkat_fk`);
+
+--
 -- Indexes for table `prodi`
 --
 ALTER TABLE `prodi`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_prodi_jurusan` (`id_jurusan`);
-
---
--- Indexes for table `sebagai`
---
-ALTER TABLE `sebagai`
-  ADD PRIMARY KEY (`id_sebagai`),
-  ADD KEY `id_tingkat` (`id_tingkat_fk`);
 
 --
 -- Indexes for table `semester`
@@ -586,10 +595,10 @@ ALTER TABLE `login_attempts`
 ALTER TABLE `pengumuman`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `sebagai`
+-- AUTO_INCREMENT for table `prestasi`
 --
-ALTER TABLE `sebagai`
-  MODIFY `id_sebagai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
+ALTER TABLE `prestasi`
+  MODIFY `id_prestasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 --
 -- AUTO_INCREMENT for table `semester`
 --
@@ -599,7 +608,7 @@ ALTER TABLE `semester`
 -- AUTO_INCREMENT for table `skkm`
 --
 ALTER TABLE `skkm`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `standar`
 --
@@ -614,18 +623,18 @@ ALTER TABLE `tingkat`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `users_groups`
 --
 ALTER TABLE `users_groups`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `users_groups`
+-- Constraints for table `users_groups`
 --
 ALTER TABLE `users_groups`
   ADD CONSTRAINT `fk_users_groups_groups1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
