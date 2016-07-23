@@ -38,7 +38,7 @@
                                 'name' => 'prestasi',
                                 'value' => set_value('prestasi'),
                                 'class' => 'form-control',
-                                'placeholder' => 'prestasi',
+                                'placeholder' => 'Prestasi',
                                 'required' => 'required',
                 );
                 echo form_input($data);
