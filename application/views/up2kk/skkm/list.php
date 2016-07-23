@@ -25,10 +25,7 @@
                     <th>No</th>
                     <th>Nama Mahasiswa</th>
                     <th>NIM</th>
-                    <th>Jurusan</th>
                     <th>Prodi</th>
-                    <th>Jenjang</th>
-                    <th>Semester</th>
                     <th>Kelas</th>
                 </tr>
             </thead>
@@ -40,11 +37,8 @@
                 <td><?php echo ++$start ?></td>
                 <td><a href="<?php echo site_url('up2kk/skkm/list_skkm/'.$row->id); ?>"><?php echo $row->nama_depan.' '.$row->nama_belakang; ?></a></td>
                 <td><?php echo $row->nim; ?></td>
-                <td><?php echo $row->nama_jurusan; ?></td>
-                <td><?php echo $row->nama_prodi; ?></td>
-                <td><?php echo $row->jenjang; ?></td>
-                <td><?php echo $row->semester; ?></td>
-                <td><?php echo $row->kelas; ?></td>
+                <td><?php echo $row->jenjang.' '.$row->nama_prodi; ?></td>
+                <td><?php echo $row->semester.$row->kelas; ?></td>
               </tr>
               <?php endforeach; ?>
             </tbody>

@@ -20,7 +20,7 @@
             <?php echo form_label('Tingkat', 'tingkat'); ?>
             <?php echo form_error('tingkat'); ?>
             <?php
-              $extra = array('class' => 'form-control select2',
+              $extra = array('class' => 'form-control',
                              'required' => 'required'
               );
               echo form_dropdown('id_tingkat_fk', $dd_tingkat, set_value('id_tingkat_fk', $id_tingkat_fk), $extra);
@@ -36,7 +36,7 @@
                                 'name' => 'prestasi',
                                 'value' => set_value('prestasi', $prestasi),
                                 'class' => 'form-control',
-                                'placeholder' => 'prestasi',
+                                'placeholder' => 'Prestasi',
                                 'required' => 'required',
                 );
                 echo form_input($data);
