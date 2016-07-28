@@ -23,10 +23,10 @@
     <! -- SIDEBAR -->
     <div class="col-lg-4">
 
-      <h4>Pos Terkini</h4>
+      <h4>Daftar Pengumuman</h4>
       <div class="hline"></div>
         <ul class="popular-posts">
-          <?php foreach ($pengumuman as $row): ?>
+          <?php foreach ($daftar_pengumuman as $row): ?>
             <li>
               <p><a href="<?php echo site_url('pengumuman/single/'.$row->slug); ?>"><?php echo $row->judul; ?></a></p>
               <em>Posted on <?php echo $row->tanggal; ?></em>

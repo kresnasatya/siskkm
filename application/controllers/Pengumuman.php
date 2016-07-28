@@ -29,14 +29,18 @@ class Pengumuman extends CI_Controller {
     $limit['offset'] = $offset;
 
     $data['pengumuman'] = $this->beranda->pengumuman_paging($limit);
+    $data = array(
+        'pengumuman' => $this->beranda->pengumuman_paging($limit),
+        'daftar_pengumuman' => $this->beranda->pengumuman()
+    );
     $this->template->load('templates/beranda_template', 'pengumuman', $data);
   }
 
   public function single($slug)
   {
     $data = array(
-                'pengumuman' => $this->beranda->pengumuman(),
-                'single' => $this->beranda->single($slug)
+                'single' => $this->beranda->single($slug),
+                'daftar_pengumuman' => $this->beranda->pengumuman()
     );
     $this->template->load('templates/beranda_template', 'single', $data);
   }
