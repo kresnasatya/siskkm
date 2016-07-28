@@ -11,7 +11,7 @@
       <?php foreach ($pengumuman as $row): ?>
         <a href="<?php echo site_url('pengumuman/single/'.$row->slug); ?>"><h3 class="ctitle"><?php echo $row->judul; ?></h3></a>
         <p><csmall>Posted: <?php echo $row->tanggal; ?></csmall> | <csmall2>Oleh: <?php echo $row->nama_depan.' '.$row->nama_belakang; ?></csmall2></p>
-        <p><?php echo character_limiter($row->isi_pengumuman, 250); ?></p>
+        <p><?php echo character_limiter($row->isi_pengumuman, 200); ?></p>
         <p><a href="<?php echo site_url('pengumuman/single/'.$row->slug); ?>">[Lanjut Baca]</a></p>
         <div class="hline"></div>
       <?php endforeach; ?>
@@ -23,10 +23,10 @@
     <! -- SIDEBAR -->
     <div class="col-lg-4">
 
-      <h4>Pos Terkini</h4>
+      <h4>Daftar Pengumuman</h4>
       <div class="hline"></div>
         <ul class="popular-posts">
-          <?php foreach ($pengumuman as $row): ?>
+          <?php foreach ($daftar_pengumuman as $row): ?>
             <li>
               <p><a href="<?php echo site_url('pengumuman/single/'.$row->slug); ?>"><?php echo $row->judul; ?></a></p>
               <em>Posted on <?php echo $row->tanggal; ?></em>
