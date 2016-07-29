@@ -45,12 +45,6 @@ class Login extends MY_Controller {
     $this->template->load('templates/login_template', 'login');
   }
 
-  public function logout()
-  {
-    $this->ion_auth->logout();
-    redirect(site_url('login'));
-  }
-
   public function _rules()
   {
     $this->form_validation->set_rules('identity', '', 'trim|required');

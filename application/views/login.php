@@ -37,6 +37,7 @@
         </div><!-- /.col -->
       </div>
     <?php echo form_close();?>
-
+    <br>
+    <a href="<?php echo site_url('forgotpassword'); ?>">Lupa Password?</a>
   </div><!-- /.login-box-body -->
 </div><!-- /.login-box -->
