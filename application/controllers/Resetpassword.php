@@ -9,7 +9,7 @@ class Resetpassword extends CI_Controller{
     $this->load->library('form_validation');
   }
 
-  function index($code)
+  public function recover($code = NULL)
   {
     if (!$code)
 		{
@@ -85,7 +85,7 @@ class Resetpassword extends CI_Controller{
 					else
 					{
 						$this->session->set_flashdata('message', $this->ion_auth->errors());
-						redirect(site_url('resetpassword/index' . $code));
+						redirect(site_url('resetpassword/recover/' . $code));
 					}
 				}
 			}
@@ -96,6 +96,30 @@ class Resetpassword extends CI_Controller{
 			$this->session->set_flashdata('message', $this->ion_auth->errors());
 			redirect(site_url('forgotpassword'));
 		}
+  }
+
+  public function _get_csrf_nonce()
+	{
+		$this->load->helper('string');
+		$key   = random_string('alnum', 8);
+		$value = random_string('alnum', 20);
+		$this->session->set_flashdata('csrfkey', $key);
+		$this->session->set_flashdata('csrfvalue', $value);
+
+		return array($key => $value);
+	}
+
+  public function _valid_csrf_nonce()
+  {
+    if ($this->input->post($this->session->flashdata('csrfkey')) !== FALSE &&
+      $this->input->post($this->session->flashdata('csrfkey')) == $this->session->flashdata('csrfvalue'))
+    {
+      return TRUE;
+    }
+    else
+    {
+      return FALSE;
+    }
   }
 
 }

@@ -67,7 +67,8 @@ class Forgotpassword extends CI_Controller{
 
 			if ($forgotten)
 			{
-				// if there were no errors
+        // if there were no errors
+        
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
 				redirect(site_url('login')); //we should display a confirmation page here instead of the login page
 			}
