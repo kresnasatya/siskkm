@@ -36,16 +36,7 @@
           <div class="form-group">
             <?php echo form_label('Isi', 'isi_pengumuman'); ?>
             <?php echo form_error('isi_pengumuman'); ?>
-            <?php
-                $data = array(
-                        'name' => 'isi_pengumuman',
-                        'value' => set_value('isi_pengumuman'),
-                        'id' => 'ckeditor judul',
-                        'class' => 'ckeditor',
-                        'required' => 'required'
-                );
-                echo form_textarea($data);
-            ?>
+            <textarea name="isi_pengumuman"></textarea>
           </div>
           <?php echo anchor(site_url('admin/pengumuman'), 'Kembali', 'class="btn btn-default"'); ?>
           <?php echo form_submit('submit', 'Tambah', 'class="btn btn-primary"'); ?>

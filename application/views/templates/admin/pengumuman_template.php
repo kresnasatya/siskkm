@@ -158,8 +158,8 @@
     <script src="<?php echo base_url('adminlte/plugins/fastclick/fastclick.min.js');?>"></script>
     <!-- AdminLTE App -->
     <script src="<?php echo base_url('adminlte/dist/js/app.min.js');?>"></script>
-    <!-- CK Editor Js -->
-    <script src="<?php echo base_url('adminlte/plugins/ckeditor/ckeditor.js');?>"></script>
+    <!-- Tinymce -->
+    <script src="<?php echo base_url('adminlte/plugins/tinymce/tinymce.min.js'); ?>" charset="utf-8"></script>
     <!-- page script-->
     <script>
       $(document).ready(function () {
@@ -167,6 +167,7 @@
           "scrollX": true
         });
       });
+      tinymce.init({ selector: 'textarea' });
     </script>
   </body>
 </html>
