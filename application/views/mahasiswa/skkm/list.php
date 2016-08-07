@@ -99,10 +99,10 @@
               <?php
               $num = 0;
               $str = "poin";
-              if ($sum_belum_divalidasi == NULL): ?>
+              if ($skkm_belum_divalidasi == NULL): ?>
                 <?php echo $num.' '.$str; ?>
               <?php else: ?>
-                <?php echo $sum_belum_divalidasi.' '.$str; ?>
+                <?php echo $skkm_belum_divalidasi.' '.$str; ?>
               <?php endif; ?>
             </strong>
           </p>

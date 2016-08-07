@@ -10,56 +10,57 @@
 <!-- Main content -->
 <section class="content">
   <div class="row">
-    <div class="col-md-3 col-sm-6 col-xs-12">
-      <div class="info-box">
-          <!-- Apply any bg-* class to to the icon to color it -->
-          <span class="info-box-icon bg-aqua"><i class="fa fa-users"></i></span>
-          <div class="info-box-content">
-              <span class="info-box-text">jumlah mahasiswa</span>
-              <span class="info-box-number">
-                <?php echo $count_mahasiswa; ?>
-              </span>
-          </div>
-          <!-- /.info-box-content -->
+    <div class="col-lg-3 col-xs-6">
+      <div class="small-box bg-aqua">
+        <div class="inner">
+          <h3>
+            <?php echo $count_mahasiswa; ?>
+          </h3>
+          <p class="text-uppercase">mahasiswa</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-check-square-o"></i>
+        </div>
+
       </div>
     </div>
-    <div class="col-md-3 col-sm-6 col-xs-12">
-      <div class="info-box">
-          <!-- Apply any bg-* class to to the icon to color it -->
-          <span class="info-box-icon bg-green"><i class="fa fa-check-square-o"></i></span>
-          <div class="info-box-content">
-              <span class="info-box-text">skkm valid</a></span>
-              <span class="info-box-number">
-                <?php echo $count_valid; ?>
-              </span>
-          </div>
-          <!-- /.info-box-content -->
+    <div class="col-lg-3 col-xs-6">
+      <div class="small-box bg-green">
+        <div class="inner">
+          <h3>
+            <?php echo $count_valid; ?>
+          </h3>
+          <p class="text-uppercase">skkm valid</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-check-square-o"></i>
+        </div>
       </div>
     </div>
-    <div class="col-md-3 col-sm-6 col-xs-12">
-      <div class="info-box">
-          <!-- Apply any bg-* class to to the icon to color it -->
-          <span class="info-box-icon bg-red"><i class="fa fa-times-circle-o"></i></span>
-          <div class="info-box-content">
-              <span class="info-box-text">skkm tidak valid</a></span>
-              <span class="info-box-number">
-                <?php echo $count_tidak_valid; ?>
-              </span>
-          </div>
-          <!-- /.info-box-content -->
+    <div class="col-lg-3 col-xs-6">
+      <div class="small-box bg-red">
+        <div class="inner">
+          <h3>
+          <?php echo $count_tidak_valid; ?>
+          </h3>
+          <p class="text-uppercase">skkm tidak valid</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-times-circle-o"></i>
+        </div>
       </div>
     </div>
-    <div class="col-md-3 col-sm-6 col-xs-12">
-      <div class="info-box">
-          <!-- Apply any bg-* class to to the icon to color it -->
-          <span class="info-box-icon bg-yellow"><i class="fa fa-question-circle"></i></span>
-          <div class="info-box-content">
-              <span class="info-box-text">skkm belum <br>divalidasi</span>
-              <span class="info-box-number">
-                <?php echo $count_belum_divalidasi; ?>
-              </span>
-          </div>
-          <!-- /.info-box-content -->
+    <div class="col-lg-3 col-xs-6">
+      <div class="small-box bg-yellow">
+        <div class="inner">
+          <h3>
+            <?php echo $count_belum_divalidasi; ?>
+          </h3>
+          <p class="text-uppercase">skkm belum divalidasi</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-question-circle"></i>
+        </div>
       </div>
     </div>
   </div>

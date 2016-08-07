@@ -12,65 +12,67 @@
 <!-- Main content -->
 <section class="content">
   <div class="row">
-    <div class="col-md-3 col-sm-6 col-xs-12">
-      <div class="info-box">
-          <!-- Apply any bg-* class to to the icon to color it -->
-          <span class="info-box-icon bg-green"><i class="fa fa-check-square-o"></i></span>
-          <div class="info-box-content">
-              <span class="info-box-text"><a href="<?php echo site_url('mahasiswa/skkm'); ?>">skkm valid</a></span>
-              <span class="info-box-number">
-                <?php
-                $number = 0;
-                $str = "poin";
-                if ($skkm_valid == NULL): ?>
-                    <?php echo $number.' '.$str; ?>
-                  <?php else: ?>
-                    <?php echo $skkm_valid.' '.$str; ?>
-                <?php endif; ?>
-              </span>
-          </div>
-          <!-- /.info-box-content -->
+    <div class="col-lg-3 col-xs-6">
+      <div class="small-box bg-green">
+        <div class="inner">
+          <h3>
+            <?php
+            $number = 0;
+            $str = "poin";
+            if ($skkm_valid == NULL): ?>
+                <?php echo $number.' '.$str; ?>
+              <?php else: ?>
+                <?php echo $skkm_valid.' '.$str; ?>
+            <?php endif; ?>
+          </h3>
+          <p class="text-uppercase">skkm valid</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-check-square-o"></i>
+        </div>
+        <a href="<?php echo site_url('mahasiswa/skkm'); ?>" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
-    <div class="col-md-3 col-sm-6 col-xs-12">
-      <div class="info-box">
-          <!-- Apply any bg-* class to to the icon to color it -->
-          <span class="info-box-icon bg-red"><i class="fa fa-times-circle-o"></i></span>
-          <div class="info-box-content">
-              <span class="info-box-text"><a href="<?php echo site_url('mahasiswa/skkm'); ?>">skkm tidak valid</a></span>
-              <span class="info-box-number">
-                <?php
-                $number = 0;
-                $str = "poin";
-                if ($skkm_tidak_valid == NULL): ?>
-                    <?php echo $number.' '.$str; ?>
-                  <?php else: ?>
-                    <?php echo $skkm_tidak_valid.' '.$str; ?>
-                <?php endif; ?>
-              </span>
-          </div>
-          <!-- /.info-box-content -->
+    <div class="col-lg-3 col-xs-6">
+      <div class="small-box bg-red">
+        <div class="inner">
+          <h3>
+            <?php
+            $number = 0;
+            $str = "poin";
+            if ($skkm_tidak_valid == NULL): ?>
+                <?php echo $number.' '.$str; ?>
+              <?php else: ?>
+                <?php echo $skkm_tidak_valid.' '.$str; ?>
+            <?php endif; ?>
+          </h3>
+          <p class="text-uppercase">skkm tidak valid</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-times-circle-o"></i>
+        </div>
+        <a href="<?php echo site_url('mahasiswa/skkm'); ?>" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
-    <div class="col-md-3 col-sm-6 col-xs-12">
-      <div class="info-box">
-          <!-- Apply any bg-* class to to the icon to color it -->
-          <span class="info-box-icon bg-yellow"><i class="fa fa-question-circle"></i></span>
-          <div class="info-box-content">
-              <span class="info-box-text"><a href="<?php echo site_url('mahasiswa/skkm'); ?>">skkm belum <br>
-                divalidasi</a></span>
-              <span class="info-box-number">
-                <?php
-                $number = 0;
-                $str = "poin";
-                if ($skkm_belum_divalidasi == NULL): ?>
-                    <?php echo $number.' '.$str; ?>
-                  <?php else: ?>
-                    <?php echo $skkm_belum_divalidasi.' '.$str; ?>
-                <?php endif; ?>
-              </span>
-          </div>
-          <!-- /.info-box-content -->
+    <div class="col-lg-3 col-xs-6">
+      <div class="small-box bg-yellow">
+        <div class="inner">
+          <h3>
+            <?php
+            $number = 0;
+            $str = "poin";
+            if ($skkm_belum_divalidasi == NULL): ?>
+                <?php echo $number.' '.$str; ?>
+              <?php else: ?>
+                <?php echo $skkm_belum_divalidasi.' '.$str; ?>
+            <?php endif; ?>
+          </h3>
+          <p class="text-uppercase">skkm belum divalidasi</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-question-circle"></i>
+        </div>
+        <a href="<?php echo site_url('mahasiswa/skkm'); ?>" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
   </div>
