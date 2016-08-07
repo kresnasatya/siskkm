@@ -6,6 +6,8 @@
     <title>SISKKM | UP2KK</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Normalize CSS -->
+    <link rel="stylesheet" href="<?php echo base_url('adminlte/plugins/normalize.css');?>">
     <!-- Bootstrap 3.3.5 -->
     <link rel="stylesheet" href="<?php echo base_url('adminlte/bootstrap/css/bootstrap.min.css');?>">
     <!-- Font Awesome -->
@@ -17,8 +19,6 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="<?php echo base_url('adminlte/dist/css/skins/_all-skins.min.css');?>">
-    <!-- Normalize CSS -->
-    <link rel="stylesheet" href="<?php echo base_url('adminlte/plugins/normalize.css');?>">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

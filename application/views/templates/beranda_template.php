@@ -10,6 +10,9 @@
 
     <title>SISKKM - Politeknik Negeri Bali</title>
 
+    <!-- Normalize -->
+    <link rel="stylesheet" href="<?php echo base_url('solid/assets/css/normalize.css'); ?>">
+
     <!-- Bootstrap core CSS -->
     <link href="<?php echo base_url('solid/assets/css/bootstrap.css'); ?>" rel="stylesheet">
 

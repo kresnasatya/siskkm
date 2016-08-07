@@ -6,18 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SISKKM</title>
 
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="<?php echo base_url('homepage/bootstrap/css/bootstrap.min.css'); ?>">
     <!-- Normalize -->
-    <link rel="stylesheet" href="<?php echo base_url('homepage/normalize.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('solid/assets/css/normalize.css'); ?>">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="<?php echo base_url('solid/assets/css/bootstrap.min.css'); ?>">
+
   </head>
   <body>
 
     <?php echo $contents;?>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="<?php echo base_url('homepage/jQuery/jquery.min.js'); ?>"></script>
+    <script src="<?php echo base_url('solid/assets/js/jquery.min.js'); ?>"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="<?php echo base_url('homepage/bootstrap/js/bootstrap.min.js'); ?>"></script>
+    <script src="<?php echo base_url('solid/assets/js/bootstrap.min.js'); ?>"></script>
   </body>
 </html>
