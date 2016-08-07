@@ -18,7 +18,7 @@ class Skkm extends Mahasiswa_Controller {
                   'gravatar_url' => $this->gravatar->get($current_user->email),
                   'skkm' => $this->skkm->get_all($current_user->id),
                   'skkm_valid' => $this->skkm->sum_valid($current_user->id),
-                  'sum_belum_divalidasi' => $this->skkm->sum_belum_divalidasi($current_user->id),
+                  'skkm_belum_divalidasi' => $this->skkm->sum_belum_divalidasi($current_user->id),
                   'skkm_tidak_valid' => $this->skkm->sum_tidak_valid($current_user->id),
                   'status_skkm' => $this->skkm->status_skkm($current_user->id)
     );
