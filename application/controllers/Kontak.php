@@ -16,7 +16,7 @@ class Kontak extends CI_Controller {
   public function kirim_pesan()
   {
     $from = $this->input->post('email');
-    $to = "satyakresna6295@gmail.com";
+    $to = "devsiskkm@satyakresna.com";
     $name = $this->input->post('nama');
     $subject = $this->input->post('perihal');
     $message = $this->input->post('pesan');
