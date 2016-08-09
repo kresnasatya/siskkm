@@ -170,28 +170,39 @@
       $(document).ready(function(){
         $("#userstable").DataTable();
         var groups = document.querySelector('input[name = "groups[]"]:checked').value;
+
+        // group admin UP2KK
         if (groups == 1) {
-          console.log("nilai groups: "+groups);
           document.getElementById('nim').disabled=true;
           document.getElementById('jurusan').disabled=true;
           document.getElementById('prodi').disabled=true;
           document.getElementById('kelas').disabled=true;
           document.getElementById('semester').disabled=true;
-        } else if (groups == 2) {
-          console.log("nilai groups: "+groups);
+          document.getElementById('nip').required=true;
+        }
+        // group anggota UP2KK
+        else if (groups == 2) {
           document.getElementById('nim').disabled=true;
           document.getElementById('jurusan').disabled=false;
+          document.getElementById('jurusan').required=true;
           document.getElementById('prodi').disabled=true;
           document.getElementById('kelas').disabled=true;
           document.getElementById('semester').disabled=true;
-        } else if (groups == 3) {
-          console.log("nilai groups: "+groups);
+          document.getElementById('nip').required=true;
+        }
+        // group mahasiswa
+        else if (groups == 3) {
           document.getElementById('nip').disabled=true;
           document.getElementById('nim').disabled=false;
+          document.getElementById('nim').required=true;
           document.getElementById('jurusan').disabled=false;
+          document.getElementById('jurusan').required=true;
           document.getElementById('prodi').disabled=false;
+          document.getElementById('prodi').required=true;
           document.getElementById('kelas').disabled=false;
+          document.getElementById('kelas').required=true;
           document.getElementById('semester').disabled=false;
+          document.getElementById('semester').required=true;
         }
       });
 
@@ -218,10 +229,10 @@
         var usersForm = document.forms.usersForm;
         var groups = usersForm.elements['groups[]'];
 
-        // bernilai 1 = admin
+        // group = admin UP2KK
         if (groups.value == 1) {
-          //console.log("test: "+myControls.value);
           document.getElementById('nip').disabled=false;
+          document.getElementById('nip').required=true;
           document.getElementById('nim').disabled=true;
           document.getElementById('jurusan').disabled=true;
           document.getElementById('prodi').disabled=true;
@@ -230,27 +241,32 @@
 
           $("#nim").val("");
         }
-        // bernilai 2 = up2kk
+        // group = anggota UP2KK
         else if (groups.value == 2) {
-          //console.log("test: "+myControls.value);
           document.getElementById('nip').disabled=false;
+          document.getElementById('nip').required=true;
           document.getElementById('nim').disabled=true;
           document.getElementById('jurusan').disabled=false;
+          document.getElementById('jurusan').required=true;
           document.getElementById('prodi').disabled=true;
           document.getElementById('kelas').disabled=true;
           document.getElementById('semester').disabled=true;
 
           $("#nim").val("");
         }
-        // bernilai 3 = mahasiswa
+        // group = mahasiswa
         else if (groups.value == 3) {
-          //console.log("test: "+myControls.value);
           document.getElementById('nip').disabled=true;
           document.getElementById('nim').disabled=false;
+          document.getElementById('nim').required=true;
           document.getElementById('jurusan').disabled=false;
+          document.getElementById('jurusan').required=true;
           document.getElementById('prodi').disabled=false;
+          document.getElementById('prodi').required=true;
           document.getElementById('kelas').disabled=false;
+          document.getElementById('kelas').required=true;
           document.getElementById('semester').disabled=false;
+          document.getElementById('semester').required=true;
 
           $("#nip").val("");
         }
@@ -263,8 +279,8 @@
 
         // bernilai 1 = admin
         if (groups.value == 1) {
-          //console.log("test: "+myControls.value);
           document.getElementById('nip').disabled=false;
+          document.getElementById('nip').required=true;
           document.getElementById('nim').disabled=true;
           document.getElementById('jurusan').disabled=true;
           document.getElementById('prodi').disabled=true;
@@ -275,10 +291,11 @@
         }
         // bernilai 2 = up2kk
         else if (groups.value == 2) {
-          //console.log("test: "+myControls.value);
           document.getElementById('nip').disabled=false;
+          document.getElementById('nip').required=true;
           document.getElementById('nim').disabled=true;
           document.getElementById('jurusan').disabled=false;
+          document.getElementById('jurusan').required=true;
           document.getElementById('prodi').disabled=true;
           document.getElementById('kelas').disabled=true;
           document.getElementById('semester').disabled=true;
@@ -287,13 +304,17 @@
         }
         // bernilai 3 = mahasiswa
         else if (groups.value == 3) {
-          //console.log("test: "+myControls.value);
           document.getElementById('nip').disabled=true;
           document.getElementById('nim').disabled=false;
+          document.getElementById('nim').required=true;
           document.getElementById('jurusan').disabled=false;
+          document.getElementById('jurusan').required=true;
           document.getElementById('prodi').disabled=false;
+          document.getElementById('prodi').required=true;
           document.getElementById('kelas').disabled=false;
+          document.getElementById('kelas').required=true;
           document.getElementById('semester').disabled=false;
+          document.getElementById('semester').required=true;
 
           $("#nip").val("");
         }

@@ -152,13 +152,13 @@ class Users extends Admin_Controller {
     $this->form_validation->set_rules('nama_depan', 'Nama depan', 'trim|required');
     $this->form_validation->set_rules('nama_belakang', 'Nama belakang', 'trim|required');
     $this->form_validation->set_rules('groups[]','Hak Akses','required|integer');
-    $this->form_validation->set_rules('nim', 'Nim', 'trim|is_unique[users.nim]');
-    $this->form_validation->set_rules('nip', 'Nip', 'trim|is_unique[users.nip]');
+    $this->form_validation->set_rules('nim', 'Nim', 'trim|is_unique[users.nim]|numeric|min_length[10]');
+    $this->form_validation->set_rules('nip', 'Nip', 'trim|is_unique[users.nip]|numeric|min_length[18]');
     $this->form_validation->set_rules('id_jurusan', 'Jurusan', 'trim');
     $this->form_validation->set_rules('id_prodi', 'Prodi', 'trim');
     $this->form_validation->set_rules('id_kelas', 'Kelas', 'trim');
     $this->form_validation->set_rules('id_semester', 'Semester', 'trim');
-    $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');
+    $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
   }
 
   public function rules_ubah()
@@ -167,13 +167,13 @@ class Users extends Admin_Controller {
     $this->form_validation->set_rules('nama_depan', 'Nama depan', 'trim|required');
     $this->form_validation->set_rules('nama_belakang', 'Nama belakang', 'trim|required');
     $this->form_validation->set_rules('groups[]','Hak Akses','required|integer');
-    $this->form_validation->set_rules('nim', 'Nim', 'trim');
-    $this->form_validation->set_rules('nip', 'Nip', 'trim');
+    $this->form_validation->set_rules('nim', 'Nim', 'trim|numeric|min_length[10]');
+    $this->form_validation->set_rules('nip', 'Nip', 'trim|numeric|min_length[18]');
     $this->form_validation->set_rules('id_jurusan', 'Jurusan', 'trim');
     $this->form_validation->set_rules('id_prodi', 'Prodi', 'trim');
     $this->form_validation->set_rules('id_kelas', 'Kelas', 'trim');
     $this->form_validation->set_rules('id_semester', 'Semester', 'trim');
-    $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');
+    $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
   }
 
 }

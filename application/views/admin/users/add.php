@@ -71,8 +71,11 @@
                   <div class="radio">
                     <label>
                       <?php
-                        $js = 'onclick="form_add_check()"';
-                        echo form_radio('groups[]', $group->id, set_radio('groups[]', $group->id), $js); ?>
+                        $extra = array(
+                                      'onclick' => 'form_add_check()',
+                                      'required' => TRUE
+                        );
+                        echo form_radio('groups[]', $group->id, set_radio('groups[]', $group->id), $extra); ?>
                       <?php echo $group->name; ?>
                     </label>
                   </div>
@@ -89,7 +92,8 @@
                                 'name' => 'nim',
                                 'value' => set_value('nim'),
                                 'id' => 'nim',
-                                'placeholder' => 'Nim'
+                                'placeholder' => 'Nim',
+                                'maxlength' => 10
                   );
                echo form_input($data); ?>
             </div>
@@ -103,7 +107,8 @@
                                 'name' => 'nip',
                                 'value' => set_value('nip'),
                                 'id' => 'nip',
-                                'placeholder' => 'Nip'
+                                'placeholder' => 'Nip',
+                                'maxlength' => 18
                   );
               echo form_input($data); ?>
             </div>
