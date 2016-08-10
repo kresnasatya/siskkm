@@ -10,11 +10,11 @@ class Skkm_model extends CI_Model {
 
   public function get_all($id_user)
   {
-    $this->db->select('id, id_user, nama_kegiatan, filefoto, j.jenis, t.tingkat, s.prestasi, nilai, status, keterangan');
+    $this->db->select('id, id_user, nama_kegiatan, filefoto, j.jenis, t.tingkat, p.prestasi, nilai, status, keterangan');
     $this->db->from('skkm');
     $this->db->join('jenis j', 'j.id_jenis = skkm.id_jenis');
     $this->db->join('tingkat t', 't.id_tingkat = skkm.id_tingkat');
-    $this->db->join('prestasi s', 's.id_prestasi = skkm.id_prestasi');
+    $this->db->join('prestasi p', 'p.id_prestasi = skkm.id_prestasi');
     $this->db->where('id_user', $id_user);
     $this->db->order_by('id', 'DESC');
     return $this->db->get()->result();
@@ -41,9 +41,9 @@ class Skkm_model extends CI_Model {
     }
 
     $this->db->select('*');
-	$this->db->from('tingkat');
-	$result = $this->db->get();
-	return $result->result();
+  	$this->db->from('tingkat');
+  	$result = $this->db->get();
+  	return $result->result();
   }
 
   public function get_prestasi($id_tingkat)
@@ -53,9 +53,9 @@ class Skkm_model extends CI_Model {
     }
 
     $this->db->select('id_prestasi, prestasi');
-	$this->db->from('prestasi');
-	$result = $this->db->get();
-	return $result->result();
+  	$this->db->from('prestasi');
+  	$result = $this->db->get();
+  	return $result->result();
   }
 
   public function get_nilai($id_prestasi)
