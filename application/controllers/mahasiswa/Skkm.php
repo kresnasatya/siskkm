@@ -246,4 +246,17 @@ class Skkm extends Mahasiswa_Controller {
     $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');
   }
 
+  public function cetak_laporan()
+  {
+    $current_user = $this->ion_auth->user()->row();
+    $result= array(
+                  'profil' => $this->skkm->get_profil($current_user->id),
+                  'skkm' => $this->skkm->get_all($current_user->id),
+                  'sum_valid' => $this->skkm->sum_valid($current_user->id),
+                  'sum_belum_divalidasi' => $this->skkm->sum_belum_divalidasi($current_user->id),
+                  'sum_tidak_valid' => $this->skkm->sum_tidak_valid($current_user->id)
+    );
+    $this->load->view('mahasiswa/skkm/laporan', $result);
+  }
+
 }

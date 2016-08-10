@@ -66,8 +66,8 @@ class Skkm_model extends CI_Model {
 
     $this->db->select('id_prestasi, bobot');
     $this->db->from('prestasi');
-	$result = $this->db->get();
-	return $result->result();
+  	$result = $this->db->get();
+  	return $result->result();
   }
 
   // menghitung total skkm valid
@@ -126,6 +126,18 @@ class Skkm_model extends CI_Model {
   {
     $this->db->where('id', $id);
     $this->db->delete('skkm');
+  }
+
+  public function get_profil($id_user)
+  {
+    $this->db->select('u.id, u.nama_depan, u.nama_belakang, u.nim, u.email, j.id, j.nama_jurusan, p.id, p.nama_prodi, p.jenjang, s.id, s.semester, k.id, k.kelas');
+    $this->db->from('users u');
+    $this->db->join('jurusan j', 'j.id = u.id_jurusan');
+    $this->db->join('prodi p', 'p.id = u.id_prodi');
+    $this->db->join('kelas k', 'k.id = u.id_kelas');
+    $this->db->join('semester s', 's.id = u.id_semester');
+    $this->db->where('u.id', $id_user);
+    return $query = $this->db->get()->row();
   }
 
 }

@@ -62,6 +62,7 @@
               <?php endif; ?>
             </strong>
             </p>
+            <?php echo anchor(site_url('mahasiswa/skkm/cetak_laporan'),'Cetak Laporan','class="btn btn-primary btn-block"'); ?>
           </div>
           <div class="col-md-9">
             <ul class="list-group list-group-unbordered">
