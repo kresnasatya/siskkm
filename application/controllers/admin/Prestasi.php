@@ -104,7 +104,7 @@ class Prestasi extends Admin_Controller {
     $this->form_validation->set_rules('prestasi', 'Prestasi', 'trim|required');
     $this->form_validation->set_rules('bobot', 'Bobot', 'trim|required');
     $this->form_validation->set_rules('id_tingkat_fk', 'Tingkat', 'trim|required');
-    $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');
+    $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
   }
 
 }

@@ -85,7 +85,7 @@ class Jenis extends Admin_Controller {
   public function rules()
   {
     $this->form_validation->set_rules('jenis', 'Jenis', 'trim|required');
-    $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');
+    $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
   }
 
 }

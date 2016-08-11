@@ -243,7 +243,7 @@ class Skkm extends Mahasiswa_Controller {
     $this->form_validation->set_rules('id_tingkat', 'Tingkat', 'trim|required');
     $this->form_validation->set_rules('id_prestasi', 'Prestasi', 'trim|required');
     $this->form_validation->set_rules('nilai', 'Nilai', 'trim|required|numeric');
-    $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');
+    $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
   }
 
   public function cetak_laporan()

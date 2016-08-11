@@ -102,14 +102,14 @@ class User extends Mahasiswa_Controller {
     $this->form_validation->set_rules('id_prodi', 'Prodi', 'trim|required');
     $this->form_validation->set_rules('id_kelas', 'Kelas', 'trim|required');
     $this->form_validation->set_rules('id_semester', 'Semester', 'trim|required');
-    $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');
+    $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
   }
 
   public function rules_ubah_password()
   {
     $this->form_validation->set_rules('password_baru', 'Password Baru', 'trim|required');
     $this->form_validation->set_rules('konfirmasi_password', 'Konfirmasi Password', 'trim|required|matches[password_baru]');
-    $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');
+    $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
   }
 
 }

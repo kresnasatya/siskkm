@@ -74,14 +74,14 @@ class User extends UP2KK_Controller {
     $this->form_validation->set_rules('nama_belakang',  'Nama belakang',  'trim|required');
     $this->form_validation->set_rules('email',  'Email',  'trim|required|valid_email');
     $this->form_validation->set_rules('nip',  'Nip',  'trim|required');
-    $this->form_validation->set_error_delimiters('<span class="text-warning">',  '</span>');
+    $this->form_validation->set_error_delimiters('<span class="text-danger">',  '</span>');
   }
 
   public function rules_ubah_password()
   {
     $this->form_validation->set_rules('password_baru',  'Password Baru',  'trim|required');
     $this->form_validation->set_rules('konfirmasi_password',  'Konfirmasi Password',  'trim|required|matches[password_baru]');
-    $this->form_validation->set_error_delimiters('<span class="text-warning">',  '</span>');
+    $this->form_validation->set_error_delimiters('<span class="text-danger">',  '</span>');
   }
 
 }

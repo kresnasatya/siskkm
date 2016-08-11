@@ -94,7 +94,7 @@ class Tingkat extends Admin_Controller {
   public function rules()
   {
     $this->form_validation->set_rules('tingkat', 'Tingkat', 'trim|required');
-    $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');
+    $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
   }
 
 }

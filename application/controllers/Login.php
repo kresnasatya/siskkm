@@ -55,7 +55,7 @@ class Login extends CI_Controller {
   {
     $this->form_validation->set_rules('identity', '', 'trim|required');
     $this->form_validation->set_rules('password', '', 'trim|required');
-    $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');
+    $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
   }
 
 }

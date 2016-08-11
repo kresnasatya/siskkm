@@ -102,7 +102,7 @@ class Pengumuman extends Admin_Controller {
   {
     $this->form_validation->set_rules('judul', 'Judul', 'trim|required');
     $this->form_validation->set_rules('isi_pengumuman', 'Isi', 'trim|required');
-    $this->form_validation->set_error_delimiters('<span class="text-warning">', '</span>');
+    $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
   }
 
 }
