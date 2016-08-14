@@ -86,4 +86,15 @@ class Skkm_model extends CI_Model {
     return $this->db->get()->row();
   }
 
+  public function get_skkm_valid()
+  {
+    $this->db->select('id, nama_kegiatan, filefoto, jenis.jenis, tingkat.tingkat, prestasi.prestasi, nilai, status, keterangan');
+    $this->db->from('skkm');
+    $this->db->join('jenis', 'jenis.id_jenis = skkm.id_jenis');
+    $this->db->join('tingkat', 'tingkat.id_tingkat = skkm.id_tingkat');
+    $this->db->join('prestasi', 'prestasi.id_prestasi = skkm.id_prestasi');
+    $this->db->where('status', 1);
+    return $this->db->get()->result();
+  }
+
 }

@@ -32,7 +32,7 @@ class Validasi_model extends CI_Model {
       INNER JOIN tingkat ON  tingkat.id_tingkat = skkm.id_tingkat
       INNER JOIN prestasi ON  prestasi.id_prestasi = skkm.id_prestasi
       WHERE id_user = $id_user
-      AND (status = 2 OR  status = 0)";
+      AND (status = 2 OR status = 0)";
       return $this->db->query($sql)->result();
   }
 
@@ -83,6 +83,28 @@ class Validasi_model extends CI_Model {
     $this->db->from('skkm');
     $this->db->where('id', $id_skkm);
     return $this->db->get()->row();
+  }
+
+  public function get_skkm_belum_valid()
+  {
+    $this->db->select('id, nama_kegiatan, filefoto, jenis.jenis, tingkat.tingkat, prestasi.prestasi, nilai, status, keterangan');
+    $this->db->from('skkm');
+    $this->db->join('jenis', 'jenis.id_jenis = skkm.id_jenis');
+    $this->db->join('tingkat', 'tingkat.id_tingkat = skkm.id_tingkat');
+    $this->db->join('prestasi', 'prestasi.id_prestasi = skkm.id_prestasi');
+    $this->db->where('status', 0);
+    return $this->db->get()->result();
+  }
+
+  public function get_skkm_tidak_valid()
+  {
+    $this->db->select('id, nama_kegiatan, filefoto, jenis.jenis, tingkat.tingkat, prestasi.prestasi, nilai, status, keterangan');
+    $this->db->from('skkm');
+    $this->db->join('jenis', 'jenis.id_jenis = skkm.id_jenis');
+    $this->db->join('tingkat', 'tingkat.id_tingkat = skkm.id_tingkat');
+    $this->db->join('prestasi', 'prestasi.id_prestasi = skkm.id_prestasi');
+    $this->db->where('status', 2);
+    return $this->db->get()->result();
   }
 
   public function validasi_skkm($id_skkm, $data)

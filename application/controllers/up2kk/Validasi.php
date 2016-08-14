@@ -76,6 +76,26 @@ class Validasi extends UP2KK_Controller {
     }
   }
 
+  public function skkm_tidak_valid()
+  {
+    $current_user = $this->ion_auth->user()->row();
+    $data = array('current_user' => $current_user,
+                  'gravatar_url' => $this->gravatar->get($current_user->email),
+                  'skkm_tidak_valid' => $this->validasi->get_skkm_tidak_valid()
+    );
+    $this->template->load('templates/up2kk/validasi_template', 'up2kk/validasi/skkm_tidak_valid', $data);
+  }
+
+  public function skkm_belum_valid()
+  {
+    $current_user = $this->ion_auth->user()->row();
+    $data = array('current_user' => $current_user,
+                  'gravatar_url' => $this->gravatar->get($current_user->email),
+                  'skkm_belum_valid' => $this->validasi->get_skkm_belum_valid()
+    );
+    $this->template->load('templates/up2kk/validasi_template', 'up2kk/validasi/skkm_belum_valid', $data);
+  }
+
   public function rules()
   {
     $this->form_validation->set_rules('status', 'Status', 'trim|required');

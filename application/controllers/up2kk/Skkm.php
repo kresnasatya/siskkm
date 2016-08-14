@@ -21,7 +21,7 @@ class Skkm extends UP2KK_Controller{
     $this->template->load('templates/up2kk/skkm_template', 'up2kk/skkm/list', $data);
   }
 
-  public function list_skkm($id_user)
+  public function daftar_skkm($id_user)
   {
     $current_user = $this->ion_auth->user()->row();
     $row = $this->skkm->get_skkm_mahasiswa($id_user);
@@ -35,6 +35,16 @@ class Skkm extends UP2KK_Controller{
                   'status_skkm' => $this->skkm->status_skkm($id_user)
     );
     $this->template->load('templates/up2kk/skkm_template', 'up2kk/skkm/list_skkm', $data);
+  }
+
+  public function daftar_skkm_valid()
+  {
+    $current_user = $this->ion_auth->user()->row();
+    $data = array('current_user' => $current_user,
+                  'gravatar_url' => $this->gravatar->get($current_user->email),
+                  'skkm_valid' => $this->skkm->get_skkm_valid()
+    );
+    $this->template->load('templates/up2kk/skkm_template', 'up2kk/skkm/daftar_skkm_valid', $data);
   }
 
 }
