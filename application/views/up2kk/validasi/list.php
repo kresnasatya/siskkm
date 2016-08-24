@@ -35,7 +35,7 @@
               foreach ($mahasiswa as $row): ?>
               <tr>
                 <td><?php echo ++$start ?></td>
-                <td><a href="<?php echo site_url('up2kk/validasi/list_skkm/'.$row->id); ?>"><?php echo $row->nama_depan.' '.$row->nama_belakang; ?></a></td>
+                <td><a href="<?php echo site_url('up2kk/validasi/skkm/'.$row->id); ?>"><?php echo $row->nama_depan.' '.$row->nama_belakang; ?></a></td>
                 <td><?php echo $row->nim; ?></td>
                 <td><?php echo $row->jenjang.' '.$row->nama_prodi; ?></td>
                 <td><?php echo $row->semester.$row->kelas; ?></td>
