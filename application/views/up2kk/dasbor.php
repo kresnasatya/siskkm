@@ -21,7 +21,7 @@
         <div class="icon">
           <i class="fa fa-users"></i>
         </div>
-        <a href="<?php echo site_url('up2kk/validasi'); ?>" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
+        <a href="<?php echo site_url('up2kk/daftar-mahasiswa'); ?>" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <div class="col-lg-3 col-xs-6">
@@ -35,7 +35,7 @@
         <div class="icon">
           <i class="fa fa-check-square-o"></i>
         </div>
-        <a href="<?php echo site_url('up2kk/skkm/daftar_skkm_valid'); ?>" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
+        <a href="<?php echo site_url('up2kk/daftar-skkm-valid'); ?>" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <div class="col-lg-3 col-xs-6">
@@ -49,7 +49,7 @@
         <div class="icon">
           <i class="fa fa-times-circle-o"></i>
         </div>
-        <a href="<?php echo base_url('up2kk/validasi/skkm_tidak_valid'); ?>" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
+        <a href="<?php echo base_url('up2kk/daftar-skkm-tidak-valid'); ?>" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <div class="col-lg-3 col-xs-6">
@@ -63,7 +63,7 @@
         <div class="icon">
           <i class="fa fa-question-circle"></i>
         </div>
-        <a href="<?php echo site_url('up2kk/validasi/skkm_belum_valid'); ?>" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
+        <a href="<?php echo site_url('up2kk/daftar-skkm-belum-valid'); ?>" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
   </div>

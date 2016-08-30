@@ -5,7 +5,7 @@
         <small>kelola data SKKM di sini</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="<?php echo site_url('mahasiswa/daftar-skkm'); ?>"><i class="fa fa-archive"></i>SKKM</a></li>
+        <li><a href="<?php echo site_url('mahasiswa/skkm'); ?>"><i class="fa fa-archive"></i>SKKM</a></li>
         <li class="active">Data SKKM</li>
     </ol>
 </section>
@@ -44,11 +44,11 @@
                         <tbody>
                         <?php
                         $start = 0;
-                        foreach ($list_skkm as $row): ?>
+                        foreach ($list_skkm_belum_valid as $row): ?>
                             <tr>
                                 <td><?php echo ++$start ?></td>
                                 <td>
-                                    <?php if ($row->status == 0 OR $row->status == 2): ?>
+                                    <?php if ($row->status == 0): ?>
                                         <a href="<?php echo site_url('mahasiswa/skkm/ubah/' . $row->id); ?>"><?php echo $row->nama_kegiatan; ?></a>
                                     <?php else: ?>
                                         <?php echo $row->nama_kegiatan; ?>
@@ -68,7 +68,7 @@
                                     <?php echo $row->keterangan; ?>
                                 </td>
                                 <td>
-                                    <?php if ($row->status == 0 OR $row->status == 2): ?>
+                                    <?php if ($row->status == 0): ?>
                                         <?php
                                         $hapus = array(
                                             'class' => 'btn btn-sm btn-danger',

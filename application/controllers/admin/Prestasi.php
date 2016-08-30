@@ -1,110 +1,111 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Prestasi extends Admin_Controller {
+class Prestasi extends Admin_Controller
+{
 
-  public function __construct()
-  {
-    parent::__construct();
-    $this->load->model('admin/Prestasi_model', 'prestasi');
-    $this->load->library('form_validation');
-  }
-
-  function index()
-  {
-    $current_user = $this->ion_auth->user()->row();
-    $data = array(
-                  'current_user' => $current_user,
-                  'prestasi'      => $this->prestasi->get_all(),
-                  'gravatar_url' => $this->gravatar->get($current_user->email)
-    );
-    $this->template->load('templates/admin/prestasi_template', 'admin/prestasi/list', $data);
-  }
-
-  public function tambah()
-  {
-    $this->rules();
-    $current_user = $this->ion_auth->user()->row();
-    if ($this->form_validation->run() == FALSE) {
-      $data = array(
-                    'current_user' => $current_user,
-                    'dd_tingkat' => $this->prestasi->get_tingkat(),
-                    'tingkat_selected' => $this->input->post('id_tingkat_fk') ? $this->input->post('id_tingkat_fk') : '',
-                    'gravatar_url' => $this->gravatar->get($current_user->email)
-      );
-      $this->template->load('templates/admin/prestasi_template', 'admin/prestasi/add', $data);
-    } else {
-      $prestasi = $this->input->post('prestasi');
-      $bobot = $this->input->post('bobot');
-      $id_tingkat_fk = $this->input->post('id_tingkat_fk');
-      $data = array(
-                    'prestasi' => $prestasi,
-                    'bobot'  => $bobot,
-                    'id_tingkat_fk' => $id_tingkat_fk
-      );
-      $this->prestasi->insert($data);
-      $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Prestasi berhasil ditambah.</div>");
-      redirect(site_url('admin/prestasi'));
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('admin/Prestasi_model', 'prestasi');
+        $this->load->library('form_validation');
     }
-  }
 
-  public function ubah($id)
-  {
-    $this->rules();
-    $current_user = $this->ion_auth->user()->row();
-    $row = $this->prestasi->get_by_id($id);
-    if ($this->form_validation->run() == FALSE) {
-      if ($row) {
+    function index()
+    {
+        $current_user = $this->ion_auth->user()->row();
         $data = array(
-                      'id_prestasi' => $row->id_prestasi,
-                      'prestasi'    => $row->prestasi,
-                      'bobot'      => $row->bobot,
-                      'id_tingkat_fk' => $row->id_tingkat_fk,
-                      'dd_tingkat' => $this->prestasi->get_tingkat(),
-                      'current_user' => $current_user,
-                      'gravatar_url' => $this->gravatar->get($current_user->email)
+            'current_user' => $current_user,
+            'prestasi' => $this->prestasi->get_all(),
+            'gravatar_url' => $this->gravatar->get($current_user->email)
         );
-        $this->template->load('templates/admin/prestasi_template', 'admin/prestasi/edit', $data);
-      } else {
-        $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
-        redirect(site_url('admin/prestasi'));
-      }
-    } else {
-      $id = $this->input->post('id_prestasi');
-      $prestasi = $this->input->post('prestasi');
-      $bobot = $this->input->post('bobot');
-      $id_tingkat_fk = $this->input->post('id_tingkat_fk');
-      $data = array(
-                 'prestasi' => $prestasi,
-                 'bobot' => $bobot,
-                 'id_tingkat_fk' => $id_tingkat_fk
-      );
-      $this->prestasi->update($id, $data);
-      $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Prestasi berhasil diubah.</div>");
-      redirect(site_url('admin/prestasi'));
+        $this->template->load('templates/admin/prestasi_template', 'admin/prestasi/list', $data);
     }
-  }
 
-  public function hapus($id)
-  {
-    $row = $this->prestasi->get_by_id($id);
-
-    if ($row) {
-      $this->prestasi->delete($id);
-      $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Prestasi berhasil dihapus.</div>");
-      redirect(site_url('admin/prestasi'));
-    } else {
-      $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
-      redirect(site_url('admin/prestasi'));
+    public function tambah()
+    {
+        $this->rules();
+        $current_user = $this->ion_auth->user()->row();
+        if ($this->form_validation->run() == FALSE) {
+            $data = array(
+                'current_user' => $current_user,
+                'dd_tingkat' => $this->prestasi->get_tingkat(),
+                'tingkat_selected' => $this->input->post('id_tingkat_fk') ? $this->input->post('id_tingkat_fk') : '',
+                'gravatar_url' => $this->gravatar->get($current_user->email)
+            );
+            $this->template->load('templates/admin/prestasi_template', 'admin/prestasi/add', $data);
+        } else {
+            $prestasi = $this->input->post('prestasi');
+            $bobot = $this->input->post('bobot');
+            $id_tingkat_fk = $this->input->post('id_tingkat_fk');
+            $data = array(
+                'prestasi' => $prestasi,
+                'bobot' => $bobot,
+                'id_tingkat_fk' => $id_tingkat_fk
+            );
+            $this->prestasi->insert($data);
+            $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Prestasi berhasil ditambah.</div>");
+            redirect(site_url('admin/prestasi'));
+        }
     }
-  }
 
-  public function rules()
-  {
-    $this->form_validation->set_rules('prestasi', 'Prestasi', 'trim|required');
-    $this->form_validation->set_rules('bobot', 'Bobot', 'trim|required');
-    $this->form_validation->set_rules('id_tingkat_fk', 'Tingkat', 'trim|required');
-    $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
-  }
+    public function ubah($id)
+    {
+        $this->rules();
+        $current_user = $this->ion_auth->user()->row();
+        $row = $this->prestasi->get_by_id($id);
+        if ($this->form_validation->run() == FALSE) {
+            if ($row) {
+                $data = array(
+                    'id_prestasi' => $row->id_prestasi,
+                    'prestasi' => $row->prestasi,
+                    'bobot' => $row->bobot,
+                    'id_tingkat_fk' => $row->id_tingkat_fk,
+                    'dd_tingkat' => $this->prestasi->get_tingkat(),
+                    'current_user' => $current_user,
+                    'gravatar_url' => $this->gravatar->get($current_user->email)
+                );
+                $this->template->load('templates/admin/prestasi_template', 'admin/prestasi/edit', $data);
+            } else {
+                $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
+                redirect(site_url('admin/prestasi'));
+            }
+        } else {
+            $id = $this->input->post('id_prestasi');
+            $prestasi = $this->input->post('prestasi');
+            $bobot = $this->input->post('bobot');
+            $id_tingkat_fk = $this->input->post('id_tingkat_fk');
+            $data = array(
+                'prestasi' => $prestasi,
+                'bobot' => $bobot,
+                'id_tingkat_fk' => $id_tingkat_fk
+            );
+            $this->prestasi->update($id, $data);
+            $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Prestasi berhasil diubah.</div>");
+            redirect(site_url('admin/prestasi'));
+        }
+    }
+
+    public function hapus($id)
+    {
+        $row = $this->prestasi->get_by_id($id);
+
+        if ($row) {
+            $this->prestasi->delete($id);
+            $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Prestasi berhasil dihapus.</div>");
+            redirect(site_url('admin/prestasi'));
+        } else {
+            $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
+            redirect(site_url('admin/prestasi'));
+        }
+    }
+
+    public function rules()
+    {
+        $this->form_validation->set_rules('prestasi', 'Prestasi', 'trim|required');
+        $this->form_validation->set_rules('bobot', 'Bobot', 'trim|required');
+        $this->form_validation->set_rules('id_tingkat_fk', 'Tingkat', 'trim|required');
+        $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    }
 
 }

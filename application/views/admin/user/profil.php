@@ -1,10 +1,10 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
-  <h1>Profil User</h1>
-  <ol class="breadcrumb">
-    <li><a href="<?php echo site_url('admin/user');?>"><i class="fa fa-user"></i>Profil</a></li>
-    <li class="active">Profil User</li>
-  </ol>
+    <h1>Profil User</h1>
+    <ol class="breadcrumb">
+        <li><a href="<?php echo site_url('admin/user'); ?>"><i class="fa fa-user"></i>Profil</a></li>
+        <li class="active">Profil User</li>
+    </ol>
 </section>
 
 <!-- Main content -->
@@ -14,13 +14,15 @@
             <div class="box box-primary">
                 <div class="box-body box-profile">
                     <div class="col-md-3">
-                        <img class="profile-user-img img-responsive img-circle" src="<?php echo $gravatar_url ;?>" alt="gambar Profil User">
-                        <h3 class="profile-username text-center"><?php echo $current_user->nama_depan.' '.$current_user->nama_belakang; ?></h3>
+                        <img class="profile-user-img img-responsive img-circle" src="<?php echo $gravatar_url; ?>"
+                             alt="gambar Profil User">
+                        <h3 class="profile-username text-center"><?php echo $current_user->nama_depan . ' ' . $current_user->nama_belakang; ?></h3>
                     </div>
                     <div class="col-md-9">
                         <ul class="list-group list-group-unbordered">
                             <li class="list-group-item">
-                                <b>Nama</b> <a class="pull-right"><?php echo $current_user->nama_depan.' '.$current_user->nama_belakang; ?></a>
+                                <b>Nama</b> <a
+                                    class="pull-right"><?php echo $current_user->nama_depan . ' ' . $current_user->nama_belakang; ?></a>
                             </li>
                             <li class="list-group-item">
                                 <b>Email</b> <a class="pull-right"><?php echo $current_user->email; ?></a>
@@ -29,8 +31,8 @@
                                 <b>Nip</b> <a class="pull-right"><?php echo $current_user->nip; ?></a>
                             </li>
                         </ul>
-                        <?php echo anchor(site_url('admin/user/edit_profil'), 'Edit Profil', 'class="btn btn-primary btn-block"'); ?>
-                        <?php echo anchor(site_url('admin/user/ubah_password'), 'Ubah Password', 'class="btn btn-primary btn-block"'); ?>
+                        <?php echo anchor(site_url('admin/user/edit-profil'), 'Edit Profil', 'class="btn btn-primary btn-block"'); ?>
+                        <?php echo anchor(site_url('admin/user/ubah-password'), 'Ubah Password', 'class="btn btn-primary btn-block"'); ?>
                     </div>
                 </div>
             </div>
