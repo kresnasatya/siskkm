@@ -17,13 +17,58 @@ class Skkm extends Mahasiswa_Controller
         $data = array(
             'current_user' => $current_user,
             'gravatar_url' => $this->gravatar->get($current_user->email),
-            'skkm' => $this->skkm->get_all($current_user->id),
-            'skkm_valid' => $this->skkm->sum_valid($current_user->id),
-            'skkm_belum_divalidasi' => $this->skkm->sum_belum_divalidasi($current_user->id),
-            'skkm_tidak_valid' => $this->skkm->sum_tidak_valid($current_user->id),
+            'list_skkm' => $this->skkm->get_all($current_user->id),
+            'sum_valid' => $this->skkm->sum_valid($current_user->id),
+            'sum_belum_divalidasi' => $this->skkm->sum_belum_divalidasi($current_user->id),
+            'sum_tidak_valid' => $this->skkm->sum_tidak_valid($current_user->id),
             'status_skkm' => $this->skkm->status_skkm($current_user->id)
         );
         $this->template->load('templates/mahasiswa/skkm_template', 'mahasiswa/skkm/list', $data);
+    }
+
+    public function list_skkm_valid()
+    {
+        $current_user = $this->ion_auth->user()->row();
+        $data = array(
+            'current_user' => $current_user,
+            'gravatar_url' => $this->gravatar->get($current_user->email),
+            'list_skkm_valid' => $this->skkm->get_skkm_valid($current_user->id),
+            'sum_valid' => $this->skkm->sum_valid($current_user->id),
+            'sum_belum_divalidasi' => $this->skkm->sum_belum_divalidasi($current_user->id),
+            'sum_tidak_valid' => $this->skkm->sum_tidak_valid($current_user->id),
+            'status_skkm' => $this->skkm->status_skkm($current_user->id)
+        );
+        $this->template->load('templates/mahasiswa/skkm_template', 'mahasiswa/skkm/list_valid', $data);
+    }
+
+    public function list_skkm_tidak_valid()
+    {
+        $current_user = $this->ion_auth->user()->row();
+        $data = array(
+            'current_user' => $current_user,
+            'gravatar_url' => $this->gravatar->get($current_user->email),
+            'list_skkm_tidak_valid' => $this->skkm->get_skkm_tidak_valid($current_user->id),
+            'sum_valid' => $this->skkm->sum_valid($current_user->id),
+            'sum_belum_divalidasi' => $this->skkm->sum_belum_divalidasi($current_user->id),
+            'sum_tidak_valid' => $this->skkm->sum_tidak_valid($current_user->id),
+            'status_skkm' => $this->skkm->status_skkm($current_user->id)
+        );
+        $this->template->load('templates/mahasiswa/skkm_template', 'mahasiswa/skkm/list_tidak_valid', $data);
+    }
+
+    public function list_skkm_belum_valid()
+    {
+        $current_user = $this->ion_auth->user()->row();
+        $data = array(
+            'current_user' => $current_user,
+            'gravatar_url' => $this->gravatar->get($current_user->email),
+            'list_skkm_belum_valid' => $this->skkm->get_skkm_belum_valid($current_user->id),
+            'sum_valid' => $this->skkm->sum_valid($current_user->id),
+            'sum_belum_divalidasi' => $this->skkm->sum_belum_divalidasi($current_user->id),
+            'sum_tidak_valid' => $this->skkm->sum_tidak_valid($current_user->id),
+            'status_skkm' => $this->skkm->status_skkm($current_user->id)
+        );
+        $this->template->load('templates/mahasiswa/skkm_template', 'mahasiswa/skkm/list_belum_valid', $data);
     }
 
     public function get_tingkat()
@@ -127,6 +172,16 @@ class Skkm extends Mahasiswa_Controller
         }
     }
 
+    public function rules()
+    {
+        $this->form_validation->set_rules('nama_kegiatan', 'Nama Kegiatan', 'trim|required');
+        $this->form_validation->set_rules('id_jenis', 'Jenis', 'trim|required');
+        $this->form_validation->set_rules('id_tingkat', 'Tingkat', 'trim|required');
+        $this->form_validation->set_rules('id_prestasi', 'Prestasi', 'trim|required');
+        $this->form_validation->set_rules('nilai', 'Nilai', 'trim|required|numeric');
+        $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    }
+
     public function ubah($id)
     {
         $this->rules();
@@ -149,7 +204,6 @@ class Skkm extends Mahasiswa_Controller
             );
             $this->template->load('templates/mahasiswa/skkm_template', 'mahasiswa/skkm/edit', $data);
         } else {
-            // TODO: Figure out make upload file is optional
             if ($_FILES AND $_FILES['filefoto']['name']) {
                 // Start uploading file
                 $config = array(
@@ -232,16 +286,6 @@ class Skkm extends Mahasiswa_Controller
             $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
             redirect(site_url('mahasiswa/skkm'));
         }
-    }
-
-    public function rules()
-    {
-        $this->form_validation->set_rules('nama_kegiatan', 'Nama Kegiatan', 'trim|required');
-        $this->form_validation->set_rules('id_jenis', 'Jenis', 'trim|required');
-        $this->form_validation->set_rules('id_tingkat', 'Tingkat', 'trim|required');
-        $this->form_validation->set_rules('id_prestasi', 'Prestasi', 'trim|required');
-        $this->form_validation->set_rules('nilai', 'Nilai', 'trim|required|numeric');
-        $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
 
     public function cetak_laporan()
