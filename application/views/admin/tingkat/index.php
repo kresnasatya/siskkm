@@ -18,7 +18,7 @@
                 <div class="box-header">
                     <h3>Daftar Data Tingkat</h3>
                     <div class="col-md-4">
-                        <a href="<?php echo site_url('admin/tingkat/tambah'); ?>" class="btn btn-primary">Tambah
+                        <a href="<?php echo site_url('admin/tingkat/create'); ?>" class="btn btn-primary">Tambah
                             Tingkat</a>
                     </div>
                     <div class="col-md-4 text-center">
@@ -45,14 +45,14 @@
                                 <td><?php echo ++$start ?></td>
                                 <td><?php echo $row->jenis; ?></td>
                                 <td>
-                                    <a href="<?php echo site_url('admin/tingkat/ubah/' . $row->id_tingkat); ?>"><?php echo $row->tingkat; ?></a>
+                                    <a href="<?php echo site_url('admin/tingkat/edit/' . $row->id_tingkat); ?>"><?php echo $row->tingkat; ?></a>
                                 </td>
                                 <td><?php
                                     $hapus = array(
                                         'class' => 'btn btn-sm btn-danger',
-                                        'onclick' => 'javascript: return confirm(\'Kamu Yakin ?\')'
+                                        'onclick' => 'javascript: return confirm(\'Anda yakin menghapus ' . $row->tingkat . '?\')'
                                     );
-                                    echo anchor(site_url('admin/tingkat/hapus/' . $row->id_tingkat), 'Hapus', $hapus); ?>
+                                    echo anchor(site_url('admin/tingkat/delete/' . $row->id_tingkat), 'Hapus', $hapus); ?>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

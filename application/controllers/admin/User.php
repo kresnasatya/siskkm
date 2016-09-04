@@ -16,7 +16,7 @@ class User extends Admin_Controller
             'current_user' => $current_user,
             'gravatar_url' => $this->gravatar->get($current_user->email)
         );
-        $this->template->load('templates/admin/user_template', 'admin/user/profil', $data);
+        $this->template->load('templates/admin/user_template', 'admin/user/index', $data);
     }
 
     public function edit_profil()

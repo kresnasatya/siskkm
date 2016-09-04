@@ -19,10 +19,10 @@ class Tingkat extends Admin_Controller
             'tingkat' => $this->tingkat->get_all(),
             'gravatar_url' => $this->gravatar->get($current_user->email)
         );
-        $this->template->load('templates/admin/tingkat_template', 'admin/tingkat/list', $data);
+        $this->template->load('templates/admin/tingkat_template', 'admin/tingkat/index', $data);
     }
 
-    public function tambah()
+    public function create()
     {
         $this->rules();
         $current_user = $this->ion_auth->user()->row();
@@ -34,20 +34,23 @@ class Tingkat extends Admin_Controller
                 'gravatar_url' => $this->gravatar->get($current_user->email)
             );
             $this->template->load('templates/admin/tingkat_template', 'admin/tingkat/add', $data);
-        } else {
-            $tingkat = $this->input->post('tingkat');
-            $id_jenis_fk = $this->input->post('id_jenis_fk');
-            $data = array(
-                'tingkat' => $tingkat,
-                'id_jenis_fk' => $id_jenis_fk
-            );
-            $this->tingkat->insert($data);
-            $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Tingkat berhasil ditambah.</div>");
-            redirect(site_url('admin/tingkat'));
         }
     }
 
-    public function ubah($id)
+    public function store()
+    {
+        $tingkat = $this->input->post('tingkat');
+        $id_jenis_fk = $this->input->post('id_jenis_fk');
+        $data = array(
+            'tingkat' => $tingkat,
+            'id_jenis_fk' => $id_jenis_fk
+        );
+        $this->tingkat->insert($data);
+        $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Tingkat berhasil ditambah.</div>");
+        redirect(site_url('admin/tingkat')); 
+    }
+
+    public function edit($id)
     {
         $this->rules();
         $current_user = $this->ion_auth->user()->row();
@@ -67,18 +70,21 @@ class Tingkat extends Admin_Controller
                 $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
                 redirect(site_url('admin/tingkat'));
             }
-        } else {
-            $id = $this->input->post('id_tingkat');
-            $tingkat = $this->input->post('tingkat');
-            $id_jenis_fk = $this->input->post('id_jenis_fk');
-            $data = array('tingkat' => $tingkat);
-            $this->tingkat->update($id, $data);
-            $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Tingkat berhasil diubah.</div>");
-            redirect(site_url('admin/tingkat'));
         }
     }
 
-    public function hapus($id)
+    public function update($id)
+    {
+        $id = $this->input->post('id_tingkat');
+        $tingkat = $this->input->post('tingkat');
+        $id_jenis_fk = $this->input->post('id_jenis_fk');
+        $data = array('tingkat' => $tingkat);
+        $this->tingkat->update($id, $data);
+        $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Tingkat berhasil diubah.</div>");
+        redirect(site_url('admin/tingkat'));
+    }
+
+    public function delete($id)
     {
         $row = $this->tingkat->get_by_id($id);
 

@@ -19,10 +19,10 @@ class Jenis extends Admin_Controller
             'jenis' => $this->jenis->get_all(),
             'gravatar_url' => $this->gravatar->get($current_user->email)
         );
-        $this->template->load('templates/admin/jenis_template', 'admin/jenis/list', $data);
+        $this->template->load('templates/admin/jenis_template', 'admin/jenis/index', $data);
     }
 
-    public function tambah()
+    public function create()
     {
         $this->rules();
         $current_user = $this->ion_auth->user()->row();
@@ -32,16 +32,19 @@ class Jenis extends Admin_Controller
                 'gravatar_url' => $this->gravatar->get($current_user->email)
             );
             $this->template->load('templates/admin/jenis_template', 'admin/jenis/add', $data);
-        } else {
-            $jenis = $this->input->post('jenis');
-            $data['jenis'] = $jenis;
-            $this->jenis->insert($data);
-            $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Jenis berhasil ditambah.</div>");
-            redirect(site_url('admin/jenis'));
         }
     }
 
-    public function ubah($id)
+    public function store()
+    {
+        $jenis = $this->input->post('jenis');
+        $data['jenis'] = $jenis;
+        $this->jenis->insert($data);
+        $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Jenis berhasil ditambah.</div>");
+        redirect(site_url('admin/jenis'));
+    }
+
+    public function edit($id)
     {
         $this->rules();
         $current_user = $this->ion_auth->user()->row();
@@ -59,17 +62,20 @@ class Jenis extends Admin_Controller
                 $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
                 redirect(site_url('admin/jenis'));
             }
-        } else {
-            $id = $this->input->post('id_jenis');
-            $jenis = $this->input->post('jenis');
-            $data = array('jenis' => $jenis);
-            $this->jenis->update($id, $data);
-            $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Jenis berhasil diubah.</div>");
-            redirect(site_url('admin/jenis'));
         }
     }
 
-    public function hapus($id)
+    public function update($id)
+    {
+       $id = $this->input->post('id_jenis');
+       $jenis = $this->input->post('jenis');
+       $data = array('jenis' => $jenis);
+       $this->jenis->update($id, $data);
+       $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Jenis berhasil diubah.</div>");
+       redirect(site_url('admin/jenis'));
+    }
+
+    public function delete($id)
     {
         $row = $this->jenis->get_by_id($id);
 

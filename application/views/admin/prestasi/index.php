@@ -1,12 +1,12 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Data Pengumuman
-        <small>kelola data pengumuman di sini</small>
+        Data Prestasi
+        <small>kelola data prestasi di sini</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="<?php echo site_url('admin/pengumuman'); ?>"><i class="fa fa-newspaper-o"></i>Pengumuman</a></li>
-        <li class="active">Data Pengumuman</li>
+        <li><a href="<?php echo site_url('admin/prestasi'); ?>"><i class="fa fa-balance-scale"></i>Bobot SKKM</a></li>
+        <li class="active">Data Prestasi</li>
     </ol>
 </section>
 
@@ -16,10 +16,10 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3>Daftar Data Pengumuman</h3>
+                    <h3>Daftar Data Prestasi</h3>
                     <div class="col-md-4">
-                        <a href="<?php echo site_url('admin/pengumuman/tambah'); ?>" class="btn btn-primary">Tambah
-                            Pengumuman</a>
+                        <a href="<?php echo site_url('admin/prestasi/create'); ?>" class="btn btn-primary">Tambah
+                            Prestasi</a>
                     </div>
                     <div class="col-md-4 text-center">
                         <div style="margin-top: 4px" id="message">
@@ -28,33 +28,34 @@
                     </div>
                 </div>
                 <div class="box-body">
-                    <table id="pengumumantable" class="table table-bordered table-striped">
+                    <table id="prestasitable" class="table table-bordered table-striped">
                         <thead>
                         <tr>
                             <th>No</th>
-                            <th>Judul Pengumuman</th>
-                            <th>Tanggal</th>
-                            <th>Pembuat</th>
+                            <th>Tingkat</th>
+                            <th>Prestasi</th>
+                            <th>Bobot</th>
                             <th>Aksi</th>
                         </tr>
                         </thead>
                         <tbody>
                         <?php
                         $start = 0;
-                        foreach ($pengumuman as $row): ?>
+                        foreach ($prestasi as $row): ?>
                             <tr>
                                 <td><?php echo ++$start ?></td>
+                                <td><?php echo $row->tingkat; ?></td>
                                 <td>
-                                    <a href="<?php echo site_url('admin/pengumuman/ubah/' . $row->id); ?>"><?php echo $row->judul; ?></a>
+                                    <a href="<?php echo site_url('admin/prestasi/edit/' . $row->id_prestasi); ?>"><?php echo $row->prestasi; ?></a>
                                 </td>
-                                <td><?php echo $row->tanggal; ?></td>
-                                <td><?php echo $row->nama_depan . '' . $row->nama_belakang; ?></td>
+                                <td><?php echo $row->bobot; ?></td>
                                 <td><?php
                                     $hapus = array(
                                         'class' => 'btn btn-sm btn-danger',
-                                        'onclick' => 'javascript: return confirm(\'Kamu Yakin ?\')'
+                                        'onclick' => 'javascript: return confirm(\'Anda yakin menghapus ' . $row->prestasi . '?\')'
                                     );
-                                    echo anchor(site_url('admin/pengumuman/hapus/' . $row->id), 'Hapus', $hapus); ?></td>
+                                    echo anchor(site_url('admin/prestasi/delete/' . $row->id_prestasi), 'Hapus', $hapus); ?>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                         </tbody>
@@ -63,4 +64,5 @@
             </div>
         </div>
     </div>
-</section><!-- /.content -->
+</section>
+<!-- /.content -->

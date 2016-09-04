@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="box box-primary">
-                <?php echo form_open('admin/pengumuman/ubah/' . $id); ?>
+                <?php echo form_open('admin/pengumuman/update/' . $id); ?>
                 <div class="box-body">
                     <div class="form-group">
                         <?php echo form_label('Judul Pengumuman', 'judul'); ?>

@@ -18,7 +18,7 @@ class Users extends Admin_Controller
             'users' => $this->users->get_users(),
             'gravatar_url' => $this->gravatar->get($current_user->email)
         );
-        $this->template->load('templates/admin/users_template', 'admin/users/list', $data);
+        $this->template->load('templates/admin/users_template', 'admin/users/index', $data);
     }
 
     public function get_prodi()
@@ -35,9 +35,9 @@ class Users extends Admin_Controller
         echo '</select>';
     }
 
-    public function tambah()
+    public function create()
     {
-        $this->rules_tambah();
+        $this->rules_edit();
         $current_user = $this->ion_auth->user()->row();
         if ($this->form_validation->run() == FALSE) {
             $data = array(
@@ -53,32 +53,35 @@ class Users extends Admin_Controller
                 'gravatar_url' => $this->gravatar->get($current_user->email)
             );
             $this->template->load('templates/admin/users_template', 'admin/users/add', $data);
-        } else {
-            $email = $this->input->post('email');
-            $group_id = $this->input->post('groups');
-
-            $additional_data = array(
-                'nama_depan' => $this->input->post('nama_depan'),
-                'nama_belakang' => $this->input->post('nama_belakang'),
-                'nim' => $this->input->post('nim'),
-                'nip' => $this->input->post('nip'),
-                'id_jurusan' => $this->input->post('id_jurusan'),
-                'id_prodi' => $this->input->post('id_prodi'),
-                'id_kelas' => $this->input->post('id_kelas'),
-                'id_semester' => $this->input->post('id_semester')
-            );
-
-            // urutan parameter untuk register : username, password, email, data tambahan, id group
-            // parameter $password diganti dengan 'password'. Jadi, password sudah tersetting otomatis dengan kata 'password'.
-            $this->ion_auth->register('', 'password', $email, $additional_data, $group_id);
-            $this->session->set_flashdata('message', "<div style='color:#00a65a;'>" . $this->ion_auth->messages() . "</div>");
-            redirect(site_url('admin/users'));
         }
     }
 
-    public function ubah($user_id)
+    public function store()
     {
-        $this->rules_ubah();
+        $email = $this->input->post('email');
+        $group_id = $this->input->post('groups');
+
+        $additional_data = array(
+            'nama_depan' => $this->input->post('nama_depan'),
+            'nama_belakang' => $this->input->post('nama_belakang'),
+            'nim' => $this->input->post('nim'),
+            'nip' => $this->input->post('nip'),
+            'id_jurusan' => $this->input->post('id_jurusan'),
+            'id_prodi' => $this->input->post('id_prodi'),
+            'id_kelas' => $this->input->post('id_kelas'),
+            'id_semester' => $this->input->post('id_semester')
+        );
+
+        // urutan parameter untuk register : username, password, email, data tambahan, id group
+        // parameter $password diganti dengan 'password'. Jadi, password sudah tersetting otomatis dengan kata 'password'.
+        $this->ion_auth->register('', 'password', $email, $additional_data, $group_id);
+        $this->session->set_flashdata('message', "<div style='color:#00a65a;'>" . $this->ion_auth->messages() . "</div>");
+        redirect(site_url('admin/users'));
+    }
+
+    public function edit($user_id)
+    {
+        $this->rules_edit();
         $current_user = $this->ion_auth->user()->row();
         if ($this->form_validation->run() == FALSE) {
             $user_id = $this->input->post('user_id') ? $this->input->post('user_id') : $user_id;
@@ -107,36 +110,39 @@ class Users extends Admin_Controller
                 }
             }
             $this->template->load('templates/admin/users_template', 'admin/users/edit', $data);
-        } else {
-            $user_id = $this->input->post('user_id');
-            $new_data = array(
-                'email' => $this->input->post('email'),
-                'nama_depan' => $this->input->post('nama_depan'),
-                'nama_belakang' => $this->input->post('nama_belakang'),
-                'nim' => $this->input->post('nim'),
-                'nip' => $this->input->post('nip'),
-                'id_jurusan' => $this->input->post('id_jurusan'),
-                'id_prodi' => $this->input->post('id_prodi'),
-                'id_kelas' => $this->input->post('id_kelas'),
-                'id_semester' => $this->input->post('id_semester')
-            );
-            $this->ion_auth->update($user_id, $new_data);
-
-            // Update groups
-            $groups = $this->input->post('groups');
-            if (isset($groups) && !empty($groups)) {
-                $this->ion_auth->remove_from_group('', $user_id);
-                foreach ($groups as $group) {
-                    $this->ion_auth->add_to_group($group, $user_id);
-                }
-            }
-
-            $this->session->set_flashdata('message', "<div style='color:#00a65a;'>" . $this->ion_auth->messages() . "</div>");
-            redirect(site_url('admin/users'));
         }
     }
 
-    public function hapus($user_id)
+    public function update($user_id)
+    {
+        $user_id = $this->input->post('user_id');
+        $new_data = array(
+            'email' => $this->input->post('email'),
+            'nama_depan' => $this->input->post('nama_depan'),
+            'nama_belakang' => $this->input->post('nama_belakang'),
+            'nim' => $this->input->post('nim'),
+            'nip' => $this->input->post('nip'),
+            'id_jurusan' => $this->input->post('id_jurusan'),
+            'id_prodi' => $this->input->post('id_prodi'),
+            'id_kelas' => $this->input->post('id_kelas'),
+            'id_semester' => $this->input->post('id_semester')
+        );
+        $this->ion_auth->update($user_id, $new_data);
+
+        // Update groups
+        $groups = $this->input->post('groups');
+        if (isset($groups) && !empty($groups)) {
+            $this->ion_auth->remove_from_group('', $user_id);
+            foreach ($groups as $group) {
+                $this->ion_auth->add_to_group($group, $user_id);
+            }
+        }
+
+        $this->session->set_flashdata('message', "<div style='color:#00a65a;'>" . $this->ion_auth->messages() . "</div>");
+        redirect(site_url('admin/users'));
+    }
+
+    public function delete($user_id)
     {
         if (is_null($user_id)) {
             $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
@@ -147,7 +153,7 @@ class Users extends Admin_Controller
         redirect(site_url('admin/users'));
     }
 
-    public function rules_tambah()
+    public function rules_create()
     {
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[users.email]');
         $this->form_validation->set_rules('nama_depan', 'Nama depan', 'trim|required');
@@ -162,7 +168,7 @@ class Users extends Admin_Controller
         $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
 
-    public function rules_ubah()
+    public function rules_edit()
     {
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
         $this->form_validation->set_rules('nama_depan', 'Nama depan', 'trim|required');

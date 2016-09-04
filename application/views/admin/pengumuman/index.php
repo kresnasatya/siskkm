@@ -1,12 +1,12 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Data Jenis
-        <small>kelola data jenis di sini</small>
+        Data Pengumuman
+        <small>kelola data pengumuman di sini</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="<?php echo site_url('admin/jenis'); ?>"><i class="fa fa-balance-scale"></i>Bobot SKKM</a></li>
-        <li class="active">Data Jenis</li>
+        <li><a href="<?php echo site_url('admin/pengumuman'); ?>"><i class="fa fa-newspaper-o"></i>Pengumuman</a></li>
+        <li class="active">Data Pengumuman</li>
     </ol>
 </section>
 
@@ -16,9 +16,10 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3>Daftar Data Jenis</h3>
+                    <h3>Daftar Data Pengumuman</h3>
                     <div class="col-md-4">
-                        <a href="<?php echo site_url('admin/jenis/tambah'); ?>" class="btn btn-primary">Tambah Jenis</a>
+                        <a href="<?php echo site_url('admin/pengumuman/create'); ?>" class="btn btn-primary">Tambah
+                            Pengumuman</a>
                     </div>
                     <div class="col-md-4 text-center">
                         <div style="margin-top: 4px" id="message">
@@ -27,29 +28,33 @@
                     </div>
                 </div>
                 <div class="box-body">
-                    <table id="jenistable" class="table table-bordered table-striped">
+                    <table id="pengumumantable" class="table table-bordered table-striped">
                         <thead>
                         <tr>
                             <th>No</th>
-                            <th>Jenis</th>
+                            <th>Judul Pengumuman</th>
+                            <th>Tanggal</th>
+                            <th>Pembuat</th>
                             <th>Aksi</th>
                         </tr>
                         </thead>
                         <tbody>
                         <?php
                         $start = 0;
-                        foreach ($jenis as $row): ?>
+                        foreach ($pengumuman as $row): ?>
                             <tr>
                                 <td><?php echo ++$start ?></td>
                                 <td>
-                                    <a href="<?php echo site_url('admin/jenis/ubah/' . $row->id_jenis); ?>"><?php echo $row->jenis; ?></a>
+                                    <a href="<?php echo site_url('admin/pengumuman/edit/' . $row->id); ?>"><?php echo $row->judul; ?></a>
                                 </td>
+                                <td><?php echo $row->tanggal; ?></td>
+                                <td><?php echo $row->nama_depan . '' . $row->nama_belakang; ?></td>
                                 <td><?php
                                     $hapus = array(
                                         'class' => 'btn btn-sm btn-danger',
-                                        'onclick' => 'javascript: return confirm(\'Kamu Yakin ?\')'
+                                        'onclick' => 'javascript: return confirm(\'Anda yakin menghapus ' . $row->judul . '?\')'
                                     );
-                                    echo anchor(site_url('admin/jenis/hapus/' . $row->id_jenis), 'Hapus', $hapus); ?></td>
+                                    echo anchor(site_url('admin/pengumuman/delete/' . $row->id), 'Hapus', $hapus); ?></td>
                             </tr>
                         <?php endforeach; ?>
                         </tbody>
@@ -58,5 +63,4 @@
             </div>
         </div>
     </div>
-</section>
-<!-- /.content -->
+</section><!-- /.content -->

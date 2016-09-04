@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="box box-primary">
-                <?php echo form_open('admin/jenis/ubah/' . $id_jenis); ?>
+                <?php echo form_open('admin/jenis/update/' . $id_jenis); ?>
                 <div class="box-body">
                     <div class="form-group">
                         <?php echo form_label('Jenis', 'jenis'); ?>

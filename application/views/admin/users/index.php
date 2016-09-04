@@ -17,7 +17,7 @@
                 <div class="box-header">
                     <h3>Daftar Data User</h3>
                     <div class="col-md-4">
-                        <a href="<?php echo site_url('admin/users/tambah'); ?>" class="btn btn-primary">Tambah User</a>
+                        <a href="<?php echo site_url('admin/users/create'); ?>" class="btn btn-primary">Tambah User</a>
                     </div>
                     <div class="col-md-4 text-center">
                         <strong style="margin-top: 4px;" id="message">
@@ -48,7 +48,7 @@
                                     <td><?php echo ++$start ?></td>
                                     <td>
                                         <?php if ($current_user->id != $user->id): ?>
-                                            <a href="<?php echo site_url('admin/users/ubah/' . $user->id); ?>"><?php echo $user->nama_depan . ' ' . $user->nama_belakang; ?></a>
+                                            <a href="<?php echo site_url('admin/users/edit/' . $user->id); ?>"><?php echo $user->nama_depan . ' ' . $user->nama_belakang; ?></a>
                                         <?php else: ?>
                                             <?php echo $user->nama_depan . ' ' . $user->nama_belakang; ?>
                                         <?php endif; ?>
@@ -75,9 +75,9 @@
                                             <?php
                                             $hapus = array(
                                                 'class' => 'btn btn-sm btn-danger',
-                                                'onclick' => 'javascript: return confirm(\'Kamu Yakin ?\')'
+                                                'onclick' => 'javascript: return confirm(\'Anda yakin menghapus ' . $user->nama_depan. ' '. $user->nama_belakang. '?\')'
                                             );
-                                            echo anchor(site_url('admin/users/hapus/' . $user->id), 'Hapus', $hapus);
+                                            echo anchor(site_url('admin/users/delete/' . $user->id), 'Hapus', $hapus);
                                             ?>
                                         <?php endif; ?>
                                     </td>

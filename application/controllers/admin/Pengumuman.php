@@ -18,10 +18,10 @@ class Pengumuman extends Admin_Controller
             'pengumuman' => $this->pengumuman->get_all(),
             'gravatar_url' => $this->gravatar->get($current_user->email)
         );
-        $this->template->load('templates/admin/pengumuman_template', 'admin/pengumuman/list', $data);
+        $this->template->load('templates/admin/pengumuman_template', 'admin/pengumuman/index', $data);
     }
 
-    public function tambah()
+    public function create()
     {
         $this->rules();
         $current_user = $this->ion_auth->user()->row();
@@ -32,23 +32,27 @@ class Pengumuman extends Admin_Controller
                 'gravatar_url' => $this->gravatar->get($current_user->email)
             );
             $this->template->load('templates/admin/pengumuman_template', 'admin/pengumuman/add', $data);
-        } else {
-            $judul = $this->input->post('judul');
-            $isi_pengumuman = $this->input->post('isi_pengumuman');
-            $slug = url_title($judul, 'dash', TRUE);
-            $data = array(
-                'judul' => $judul,
-                'isi_pengumuman' => $isi_pengumuman,
-                'slug' => $slug,
-                'id_user' => $current_user->id,
-            );
-            $this->pengumuman->insert($data);
-            $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Pengumuman berhasil ditambah.</div>");
-            redirect(site_url('admin/pengumuman'));
         }
     }
 
-    public function ubah($id)
+    public function store()
+    {
+        $current_user = $this->ion_auth->user()->row();
+        $judul = $this->input->post('judul');
+        $isi_pengumuman = $this->input->post('isi_pengumuman');
+        $slug = url_title($judul, 'dash', TRUE);
+        $data = array(
+            'judul' => $judul,
+            'isi_pengumuman' => $isi_pengumuman,
+            'slug' => $slug,
+            'id_user' => $current_user->id,
+        );
+        $this->pengumuman->insert($data);
+        $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Pengumuman berhasil ditambah.</div>");
+        redirect(site_url('admin/pengumuman'));
+    }
+
+    public function edit($id)
     {
         $this->rules();
         $current_user = $this->ion_auth->user()->row();
@@ -68,24 +72,28 @@ class Pengumuman extends Admin_Controller
                 $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
                 redirect(site_url('admin/pengumuman'));
             }
-        } else {
-            $id = $this->input->post('id');
-            $judul = $this->input->post('judul');
-            $isi_pengumuman = $this->input->post('isi_pengumuman');
-            $slug = url_title($judul, 'dash', TRUE);
-            $data = array(
-                'judul' => $judul,
-                'isi_pengumuman' => $isi_pengumuman,
-                'slug' => $slug,
-                'id_user' => $current_user->id
-            );
-            $this->pengumuman->update($id, $data);
-            $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Pengumuman berhasil diubah.</div>");
-            redirect(site_url('admin/pengumuman'));
         }
     }
 
-    public function hapus($id)
+    public function update($id)
+    {
+        $current_user = $this->ion_auth->user()->row();
+        $id = $this->input->post('id');
+        $judul = $this->input->post('judul');
+        $isi_pengumuman = $this->input->post('isi_pengumuman');
+        $slug = url_title($judul, 'dash', TRUE);
+        $data = array(
+            'judul' => $judul,
+            'isi_pengumuman' => $isi_pengumuman,
+            'slug' => $slug,
+            'id_user' => $current_user->id
+        );
+        $this->pengumuman->update($id, $data);
+        $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Pengumuman berhasil diubah.</div>");
+        redirect(site_url('admin/pengumuman'));
+    }
+
+    public function delete($id)
     {
         $row = $this->pengumuman->get_by_id($id);
 

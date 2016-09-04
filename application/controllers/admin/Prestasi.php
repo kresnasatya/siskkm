@@ -19,10 +19,10 @@ class Prestasi extends Admin_Controller
             'prestasi' => $this->prestasi->get_all(),
             'gravatar_url' => $this->gravatar->get($current_user->email)
         );
-        $this->template->load('templates/admin/prestasi_template', 'admin/prestasi/list', $data);
+        $this->template->load('templates/admin/prestasi_template', 'admin/prestasi/index', $data);
     }
 
-    public function tambah()
+    public function create()
     {
         $this->rules();
         $current_user = $this->ion_auth->user()->row();
@@ -34,22 +34,25 @@ class Prestasi extends Admin_Controller
                 'gravatar_url' => $this->gravatar->get($current_user->email)
             );
             $this->template->load('templates/admin/prestasi_template', 'admin/prestasi/add', $data);
-        } else {
-            $prestasi = $this->input->post('prestasi');
-            $bobot = $this->input->post('bobot');
-            $id_tingkat_fk = $this->input->post('id_tingkat_fk');
-            $data = array(
-                'prestasi' => $prestasi,
-                'bobot' => $bobot,
-                'id_tingkat_fk' => $id_tingkat_fk
-            );
-            $this->prestasi->insert($data);
-            $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Prestasi berhasil ditambah.</div>");
-            redirect(site_url('admin/prestasi'));
         }
     }
 
-    public function ubah($id)
+    public function store()
+    {
+        $prestasi = $this->input->post('prestasi');
+        $bobot = $this->input->post('bobot');
+        $id_tingkat_fk = $this->input->post('id_tingkat_fk');
+        $data = array(
+            'prestasi' => $prestasi,
+            'bobot' => $bobot,
+            'id_tingkat_fk' => $id_tingkat_fk
+        );
+        $this->prestasi->insert($data);
+        $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Prestasi berhasil ditambah.</div>");
+        redirect(site_url('admin/prestasi'));
+    }
+
+    public function edit($id)
     {
         $this->rules();
         $current_user = $this->ion_auth->user()->row();
@@ -70,23 +73,26 @@ class Prestasi extends Admin_Controller
                 $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
                 redirect(site_url('admin/prestasi'));
             }
-        } else {
-            $id = $this->input->post('id_prestasi');
-            $prestasi = $this->input->post('prestasi');
-            $bobot = $this->input->post('bobot');
-            $id_tingkat_fk = $this->input->post('id_tingkat_fk');
-            $data = array(
-                'prestasi' => $prestasi,
-                'bobot' => $bobot,
-                'id_tingkat_fk' => $id_tingkat_fk
-            );
-            $this->prestasi->update($id, $data);
-            $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Prestasi berhasil diubah.</div>");
-            redirect(site_url('admin/prestasi'));
         }
     }
 
-    public function hapus($id)
+    public function update($id)
+    {
+        $id = $this->input->post('id_prestasi');
+        $prestasi = $this->input->post('prestasi');
+        $bobot = $this->input->post('bobot');
+        $id_tingkat_fk = $this->input->post('id_tingkat_fk');
+        $data = array(
+            'prestasi' => $prestasi,
+            'bobot' => $bobot,
+            'id_tingkat_fk' => $id_tingkat_fk
+        );
+        $this->prestasi->update($id, $data);
+        $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Prestasi berhasil diubah.</div>");
+        redirect(site_url('admin/prestasi'));
+    }
+
+    public function delete($id)
     {
         $row = $this->prestasi->get_by_id($id);
 
