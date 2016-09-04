@@ -18,7 +18,7 @@
                 <div class="box-header">
                     <h3>Daftar Data SKKM</h3>
                     <div class="col-md-4">
-                        <a href="<?php echo site_url('mahasiswa/skkm/tambah'); ?>" class="btn btn-primary">Tambah
+                        <a href="<?php echo site_url('mahasiswa/skkm/create'); ?>" class="btn btn-primary">Tambah
                             SKKM</a>
                         <a href="<?php echo site_url('mahasiswa/skkm/cetak-laporan'); ?>" class="btn btn-primary">Cetak
                             Laporan</a>
@@ -49,7 +49,7 @@
                                 <td><?php echo ++$start ?></td>
                                 <td>
                                     <?php if ($row->status == 0 OR $row->status == 2): ?>
-                                        <a href="<?php echo site_url('mahasiswa/skkm/ubah/' . $row->id); ?>"><?php echo $row->nama_kegiatan; ?></a>
+                                        <a href="<?php echo site_url('mahasiswa/skkm/edit/' . $row->id); ?>"><?php echo $row->nama_kegiatan; ?></a>
                                     <?php else: ?>
                                         <?php echo $row->nama_kegiatan; ?>
                                     <?php endif; ?>
@@ -72,9 +72,9 @@
                                         <?php
                                         $hapus = array(
                                             'class' => 'btn btn-sm btn-danger',
-                                            'onclick' => 'javascript: return confirm(\'Kamu Yakin ?\')'
+                                            'onclick' => 'javascript: return confirm(\'Anda yakin menghapus ' . $row->nama_kegiatan . '?\')'
                                         );
-                                        echo anchor(site_url('mahasiswa/skkm/hapus/' . $row->id), 'Hapus', $hapus);
+                                        echo anchor(site_url('mahasiswa/skkm/delete/' . $row->id), 'Hapus', $hapus);
                                         ?>
                                     <?php else: ?>
                                         -

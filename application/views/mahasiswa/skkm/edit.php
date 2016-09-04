@@ -15,7 +15,7 @@
         <div class="col-md-12">
             <div class="box box-primary">
                 <?php echo $this->session->userdata('message'); ?>
-                <?php echo form_open_multipart('mahasiswa/skkm/ubah/' . $id); ?>
+                <?php echo form_open_multipart('mahasiswa/skkm/update/' . $id); ?>
                 <div class="box-body">
                     <div class="form-group">
                         <?php echo form_label('Nama Kegiatan', 'nama_kegiatan'); ?>
