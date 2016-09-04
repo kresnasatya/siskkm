@@ -15,7 +15,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="box box-primary">
-                <?php echo form_open('up2kk/validasi/skkm/' . $id); ?>
+                <?php echo form_open('up2kk/validasi/update_skkm/' . $id); ?>
                 <div class="box-body">
                     <div class="form-group">
                         <?php echo form_label('Status', 'status'); ?>

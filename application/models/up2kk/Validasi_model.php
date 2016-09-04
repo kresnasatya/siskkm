@@ -32,7 +32,7 @@ class Validasi_model extends CI_Model
         $this->db->join('jenis', 'jenis.id_jenis = skkm.id_jenis');
         $this->db->join('tingkat', 'tingkat.id_tingkat = skkm.id_tingkat');
         $this->db->join('prestasi', 'prestasi.id_prestasi = skkm.id_prestasi');
-        $where = "id_user = $id_user AND status = 2 OR status = 0";
+        $where = "id_user = $id_user AND (status = 2 OR status = 0)";
         $this->db->where($where);
         return $this->db->get()->result();
     }

@@ -40,7 +40,7 @@ class Validasi extends UP2KK_Controller
 
     }
 
-    public function skkm($id_skkm)
+    public function edit_skkm($id_skkm)
     {
         $this->rules();
         $current_user = $this->ion_auth->user()->row();
@@ -56,25 +56,25 @@ class Validasi extends UP2KK_Controller
                     'gravatar_url' => $this->gravatar->get($current_user->email)
                 );
                 $this->template->load('templates/up2kk/validasi_template', 'up2kk/validasi/skkm', $data);
-            } else {
-                $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
-                redirect(site_url('up2kk/validasi/list_skkm/' . $row->id_user));
             }
-        } else {
-            $id_user = $this->input->post('id_user');
-            $id = $this->input->post('id');
-            $status = $this->input->post('status');
-            $keterangan = $this->input->post('keterangan');
-            $data = array(
-                'id' => $id,
-                'status' => $status,
-                'keterangan' => $keterangan,
-                'id_user' => $id_user
-            );
-            $this->validasi->validasi_skkm($id, $data);
-            $this->session->set_flashdata('message', "<div style='color:#00a65a;'>SKKM berhasil divalidasi.</div>");
-            redirect(site_url('up2kk/validasi/list_skkm/' . $row->id_user));
         }
+    }
+
+    public function update_skkm($id_skkm)
+    {
+        $id_user = $this->input->post('id_user');
+        $id = $this->input->post('id');
+        $status = $this->input->post('status');
+        $keterangan = $this->input->post('keterangan');
+        $data = array(
+            'id' => $id,
+            'status' => $status,
+            'keterangan' => $keterangan,
+            'id_user' => $id_user
+        );
+        $this->validasi->validasi_skkm($id, $data);
+        $this->session->set_flashdata('message', "<div style='color:#00a65a;'>SKKM berhasil divalidasi.</div>");
+        redirect(site_url('up2kk/validasi/daftar-skkm/' . $id_user));
     }
 
     public function rules()
