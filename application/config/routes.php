@@ -74,10 +74,11 @@ $route['mahasiswa/user/ubah-password'] = 'mahasiswa/user/ubah_password';
 /* Routing for UP2KK section */
 $route['up2kk/daftar-mahasiswa'] = 'up2kk/validasi';
 $route['up2kk/daftar-skkm'] = 'up2kk/skkm';
-$route['up2kk/daftar-skkm-valid'] = 'up2kk/skkm/daftar_skkm_valid';
-$route['up2kk/daftar-skkm-valid/(:num)'] = 'up2kk/skkm/daftar_skkm/$1';
-$route['up2kk/daftar-skkm-tidak-valid'] = 'up2kk/validasi/skkm-tidak-valid';
-$route['up2kk/daftar-skkm-belum-valid'] = 'up2kk/validasi/skkm_belum_valid';
-$route['up2kk/validasi/skkm/(:num)'] = 'up2kk/validasi/list_skkm/$1';
+$route['up2kk/daftar-skkm-valid'] = 'up2kk/skkm/list_skkm_valid';
+$route['up2kk/daftar-skkm-valid/(:num)'] = 'up2kk/skkm/list_skkm/$1';
+$route['up2kk/daftar-skkm-tidak-valid'] = 'up2kk/validasi/list_skkm_tidak_valid';
+$route['up2kk/daftar-skkm-belum-valid'] = 'up2kk/validasi/list_skkm_belum_valid';
+$route['up2kk/validasi/daftar-skkm/(:num)'] = 'up2kk/validasi/list_skkm/$1';
+$route['up2kk/validasi/skkm/(:num)'] = 'up2kk/validasi/edit_skkm/$1';
 $route['up2kk/user/edit-profil'] = 'up2kk/user/edit_profil';
 $route['up2kk/user/ubah-password'] = 'up2kk/user/ubah_password';
