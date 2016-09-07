@@ -6,9 +6,10 @@
 */cache/*
 !*/cache/index.html
 !*/cache/.htaccess
-### Example user template template
-/system
+
 ### Example user template
+system
+fileskkm/*
 
 # IntelliJ project files
 .idea
