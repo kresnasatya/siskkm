@@ -171,9 +171,9 @@ class Skkm extends Mahasiswa_Controller
             if (!$this->image_lib->resize()) {
                 $this->session->set_flashdata('errors', $this->image_lib->display_errors('', ''));
             }
-            $this->session->set_flashdata('message', "<div style='color:#00a65a;'>SKKM berhasil ditambah.</div>");
-            redirect(site_url('mahasiswa/skkm'));
         }
+        $this->session->set_flashdata('message', "<div style='color:#00a65a;'>SKKM berhasil ditambah.</div>");
+        redirect(site_url('mahasiswa/skkm'));
     }
 
     public function edit($id)
@@ -258,8 +258,6 @@ class Skkm extends Mahasiswa_Controller
                 if (!$this->image_lib->resize()) {
                     $this->session->set_flashdata('errors', $this->image_lib->display_errors('', ''));
                 }
-                $this->session->set_flashdata('message', "<div style='color:#00a65a;'>SKKM berhasil diubah.</div>");
-                redirect(site_url('mahasiswa/skkm'));
             }
         } 
         /* If there is no image upload */
@@ -277,10 +275,9 @@ class Skkm extends Mahasiswa_Controller
                 'keterangan' => $this->input->post('keterangan') ? $this->input->post('keterangan') : '-'
             );
             $this->skkm->update($id, $data);
-
-            $this->session->set_flashdata('message', "<div style='color:#00a65a;'>SKKM berhasil diubah.</div>");
-            redirect(site_url('mahasiswa/skkm'));
         }
+        $this->session->set_flashdata('message', "<div style='color:#00a65a;'>SKKM berhasil diedit.</div>");
+        redirect(site_url('mahasiswa/skkm'));
     }
 
     public function delete($id)
