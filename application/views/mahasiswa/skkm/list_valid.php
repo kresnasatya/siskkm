@@ -18,7 +18,7 @@
                 <div class="box-header">
                     <h3>Daftar Data SKKM</h3>
                     <div class="col-md-4">
-                        <a href="<?php echo site_url('mahasiswa/skkm/tambah'); ?>" class="btn btn-primary">Tambah
+                        <a href="<?php echo site_url('mahasiswa/skkm/create'); ?>" class="btn btn-primary">Tambah
                             SKKM</a>
                         <a href="<?php echo site_url('mahasiswa/skkm/cetak-laporan'); ?>" class="btn btn-primary">Cetak
                             Laporan</a>
