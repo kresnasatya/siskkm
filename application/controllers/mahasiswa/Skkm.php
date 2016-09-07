@@ -156,21 +156,6 @@ class Skkm extends Mahasiswa_Controller
             );
 
             $this->skkm->insert($data);
-
-            // resize file
-            $resize = array(
-                'image_library' => 'gd2',
-                'source_image' => $this->upload->upload_path . $this->upload->file_name,
-                'new_image' => './fileskkm/resize',
-                'maintain_ratio' => TRUE,
-                'width' => 100,
-                'height' => 100
-            );
-            $this->load->library('image_lib', $resize);
-
-            if (!$this->image_lib->resize()) {
-                $this->session->set_flashdata('errors', $this->image_lib->display_errors('', ''));
-            }
         }
         $this->session->set_flashdata('message', "<div style='color:#00a65a;'>SKKM berhasil ditambah.</div>");
         redirect(site_url('mahasiswa/skkm'));
@@ -225,7 +210,6 @@ class Skkm extends Mahasiswa_Controller
                 * Remove old image from folder 
                 */
                 unlink('fileskkm/'.$row->filefoto);
-                unlink('fileskkm/resize/'.$row->filefoto);
 
                 // Uploaded file here
                 $file = $this->upload->data();
@@ -243,21 +227,6 @@ class Skkm extends Mahasiswa_Controller
                 );
 
                 $this->skkm->update($id, $data);
-
-                // resize file
-                $resize = array(
-                    'image_library' => 'gd2',
-                    'source_image' => $this->upload->upload_path . $this->upload->file_name,
-                    'new_image' => './fileskkm/resize',
-                    'maintain_ratio' => TRUE,
-                    'width' => 100,
-                    'height' => 100
-                );
-                $this->load->library('image_lib', $resize);
-
-                if (!$this->image_lib->resize()) {
-                    $this->session->set_flashdata('errors', $this->image_lib->display_errors('', ''));
-                }
             }
         } 
         /* If there is no image upload */
@@ -289,7 +258,6 @@ class Skkm extends Mahasiswa_Controller
             * unlink() use for delete files like image in folder fileskkm and fileskkm/resize
             */
             unlink('fileskkm/'.$row->filefoto);
-            unlink('fileskkm/resize/'.$row->filefoto);
 
             $this->skkm->delete($id);
             $this->session->set_flashdata('message', "<div style='color:#00a65a;'>SKKM berhasil dihapus.</div>");

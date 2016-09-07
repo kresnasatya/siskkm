@@ -183,8 +183,6 @@
 <script src="<?php echo base_url('adminlte/plugins/datatables/dataTables.bootstrap.min.js'); ?>"></script>
 <!-- SlimScroll -->
 <script src="<?php echo base_url('adminlte/plugins/slimScroll/jquery.slimscroll.min.js'); ?>"></script>
-<!-- Intense Images -->
-<script src="<?php echo base_url('intense-images/intense.min.js'); ?>"></script>
 <!-- FastClick -->
 <script src="<?php echo base_url('adminlte/plugins/fastclick/fastclick.min.js'); ?>"></script>
 <!-- AdminLTE App -->
@@ -252,13 +250,6 @@
                 alert(XMLHttpRequest.responseText);
             }
         });
-    }
-</script>
-<!-- Intense-image -->
-<script>
-    window.onload = function () {
-        var elements = document.querySelectorAll('.anything');
-        Intense(elements);
     }
 </script>
 </body>
