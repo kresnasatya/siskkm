@@ -58,9 +58,6 @@ $route['translate_uri_dashes'] = FALSE;
 $route['pengumuman/(:any)'] = 'pengumuman/single/$1';
 
 /* Routing for Admin section */
-$route['admin/user/edit-profil'] = 'admin/user/edit_profil';
-$route['admin/user/ubah-password'] = 'admin/user/ubah_password';
-
 
 /* Routing for Mahasiswa section */
 $route['mahasiswa/daftar-skkm'] = 'mahasiswa/skkm';
@@ -68,8 +65,6 @@ $route['mahasiswa/daftar-skkm-valid'] = 'mahasiswa/skkm/list_skkm_valid';
 $route['mahasiswa/daftar-skkm-tidak-valid'] = 'mahasiswa/skkm/list_skkm_tidak_valid';
 $route['mahasiswa/daftar-skkm-belum-valid'] = 'mahasiswa/skkm/list_skkm_belum_valid';
 $route['mahasiswa/skkm/cetak-laporan'] = 'mahasiswa/skkm/cetak_laporan';
-$route['mahasiswa/user/edit-profil'] = 'mahasiswa/user/edit_profil';
-$route['mahasiswa/user/ubah-password'] = 'mahasiswa/user/ubah_password';
 
 /* Routing for UP2KK section */
 $route['up2kk/daftar-mahasiswa'] = 'up2kk/validasi';
@@ -80,5 +75,3 @@ $route['up2kk/daftar-skkm-tidak-valid'] = 'up2kk/validasi/list_skkm_tidak_valid'
 $route['up2kk/daftar-skkm-belum-valid'] = 'up2kk/validasi/list_skkm_belum_valid';
 $route['up2kk/validasi/daftar-skkm/(:num)'] = 'up2kk/validasi/list_skkm/$1';
 $route['up2kk/validasi/skkm/(:num)'] = 'up2kk/validasi/edit_skkm/$1';
-$route['up2kk/user/edit-profil'] = 'up2kk/user/edit_profil';
-$route['up2kk/user/ubah-password'] = 'up2kk/user/ubah_password';
