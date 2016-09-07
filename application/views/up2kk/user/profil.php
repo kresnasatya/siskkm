@@ -1,46 +1,103 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
-    <h1>Profil User</h1>
+    <h1>Edit Profil</h1>
     <ol class="breadcrumb">
         <li><a href="<?php echo site_url('up2kk/user'); ?>"><i class="fa fa-user"></i>Profil</a></li>
-        <li class="active">Profil User</li>
+        <li class="active">Edit Profil</li>
     </ol>
 </section>
-
 <!-- Main content -->
 <section class="content">
-
     <div class="row">
         <div class="col-md-12">
             <div class="box box-primary">
-                <div class="box-body box-profile">
-                    <div class="col-md-3">
-                        <img class="profile-user-img img-responsive img-circle" src="<?php echo $gravatar_url; ?>"
-                             alt="gambar Profil User">
-                        <h3 class="profile-username text-center"><?php echo $current_user->nama_depan . ' ' . $current_user->nama_belakang; ?></h3>
+                <!-- form start-->
+                <?php echo form_open('up2kk/user/update_profil'); ?>
+                <div class="box-body">
+                    <div class="form-group">
+                        <?php echo form_label('Nama depan', 'nama_depan'); ?>
+                        <?php echo form_error('nama_depan'); ?>
+                        <?php
+                        $data = array(
+                            'type' => 'text',
+                            'class' => 'form-control',
+                            'name' => 'nama_depan',
+                            'value' => set_value('nama_depan', $current_user->nama_depan),
+                            'id' => 'nama_depan',
+                            'placeholder' => 'Nama Depan',
+                            'required' => 'required',
+                            'autofocus' => 'autofocus'
+                        );
+                        echo form_input($data); ?>
                     </div>
-                    <div class="col-md-9">
-                        <ul class="list-group list-group-unbordered">
-                            <li class="list-group-item">
-                                <b>Nama</b> <a
-                                    class="pull-right"><?php echo $profil->nama_depan . ' ' . $profil->nama_belakang; ?></a>
-                            </li>
-                            <li class="list-group-item">
-                                <b>Email</b> <a class="pull-right"><?php echo $profil->email; ?></a>
-                            </li>
-                            <li class="list-group-item">
-                                <b>Nip</b> <a class="pull-right"><?php echo $profil->nip; ?></a>
-                            </li>
-                            <li class="list-group-item">
-                                <b>Jurusan</b> <a class="pull-right"><?php echo $profil->nama_jurusan; ?></a>
-                            </li>
-                        </ul>
-                        <?php echo anchor(site_url('up2kk/user/edit-profil'), 'Edit Profil', 'class="btn btn-primary btn-block"'); ?>
-                        <?php echo anchor(site_url('up2kk/user/ubah-password'), 'Ubah Password', 'class="btn btn-primary btn-block"'); ?>
+                    <div class="form-group">
+                        <?php echo form_label('Nama belakang', 'nama_belakang'); ?>
+                        <?php echo form_error('nama_belakang'); ?>
+                        <?php
+                        $data = array(
+                            'type' => 'text',
+                            'class' => 'form-control',
+                            'name' => 'nama_belakang',
+                            'value' => set_value('nama_belakang', $current_user->nama_belakang),
+                            'id' => 'nama_belakang',
+                            'placeholder' => 'Nama Belakang',
+                            'required' => 'required'
+                        );
+                        echo form_input($data); ?>
                     </div>
-                </div>
+                    <div class="form-group">
+                        <?php echo form_label('Email', 'email'); ?>
+                        <?php echo form_error('email'); ?>
+                        <?php
+                        $data = array(
+                            'type' => 'email',
+                            'class' => 'form-control',
+                            'name' => 'email',
+                            'value' => set_value('email', $current_user->email),
+                            'id' => 'email',
+                            'placeholder' => 'Email',
+                            'required' => 'required'
+                        );
+                        echo form_input($data); ?>
+                    </div>
+                    <div class="form-group">
+                        <?php echo form_label('Nip', 'nip'); ?>
+                        <?php echo form_error('nip'); ?>
+                        <?php
+                        $data = array(
+                            'type' => 'text',
+                            'class' => 'form-control',
+                            'name' => 'nip',
+                            'value' => set_value('nip', $current_user->nip),
+                            'id' => 'nip',
+                            'placeholder' => 'Nip'
+                        );
+                        echo form_input($data); ?>
+                    </div>
+                    <div class="form-group">
+                        <?php echo form_label('Jurusan', 'id_jurusan'); ?>
+                        <?php echo form_error('id_jurusan'); ?>
+                        <select class="form-control" name="id_jurusan" id="jurusan">
+                            <option value="">Silahkan Pilih</option>
+                            <?php foreach ($dd_jurusan as $row): ?>
+                                <option value="<?php echo $row->id; ?>"
+                                    <?php if ($row->id == $current_user->id_jurusan): ?>
+                                        selected="selected"
+                                    <?php endif; ?>>
+                                    <?php echo $row->nama_jurusan; ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div><!-- /. box-body -->
+                <?php echo form_hidden('user_id', $current_user->id); ?>
+                <div class="box-footer">
+                    <a href="<?php echo site_url('up2kk/user') ?>" class="btn btn-default">Kembali</a>
+                    <?php echo form_submit('submit', 'Edit', 'class="btn btn-warning"'); ?>
+                </div><!-- /. box-footer -->
+                <?php echo form_close(); ?>
+                <!-- /.form end -->
             </div>
         </div>
     </div>
-
 </section><!-- /.content -->

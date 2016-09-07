@@ -1,104 +1,141 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
-    <h1>Profil User</h1>
+    <h1>Edit Profil</h1>
     <ol class="breadcrumb">
         <li><a href="<?php echo site_url('mahasiswa/user'); ?>"><i class="fa fa-user"></i>Profil</a></li>
-        <li class="active">Profil User</li>
+        <li class="active">Edit Profil</li>
     </ol>
 </section>
-
 <!-- Main content -->
 <section class="content">
-
     <div class="row">
         <div class="col-md-12">
             <div class="box box-primary">
-                <div class="box-body box-profile">
-                    <div class="col-md-3">
-                        <img class="profile-user-img img-responsive img-circle" src="<?php echo $gravatar_url; ?>"
-                             alt="gambar Profil User">
-                        <h3 class="profile-username text-center"><?php echo $current_user->nama_depan . ' ' . $current_user->nama_belakang; ?></h3>
-                        <p>
-                            <strong>Total poin belum divalidasi:
-                                <?php
-                                $num = 0;
-                                $str = "poin";
-                                if ($sum_belum_divalidasi == NULL): ?>
-                                    <?php echo $num . ' ' . $str; ?>
-                                <?php else: ?>
-                                    <?php echo $sum_belum_divalidasi . ' ' . $str; ?>
-                                <?php endif; ?>
-                            </strong>
-                        </p>
-                        <p>
-                            <strong>Total poin tidak valid:
-                                <?php
-                                $num = 0;
-                                $str = "poin";
-                                if ($sum_tidak_valid == NULL): ?>
-                                    <?php echo $num . ' ' . $str; ?>
-                                <?php else: ?>
-                                    <?php echo $sum_tidak_valid . ' ' . $str; ?>
-                                <?php endif; ?>
-                            </strong>
-                        </p>
-                        <p>
-                            <strong>Total poin valid:
-                                <?php
-                                $num = 0;
-                                $str = "poin";
-                                if ($sum_valid == NULL): ?>
-                                    <?php echo $num . ' ' . $str; ?>
-                                <?php else: ?>
-                                    <?php echo $sum_valid . ' ' . $str; ?>
-                                <?php endif; ?>
-                            </strong>
-                        </p>
-                        <p>
-                            <strong>Status Kelulusan SKKM:
-                                <?php if ($sum_valid >= $status_skkm): ?>
-                                    <strong style="color:#00a65a;"><?php echo "LULUS"; ?></strong>
-                                <?php else: ?>
-                                    <strong style="color:#dd4b39;"><?php echo "TIDAK LULUS"; ?></strong>
-                                <?php endif; ?>
-                            </strong>
-                        </p>
-                        <?php echo anchor(site_url('mahasiswa/skkm/cetak-laporan'), 'Cetak Laporan', 'class="btn btn-primary btn-block"'); ?>
+                <!-- form start-->
+                <?php echo form_open('mahasiswa/user/update_profil'); ?>
+                <div class="box-body">
+                    <div class="form-group">
+                        <?php echo form_label('Nama depan', 'nama_depan'); ?>
+                        <?php echo form_error('nama_depan'); ?>
+                        <?php
+                        $data = array(
+                            'type' => 'text',
+                            'class' => 'form-control',
+                            'name' => 'nama_depan',
+                            'value' => set_value('nama_depan', $current_user->nama_depan),
+                            'id' => 'nama_depan',
+                            'placeholder' => 'Nama depan',
+                            'required' => 'required',
+                            'autofocus' => 'autofocus'
+                        );
+                        echo form_input($data); ?>
                     </div>
-                    <div class="col-md-9">
-                        <ul class="list-group list-group-unbordered">
-                            <li class="list-group-item">
-                                <b>Nama</b> <a
-                                    class="pull-right"><?php echo $profil->nama_depan . ' ' . $profil->nama_belakang; ?></a>
-                            </li>
-                            <li class="list-group-item">
-                                <b>Email</b> <a class="pull-right"><?php echo $profil->email; ?></a>
-                            </li>
-                            <li class="list-group-item">
-                                <b>Nim</b> <a class="pull-right"><?php echo $profil->nim; ?></a>
-                            </li>
-                            <li class="list-group-item">
-                                <b>Jurusan</b> <a class="pull-right"><?php echo $profil->nama_jurusan; ?></a>
-                            </li>
-                            <li class="list-group-item">
-                                <b>Prodi</b> <a class="pull-right"><?php echo $profil->nama_prodi; ?></a>
-                            </li>
-                            <li class="list-group-item">
-                                <b>Jenjang</b> <a class="pull-right"><?php echo $profil->jenjang; ?></a>
-                            </li>
-                            <li class="list-group-item">
-                                <b>Semester</b> <a class="pull-right"><?php echo $profil->semester; ?></a>
-                            </li>
-                            <li class="list-group-item">
-                                <b>Kelas</b> <a class="pull-right"><?php echo $profil->kelas; ?></a>
-                            </li>
-                        </ul>
-                        <?php echo anchor(site_url('mahasiswa/user/edit-profil'), 'Edit Profil', 'class="btn btn-primary btn-block"'); ?>
-                        <?php echo anchor(site_url('mahasiswa/user/ubah-password'), 'Ubah Password', 'class="btn btn-primary btn-block"'); ?>
+                    <div class="form-group">
+                        <?php echo form_label('Nama belakang', 'nama_belakang'); ?>
+                        <?php echo form_error('nama_belakang'); ?>
+                        <?php
+                        $data = array(
+                            'type' => 'text',
+                            'class' => 'form-control',
+                            'name' => 'nama_belakang',
+                            'value' => set_value('nama_belakang', $current_user->nama_belakang),
+                            'id' => 'nama_belakang',
+                            'placeholder' => 'Nama belakang',
+                            'required' => 'required'
+                        );
+                        echo form_input($data); ?>
                     </div>
-                </div>
+                    <div class="form-group">
+                        <?php echo form_label('Email', 'email'); ?>
+                        <?php echo form_error('email'); ?>
+                        <?php
+                        $data = array(
+                            'type' => 'email',
+                            'class' => 'form-control',
+                            'name' => 'email',
+                            'value' => set_value('email', $current_user->email),
+                            'id' => 'email',
+                            'placeholder' => 'Email',
+                            'required' => 'required'
+                        );
+                        echo form_input($data); ?>
+                    </div>
+                    <div class="form-group">
+                        <?php echo form_label('Nim', 'nim'); ?>
+                        <?php echo form_error('nim'); ?>
+                        <?php
+                        $data = array(
+                            'type' => 'text',
+                            'class' => 'form-control',
+                            'name' => 'nim',
+                            'value' => set_value('nim', $current_user->nim),
+                            'id' => 'nim',
+                            'placeholder' => 'Nim'
+                        );
+                        echo form_input($data); ?>
+                    </div>
+                    <div class="form-group">
+                        <?php echo form_label('Jurusan', 'id_jurusan'); ?>
+                        <?php echo form_error('id_jurusan'); ?>
+                        <select class="form-control" name="id_jurusan" id="jurusan" onchange="getProdi(this.value)"
+                                required="">
+                            <option value="">Silahkan Pilih</option>
+                            <?php foreach ($dd_jurusan as $row): ?>
+                                <option value="<?php echo $row->id ?>"
+                                    <?php if ($row->id == $current_user->id_jurusan): ?>
+                                        selected="selected"
+                                    <?php endif; ?>>
+                                    <?php echo $row->nama_jurusan; ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <?php echo form_label('Prodi', 'id_prodi'); ?>
+                        <?php echo form_error('id_prodi'); ?>
+                        <select name="id_prodi" id="prodi" class="form-control" required="">
+                            <option value="">Silahkan Pilih</option>
+                            <?php foreach ($dd_prodi as $row): ?>
+                                <option value="<?php echo $row->id; ?>"
+                                    <?php if ($row->id == $current_user->id_prodi): ?>
+                                        selected="selected"
+                                    <?php endif; ?>>
+                                    <?php echo $row->nama_prodi; ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="semester">Semester <?php echo form_error('id_semester'); ?></label>
+                        <?php
+                        $extra = array(
+                            'class' => 'form-control',
+                            'id' => 'semester',
+                            'required' => 'required'
+                        );
+                        echo form_dropdown('id_semester', $dd_semester, set_value('id_semester', $current_user->id_semester), $extra);
+                        ?>
+                    </div>
+                    <div class="form-group">
+                        <label for="kelas">Kelas <?php echo form_error('id_kelas'); ?></label>
+                        <?php
+                        $extra = array(
+                            'class' => 'form-control',
+                            'id' => 'kelas',
+                            'required' => 'required'
+                        );
+                        echo form_dropdown('id_kelas', $dd_kelas, set_value('id_kelas', $current_user->id_kelas), $extra);
+                        ?>
+                    </div>
+                </div><!-- /. box-body -->
+                <?php echo form_hidden('user_id', $current_user->id); ?>
+                <div class="box-footer">
+                    <a href="<?php echo site_url('mahasiswa/user') ?>" class="btn btn-default">Kembali</a>
+                    <?php echo form_submit('submit', 'Edit', 'class="btn btn-warning"'); ?>
+                </div><!-- /. box-footer -->
+                <?php echo form_close(); ?>
+                <!-- /.form end -->
             </div>
         </div>
     </div>
-
 </section><!-- /.content -->

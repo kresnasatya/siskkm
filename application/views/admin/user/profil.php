@@ -12,7 +12,7 @@
         <div class="col-md-12">
             <div class="box box-primary">
                 <!-- form start-->
-                <?php echo form_open(); ?>
+                <?php echo form_open('admin/user/update_profil'); ?>
                 <div class="box-body">
                     <div class="form-group">
                         <?php echo form_label('Nama depan', 'nama_depan'); ?>

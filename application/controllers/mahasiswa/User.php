@@ -11,7 +11,7 @@ class User extends Mahasiswa_Controller
         $this->load->library('form_validation');
     }
 
-    function index()
+    public function index()
     {
         $current_user = $this->ion_auth->user()->row();
         $data = array(
@@ -23,7 +23,7 @@ class User extends Mahasiswa_Controller
             'sum_belum_divalidasi' => $this->skkm->sum_belum_divalidasi($current_user->id),
             'status_skkm' => $this->skkm->status_skkm($current_user->id)
         );
-        $this->template->load('templates/mahasiswa/user_template', 'mahasiswa/user/profil', $data);
+        $this->template->load('templates/mahasiswa/user_template', 'mahasiswa/user/index', $data);
     }
 
     public function get_prodi()
@@ -38,9 +38,9 @@ class User extends Mahasiswa_Controller
         echo '</select>';
     }
 
-    function edit_profil()
+    public function profil()
     {
-        $this->rules_edit_profil();
+        $this->profil_rules();
         $current_user = $this->ion_auth->user()->row();
         if ($this->form_validation->run() == FALSE) {
             $data = array(
@@ -51,48 +51,55 @@ class User extends Mahasiswa_Controller
                 'dd_semester' => $this->user->get_semester(),
                 'gravatar_url' => $this->gravatar->get($current_user->email)
             );
-            $this->template->load('templates/mahasiswa/user_template', 'mahasiswa/user/edit', $data);
-        } else {
-            $new_data = array(
-                'nama_depan' => $this->input->post('nama_depan'),
-                'nama_belakang' => $this->input->post('nama_belakang'),
-                'nim' => $this->input->post('nim'),
-                'email' => $this->input->post('email'),
-                'id_jurusan' => $this->input->post('id_jurusan'),
-                'id_prodi' => $this->input->post('id_prodi'),
-                'id_kelas' => $this->input->post('id_kelas'),
-                'id_semester' => $this->input->post('id_semester')
-            );
-            $this->ion_auth->update($current_user->id, $new_data);
-
-            $this->session->set_flashdata('message', "<div style='color:#00a65a;'>" . $this->ion_auth->messages() . "</div>");
-            redirect(site_url('mahasiswa/user'));
+            $this->template->load('templates/mahasiswa/user_template', 'mahasiswa/user/profil', $data);
         }
     }
 
-    function ubah_password()
+    public function update_profil()
     {
-        $this->rules_ubah_password();
+        $user_id = $this->input->post('user_id');
+        $new_data = array(
+            'nama_depan' => $this->input->post('nama_depan'),
+            'nama_belakang' => $this->input->post('nama_belakang'),
+            'nim' => $this->input->post('nim'),
+            'email' => $this->input->post('email'),
+            'id_jurusan' => $this->input->post('id_jurusan'),
+            'id_prodi' => $this->input->post('id_prodi'),
+            'id_kelas' => $this->input->post('id_kelas'),
+            'id_semester' => $this->input->post('id_semester')
+        );
+        $this->ion_auth->update($user_id, $new_data);
+
+        $this->session->set_flashdata('message', "<div style='color:#00a65a;'>" . $this->ion_auth->messages() . "</div>");
+        redirect(site_url('mahasiswa/user'));
+    }
+
+    public function password()
+    {
+        $this->password_rules();
         $current_user = $this->ion_auth->user()->row();
         $data = array(
             'current_user' => $current_user,
             'gravatar_url' => $this->gravatar->get($current_user->email)
         );
         if ($this->form_validation->run() == FALSE) {
-            $this->template->load('templates/mahasiswa/user_template', 'mahasiswa/user/ubah_password', $data);
-        } else {
-            $id_user = $this->input->post('user_id');
-            $data = array('password' => $this->input->post('password_baru'));
-
-            $this->ion_auth->update($id_user, $data);
-
-            $this->ion_auth->logout();
-            $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Password berhasil diubah.</div>");
-            redirect(site_url('login'));
+            $this->template->load('templates/mahasiswa/user_template', 'mahasiswa/user/password', $data);
         }
     }
 
-    function rules_edit_profil()
+    public function update_password()
+    {
+        $id_user = $this->input->post('user_id');
+        $data = array('password' => $this->input->post('password_baru'));
+
+        $this->ion_auth->update($id_user, $data);
+
+        $this->ion_auth->logout();
+        $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Password berhasil diubah.</div>");
+        redirect(site_url('login'));
+    }
+
+    public function profil_rules()
     {
         $this->form_validation->set_rules('nama_depan', 'Nama depan', 'trim|required');
         $this->form_validation->set_rules('nama_belakang', 'Nama belakang', 'trim|required');
@@ -105,7 +112,7 @@ class User extends Mahasiswa_Controller
         $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
 
-    public function rules_ubah_password()
+    public function password_rules()
     {
         $this->form_validation->set_rules('password_baru', 'Password Baru', 'trim|required');
         $this->form_validation->set_rules('konfirmasi_password', 'Konfirmasi Password', 'trim|required|matches[password_baru]');

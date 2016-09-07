@@ -2,7 +2,7 @@
 <section class="content-header">
     <h1>Ubah Password</h1>
     <ol class="breadcrumb">
-        <li><a href="<?php echo site_url('admin/user'); ?>"><i class="fa fa-user"></i>Profil</a></li>
+        <li><a href="<?php echo site_url('mahasiswa/user'); ?>"><i class="fa fa-user"></i>Profil</a></li>
         <li class="active">Ubah Password</li>
     </ol>
 </section>
@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="box box-primary">
-                <?php echo form_open('admin/user/ubah_password'); ?>
+                <?php echo form_open('mahasiswa/user/update_password'); ?>
                 <div class="box-body">
                     <div class="form-group">
                         <?php echo form_label('Password Baru', 'password_baru'); ?>
@@ -45,13 +45,12 @@
                         echo form_input($data);
                         ?>
                     </div>
-                    <?php echo form_hidden('user_id', $current_user->id) ?>
-                    <?php echo anchor(site_url('admin/user'), 'Kembali', 'class="btn btn-default"'); ?>
+                    <?php echo form_hidden('user_id', $current_user->id); ?>
+                    <?php echo anchor(site_url('mahasiswa/user'), 'Kembali', 'class="btn btn-default"'); ?>
                     <?php echo form_submit('submit', 'Ubah Password', 'class="btn btn-warning"'); ?>
                 </div>
                 <?php echo form_close(); ?>
             </div>
         </div>
     </div>
-</section>
-<!-- /.content -->
+</section><!-- /.content -->
