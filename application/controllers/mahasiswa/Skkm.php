@@ -140,7 +140,7 @@ class Skkm extends Mahasiswa_Controller
 
         if (!$this->upload->do_upload('filefoto')) {
             $this->session->set_flashdata('message', "<div style='color:#ff0000;'>" . $this->upload->display_errors() . "</div>");
-            redirect(site_url('mahasiswa/skkm/tambah'));
+            redirect(site_url('mahasiswa/skkm/create'));
         } else {
             $file = $this->upload->data();
             $data = array(
@@ -218,7 +218,7 @@ class Skkm extends Mahasiswa_Controller
 
             if (!$this->upload->do_upload('filefoto')) {
                 $this->session->set_flashdata('message', "<div style='color:#ff0000;'>" . $this->upload->display_errors() . "</div>");
-                redirect(site_url('mahasiswa/skkm/ubah/' . $row->id));
+                redirect(site_url('mahasiswa/skkm/edit/' . $row->id));
             } else {
 
                 /* 
