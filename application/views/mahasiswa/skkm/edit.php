@@ -35,15 +35,11 @@
                     </div>
                     <div class="form-group">
                         <label for="filefoto">Bukti Kegiatan</label> <span class="label label-success">Ukuran maksimal 5MB. Format file: jpeg, jpg, dan png.</span>
-                        <div class="row" style="margin-bottom:5px;">
-                            <div class="anything col-xs-12 col-sm-6 col-md-3"
-                                 data-image="<?php echo base_url('fileskkm/' . $filefoto); ?>">
-                                <img src="<?php echo base_url('fileskkm/resize/' . $filefoto); ?>"
-                                     alt="<?php echo $filefoto; ?>"/>
-                            </div>
-                        </div>
                         <?php echo form_error('filefoto'); ?>
-                        <input type="file" name="filefoto" id="filefoto" class="form-control">
+                        <div id="image-preview" style="background-image: url(<?php echo base_url('fileskkm/' . $filefoto); ?>)">
+                            <label for="image-upload" id="image-label">Choose File</label>
+                            <input type="file" name="filefoto" id="image-upload"/>
+                        </div>
                     </div>
                     <div class="form-group">
                         <?php echo form_label('Jenis Kegiatan', 'id_jenis'); ?>

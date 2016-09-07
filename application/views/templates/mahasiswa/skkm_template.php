@@ -26,6 +26,42 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <style>
+        #image-preview {
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+            background-color: #ffffff;
+            color: #ecf0f1;
+        }
+        #image-preview input {
+            line-height: 200px;
+            font-size: 200px;
+            position: absolute;
+            opacity: 0;
+            z-index: 10;
+        }
+        #image-preview label {
+            position: absolute;
+            z-index: 5;
+            opacity: 0.8;
+            cursor: pointer;
+            background-color: #bdc3c7;
+            width: 200px;
+            height: 50px;
+            font-size: 20px;
+            line-height: 50px;
+            text-transform: uppercase;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            text-align: center;
+        }
+    </style>
+
 </head>
 <body class="hold-transition skin-green sidebar-mini">
 <!-- Site wrapper -->
@@ -138,6 +174,8 @@
 
 <!-- jQuery -->
 <script src="<?php echo base_url('adminlte/plugins/jQuery/jquery.min.js'); ?>"></script>
+<!-- jQuery Upload Preview -->
+<script src="<?php echo base_url('adminlte/plugins/uploadPreview/jquery.uploadPreview.min.js'); ?>"></script>
 <!-- Bootstrap 3.3.5 -->
 <script src="<?php echo base_url('adminlte/bootstrap/js/bootstrap.min.js'); ?>"></script>
 <!-- Datatables -->
@@ -155,9 +193,14 @@
 <script src="<?php echo base_url('adminlte/plugins/select2/select2.min.js'); ?>"></script>
 <!-- page script-->
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         $("#skkmtable").DataTable({
             "scrollX": true
+        });
+        $.uploadPreview({
+            input_field: "#image-upload",
+            preview_box: "#image-preview",
+            label_field: "#image-label"
         });
     });
 
