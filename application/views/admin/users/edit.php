@@ -16,7 +16,7 @@
                 <!-- form start-->
                 <?php
                 $attribute = array('id' => 'usersForm');
-                echo form_open('admin/users/ubah/' . $user->id, $attribute); ?>
+                echo form_open('admin/users/update/' . $user->id, $attribute); ?>
                 <div class="box-body">
                     <div class="form-group">
                         <?php echo form_label('Nama depan', 'nama_depan'); ?>
