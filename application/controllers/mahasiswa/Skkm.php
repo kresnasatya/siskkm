@@ -189,7 +189,7 @@ class Skkm extends Mahasiswa_Controller
     {
         $current_user = $this->ion_auth->user()->row();
         $row = $this->skkm->get_by_id($id);
-        /* If there is an image upload */
+        // Do this if there is an image upload
         if ($_FILES AND $_FILES['filefoto']['name']) {
             // Start uploading file
             $config = array(
@@ -206,12 +206,10 @@ class Skkm extends Mahasiswa_Controller
                 redirect(site_url('mahasiswa/skkm/edit/' . $row->id));
             } else {
 
-                /* 
-                * Remove old image from folder 
-                */
+                // Remove filefoto using unlink() function
                 unlink('fileskkm/'.$row->filefoto);
 
-                // Uploaded file here
+                // Upload file here
                 $file = $this->upload->data();
                 $id = $this->input->post('id');
                 $data = array(
@@ -228,8 +226,8 @@ class Skkm extends Mahasiswa_Controller
 
                 $this->skkm->update($id, $data);
             }
-        } 
-        /* If there is no image upload */
+        }
+        // Do this if there is no image upload
         else {
             // No file uploaded
             $id = $this->input->post('id');
@@ -254,9 +252,8 @@ class Skkm extends Mahasiswa_Controller
         $row = $this->skkm->get_by_id($id);
 
         if ($row) {
-            /*
-            * unlink() use for delete files like image in folder fileskkm and fileskkm/resize
-            */
+
+            // Remove filefoto
             unlink('fileskkm/'.$row->filefoto);
 
             $this->skkm->delete($id);
