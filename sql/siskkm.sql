@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 22, 2016 at 12:48 PM
+-- Generation Time: Sep 15, 2016 at 12:01 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.21
 
@@ -138,6 +138,20 @@ CREATE TABLE `pengumuman` (
   `tanggal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `id_user` int(11) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `pengumuman`
+--
+
+INSERT INTO `pengumuman` (`id`, `judul`, `slug`, `isi_pengumuman`, `tanggal`, `id_user`) VALUES
+(1, 'Hello Wordl', 'hello-wordl', '<p>How are you guys? I hpope youre fine</p>', '2016-09-03 10:32:31', 1),
+(2, 'I hope you fine', 'i-hope-you-fine', '<p>I hope you fine,</p>', '2016-09-03 10:31:25', 1),
+(3, 'Hello Wordls', 'hello-wordls', '<p>How are you guys? I hope you fine</p>', '2016-09-03 10:32:35', 1),
+(4, 'lvan', 'lvan', '<p>kvnalvnd</p>', '2016-09-07 08:13:19', 1),
+(5, 'vavknslna', 'vavknslna', '<p>vklvnaslkvn</p>', '2016-09-07 08:13:27', 1),
+(6, 'wioivan;vnas;nv', 'wioivanvnasnv', '<p>avlnasvsa</p>', '2016-09-07 08:13:33', 1),
+(7, 'vanivowaniewa''', 'vanivowaniewa', '<p>vanvaos;vnawieron</p>', '2016-09-07 08:13:40', 1),
+(8, 'vaoivnawionwi', 'vaoivnawionwi', '<p>vawvnaskldnvlkan</p>', '2016-09-07 08:13:49', 1);
 
 -- --------------------------------------------------------
 
@@ -327,14 +341,6 @@ CREATE TABLE `skkm` (
   `keterangan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `skkm`
---
-
-INSERT INTO `skkm` (`id_user`, `id`, `nama_kegiatan`, `filefoto`, `id_jenis`, `id_tingkat`, `id_prestasi`, `nilai`, `status`, `keterangan`) VALUES
-(3, 1, 'XYZ', 'Change_password.png', 3, 14, 40, 6, 0, '-'),
-(3, 2, 'BNM', 'Data_SKKM_berhasil_disimpan.png', 1, 1, 2, 4, 0, '-');
-
 -- --------------------------------------------------------
 
 --
@@ -438,10 +444,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `nama_depan`, `nama_belakang`, `nim`, `nip`, `id_jurusan`, `id_prodi`, `id_kelas`, `id_semester`) VALUES
-(1, '127.0.0.1', 'administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', '', NULL, NULL, NULL, 1268889823, 1469181919, 1, 'Admin', 'istrator', '', '12345678960', NULL, NULL, NULL, NULL),
-(3, '::1', NULL, '$2y$08$gxicTaM8gyqf6HzEmXTptO/7p2/1YRZHiq8snTI.8vc1SVm5DVGxO', NULL, 'satyakresna6295@gmail.com', NULL, NULL, NULL, NULL, 1467583344, 1469183520, 1, 'Satya', 'Kresna', '1315323051', NULL, 1, 32, 5, 6),
-(4, '::1', NULL, '$2y$08$blQgLi.0auwMWg3QgIBYJu/SUhRlWwuDWmOH6.D1fNgpNxzojkTXq', NULL, 'indahcpt@gmail.com', NULL, NULL, NULL, NULL, 1467583389, 1469184193, 1, 'Indah', 'Ciptayani', NULL, '12345678987659', 1, NULL, NULL, NULL),
-(5, '::1', NULL, '$2y$08$1GjljuH9MXGpZXhRQebBf.cBxzIloMbs7AaWLI7VbOPT5LAVjf/Ci', NULL, 'sumertaagus@gmail.com', NULL, NULL, NULL, NULL, 1469167144, NULL, 1, 'Sumerta', 'Agus', '1234567890', NULL, 1, 32, 1, 4);
+(1, '127.0.0.1', 'administrator', '$2y$08$90DIXUdE018ll76sKZVm0ur4WFwit/DtUwU76eRgNragw/kTZ3al6', '', 'admin@admin.com', '', NULL, NULL, NULL, 1268889823, 1473933504, 1, 'Admin', 'istrator', '', '123456789888', NULL, NULL, NULL, NULL),
+(3, '::1', NULL, '$2y$08$f0DGeeR1Sxrn.jbpP/K67uS/a3Ba5/itwcZjNNFywpOlKfBhe7nw.', NULL, 'mahasiswaelektro@mail.com', NULL, NULL, NULL, NULL, 1467583344, 1473245078, 1, 'Mahasiswa', 'Elektro', '1315323051', NULL, 1, 32, 5, 6),
+(4, '::1', NULL, '$2y$08$blQgLi.0auwMWg3QgIBYJu/SUhRlWwuDWmOH6.D1fNgpNxzojkTXq', NULL, 'up2kkelektro@mail.com', NULL, NULL, NULL, NULL, 1467583389, 1473219928, 1, 'Up2kk', 'Elektro', NULL, '12345612121', 1, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -461,9 +466,8 @@ CREATE TABLE `users_groups` (
 
 INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 (1, 1, 1),
-(5, 3, 3),
-(4, 4, 2),
-(7, 5, 3);
+(13, 3, 3),
+(14, 4, 2);
 
 --
 -- Indexes for dumped tables
@@ -593,12 +597,12 @@ ALTER TABLE `login_attempts`
 -- AUTO_INCREMENT for table `pengumuman`
 --
 ALTER TABLE `pengumuman`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `prestasi`
 --
 ALTER TABLE `prestasi`
-  MODIFY `id_prestasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `id_prestasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 --
 -- AUTO_INCREMENT for table `semester`
 --
@@ -608,7 +612,7 @@ ALTER TABLE `semester`
 -- AUTO_INCREMENT for table `skkm`
 --
 ALTER TABLE `skkm`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `standar`
 --
@@ -623,12 +627,12 @@ ALTER TABLE `tingkat`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `users_groups`
 --
 ALTER TABLE `users_groups`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- Constraints for dumped tables
 --
