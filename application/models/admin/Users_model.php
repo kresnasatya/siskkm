@@ -42,32 +42,32 @@ class Users_model extends CI_Model {
   // menampilkan kelas
   public function get_kelas()
   {
-      $this->db->order_by('kelas','asc');
-      $result = $this->db->get('kelas');
+    $this->db->order_by('kelas','asc');
+    $result = $this->db->get('kelas');
 
-      $dd[''] = 'Silahkan Pilih';
-      if ($result->num_rows() > 0) {
-        foreach ($result->result() as $row) {
-          // menentukan value sebelah kiri dan label sebelah kanan
-          $dd[$row->id] = $row->kelas;
-        }
+    $dd[''] = 'Silahkan Pilih';
+    if ($result->num_rows() > 0) {
+      foreach ($result->result() as $row) {
+        // menentukan value sebelah kiri dan label sebelah kanan
+        $dd[$row->id] = $row->kelas;
       }
-      return $dd;
+    }
+    return $dd;
   }
 
   public function get_semester()
   {
-      $this->db->order_by('semester','asc');
-      $result = $this->db->get('semester');
+    $this->db->order_by('semester','asc');
+    $result = $this->db->get('semester');
 
-      $dd[''] = 'Silahkan Pilih';
-      if ($result->num_rows() > 0) {
-        foreach ($result->result() as $row) {
-          // menentukan value sebelah kiri dan label sebelah kanan
-          $dd[$row->id] = $row->semester;
-        }
+    $dd[''] = 'Silahkan Pilih';
+    if ($result->num_rows() > 0) {
+      foreach ($result->result() as $row) {
+        // menentukan value sebelah kiri dan label sebelah kanan
+        $dd[$row->id] = $row->semester;
       }
-      return $dd;
+    }
+    return $dd;
   }
-  
+
 }

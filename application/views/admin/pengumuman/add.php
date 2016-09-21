@@ -21,15 +21,14 @@
                         <?php echo form_error('judul'); ?>
                         <?php
                         $data = array(
-                            'type' => 'text',
-                            'name' => 'judul',
-                            'value' => set_value('judul'),
-                            'id' => 'judul',
-                            'class' => 'form-control',
-                            'placeholder' => 'Judul Pengumuman',
-                            'required' => 'required',
-                            'autofocus' => 'autofocus'
-                        );
+                                'type' => 'text',
+                                'name' => 'judul',
+                                'value' => set_value('judul'),
+                                'id' => 'judul',
+                                'class' => 'form-control',
+                                'placeholder' => 'Judul Pengumuman',
+                                'required' => 'required',
+                                'autofocus' => 'autofocus');
                         echo form_input($data);
                         ?>
                     </div>

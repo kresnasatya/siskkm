@@ -23,60 +23,60 @@ class Pengumuman extends Admin_Controller
 
     public function create()
     {
-        $this->rules();
-        $current_user = $this->ion_auth->user()->row();
-
-        if ($this->form_validation->run() == FALSE) {
-            $data = array(
-                'current_user' => $current_user,
-                'gravatar_url' => $this->gravatar->get($current_user->email)
-            );
-            $this->template->load('templates/admin/pengumuman_template', 'admin/pengumuman/add', $data);
-        }
+      $current_user = $this->ion_auth->user()->row();
+      $data = array(
+              'current_user' => $current_user,
+              'gravatar_url' => $this->gravatar->get($current_user->email));
+      $this->template->load('templates/admin/pengumuman_template', 'admin/pengumuman/add', $data);
     }
 
     public function store()
     {
+      $this->rules();
+      if ($this->form_validation->run() == FALSE) {
+        $this->create();
+      } else {
         $current_user = $this->ion_auth->user()->row();
         $judul = $this->input->post('judul');
         $isi_pengumuman = $this->input->post('isi_pengumuman');
         $slug = url_title($judul, 'dash', TRUE);
         $data = array(
-            'judul' => $judul,
-            'isi_pengumuman' => $isi_pengumuman,
-            'slug' => $slug,
-            'id_user' => $current_user->id,
-        );
+                'judul' => $judul,
+                'isi_pengumuman' => $isi_pengumuman,
+                'slug' => $slug,
+                'id_user' => $current_user->id);
         $this->pengumuman->insert($data);
         $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Pengumuman berhasil ditambah.</div>");
         redirect(site_url('admin/pengumuman'));
+      }
     }
 
     public function edit($id)
     {
-        $this->rules();
-        $current_user = $this->ion_auth->user()->row();
-        $row = $this->pengumuman->get_by_id($id);
-        if ($this->form_validation->run() == FALSE) {
-            if ($row) {
-                $data = array(
-                    'id' => set_value('id', $row->id),
-                    'judul' => set_value('judul', $row->judul),
-                    'isi_pengumuman' => set_value('isi_pengumuman', $row->isi_pengumuman),
-                    'id_user' => set_value('id_user', $row->id_user),
-                    'current_user' => $current_user,
-                    'gravatar_url' => $this->gravatar->get($current_user->email)
-                );
-                $this->template->load('templates/admin/pengumuman_template', 'admin/pengumuman/edit', $data);
-            } else {
-                $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
-                redirect(site_url('admin/pengumuman'));
-            }
-        }
+      $current_user = $this->ion_auth->user()->row();
+      $row = $this->pengumuman->get_by_id($id);
+      if ($row) {
+          $data = array(
+              'id' => set_value('id', $row->id),
+              'judul' => set_value('judul', $row->judul),
+              'isi_pengumuman' => set_value('isi_pengumuman', $row->isi_pengumuman),
+              'id_user' => set_value('id_user', $row->id_user),
+              'current_user' => $current_user,
+              'gravatar_url' => $this->gravatar->get($current_user->email)
+          );
+          $this->template->load('templates/admin/pengumuman_template', 'admin/pengumuman/edit', $data);
+      } else {
+          $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
+          redirect(site_url('admin/pengumuman'));
+      }
     }
 
     public function update($id)
     {
+      $this->rules();
+      if ($this->form_validation->run() == FALSE) {
+        $this->edit($id);
+      } else {
         $current_user = $this->ion_auth->user()->row();
         $id = $this->input->post('id');
         $judul = $this->input->post('judul');
@@ -91,6 +91,7 @@ class Pengumuman extends Admin_Controller
         $this->pengumuman->update($id, $data);
         $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Pengumuman berhasil diubah.</div>");
         redirect(site_url('admin/pengumuman'));
+      }
     }
 
     public function delete($id)

@@ -16,8 +16,7 @@ class Users extends Admin_Controller
         $data = array(
             'current_user' => $current_user,
             'users' => $this->users->get_users(),
-            'gravatar_url' => $this->gravatar->get($current_user->email)
-        );
+            'gravatar_url' => $this->gravatar->get($current_user->email));
         $this->template->load('templates/admin/users_template', 'admin/users/index', $data);
     }
 
