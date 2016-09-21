@@ -57,7 +57,8 @@
                             'name' => 'nip',
                             'value' => set_value('nim', $current_user->nip),
                             'id' => 'nip',
-                            'placeholder' => 'Nip'
+                            'placeholder' => 'Nip',
+                            'maxlength' => 18
                         );
                         echo form_input($data);
                         ?>
