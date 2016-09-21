@@ -15,34 +15,18 @@
                 <?php echo form_open('mahasiswa/user/update_profil'); ?>
                 <div class="box-body">
                     <div class="form-group">
-                        <?php echo form_label('Nama depan', 'nama_depan'); ?>
-                        <?php echo form_error('nama_depan'); ?>
+                        <?php echo form_label('Nama Lengkap', 'nama_lengkap'); ?>
+                        <?php echo form_error('nama_lengkap'); ?>
                         <?php
                         $data = array(
-                            'type' => 'text',
-                            'class' => 'form-control',
-                            'name' => 'nama_depan',
-                            'value' => set_value('nama_depan', $current_user->nama_depan),
-                            'id' => 'nama_depan',
-                            'placeholder' => 'Nama depan',
-                            'required' => 'required',
-                            'autofocus' => 'autofocus'
-                        );
-                        echo form_input($data); ?>
-                    </div>
-                    <div class="form-group">
-                        <?php echo form_label('Nama belakang', 'nama_belakang'); ?>
-                        <?php echo form_error('nama_belakang'); ?>
-                        <?php
-                        $data = array(
-                            'type' => 'text',
-                            'class' => 'form-control',
-                            'name' => 'nama_belakang',
-                            'value' => set_value('nama_belakang', $current_user->nama_belakang),
-                            'id' => 'nama_belakang',
-                            'placeholder' => 'Nama belakang',
-                            'required' => 'required'
-                        );
+                                'type' => 'text',
+                                'class' => 'form-control',
+                                'name' => 'nama_lengkap',
+                                'value' => set_value('nama_lengkap', $current_user->nama_lengkap),
+                                'id' => 'nama_lengkap',
+                                'placeholder' => 'Nama Lengkap',
+                                'required' => 'required',
+                                'autofocus' => 'autofocus');
                         echo form_input($data); ?>
                     </div>
                     <div class="form-group">
@@ -50,14 +34,13 @@
                         <?php echo form_error('email'); ?>
                         <?php
                         $data = array(
-                            'type' => 'email',
-                            'class' => 'form-control',
-                            'name' => 'email',
-                            'value' => set_value('email', $current_user->email),
-                            'id' => 'email',
-                            'placeholder' => 'Email',
-                            'required' => 'required'
-                        );
+                                'type' => 'email',
+                                'class' => 'form-control',
+                                'name' => 'email',
+                                'value' => set_value('email', $current_user->email),
+                                'id' => 'email',
+                                'placeholder' => 'Email',
+                                'required' => 'required');
                         echo form_input($data); ?>
                     </div>
                     <div class="form-group">
@@ -65,13 +48,12 @@
                         <?php echo form_error('nim'); ?>
                         <?php
                         $data = array(
-                            'type' => 'text',
-                            'class' => 'form-control',
-                            'name' => 'nim',
-                            'value' => set_value('nim', $current_user->nim),
-                            'id' => 'nim',
-                            'placeholder' => 'Nim'
-                        );
+                                'type' => 'text',
+                                'class' => 'form-control',
+                                'name' => 'nim',
+                                'value' => set_value('nim', $current_user->nim),
+                                'id' => 'nim',
+                                'placeholder' => 'Nim');
                         echo form_input($data); ?>
                     </div>
                     <div class="form-group">
@@ -109,10 +91,9 @@
                         <label for="semester">Semester <?php echo form_error('id_semester'); ?></label>
                         <?php
                         $extra = array(
-                            'class' => 'form-control',
-                            'id' => 'semester',
-                            'required' => 'required'
-                        );
+                                'class' => 'form-control',
+                                'id' => 'semester',
+                                'required' => 'required');
                         echo form_dropdown('id_semester', $dd_semester, set_value('id_semester', $current_user->id_semester), $extra);
                         ?>
                     </div>
@@ -120,10 +101,9 @@
                         <label for="kelas">Kelas <?php echo form_error('id_kelas'); ?></label>
                         <?php
                         $extra = array(
-                            'class' => 'form-control',
-                            'id' => 'kelas',
-                            'required' => 'required'
-                        );
+                                'class' => 'form-control',
+                                'id' => 'kelas',
+                                'required' => 'required');
                         echo form_dropdown('id_kelas', $dd_kelas, set_value('id_kelas', $current_user->id_kelas), $extra);
                         ?>
                     </div>

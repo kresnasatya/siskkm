@@ -111,24 +111,23 @@ class Skkm extends Mahasiswa_Controller
 
     public function create()
     {
-        $this->rules();
-        $current_user = $this->ion_auth->user()->row();
-        if ($this->form_validation->run() == FALSE) {
-            $data = array(
-                'current_user' => $current_user,
-                'gravatar_url' => $this->gravatar->get($current_user->email),
-                'dd_jenis' => $this->skkm->get_jenis(),
-                'jenis_selected' => $this->input->post('id_jenis') ? $this->input->post('id_jenis') : '',
-                'tingkat_selected' => $this->input->post('id_tingkat') ? $this->input->post('id_tingkat') : '',
-                'prestasi_selected' => $this->input->post('id_prestasi') ? $this->input->post('id_prestasi') : ''
-            );
-            $this->template->load('templates/mahasiswa/skkm_template', 'mahasiswa/skkm/add', $data);
-        }
+      $current_user = $this->ion_auth->user()->row();
+      $data = array(
+              'current_user' => $current_user,
+              'gravatar_url' => $this->gravatar->get($current_user->email),
+              'dd_jenis' => $this->skkm->get_jenis(),
+              'jenis_selected' => $this->input->post('id_jenis') ? $this->input->post('id_jenis') : '',
+              'tingkat_selected' => $this->input->post('id_tingkat') ? $this->input->post('id_tingkat') : '',
+              'prestasi_selected' => $this->input->post('id_prestasi') ? $this->input->post('id_prestasi') : '');
+      $this->template->load('templates/mahasiswa/skkm_template', 'mahasiswa/skkm/add', $data);
     }
 
     public function store()
     {
-        $current_user = $this->ion_auth->user()->row();
+      $this->rules();
+      if ($this->form_validation->run() == FALSE) {
+        $this->create();
+      } else {
         $config = array(
             'upload_path' => './fileskkm/',
             'allowed_types' => 'jpeg|jpg|png',
@@ -144,7 +143,7 @@ class Skkm extends Mahasiswa_Controller
         } else {
             $file = $this->upload->data();
             $data = array(
-                'id_user' => $current_user->id,
+                'id_user' => $this->input->post('id_user'),
                 'nama_kegiatan' => $this->input->post('nama_kegiatan'),
                 'filefoto' => $file['file_name'],
                 'id_jenis' => $this->input->post('id_jenis'),
@@ -159,46 +158,46 @@ class Skkm extends Mahasiswa_Controller
         }
         $this->session->set_flashdata('message', "<div style='color:#00a65a;'>SKKM berhasil ditambah.</div>");
         redirect(site_url('mahasiswa/skkm'));
+      }
     }
 
     public function edit($id)
     {
-        $this->rules();
-        $current_user = $this->ion_auth->user()->row();
-        $row = $this->skkm->get_by_id($id);
-        if ($this->form_validation->run() == FALSE) {
-            $data = array(
-                'current_user' => $current_user,
-                'gravatar_url' => $this->gravatar->get($current_user->email),
-                'id' => $row->id,
-                'nama_kegiatan' => $row->nama_kegiatan,
-                'filefoto' => $row->filefoto,
-                'id_jenis' => $row->id_jenis,
-                'dd_jenis' => $this->skkm->get_jenis(),
-                'id_tingkat' => $row->id_tingkat,
-                'dd_tingkat' => $this->skkm->get_tingkat($row->id_jenis),
-                'id_prestasi' => $row->id_prestasi,
-                'dd_prestasi' => $this->skkm->get_prestasi($row->id_tingkat),
-                'nilai' => $row->nilai
-            );
-            $this->template->load('templates/mahasiswa/skkm_template', 'mahasiswa/skkm/edit', $data);
-        }
+      $current_user = $this->ion_auth->user()->row();
+      $row = $this->skkm->get_by_id($id);
+      $data = array(
+              'current_user' => $current_user,
+              'gravatar_url' => $this->gravatar->get($current_user->email),
+              'id' => $row->id,
+              'id_user' => $row->id_user,
+              'nama_kegiatan' => $row->nama_kegiatan,
+              'filefoto' => $row->filefoto,
+              'id_jenis' => $row->id_jenis,
+              'dd_jenis' => $this->skkm->get_jenis(),
+              'id_tingkat' => $row->id_tingkat,
+              'dd_tingkat' => $this->skkm->get_tingkat($row->id_jenis),
+              'id_prestasi' => $row->id_prestasi,
+              'dd_prestasi' => $this->skkm->get_prestasi($row->id_tingkat),
+              'nilai' => $row->nilai);
+      $this->template->load('templates/mahasiswa/skkm_template', 'mahasiswa/skkm/edit', $data);
     }
 
     public function update($id)
     {
-        $current_user = $this->ion_auth->user()->row();
+      $this->rules();
+      if ($this->form_validation->run() == FALSE) {
+        $this->edit($id);
+      } else {
         $row = $this->skkm->get_by_id($id);
         // Do this if there is an image upload
         if ($_FILES AND $_FILES['filefoto']['name']) {
             // Start uploading file
             $config = array(
-                'upload_path' => './fileskkm/',
-                'allowed_types' => 'jpeg|jpg|png',
-                'max_size' => '5120',
-                'max_width' => '5000',
-                'max_height' => '5000'
-            );
+                      'upload_path' => './fileskkm/',
+                      'allowed_types' => 'jpeg|jpg|png',
+                      'max_size' => '5120',
+                      'max_width' => '5000',
+                      'max_height' => '5000');
             $this->load->library('upload', $config);
 
             if (!$this->upload->do_upload('filefoto')) {
@@ -213,16 +212,15 @@ class Skkm extends Mahasiswa_Controller
                 $file = $this->upload->data();
                 $id = $this->input->post('id');
                 $data = array(
-                    'id_user' => $current_user->id,
-                    'nama_kegiatan' => $this->input->post('nama_kegiatan'),
-                    'filefoto' => $file['file_name'],
-                    'id_jenis' => $this->input->post('id_jenis'),
-                    'id_tingkat' => $this->input->post('id_tingkat'),
-                    'id_prestasi' => $this->input->post('id_prestasi'),
-                    'nilai' => $this->input->post('nilai'),
-                    'status' => $this->input->post('status') ? $this->input->post('status') : 0,
-                    'keterangan' => $this->input->post('keterangan') ? $this->input->post('keterangan') : '-'
-                );
+                        'id_user' => $this->input->post('id_user'),
+                        'nama_kegiatan' => $this->input->post('nama_kegiatan'),
+                        'filefoto' => $file['file_name'],
+                        'id_jenis' => $this->input->post('id_jenis'),
+                        'id_tingkat' => $this->input->post('id_tingkat'),
+                        'id_prestasi' => $this->input->post('id_prestasi'),
+                        'nilai' => $this->input->post('nilai'),
+                        'status' => $this->input->post('status') ? $this->input->post('status') : 0,
+                        'keterangan' => $this->input->post('keterangan') ? $this->input->post('keterangan') : '-');
 
                 $this->skkm->update($id, $data);
             }
@@ -232,60 +230,60 @@ class Skkm extends Mahasiswa_Controller
             // No file uploaded
             $id = $this->input->post('id');
             $data = array(
-                'id_user' => $current_user->id,
-                'nama_kegiatan' => $this->input->post('nama_kegiatan'),
-                'id_jenis' => $this->input->post('id_jenis'),
-                'id_tingkat' => $this->input->post('id_tingkat'),
-                'id_prestasi' => $this->input->post('id_prestasi'),
-                'nilai' => $this->input->post('nilai'),
-                'status' => $this->input->post('status') ? $this->input->post('status') : 0,
-                'keterangan' => $this->input->post('keterangan') ? $this->input->post('keterangan') : '-'
-            );
+                    'id_user' => $this->input->post('id_user'),
+                    'nama_kegiatan' => $this->input->post('nama_kegiatan'),
+                    'id_jenis' => $this->input->post('id_jenis'),
+                    'id_tingkat' => $this->input->post('id_tingkat'),
+                    'id_prestasi' => $this->input->post('id_prestasi'),
+                    'nilai' => $this->input->post('nilai'),
+                    'status' => $this->input->post('status') ? $this->input->post('status') : 0,
+                    'keterangan' => $this->input->post('keterangan') ? $this->input->post('keterangan') : '-');
             $this->skkm->update($id, $data);
         }
         $this->session->set_flashdata('message', "<div style='color:#00a65a;'>SKKM berhasil diedit.</div>");
         redirect(site_url('mahasiswa/skkm'));
+      }
     }
 
     public function delete($id)
     {
-        $row = $this->skkm->get_by_id($id);
+      $row = $this->skkm->get_by_id($id);
 
-        if ($row) {
+      if ($row) {
 
-            // Remove filefoto
-            unlink('fileskkm/'.$row->filefoto);
+          // Remove filefoto
+          unlink('fileskkm/'.$row->filefoto);
 
-            $this->skkm->delete($id);
-            $this->session->set_flashdata('message', "<div style='color:#00a65a;'>SKKM berhasil dihapus.</div>");
-            redirect(site_url('mahasiswa/skkm'));
-        } else {
-            $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
-            redirect(site_url('mahasiswa/skkm'));
-        }
+          $this->skkm->delete($id);
+          $this->session->set_flashdata('message', "<div style='color:#00a65a;'>SKKM berhasil dihapus.</div>");
+          redirect(site_url('mahasiswa/skkm'));
+      } else {
+          $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
+          redirect(site_url('mahasiswa/skkm'));
+      }
     }
 
     public function cetak_laporan()
     {
-        $current_user = $this->ion_auth->user()->row();
-        $result = array(
-            'profil' => $this->skkm->get_profil($current_user->id),
-            'skkm' => $this->skkm->get_all($current_user->id),
-            'sum_valid' => $this->skkm->sum_valid($current_user->id),
-            'sum_belum_divalidasi' => $this->skkm->sum_belum_divalidasi($current_user->id),
-            'sum_tidak_valid' => $this->skkm->sum_tidak_valid($current_user->id)
-        );
-        $this->load->view('mahasiswa/skkm/laporan', $result);
+      $current_user = $this->ion_auth->user()->row();
+      $result = array(
+          'profil' => $this->skkm->get_profil($current_user->id),
+          'skkm' => $this->skkm->get_all($current_user->id),
+          'sum_valid' => $this->skkm->sum_valid($current_user->id),
+          'sum_belum_divalidasi' => $this->skkm->sum_belum_divalidasi($current_user->id),
+          'sum_tidak_valid' => $this->skkm->sum_tidak_valid($current_user->id)
+      );
+      $this->load->view('mahasiswa/skkm/laporan', $result);
     }
 
     public function rules()
     {
-        $this->form_validation->set_rules('nama_kegiatan', 'Nama Kegiatan', 'trim|required');
-        $this->form_validation->set_rules('id_jenis', 'Jenis', 'trim|required');
-        $this->form_validation->set_rules('id_tingkat', 'Tingkat', 'trim|required');
-        $this->form_validation->set_rules('id_prestasi', 'Prestasi', 'trim|required');
-        $this->form_validation->set_rules('nilai', 'Nilai', 'trim|required|numeric');
-        $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+      $this->form_validation->set_rules('nama_kegiatan', 'Nama Kegiatan', 'trim|required');
+      $this->form_validation->set_rules('id_jenis', 'Jenis', 'trim|required');
+      $this->form_validation->set_rules('id_tingkat', 'Tingkat', 'trim|required');
+      $this->form_validation->set_rules('id_prestasi', 'Prestasi', 'trim|required');
+      $this->form_validation->set_rules('nilai', 'Nilai', 'trim|required|numeric');
+      $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
 
 }

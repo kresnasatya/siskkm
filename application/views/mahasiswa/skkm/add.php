@@ -14,7 +14,6 @@
     <div class="row">
         <div class="col-md-12">
             <div class="box box-primary">
-                <?php echo $this->session->userdata('message'); ?>
                 <?php echo form_open_multipart('mahasiswa/skkm/store'); ?>
                 <div class="box-body">
                     <div class="form-group">
@@ -29,8 +28,7 @@
                             'class' => 'form-control',
                             'placeholder' => 'Nama Kegiatan',
                             'required' => 'required',
-                            'autofocus' => 'autofocus'
-                        );
+                            'autofocus' => 'autofocus');
                         echo form_input($data);
                         ?>
                     </div>
@@ -81,11 +79,11 @@
                             'class' => 'form-control',
                             'placeholder' => 'Nilai',
                             'required' => 'required',
-                            'readonly' => 'readonly'
-                        );
+                            'readonly' => 'readonly');
                         echo form_input($data);
                         ?>
                     </div>
+                    <?php echo form_hidden('id_user', set_value('id_user', $current_user->id)); ?>
                     <?php echo anchor(site_url('mahasiswa/skkm'), 'Kembali', 'class="btn btn-default"'); ?>
                     <?php echo form_submit('submit', 'Tambah', 'class="btn btn-primary"'); ?>
                 </div>

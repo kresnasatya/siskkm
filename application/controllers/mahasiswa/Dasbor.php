@@ -18,8 +18,7 @@ class Dasbor extends Mahasiswa_Controller
             'gravatar_url' => $this->gravatar->get($current_user->email),
             'skkm_belum_divalidasi' => $this->dasbor->skkm_belum_divalidasi($current_user->id),
             'skkm_valid' => $this->dasbor->skkm_valid($current_user->id),
-            'skkm_tidak_valid' => $this->dasbor->skkm_tidak_valid($current_user->id)
-        );
+            'skkm_tidak_valid' => $this->dasbor->skkm_tidak_valid($current_user->id));
         $this->template->load('templates/mahasiswa/dasbor_template', 'mahasiswa/dasbor', $data);
     }
 

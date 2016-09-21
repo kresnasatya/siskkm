@@ -107,6 +107,7 @@
                         ?>
                     </div>
                     <?php echo form_hidden('id', set_value('id', $id)); ?>
+                    <?php echo form_hidden('id_user', set_value('id_user', $id_user)); ?>
                     <?php echo anchor(site_url('mahasiswa/skkm'), 'Kembali', 'class="btn btn-default"'); ?>
                     <?php echo form_submit('submit', 'Edit', 'class="btn btn-warning"'); ?>
                 </div>
