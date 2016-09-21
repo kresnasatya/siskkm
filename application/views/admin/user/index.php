@@ -16,13 +16,13 @@
                     <div class="col-md-3">
                         <img class="profile-user-img img-responsive img-circle" src="<?php echo $gravatar_url; ?>"
                              alt="gambar Profil User">
-                        <h3 class="profile-username text-center"><?php echo $current_user->nama_depan . ' ' . $current_user->nama_belakang; ?></h3>
+                        <h3 class="profile-username text-center"><?php echo $current_user->nama_lengkap; ?></h3>
                     </div>
                     <div class="col-md-9">
                         <ul class="list-group list-group-unbordered">
                             <li class="list-group-item">
                                 <b>Nama</b> <a
-                                    class="pull-right"><?php echo $current_user->nama_depan . ' ' . $current_user->nama_belakang; ?></a>
+                                    class="pull-right"><?php echo $current_user->nama_lengkap; ?></a>
                             </li>
                             <li class="list-group-item">
                                 <b>Email</b> <a class="pull-right"><?php echo $current_user->email; ?></a>

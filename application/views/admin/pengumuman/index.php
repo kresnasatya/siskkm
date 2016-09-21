@@ -48,7 +48,7 @@
                                     <a href="<?php echo site_url('admin/pengumuman/edit/' . $row->id); ?>"><?php echo $row->judul; ?></a>
                                 </td>
                                 <td><?php echo $row->tanggal; ?></td>
-                                <td><?php echo $row->nama_depan . '' . $row->nama_belakang; ?></td>
+                                <td><?php echo $row->nama_lengkap; ?></td>
                                 <td><?php
                                     $hapus = array(
                                         'class' => 'btn btn-sm btn-danger',

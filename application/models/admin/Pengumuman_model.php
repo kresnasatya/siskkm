@@ -11,7 +11,7 @@ class Pengumuman_model extends CI_Model
 
     public function get_all()
     {
-        $this->db->select('pengumuman.id, judul, isi_pengumuman, tanggal, users.nama_depan, users.nama_belakang');
+        $this->db->select('pengumuman.id, judul, isi_pengumuman, tanggal, users.nama_lengkap');
         $this->db->join('users', 'users.id = pengumuman.id_user');
         $this->db->order_by('pengumuman.id', 'DESC');
         return $this->db->get('pengumuman')->result();

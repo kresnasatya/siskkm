@@ -19,33 +19,18 @@
                 echo form_open('admin/users/update/' . $user->id, $attribute); ?>
                 <div class="box-body">
                     <div class="form-group">
-                        <?php echo form_label('Nama depan', 'nama_depan'); ?>
-                        <?php echo form_error('nama_depan'); ?>
+                        <?php echo form_label('Nama Lengkap', 'nama_lengkap'); ?>
+                        <?php echo form_error('nama_lengkap'); ?>
                         <?php
                         $data = array(
                             'type' => 'text',
                             'class' => 'form-control',
-                            'name' => 'nama_depan',
-                            'value' => set_value('nama_depan', $user->nama_depan),
-                            'id' => 'nama_depan',
-                            'placeholder' => 'Nama Depan',
+                            'name' => 'nama_lengkap',
+                            'value' => set_value('nama_lengkap', $user->nama_lengkap),
+                            'id' => 'nama_lengkap',
+                            'placeholder' => 'Nama Lengkap',
                             'required' => 'required',
                             'autofocus' => 'autofocus'
-                        );
-                        echo form_input($data); ?>
-                    </div>
-                    <div class="form-group">
-                        <?php echo form_label('Nama belakang', 'nama_belakang'); ?>
-                        <?php echo form_error('nama_belakang'); ?>
-                        <?php
-                        $data = array(
-                            'type' => 'text',
-                            'class' => 'form-control',
-                            'name' => 'nama_belakang',
-                            'value' => set_value('nama_belakang', $user->nama_belakang),
-                            'id' => 'nama_belakang',
-                            'placeholder' => 'Nama belakang',
-                            'required' => 'required'
                         );
                         echo form_input($data); ?>
                     </div>
@@ -105,7 +90,7 @@
                             'type' => 'text',
                             'class' => 'form-control',
                             'name' => 'nip',
-                            'value' => set_value('nim', $user->nip),
+                            'value' => set_value('nip', $user->nip),
                             'id' => 'nip',
                             'placeholder' => 'Nip',
                             'maxlength' => 18

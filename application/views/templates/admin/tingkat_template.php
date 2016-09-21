@@ -60,14 +60,14 @@
                         <a href="" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="<?php echo $gravatar_url; ?>" class="user-image" alt="User Image">
                             <span
-                                class="hidden-xs"><?php echo $current_user->nama_depan . ' ' . $current_user->nama_belakang; ?></span>
+                                class="hidden-xs"><?php echo $current_user->nama_lengkap; ?></span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
                                 <img src="<?php echo $gravatar_url; ?>" class="img-circle" alt="User Image">
                                 <p>
-                                    <?php echo $current_user->nama_depan . ' ' . $current_user->nama_belakang; ?>
+                                    <?php echo $current_user->nama_lengkap; ?>
                                     <small>Terdaftar pada
                                         tahun <?php echo date('Y', $current_user->created_on); ?></small>
                                 </p>
@@ -101,7 +101,7 @@
                     <img src="<?php echo $gravatar_url; ?>" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p><?php echo $current_user->nama_depan . ' ' . $current_user->nama_belakang; ?></p>
+                    <p><?php echo $current_user->nama_lengkap; ?></p>
                     <a href=""><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div>

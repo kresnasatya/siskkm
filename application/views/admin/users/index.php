@@ -31,7 +31,7 @@
                             <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama</th>
+                                <th>Nama Lengkap</th>
                                 <th>Email</th>
                                 <th>Hak Akses</th>
                                 <th>Jurusan</th>
@@ -48,9 +48,9 @@
                                     <td><?php echo ++$start ?></td>
                                     <td>
                                         <?php if ($current_user->id != $user->id): ?>
-                                            <a href="<?php echo site_url('admin/users/edit/' . $user->id); ?>"><?php echo $user->nama_depan . ' ' . $user->nama_belakang; ?></a>
+                                            <a href="<?php echo site_url('admin/users/edit/' . $user->id); ?>"><?php echo $user->nama_lengkap; ?></a>
                                         <?php else: ?>
-                                            <?php echo $user->nama_depan . ' ' . $user->nama_belakang; ?>
+                                            <?php echo $user->nama_lengkap; ?>
                                         <?php endif; ?>
                                     </td>
                                     <td><?php echo $user->email; ?></td>
@@ -75,7 +75,7 @@
                                             <?php
                                             $hapus = array(
                                                 'class' => 'btn btn-sm btn-danger',
-                                                'onclick' => 'javascript: return confirm(\'Anda yakin menghapus ' . $user->nama_depan. ' '. $user->nama_belakang. '?\')'
+                                                'onclick' => 'javascript: return confirm(\'Anda yakin menghapus ' . $user->nama_lengkap. '?\')'
                                             );
                                             echo anchor(site_url('admin/users/delete/' . $user->id), 'Hapus', $hapus);
                                             ?>
