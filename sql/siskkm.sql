@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 15, 2016 at 12:01 PM
+-- Generation Time: Sep 21, 2016 at 10:18 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.21
 
@@ -429,10 +429,9 @@ CREATE TABLE `users` (
   `created_on` int(11) UNSIGNED NOT NULL,
   `last_login` int(11) UNSIGNED DEFAULT NULL,
   `active` tinyint(1) UNSIGNED DEFAULT NULL,
-  `nama_depan` varchar(50) DEFAULT NULL,
-  `nama_belakang` varchar(50) DEFAULT NULL,
+  `nama_lengkap` varchar(255) NOT NULL,
   `nim` varchar(10) DEFAULT NULL,
-  `nip` varchar(21) DEFAULT NULL,
+  `nip` varchar(18) DEFAULT NULL,
   `id_jurusan` int(11) DEFAULT NULL,
   `id_prodi` int(11) DEFAULT NULL,
   `id_kelas` int(11) DEFAULT NULL,
@@ -443,10 +442,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `nama_depan`, `nama_belakang`, `nim`, `nip`, `id_jurusan`, `id_prodi`, `id_kelas`, `id_semester`) VALUES
-(1, '127.0.0.1', 'administrator', '$2y$08$90DIXUdE018ll76sKZVm0ur4WFwit/DtUwU76eRgNragw/kTZ3al6', '', 'admin@admin.com', '', NULL, NULL, NULL, 1268889823, 1473933504, 1, 'Admin', 'istrator', '', '123456789888', NULL, NULL, NULL, NULL),
-(3, '::1', NULL, '$2y$08$f0DGeeR1Sxrn.jbpP/K67uS/a3Ba5/itwcZjNNFywpOlKfBhe7nw.', NULL, 'mahasiswaelektro@mail.com', NULL, NULL, NULL, NULL, 1467583344, 1473245078, 1, 'Mahasiswa', 'Elektro', '1315323051', NULL, 1, 32, 5, 6),
-(4, '::1', NULL, '$2y$08$blQgLi.0auwMWg3QgIBYJu/SUhRlWwuDWmOH6.D1fNgpNxzojkTXq', NULL, 'up2kkelektro@mail.com', NULL, NULL, NULL, NULL, 1467583389, 1473219928, 1, 'Up2kk', 'Elektro', NULL, '12345612121', 1, NULL, NULL, NULL);
+INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `nama_lengkap`, `nim`, `nip`, `id_jurusan`, `id_prodi`, `id_kelas`, `id_semester`) VALUES
+(1, '127.0.0.1', 'administrator', '$2a$08$ccvzIVdqAW3hs4RgId3nVeNya17rnG9EbgDx3ORfhUQ9Jz.SrOat.', '', 'admin@admin.com', '', NULL, NULL, NULL, 1268889823, 1474442465, 1, 'Administrator', NULL, '123456789012345', NULL, NULL, NULL, NULL),
+(5, '::1', NULL, '$2y$08$g2Mkg1FgEYnh.Tk5j/VlNeE7I6qTQwjdGLs7/AYe45vcNPLFQLpj.', NULL, 'mahasiswapnb@mail.com', NULL, NULL, NULL, NULL, 1474434127, NULL, 1, 'Mahasiswa PNB', '1315323022', NULL, 1, 32, 5, 6),
+(6, '::1', NULL, '$2y$08$y3p.Wt3TybUcdKcUUxzNXeFg5bQqGu1DL9k7ZtP73BpCoS8JHUZWu', NULL, 'up2kkpnb@mail.com', NULL, NULL, NULL, NULL, 1474434293, NULL, 1, 'UP2KK PNB', NULL, '111111111111', 1, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -466,8 +465,8 @@ CREATE TABLE `users_groups` (
 
 INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 (1, 1, 1),
-(13, 3, 3),
-(14, 4, 2);
+(16, 5, 3),
+(20, 6, 2);
 
 --
 -- Indexes for dumped tables
@@ -632,7 +631,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users_groups`
 --
 ALTER TABLE `users_groups`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- Constraints for dumped tables
 --
