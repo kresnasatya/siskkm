@@ -13,9 +13,8 @@ class User extends Admin_Controller
     {
         $current_user = $this->ion_auth->user()->row();
         $data = array(
-            'current_user' => $current_user,
-            'gravatar_url' => $this->gravatar->get($current_user->email)
-        );
+                'current_user' => $current_user,
+                'gravatar_url' => $this->gravatar->get($current_user->email));
         $this->template->load('templates/admin/user_template', 'admin/user/index', $data);
     }
 
@@ -23,9 +22,8 @@ class User extends Admin_Controller
     {
       $current_user = $this->ion_auth->user()->row();
       $data = array(
-          'current_user' => $current_user,
-          'gravatar_url' => $this->gravatar->get($current_user->email)
-      );
+              'current_user' => $current_user,
+              'gravatar_url' => $this->gravatar->get($current_user->email));
       $this->template->load('templates/admin/user_template', 'admin/user/profil', $data);
     }
 
@@ -37,11 +35,9 @@ class User extends Admin_Controller
       } else {
         $user_id = $this->input->post('user_id');
         $new_data = array(
-            'nama_depan' => $this->input->post('nama_depan'),
-            'nama_belakang' => $this->input->post('nama_belakang'),
-            'nip' => $this->input->post('nip'),
-            'email' => $this->input->post('email')
-        );
+                    'nama_lengkap' => $this->input->post('nama_lengkap'),
+                    'nip' => $this->input->post('nip'),
+                    'email' => $this->input->post('email'));
         $this->ion_auth->update($user_id, $new_data);
         $this->session->set_flashdata('message', "<div style='color:#00a65a;'>" . $this->ion_auth->messages() . "</div>");
         redirect(site_url('admin/user'));
@@ -52,9 +48,8 @@ class User extends Admin_Controller
     {
       $current_user = $this->ion_auth->user()->row();
       $data = array(
-          'current_user' => $current_user,
-          'gravatar_url' => $this->gravatar->get($current_user->email)
-      );
+              'current_user' => $current_user,
+              'gravatar_url' => $this->gravatar->get($current_user->email));
       $this->template->load('templates/admin/user_template', 'admin/user/password', $data);
     }
 

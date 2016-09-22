@@ -16,11 +16,10 @@ class Validasi extends UP2KK_Controller
         $current_user = $this->ion_auth->user()->row();
         $mahasiswa = $this->validasi->get_mahasiswa($current_user->id_jurusan);
         $data = array(
-            'current_user' => $current_user,
-            'mahasiswa' => $mahasiswa,
-            'gravatar_url' => $this->gravatar->get($current_user->email)
-        );
-        $this->template->load('templates/up2kk/validasi_template', 'up2kk/validasi/list', $data);
+                'current_user' => $current_user,
+                'mahasiswa' => $mahasiswa,
+                'gravatar_url' => $this->gravatar->get($current_user->email));
+        $this->template->load('templates/up2kk/validasi_template', 'up2kk/validasi/index', $data);
     }
 
     public function list_skkm($id_user)

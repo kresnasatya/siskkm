@@ -35,14 +35,13 @@
                         <?php echo form_error('email'); ?>
                         <?php
                         $data = array(
-                            'type' => 'email',
-                            'class' => 'form-control',
-                            'name' => 'email',
-                            'value' => set_value('email', $current_user->email),
-                            'id' => 'email',
-                            'placeholder' => 'Email',
-                            'required' => 'required'
-                        );
+                                'type' => 'email',
+                                'class' => 'form-control',
+                                'name' => 'email',
+                                'value' => set_value('email', $current_user->email),
+                                'id' => 'email',
+                                'placeholder' => 'Email',
+                                'required' => 'required');
                         echo form_input($data);
                         ?>
                     </div>
@@ -51,14 +50,13 @@
                         <?php echo form_error('nip'); ?>
                         <?php
                         $data = array(
-                            'type' => 'text',
-                            'class' => 'form-control',
-                            'name' => 'nip',
-                            'value' => set_value('nim', $current_user->nip),
-                            'id' => 'nip',
-                            'placeholder' => 'Nip',
-                            'maxlength' => 18
-                        );
+                                'type' => 'text',
+                                'class' => 'form-control',
+                                'name' => 'nip',
+                                'value' => set_value('nip', $current_user->nip),
+                                'id' => 'nip',
+                                'placeholder' => 'Nip',
+                                'maxlength' => 18);
                         echo form_input($data);
                         ?>
                     </div>

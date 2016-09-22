@@ -50,12 +50,7 @@
                             <tr>
                                 <td><?php echo ++$start ?></td>
                                 <td><?php echo $row->nama_kegiatan; ?></td>
-                                <td>
-                                    <div class="anything"
-                                         data-image="<?php echo base_url('fileskkm/' . $row->filefoto); ?>">
-                                        <img src="<?php echo base_url('fileskkm/resize/' . $row->filefoto); ?>"/>
-                                    </div>
-                                </td>
+                                <td><img src="<?php echo base_url('fileskkm/'.$row->filefoto); ?>" alt="<?php echo $row->nama_kegiatan; ?>" width="100" height="100"/></td>
                                 <td><?php echo $row->jenis; ?></td>
                                 <td><?php echo $row->tingkat; ?></td>
                                 <td><?php echo $row->prestasi; ?></td>

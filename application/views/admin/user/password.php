@@ -19,15 +19,14 @@
                         <?php echo form_error('password_baru'); ?>
                         <?php
                         $data = array(
-                            'type' => 'password',
-                            'name' => 'password_baru',
-                            'id' => 'password_baru',
-                            'class' => 'form-control',
-                            'placeholder' => 'Password Baru',
-                            'required' => 'required',
-                            'autofocus' => 'autofocus',
-                            'maxlength' => 20
-                        );
+                                'type' => 'password',
+                                'name' => 'password_baru',
+                                'id' => 'password_baru',
+                                'class' => 'form-control',
+                                'placeholder' => 'Password Baru',
+                                'required' => 'required',
+                                'autofocus' => 'autofocus',
+                                'maxlength' => 20);
                         echo form_input($data);
                         ?>
                     </div>
@@ -36,14 +35,13 @@
                         <?php echo form_error('konfirmasi_password'); ?>
                         <?php
                         $data = array(
-                            'type' => 'password',
-                            'name' => 'konfirmasi_password',
-                            'id' => 'konfirmasi_password',
-                            'class' => 'form-control',
-                            'placeholder' => 'Konfirmasi Password',
-                            'required' => 'required',
-                            'maxlength' => 20
-                        );
+                                'type' => 'password',
+                                'name' => 'konfirmasi_password',
+                                'id' => 'konfirmasi_password',
+                                'class' => 'form-control',
+                                'placeholder' => 'Konfirmasi Password',
+                                'required' => 'required',
+                                'maxlength' => 20);
                         echo form_input($data);
                         ?>
                     </div>

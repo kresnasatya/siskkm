@@ -47,8 +47,7 @@
                             'value' => set_value('keterangan', $keterangan),
                             'id' => 'keterangan',
                             'class' => 'form-control',
-                            'required' => 'required'
-                        );
+                            'required' => 'required');
                         echo form_textarea($data);
                         ?>
                     </div>

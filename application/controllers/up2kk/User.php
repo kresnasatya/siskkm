@@ -5,34 +5,29 @@ class User extends UP2KK_Controller
 
     public function __construct()
     {
-        parent::__construct();
-        $this->load->model('up2kk/User_model', 'user');
-        $this->load->library('form_validation');
+      parent::__construct();
+      $this->load->model('up2kk/User_model', 'user');
+      $this->load->library('form_validation');
     }
 
     public function index()
     {
         $current_user = $this->ion_auth->user()->row();
         $data = array(
-            'current_user' => $current_user,
-            'gravatar_url' => $this->gravatar->get($current_user->email),
-            'profil' => $this->user->get_profil($current_user->id)
-        );
+                'current_user' => $current_user,
+                'gravatar_url' => $this->gravatar->get($current_user->email),
+                'profil' => $this->user->get_profil($current_user->id));
         $this->template->load('templates/up2kk/user_template', 'up2kk/user/index', $data);
     }
 
     public function profil()
     {
-        $this->profil_rules();
-        $current_user = $this->ion_auth->user()->row();
-        if ($this->form_validation->run() == FALSE) {
-            $data = array(
-                'dd_jurusan' => $this->user->get_jurusan(),
-                'current_user' => $current_user,
-                'gravatar_url' => $this->gravatar->get($current_user->email)
-            );
-            $this->template->load('templates/up2kk/user_template', 'up2kk/user/profil', $data);
-        }
+      $current_user = $this->ion_auth->user()->row();
+      $data = array(
+              'dd_jurusan' => $this->user->get_jurusan(),
+              'current_user' => $current_user,
+              'gravatar_url' => $this->gravatar->get($current_user->email));
+      $this->template->load('templates/up2kk/user_template', 'up2kk/user/profil', $data);
     }
 
     public function update_profil()
@@ -56,19 +51,19 @@ class User extends UP2KK_Controller
 
     public function password()
     {
-        $this->password_rules();
-        $current_user = $this->ion_auth->user()->row();
-        $data = array(
-            'current_user' => $current_user,
-            'gravatar_url' => $this->gravatar->get($current_user->email)
-        );
-        if ($this->form_validation->run() == FALSE) {
-            $this->template->load('templates/up2kk/user_template', 'up2kk/user/password', $data);
-        }
+      $current_user = $this->ion_auth->user()->row();
+      $data = array(
+              'current_user' => $current_user,
+              'gravatar_url' => $this->gravatar->get($current_user->email));
+      $this->template->load('templates/up2kk/user_template', 'up2kk/user/password', $data);
     }
 
     public function update_password()
     {
+      $this->password_rules();
+      if ($this->form_validation->run() == FALSE) {
+        $this->password();
+      } else {
         $id_user = $this->input->post('user_id');
         $data = array('password' => $this->input->post('password_baru'));
 
@@ -77,6 +72,7 @@ class User extends UP2KK_Controller
         $this->ion_auth->logout();
         $this->session->set_flashdata('message', "<div style='color:#00a65a;'>Password berhasil diubah.</div>");
         redirect('login', 'refresh');
+      }
     }
 
     public function profil_rules()
@@ -89,9 +85,9 @@ class User extends UP2KK_Controller
 
     public function password_rules()
     {
-        $this->form_validation->set_rules('password_baru', 'Password Baru', 'trim|required');
-        $this->form_validation->set_rules('konfirmasi_password', 'Konfirmasi Password', 'trim|required|matches[password_baru]');
-        $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+      $this->form_validation->set_rules('password_baru', 'Password Baru', 'trim|required|min_length[8]|max_length[20]');
+      $this->form_validation->set_rules('konfirmasi_password', 'Konfirmasi Password', 'trim|required|matches[password_baru]|min_length[8]|max_length[20]');
+      $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
 
 }

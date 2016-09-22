@@ -25,8 +25,8 @@
                             'class' => 'form-control',
                             'placeholder' => 'Password Baru',
                             'required' => 'required',
-                            'autofocus' => 'autofocus'
-                        );
+                            'autofocus' => 'autofocus',
+                            'maxlength' => 20);
                         echo form_input($data);
                         ?>
                     </div>
@@ -40,8 +40,8 @@
                             'id' => 'konfirmasi_password',
                             'class' => 'form-control',
                             'placeholder' => 'Konfirmasi Password',
-                            'required' => 'required'
-                        );
+                            'required' => 'required',
+                            'maxlength' => 20);
                         echo form_input($data);
                         ?>
                     </div>
