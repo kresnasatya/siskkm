@@ -12,7 +12,7 @@ class Validasi_model extends CI_Model
 
     public function get_mahasiswa($id_jurusan)
     {
-        $this->db->select('u.id, u.nama_depan, u.nama_belakang, u.nim, g.name, p.nama_prodi, p.jenjang, s.semester, k.kelas');
+        $this->db->select('u.id, u.nama_lengkap, u.nim, g.name, p.nama_prodi, p.jenjang, s.semester, k.kelas');
         $this->db->from('users u');
         $this->db->join('users_groups ug', 'ug.user_id = u.id');
         $this->db->join('groups g', 'g.id = ug.group_id');

@@ -171,7 +171,7 @@ class Skkm_model extends CI_Model
 
     public function get_profil($id_user)
     {
-        $this->db->select('u.id, u.nama_depan, u.nama_belakang, u.nim, u.email, j.id, j.nama_jurusan, p.id, p.nama_prodi, p.jenjang, s.id, s.semester, k.id, k.kelas');
+        $this->db->select('u.id, u.nama_lengkap, u.nim, u.email, j.id, j.nama_jurusan, p.id, p.nama_prodi, p.jenjang, s.id, s.semester, k.id, k.kelas');
         $this->db->from('users u');
         $this->db->join('jurusan j', 'j.id = u.id_jurusan');
         $this->db->join('prodi p', 'p.id = u.id_prodi');

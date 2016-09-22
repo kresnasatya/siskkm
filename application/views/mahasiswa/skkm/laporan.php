@@ -40,7 +40,7 @@
         <div class="row invoice-info">
             <div class="col-sm-4 invoice-col">
                 <address>
-                    <strong><?php echo $profil->nama_depan . ' ' . $profil->nama_belakang; ?></strong><br>
+                    <strong><?php echo $profil->nama_lengkap; ?></strong><br>
                     Jurusan: <?php echo $profil->nama_jurusan; ?><br>
                     Prodi: <?php echo $profil->nama_prodi; ?><br>
                     NIM: <?php echo $profil->nim; ?><br>

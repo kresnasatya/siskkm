@@ -66,10 +66,10 @@
                         <?php echo anchor(site_url('mahasiswa/skkm/cetak-laporan'), 'Cetak Laporan', 'class="btn btn-primary btn-block"'); ?>
                     </div>
                     <div class="col-md-9">
+                        <strong><?php echo $this->session->userdata('message'); ?></strong>
                         <ul class="list-group list-group-unbordered">
                             <li class="list-group-item">
-                                <b>Nama</b> <a
-                                    class="pull-right"><?php echo $current_user->nama_lengkap; ?></a>
+                                <b>Nama Lengkap</b> <a class="pull-right"><?php echo $current_user->nama_lengkap; ?></a>
                             </li>
                             <li class="list-group-item">
                                 <b>Email</b> <a class="pull-right"><?php echo $profil->email; ?></a>

@@ -11,38 +11,22 @@
     <div class="row">
         <div class="col-md-12">
             <div class="box box-primary">
+              <div class="box-body">
                 <!-- form start-->
                 <?php echo form_open('up2kk/user/update_profil'); ?>
-                <div class="box-body">
                     <div class="form-group">
-                        <?php echo form_label('Nama depan', 'nama_depan'); ?>
-                        <?php echo form_error('nama_depan'); ?>
+                        <?php echo form_label('Nama Lengkap', 'nama_lengkap'); ?>
+                        <?php echo form_error('nama_lengkap'); ?>
                         <?php
                         $data = array(
-                            'type' => 'text',
-                            'class' => 'form-control',
-                            'name' => 'nama_depan',
-                            'value' => set_value('nama_depan', $current_user->nama_depan),
-                            'id' => 'nama_depan',
-                            'placeholder' => 'Nama Depan',
-                            'required' => 'required',
-                            'autofocus' => 'autofocus'
-                        );
-                        echo form_input($data); ?>
-                    </div>
-                    <div class="form-group">
-                        <?php echo form_label('Nama belakang', 'nama_belakang'); ?>
-                        <?php echo form_error('nama_belakang'); ?>
-                        <?php
-                        $data = array(
-                            'type' => 'text',
-                            'class' => 'form-control',
-                            'name' => 'nama_belakang',
-                            'value' => set_value('nama_belakang', $current_user->nama_belakang),
-                            'id' => 'nama_belakang',
-                            'placeholder' => 'Nama Belakang',
-                            'required' => 'required'
-                        );
+                                'type' => 'text',
+                                'class' => 'form-control',
+                                'name' => 'nama_lengkap',
+                                'value' => set_value('nama_lengkap', $current_user->nama_lengkap),
+                                'id' => 'nama_lengkap',
+                                'placeholder' => 'Nama Lengkap',
+                                'required' => 'required',
+                                'autofocus' => 'autofocus');
                         echo form_input($data); ?>
                     </div>
                     <div class="form-group">

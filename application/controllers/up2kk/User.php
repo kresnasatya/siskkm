@@ -37,18 +37,21 @@ class User extends UP2KK_Controller
 
     public function update_profil()
     {
+      $this->profil_rules();
+      if ($this->form_validation->run() == FALSE) {
+        $this->profil();
+      } else {
         $user_id = $this->input->post('user_id');
         $new_data = array(
-            'nama_depan' => $this->input->post('nama_depan'),
-            'nama_belakang' => $this->input->post('nama_belakang'),
-            'nip' => $this->input->post('nip'),
-            'email' => $this->input->post('email'),
-            'id_jurusan' => $this->input->post('id_jurusan')
-        );
+                    'nama_lengkap' => $this->input->post('nama_lengkap'),
+                    'nip' => $this->input->post('nip'),
+                    'email' => $this->input->post('email'),
+                    'id_jurusan' => $this->input->post('id_jurusan'));
         $this->ion_auth->update($user_id, $new_data);
 
         $this->session->set_flashdata('message', "<div style='color:#00a65a;'>" . $this->ion_auth->messages() . "</div>");
         redirect('up2kk/user', 'refresh');
+      }
     }
 
     public function password()
@@ -78,11 +81,10 @@ class User extends UP2KK_Controller
 
     public function profil_rules()
     {
-        $this->form_validation->set_rules('nama_depan', 'Nama depan', 'trim|required');
-        $this->form_validation->set_rules('nama_belakang', 'Nama belakang', 'trim|required');
-        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
-        $this->form_validation->set_rules('nip', 'Nip', 'trim|required');
-        $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+      $this->form_validation->set_rules('nama_lengkap', 'Nama Lengkap', 'trim|required');
+      $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+      $this->form_validation->set_rules('nip', 'Nip', 'trim|required|min_length[18]|max_length[18]|numeric');
+      $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
 
     public function password_rules()

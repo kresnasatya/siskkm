@@ -19,15 +19,14 @@
                         <?php echo form_error('nama_lengkap'); ?>
                         <?php
                         $data = array(
-                            'type' => 'text',
-                            'class' => 'form-control',
-                            'name' => 'nama_lengkap',
-                            'value' => set_value('nama_lengkap', $current_user->nama_lengkap),
-                            'id' => 'nama_lengkap',
-                            'placeholder' => 'Nama Lengkap',
-                            'required' => 'required',
-                            'autofocus' => 'autofocus'
-                        );
+                                'type' => 'text',
+                                'class' => 'form-control',
+                                'name' => 'nama_lengkap',
+                                'value' => set_value('nama_lengkap', $current_user->nama_lengkap),
+                                'id' => 'nama_lengkap',
+                                'placeholder' => 'Nama Lengkap',
+                                'required' => 'required',
+                                'autofocus' => 'autofocus');
                         echo form_input($data);
                         ?>
                     </div>
