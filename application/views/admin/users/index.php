@@ -71,6 +71,21 @@
                                     </td>
                                     <td><?php echo date('Y-m-d H:i:s', $user->last_login); ?></td>
                                     <td>
+                                      <?php if ($user->active == 1): ?>
+                                        <?php
+                                        $deactive = array(
+                                                  'class' => 'btn btn-sm btn-danger',
+                                                  'onclick' => 'javascript: return confirm(\'Anda yakin menonaktifkan ' . $user->nama_lengkap. '?\')');
+                                        echo anchor(site_url('admin/users/deactivate/' . $user->id), 'Non Aktifkan', $deactive);
+                                        ?>
+                                      <?php elseif($user->active == 0): ?>
+                                        <?php
+                                        $active = array(
+                                                  'class' => 'btn btn-sm btn-success',
+                                                  'onclick' => 'javascript: return confirm(\'Anda yakin mengaktifkan ' . $user->nama_lengkap. '?\')');
+                                        echo anchor(site_url('admin/users/activate/' . $user->id), 'Aktifkan', $active);
+                                        ?>
+                                      <?php endif; ?>
                                         <?php if ($current_user->id != $user->id): ?>
                                             <?php
                                             $hapus = array(
