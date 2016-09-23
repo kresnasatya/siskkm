@@ -75,6 +75,42 @@ class Users extends Admin_Controller
       }
     }
 
+    // Manual user activation
+    public function activate($id)
+    {
+      if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin()) {
+        return show_error("Kamu harus menjadi admin untuk melakukan aksi ini.");
+      } elseif ($this->ion_auth->is_admin()) {
+        $activation = $this->ion_auth->activate($id);
+      }
+
+      if ($activation) {
+        $this->session->set_flashdata('message', "<div style='color:#00a65a'>" . $this->ion_auth->messages() . "</div>");
+  			redirect(site_url('admin/users'));
+      }
+    }
+
+    // Manual user deactivation
+    public function deactivate($id)
+    {
+      if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
+  		{
+  			// redirect them to the home page because they must be an administrator to view this
+  			return show_error('You must be an administrator to view this page.');
+  		}
+
+      $id = (int) $id;
+
+      if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin()) {
+        $deactivation = $this->ion_auth->deactivate($id);
+      }
+
+      if ($deactivation) {
+        $this->session->set_flashdata('message', "<div style='color:#00a65a'>" . $this->ion_auth->messages() . "</div>");
+  			redirect(site_url('admin/users'));
+      }
+    }
+
     public function edit($user_id)
     {
       $current_user = $this->ion_auth->user()->row();

@@ -9,7 +9,7 @@ class Users_model extends CI_Model {
 
   public function get_users()
   {
-    $this->db->select('u.id, u.nama_lengkap, u.email, u.last_login, u.nim, u.nip, g.name, j.nama_jurusan, p.nama_prodi');
+    $this->db->select('u.id, u.nama_lengkap, u.email, u.last_login, u.nim, u.nip, u.active, g.name, j.nama_jurusan, p.nama_prodi');
     $this->db->from('users u');
     $this->db->join('users_groups ug', 'ug.user_id = u.id', 'inner');
     $this->db->join('groups g', 'g.id = ug.group_id');

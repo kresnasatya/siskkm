@@ -34,6 +34,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <?php echo form_submit('submit', 'Log in', 'class="btn btn-primary btn-block btn-flat"') ?>
+                <a href="<?php echo site_url('register'); ?>" class="btn btn-primary btn-block btn-flat">Register</a>
             </div><!-- /.col -->
         </div>
         <?php echo form_close(); ?>
