@@ -10,6 +10,7 @@
 ### Example user template
 system
 fileskkm/*
+*.zip
 
 # IntelliJ project files
 .idea
