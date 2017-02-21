@@ -35,7 +35,7 @@
                     <div class="form-group">
                         <?php echo form_label('Isi', 'isi_pengumuman'); ?>
                         <?php echo form_error('isi_pengumuman'); ?>
-                        <textarea name="isi_pengumuman"><?php echo $isi_pengumuman; ?></textarea>
+                        <textarea class="textarea" name="isi_pengumuman" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo $isi_pengumuman; ?></textarea>
                     </div>
                     <?php echo form_hidden('id', $id); ?>
                     <?php echo anchor(site_url('admin/pengumuman'), 'Kembali', 'class="btn btn-default"'); ?>
