@@ -54,6 +54,13 @@ $route['default_controller'] = 'beranda';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+// Routing for auth
+$route['login'] = 'auth/login';
+$route['logout'] = 'auth/logout';
+$route['forgot_password'] = 'auth/forgot_password';
+$route['register'] = 'auth/register';
+$route['reset_password/(:any)'] = 'auth/reset_password/$1';
+
 /* Routing for Pengumuman section */
 $route['pengumuman/(:any)'] = 'pengumuman/single/$1';
 
