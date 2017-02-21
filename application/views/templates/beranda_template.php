@@ -11,14 +11,14 @@
     <title>SISKKM - Politeknik Negeri Bali</title>
 
     <!-- Normalize -->
-    <link rel="stylesheet" href="<?php echo base_url('solid/assets/css/normalize.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('frontend/assets/css/normalize.css'); ?>">
 
     <!-- Bootstrap core CSS -->
-    <link href="<?php echo base_url('solid/assets/css/bootstrap.css'); ?>" rel="stylesheet">
+    <link href="<?php echo base_url('frontend/assets/css/bootstrap.css'); ?>" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="<?php echo base_url('solid/assets/css/style.css'); ?>" rel="stylesheet">
-    <link href="<?php echo base_url('solid/assets/css/font-awesome.min.css'); ?>" rel="stylesheet">
+    <link href="<?php echo base_url('frontend/assets/css/style.css'); ?>" rel="stylesheet">
+    <link href="<?php echo base_url('frontend/assets/css/font-awesome.min.css'); ?>" rel="stylesheet">
 
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
@@ -102,14 +102,14 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="<?php echo base_url('solid/assets/js/jquery.min.js'); ?>"></script>
-<script src="<?php echo base_url('solid/assets/js/bootstrap.min.js'); ?>"></script>
-<script src="<?php echo base_url('solid/assets/js/retina-1.1.0.js'); ?>"></script>
-<script src="<?php echo base_url('solid/assets/js/jquery.hoverdir.js'); ?>"></script>
-<script src="<?php echo base_url('solid/assets/js/jquery.hoverex.min.js'); ?>"></script>
-<script src="<?php echo base_url('solid/assets/js/jquery.prettyPhoto.js'); ?>"></script>
-<script src="<?php echo base_url('solid/assets/js/jquery.isotope.min.js'); ?>"></script>
-<script src="<?php echo base_url('solid/assets/js/custom.js'); ?>"></script>
+<script src="<?php echo base_url('frontend/assets/js/jquery.min.js'); ?>"></script>
+<script src="<?php echo base_url('frontend/assets/js/bootstrap.min.js'); ?>"></script>
+<script src="<?php echo base_url('frontend/assets/js/retina-1.1.0.js'); ?>"></script>
+<script src="<?php echo base_url('frontend/assets/js/jquery.hoverdir.js'); ?>"></script>
+<script src="<?php echo base_url('frontend/assets/js/jquery.hoverex.min.js'); ?>"></script>
+<script src="<?php echo base_url('frontend/assets/js/jquery.prettyPhoto.js'); ?>"></script>
+<script src="<?php echo base_url('frontend/assets/js/jquery.isotope.min.js'); ?>"></script>
+<script src="<?php echo base_url('frontend/assets/js/custom.js'); ?>"></script>
 
 </body>
 </html>

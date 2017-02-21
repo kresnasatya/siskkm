@@ -3,28 +3,25 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>SISKKM - Admin</title>
+    <title>SISKKM | UP2KK</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-
     <!-- Normalize CSS -->
-    <link rel="stylesheet" href="<?php echo base_url('adminlte/plugins/normalize.css'); ?>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 
     <!-- Bootstrap 3.3.5 -->
-    <link rel="stylesheet" href="<?php echo base_url('adminlte/bootstrap/css/bootstrap.min.css'); ?>">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="<?php echo base_url('adminlte/font-awesome/css/font-awesome.min.css'); ?>">
-
-    <!-- Datatables -->
-    <link rel="stylesheet" href="<?php echo base_url('adminlte/plugins/datatables/dataTables.bootstrap.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>backend/bootstrap/css/bootstrap.min.css">
 
     <!-- Theme style -->
-    <link rel="stylesheet" href="<?php echo base_url('adminlte/dist/css/AdminLTE.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>backend/dist/css/AdminLTE.min.css">
 
-    <!-- AdminLTE Skins. Choose a skin from the css/skins
+    <!-- backend Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="<?php echo base_url('adminlte/dist/css/skins/_all-skins.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>backend/dist/css/skins/_all-skins.min.css">
+
+    <!-- Font Awesome -->
+    <script src="https://use.fontawesome.com/b7364a05b7.js"></script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -32,17 +29,17 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-purple sidebar-mini">
 <!-- Site wrapper -->
 <div class="wrapper">
 
     <header class="main-header">
         <!-- Logo -->
-        <a href="<?php echo site_url('admin/dasbor'); ?>" class="logo">
+        <a href="<?php echo site_url('up2kk/dasbor'); ?>" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>A</b>KM</span>
+            <span class="logo-mini"><b>U</b>KM</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Admin</b>SKKM</span>
+            <span class="logo-lg"><b>UP2KK</b>SKKM</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -75,7 +72,7 @@
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="<?php echo site_url('admin/user'); ?>" class="btn btn-default btn-flat">Profil</a>
+                                    <a href="<?php echo site_url('up2kk/user'); ?>" class="btn btn-default btn-flat">Profil</a>
                                 </div>
                                 <div class="pull-right">
                                     <a href="<?php echo site_url('logout'); ?>"
@@ -109,32 +106,18 @@
             <ul class="sidebar-menu">
                 <li class="header">MAIN NAVIGATION</li>
                 <li class="treeview">
-                    <a href="<?php echo site_url('admin/dasbor'); ?>">
+                    <a href="<?php echo site_url('up2kk/dasbor'); ?>">
                         <i class="fa fa-dashboard"></i> <span>Dasbor</span>
                     </a>
                 </li>
                 <li class="treeview">
-                    <a href="<?php echo site_url('admin/users'); ?>">
-                        <i class="fa fa-users"></i> <span>Users</span>
+                    <a href="<?php echo site_url('up2kk/validasi'); ?>">
+                        <i class="fa fa-check-square-o"></i> <span>Validasi SKKM</span>
                     </a>
-                </li>
-                <li class="active treeview">
-                    <a href="">
-                        <i class="fa fa-balance-scale"></i> <span>Bobot SKKM</span> <i
-                            class="fa fa-angle-left pull-right"></i>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a href="<?php echo site_url('admin/jenis'); ?>"><i class="fa fa-circle-o"></i> Data
-                                Jenis</a></li>
-                        <li><a href="<?php echo site_url('admin/tingkat'); ?>"><i class="fa fa-circle-o"></i> Data
-                                Tingkat</a></li>
-                        <li class="active"><a href="<?php echo site_url('admin/prestasi'); ?>"><i
-                                    class="fa fa-circle-o"></i> Data Prestasi</a></li>
-                    </ul>
                 </li>
                 <li class="treeview">
-                    <a href="<?php echo site_url('admin/pengumuman'); ?>">
-                        <i class="fa fa-newspaper-o"></i> <span>Pengumuman</span>
+                    <a href="<?php echo site_url('up2kk/daftar-skkm'); ?>">
+                        <i class="fa fa-archive"></i> <span>Daftar SKKM</span>
                     </a>
                 </li>
             </ul>
@@ -151,7 +134,7 @@
 
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
-            <b>Version</b> 2.3.0
+            <b>Version</b> 2.3.8
         </div>
         <strong>Copyright template <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
         reserved.
@@ -160,25 +143,17 @@
 </div><!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="<?php echo base_url('adminlte/plugins/jQuery/jquery.min.js'); ?>"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
 <!-- Bootstrap 3.3.5 -->
-<script src="<?php echo base_url('adminlte/bootstrap/js/bootstrap.min.js'); ?>"></script>
-<!-- Datatables -->
-<script src="<?php echo base_url('adminlte/plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
-<script src="<?php echo base_url('adminlte/plugins/datatables/dataTables.bootstrap.min.js'); ?>"></script>
+<script src="<?php echo base_url(); ?>backend/bootstrap/js/bootstrap.min.js"></script>
+
 <!-- SlimScroll -->
-<script src="<?php echo base_url('adminlte/plugins/slimScroll/jquery.slimscroll.min.js'); ?>"></script>
+<script src="<?php echo base_url(); ?>backend/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+
 <!-- FastClick -->
-<script src="<?php echo base_url('adminlte/plugins/fastclick/fastclick.min.js'); ?>"></script>
-<!-- AdminLTE App -->
-<script src="<?php echo base_url('adminlte/dist/js/app.min.js'); ?>"></script>
-<!-- page script-->
-<script>
-    $(document).ready(function () {
-        $("#prestasitable").DataTable({
-            "scrollX": true
-        });
-    });
-</script>
-</body>
+<script src="<?php echo base_url(); ?>backend/plugins/fastclick/fastclick.min.js"></script>
+
+<!-- backend App -->
+<script src="<?php echo base_url(); ?>backend/dist/js/app.min.js"></script></body>
 </html>

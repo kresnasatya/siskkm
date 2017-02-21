@@ -3,22 +3,24 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>SISKKM - Mahasiswa</title>
+    <title>SISKKM | UP2KK</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Normalize CSS -->
-    <link rel="stylesheet" href="<?php echo base_url('adminlte/plugins/normalize.css'); ?>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
     <!-- Bootstrap 3.3.5 -->
-    <link rel="stylesheet" href="<?php echo base_url('adminlte/bootstrap/css/bootstrap.min.css'); ?>">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="<?php echo base_url('adminlte/font-awesome/css/font-awesome.min.css'); ?>">
-    <!-- Datatables -->
-    <link rel="stylesheet" href="<?php echo base_url('adminlte/plugins/datatables/dataTables.bootstrap.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>backend/bootstrap/css/bootstrap.min.css">
+
     <!-- Theme style -->
-    <link rel="stylesheet" href="<?php echo base_url('adminlte/dist/css/AdminLTE.min.css'); ?>">
-    <!-- AdminLTE Skins. Choose a skin from the css/skins
+    <link rel="stylesheet" href="<?php echo base_url(); ?>backend/dist/css/AdminLTE.min.css">
+
+    <!-- backend Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="<?php echo base_url('adminlte/dist/css/skins/_all-skins.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>backend/dist/css/skins/_all-skins.min.css">
+
+    <!-- Font Awesome -->
+    <script src="https://use.fontawesome.com/b7364a05b7.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -26,54 +28,18 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-    <style>
-        #image-preview {
-            height: 400px;
-            position: relative;
-            overflow: hidden;
-            background-color: #ffffff;
-            color: #ecf0f1;
-        }
-        #image-preview input {
-            line-height: 200px;
-            font-size: 200px;
-            position: absolute;
-            opacity: 0;
-            z-index: 10;
-        }
-        #image-preview label {
-            position: absolute;
-            z-index: 5;
-            opacity: 0.8;
-            cursor: pointer;
-            background-color: #bdc3c7;
-            width: 200px;
-            height: 50px;
-            font-size: 20px;
-            line-height: 50px;
-            text-transform: uppercase;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            margin: auto;
-            text-align: center;
-        }
-    </style>
-
 </head>
-<body class="hold-transition skin-green sidebar-mini">
+<body class="hold-transition skin-purple sidebar-mini">
 <!-- Site wrapper -->
 <div class="wrapper">
 
     <header class="main-header">
         <!-- Logo -->
-        <a href="<?php echo site_url('mahasiswa/dasbor'); ?>" class="logo">
+        <a href="<?php echo site_url('up2kk/dasbor'); ?>" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>M</b>KM</span>
+            <span class="logo-mini"><b>U</b>KM</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Mahasiswa</b> SKKM</span>
+            <span class="logo-lg"><b>UP2KK</b>SKKM</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -106,8 +72,7 @@
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="<?php echo site_url('mahasiswa/user'); ?>"
-                                       class="btn btn-default btn-flat">Profil</a>
+                                    <a href="<?php echo site_url('up2kk/user'); ?>" class="btn btn-default btn-flat">Profil</a>
                                 </div>
                                 <div class="pull-right">
                                     <a href="<?php echo site_url('logout'); ?>"
@@ -141,13 +106,18 @@
             <ul class="sidebar-menu">
                 <li class="header">MAIN NAVIGATION</li>
                 <li class="treeview">
-                    <a href="<?php echo site_url('mahasiswa/dasbor'); ?>">
+                    <a href="<?php echo site_url('up2kk/dasbor'); ?>">
                         <i class="fa fa-dashboard"></i> <span>Dasbor</span>
                     </a>
                 </li>
                 <li class="treeview active">
-                    <a href="<?php echo site_url('mahasiswa/daftar-skkm'); ?>">
-                        <i class="fa fa-archive"></i> <span>SKKM</span>
+                    <a href="<?php echo site_url('up2kk/validasi'); ?>">
+                        <i class="fa fa-check-square-o"></i> <span>Validasi SKKM</span>
+                    </a>
+                </li>
+                <li class="treeview">
+                    <a href="<?php echo site_url('up2kk/daftar-skkm'); ?>">
+                        <i class="fa fa-archive"></i> <span>Daftar SKKM</span>
                     </a>
                 </li>
             </ul>
@@ -164,7 +134,7 @@
 
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
-            <b>Version</b> 2.3.0
+            <b>Version</b> 2.3.8
         </div>
         <strong>Copyright template <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
         reserved.
@@ -173,84 +143,35 @@
 </div><!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="<?php echo base_url('adminlte/plugins/jQuery/jquery.min.js'); ?>"></script>
-<!-- jQuery Upload Preview -->
-<script src="<?php echo base_url('adminlte/plugins/uploadPreview/jquery.uploadPreview.min.js'); ?>"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
 <!-- Bootstrap 3.3.5 -->
-<script src="<?php echo base_url('adminlte/bootstrap/js/bootstrap.min.js'); ?>"></script>
+<script src="<?php echo base_url(); ?>backend/bootstrap/js/bootstrap.min.js"></script>
+
 <!-- Datatables -->
-<script src="<?php echo base_url('adminlte/plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
-<script src="<?php echo base_url('adminlte/plugins/datatables/dataTables.bootstrap.min.js'); ?>"></script>
+<script src="<?php echo base_url('backend/plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
+<script src="<?php echo base_url('backend/plugins/datatables/dataTables.bootstrap.min.js'); ?>"></script>
+
 <!-- SlimScroll -->
-<script src="<?php echo base_url('adminlte/plugins/slimScroll/jquery.slimscroll.min.js'); ?>"></script>
+<script src="<?php echo base_url(); ?>backend/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+
 <!-- FastClick -->
-<script src="<?php echo base_url('adminlte/plugins/fastclick/fastclick.min.js'); ?>"></script>
-<!-- AdminLTE App -->
-<script src="<?php echo base_url('adminlte/dist/js/app.min.js'); ?>"></script>
-<!-- Select2 Js -->
-<script src="<?php echo base_url('adminlte/plugins/select2/select2.min.js'); ?>"></script>
+<script src="<?php echo base_url(); ?>backend/plugins/fastclick/fastclick.min.js"></script>
+
+<!-- backend App -->
+<script src="<?php echo base_url(); ?>backend/dist/js/app.min.js"></script>
+
 <!-- page script-->
 <script>
-    $(document).ready(function() {
-        $("#skkmtable").DataTable({
+    $(document).ready(function () {
+        $("#mahasiswatable").DataTable({
             "scrollX": true
         });
-        $.uploadPreview({
-            input_field: "#image-upload",
-            preview_box: "#image-preview",
-            label_field: "#image-label"
+        $("#listskkmtable").DataTable({
+            "scrollX": true
         });
     });
-
-    function getTingkat(value) {
-        $.ajax({
-            type: "POST",
-            url: "<?php echo site_url('mahasiswa/skkm/get_tingkat');?>",
-            data: "value=" + value,
-            success: function (data) {
-                $("#prestasi option:gt(0)").remove();
-                $("#tingkat").html(data);
-                $("#nilai").val("");
-            },
-
-            error: function (XMLHttpRequest) {
-                alert(XMLHttpRequest.responseText);
-            }
-        });
-    }
-    ;
-
-    function getPrestasi(value) {
-        //console.log(value);
-        $.ajax({
-            type: "POST",
-            url: "<?php echo site_url('mahasiswa/skkm/get_prestasi');?>",
-            data: "value=" + value,
-            success: function (data) {
-                $("#prestasi").html(data);
-                $("#nilai").val("");
-            },
-
-            error: function (XMLHttpRequest) {
-                alert(XMLHttpRequest.responseText);
-            }
-        });
-    }
-
-    function getNilai(value) {
-        $.ajax({
-            type: "POST",
-            url: "<?php echo site_url('mahasiswa/skkm/get_nilai');?>",
-            data: "value=" + value,
-            success: function (data) {
-                document.getElementById('nilai').value = data;
-            },
-
-            error: function (XMLHttpRequest) {
-                alert(XMLHttpRequest.responseText);
-            }
-        });
-    }
 </script>
+
 </body>
 </html>

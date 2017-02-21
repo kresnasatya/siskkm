@@ -8,27 +8,20 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
     <!-- Normalize CSS -->
-    <link rel="stylesheet" href="<?php echo base_url('adminlte/plugins/normalize.css'); ?>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 
     <!-- Bootstrap 3.3.5 -->
-    <link rel="stylesheet" href="<?php echo base_url('adminlte/bootstrap/css/bootstrap.min.css'); ?>">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="<?php echo base_url('adminlte/font-awesome/css/font-awesome.min.css'); ?>">
-
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="<?php echo base_url('adminlte/ionic/css/ionicons.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>backend/bootstrap/css/bootstrap.min.css">
 
     <!-- Theme style -->
-    <link rel="stylesheet" href="<?php echo base_url('adminlte/dist/css/AdminLTE.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>backend/dist/css/AdminLTE.min.css">
 
-    <!-- AdminLTE Skins. Choose a skin from the css/skins
+    <!-- backend Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="<?php echo base_url(); ?>backend/dist/css/skins/_all-skins.min.css">
 
-    <link rel="stylesheet" href="<?php echo base_url('adminlte/dist/css/skins/_all-skins.min.css'); ?>">
-
-    <!-- Normalize CSS -->
-    <link rel="stylesheet" href="<?php echo base_url('adminlte/plugins/normalize.css'); ?>">
+    <!-- Font Awesome -->
+    <script src="https://use.fontawesome.com/b7364a05b7.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -113,7 +106,7 @@
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu">
                 <li class="header">MAIN NAVIGATION</li>
-                <li class="treeview active">
+                <li class="treeview">
                     <a href="<?php echo site_url('admin/dasbor'); ?>">
                         <i class="fa fa-dashboard"></i> <span>Dasbor</span>
                     </a>
@@ -123,7 +116,7 @@
                         <i class="fa fa-users"></i> <span>Users</span>
                     </a>
                 </li>
-                <li class="treeview">
+                <li class="active treeview">
                     <a href="">
                         <i class="fa fa-balance-scale"></i> <span>Bobot SKKM</span> <i
                             class="fa fa-angle-left pull-right"></i>
@@ -131,8 +124,8 @@
                     <ul class="treeview-menu">
                         <li><a href="<?php echo site_url('admin/jenis'); ?>"><i class="fa fa-circle-o"></i> Data
                                 Jenis</a></li>
-                        <li><a href="<?php echo site_url('admin/tingkat'); ?>"><i class="fa fa-circle-o"></i> Data
-                                Tingkat</a></li>
+                        <li class="active"><a href="<?php echo site_url('admin/tingkat'); ?>"><i
+                                    class="fa fa-circle-o"></i> Data Tingkat</a></li>
                         <li><a href="<?php echo site_url('admin/prestasi'); ?>"><i class="fa fa-circle-o"></i> Data
                                 Prestasi</a></li>
                     </ul>
@@ -156,7 +149,7 @@
 
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
-            <b>Version</b> 2.3.0
+            <b>Version</b> 2.3.8
         </div>
         <strong>Copyright template <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
         reserved.
@@ -165,14 +158,30 @@
 </div><!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="<?php echo base_url('adminlte/plugins/jQuery/jquery.min.js'); ?>"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
 <!-- Bootstrap 3.3.5 -->
-<script src="<?php echo base_url('adminlte/bootstrap/js/bootstrap.min.js'); ?>"></script>
+<script src="<?php echo base_url(); ?>backend/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Datatables -->
+<script src="<?php echo base_url(); ?>backend/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url(); ?>backend/plugins/datatables/dataTables.bootstrap.min.js"></script>
+
 <!-- SlimScroll -->
-<script src="<?php echo base_url('adminlte/plugins/slimScroll/jquery.slimscroll.min.js'); ?>"></script>
+<script src="<?php echo base_url(); ?>backend/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+
 <!-- FastClick -->
-<script src="<?php echo base_url('adminlte/plugins/fastclick/fastclick.min.js'); ?>"></script>
-<!-- AdminLTE App -->
-<script src="<?php echo base_url('adminlte/dist/js/app.min.js'); ?>"></script>
+<script src="<?php echo base_url(); ?>backend/plugins/fastclick/fastclick.min.js"></script>
+
+<!-- backend App -->
+<script src="<?php echo base_url(); ?>backend/dist/js/app.min.js"></script>
+<!-- page script-->
+<script>
+    $(document).ready(function () {
+        $("#tingkattable").DataTable({
+            "scrollX": true
+        });
+    });
+</script>
 </body>
 </html>
