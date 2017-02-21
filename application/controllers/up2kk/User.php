@@ -17,7 +17,7 @@ class User extends UP2KK_Controller
                 'current_user' => $current_user,
                 'gravatar_url' => $this->gravatar->get($current_user->email),
                 'profil' => $this->user->get_profil($current_user->id));
-        $this->template->load('templates/up2kk/user_template', 'up2kk/user/index', $data);
+        $this->template->load('up2kk/templates/user', 'up2kk/user/index', $data);
     }
 
     public function profil()
@@ -27,7 +27,7 @@ class User extends UP2KK_Controller
               'dd_jurusan' => $this->user->get_jurusan(),
               'current_user' => $current_user,
               'gravatar_url' => $this->gravatar->get($current_user->email));
-      $this->template->load('templates/up2kk/user_template', 'up2kk/user/profil', $data);
+      $this->template->load('up2kk/templates/user', 'up2kk/user/profil', $data);
     }
 
     public function update_profil()
@@ -55,7 +55,7 @@ class User extends UP2KK_Controller
       $data = array(
               'current_user' => $current_user,
               'gravatar_url' => $this->gravatar->get($current_user->email));
-      $this->template->load('templates/up2kk/user_template', 'up2kk/user/password', $data);
+      $this->template->load('up2kk/templates/user', 'up2kk/user/password', $data);
     }
 
     public function update_password()

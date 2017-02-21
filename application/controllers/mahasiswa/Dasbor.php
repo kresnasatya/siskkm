@@ -19,7 +19,7 @@ class Dasbor extends Mahasiswa_Controller
             'skkm_belum_divalidasi' => $this->dasbor->skkm_belum_divalidasi($current_user->id),
             'skkm_valid' => $this->dasbor->skkm_valid($current_user->id),
             'skkm_tidak_valid' => $this->dasbor->skkm_tidak_valid($current_user->id));
-        $this->template->load('templates/mahasiswa/dasbor_template', 'mahasiswa/dasbor', $data);
+        $this->template->load('mahasiswa/templates/dasbor', 'mahasiswa/dasbor', $data);
     }
 
 }

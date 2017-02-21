@@ -22,7 +22,7 @@ class User extends Mahasiswa_Controller
               'sum_tidak_valid' => $this->skkm->sum_tidak_valid($current_user->id),
               'sum_belum_divalidasi' => $this->skkm->sum_belum_divalidasi($current_user->id),
               'status_skkm' => $this->skkm->status_skkm($current_user->id));
-      $this->template->load('templates/mahasiswa/user_template', 'mahasiswa/user/index', $data);
+      $this->template->load('mahasiswa/templates/user', 'mahasiswa/user/index', $data);
     }
 
     public function get_prodi()
@@ -47,7 +47,7 @@ class User extends Mahasiswa_Controller
               'dd_kelas' => $this->user->get_kelas(),
               'dd_semester' => $this->user->get_semester(),
               'gravatar_url' => $this->gravatar->get($current_user->email));
-      $this->template->load('templates/mahasiswa/user_template', 'mahasiswa/user/profil', $data);
+      $this->template->load('mahasiswa/templates/user', 'mahasiswa/user/profil', $data);
     }
 
     public function update_profil()
@@ -78,7 +78,7 @@ class User extends Mahasiswa_Controller
       $data = array(
               'current_user' => $current_user,
               'gravatar_url' => $this->gravatar->get($current_user->email));
-      $this->template->load('templates/mahasiswa/user_template', 'mahasiswa/user/password', $data);
+      $this->template->load('mahasiswa/templates/user', 'mahasiswa/user/password', $data);
     }
 
     public function update_password()

@@ -21,7 +21,7 @@ class Dasbor extends UP2KK_Controller
             'count_valid' => $this->dasbor->count_valid($current_user->id_jurusan),
             'gravatar_url' => $this->gravatar->get($current_user->email)
         );
-        $this->template->load('templates/up2kk/dasbor_template', 'up2kk/dasbor', $data);
+        $this->template->load('up2kk/templates/dasbor', 'up2kk/dasbor', $data);
     }
 
 }

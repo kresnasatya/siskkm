@@ -19,7 +19,7 @@ class Skkm extends UP2KK_Controller
             'mahasiswa' => $mahasiswa,
             'gravatar_url' => $this->gravatar->get($current_user->email)
         );
-        $this->template->load('templates/up2kk/skkm_template', 'up2kk/skkm/index', $data);
+        $this->template->load('up2kk/templates/skkm', 'up2kk/skkm/index', $data);
     }
 
     public function list_skkm($id_user)
@@ -35,7 +35,7 @@ class Skkm extends UP2KK_Controller
             'sum_tidak_valid' => $this->skkm->sum_tidak_valid($id_user),
             'status_skkm' => $this->skkm->status_skkm($id_user)
         );
-        $this->template->load('templates/up2kk/skkm_template', 'up2kk/skkm/list_skkm', $data);
+        $this->template->load('up2kk/templates/skkm', 'up2kk/skkm/list_skkm', $data);
     }
 
     public function list_skkm_valid()
@@ -45,7 +45,7 @@ class Skkm extends UP2KK_Controller
             'gravatar_url' => $this->gravatar->get($current_user->email),
             'skkm_valid' => $this->skkm->get_skkm_valid()
         );
-        $this->template->load('templates/up2kk/skkm_template', 'up2kk/skkm/list_skkm_valid', $data);
+        $this->template->load('up2kk/templates/skkm', 'up2kk/skkm/list_skkm_valid', $data);
     }
 
 }

@@ -18,7 +18,7 @@ class Prestasi extends Admin_Controller
                 'current_user' => $current_user,
                 'prestasi' => $this->prestasi->get_all(),
                 'gravatar_url' => $this->gravatar->get($current_user->email));
-        $this->template->load('templates/admin/prestasi_template', 'admin/prestasi/index', $data);
+        $this->template->load('admin/templates/prestasi', 'admin/prestasi/index', $data);
     }
 
     public function create()
@@ -29,7 +29,7 @@ class Prestasi extends Admin_Controller
               'dd_tingkat' => $this->prestasi->get_tingkat(),
               'tingkat_selected' => $this->input->post('id_tingkat_fk') ? $this->input->post('id_tingkat_fk') : '',
               'gravatar_url' => $this->gravatar->get($current_user->email));
-      $this->template->load('templates/admin/prestasi_template', 'admin/prestasi/add', $data);
+      $this->template->load('admin/templates/prestasi', 'admin/prestasi/add', $data);
     }
 
     public function store()
@@ -64,7 +64,7 @@ class Prestasi extends Admin_Controller
                   'dd_tingkat' => $this->prestasi->get_tingkat(),
                   'current_user' => $current_user,
                   'gravatar_url' => $this->gravatar->get($current_user->email));
-          $this->template->load('templates/admin/prestasi_template', 'admin/prestasi/edit', $data);
+          $this->template->load('admin/templates/prestasi', 'admin/prestasi/edit', $data);
       } else {
           $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
           redirect(site_url('admin/prestasi'));

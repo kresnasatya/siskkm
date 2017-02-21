@@ -18,7 +18,7 @@ class Tingkat extends Admin_Controller
                 'current_user' => $current_user,
                 'tingkat' => $this->tingkat->get_all(),
                 'gravatar_url' => $this->gravatar->get($current_user->email));
-        $this->template->load('templates/admin/tingkat_template', 'admin/tingkat/index', $data);
+        $this->template->load('admin/templates/tingkat', 'admin/tingkat/index', $data);
     }
 
     public function create()
@@ -29,7 +29,7 @@ class Tingkat extends Admin_Controller
               'dd_jenis' => $this->tingkat->get_jenis(),
               'jenis_selected' => $this->input->post('id_jenis_fk') ? $this->input->post('id_jenis_fk') : '',
               'gravatar_url' => $this->gravatar->get($current_user->email));
-      $this->template->load('templates/admin/tingkat_template', 'admin/tingkat/add', $data);
+      $this->template->load('admin/templates/tingkat', 'admin/tingkat/add', $data);
     }
 
     public function store()
@@ -61,7 +61,7 @@ class Tingkat extends Admin_Controller
                   'dd_jenis' => $this->tingkat->get_jenis(),
                   'current_user' => $current_user,
                   'gravatar_url' => $this->gravatar->get($current_user->email));
-          $this->template->load('templates/admin/tingkat_template', 'admin/tingkat/edit', $data);
+          $this->template->load('admin/templates/tingkat', 'admin/tingkat/edit', $data);
       } else {
           $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
           redirect(site_url('admin/tingkat'));

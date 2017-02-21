@@ -19,7 +19,7 @@ class Validasi extends UP2KK_Controller
                 'current_user' => $current_user,
                 'mahasiswa' => $mahasiswa,
                 'gravatar_url' => $this->gravatar->get($current_user->email));
-        $this->template->load('templates/up2kk/validasi_template', 'up2kk/validasi/index', $data);
+        $this->template->load('up2kk/templates/validasi', 'up2kk/validasi/index', $data);
     }
 
     public function list_skkm($id_user)
@@ -35,7 +35,7 @@ class Validasi extends UP2KK_Controller
             'status_skkm' => $this->validasi->status_skkm($id_user),
             'gravatar_url' => $this->gravatar->get($current_user->email)
         );
-        $this->template->load('templates/up2kk/validasi_template', 'up2kk/validasi/list_skkm', $data);
+        $this->template->load('up2kk/templates/validasi', 'up2kk/validasi/list_skkm', $data);
 
     }
 
@@ -54,7 +54,7 @@ class Validasi extends UP2KK_Controller
                     'keterangan' => $row->keterangan,
                     'gravatar_url' => $this->gravatar->get($current_user->email)
                 );
-                $this->template->load('templates/up2kk/validasi_template', 'up2kk/validasi/skkm', $data);
+                $this->template->load('up2kk/templates/validasi', 'up2kk/validasi/skkm', $data);
             }
         }
     }
@@ -90,7 +90,7 @@ class Validasi extends UP2KK_Controller
             'gravatar_url' => $this->gravatar->get($current_user->email),
             'skkm_tidak_valid' => $this->validasi->get_skkm_tidak_valid()
         );
-        $this->template->load('templates/up2kk/validasi_template', 'up2kk/validasi/skkm_tidak_valid', $data);
+        $this->template->load('up2kk/templates/validasi', 'up2kk/validasi/skkm_tidak_valid', $data);
     }
 
     public function skkm_belum_valid()
@@ -100,7 +100,7 @@ class Validasi extends UP2KK_Controller
             'gravatar_url' => $this->gravatar->get($current_user->email),
             'skkm_belum_valid' => $this->validasi->get_skkm_belum_valid()
         );
-        $this->template->load('templates/up2kk/validasi_template', 'up2kk/validasi/skkm_belum_valid', $data);
+        $this->template->load('up2kk/templates/validasi', 'up2kk/validasi/skkm_belum_valid', $data);
     }
 
 }

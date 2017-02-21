@@ -18,7 +18,7 @@ class Pengumuman extends Admin_Controller
             'pengumuman' => $this->pengumuman->get_all(),
             'gravatar_url' => $this->gravatar->get($current_user->email)
         );
-        $this->template->load('templates/admin/pengumuman_template', 'admin/pengumuman/index', $data);
+        $this->template->load('admin/templates/pengumuman', 'admin/pengumuman/index', $data);
     }
 
     public function create()
@@ -27,7 +27,7 @@ class Pengumuman extends Admin_Controller
       $data = array(
               'current_user' => $current_user,
               'gravatar_url' => $this->gravatar->get($current_user->email));
-      $this->template->load('templates/admin/pengumuman_template', 'admin/pengumuman/add', $data);
+      $this->template->load('admin/templates/pengumuman', 'admin/pengumuman/add', $data);
     }
 
     public function store()
@@ -64,7 +64,7 @@ class Pengumuman extends Admin_Controller
               'current_user' => $current_user,
               'gravatar_url' => $this->gravatar->get($current_user->email)
           );
-          $this->template->load('templates/admin/pengumuman_template', 'admin/pengumuman/edit', $data);
+          $this->template->load('admin/templates/pengumuman', 'admin/pengumuman/edit', $data);
       } else {
           $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
           redirect(site_url('admin/pengumuman'));

@@ -23,7 +23,7 @@ class Skkm extends Mahasiswa_Controller
             'sum_tidak_valid' => $this->skkm->sum_tidak_valid($current_user->id),
             'status_skkm' => $this->skkm->status_skkm($current_user->id)
         );
-        $this->template->load('templates/mahasiswa/skkm_template', 'mahasiswa/skkm/index', $data);
+        $this->template->load('mahasiswa/templates/skkm', 'mahasiswa/skkm/index', $data);
     }
 
     public function list_skkm_valid()
@@ -38,7 +38,7 @@ class Skkm extends Mahasiswa_Controller
             'sum_tidak_valid' => $this->skkm->sum_tidak_valid($current_user->id),
             'status_skkm' => $this->skkm->status_skkm($current_user->id)
         );
-        $this->template->load('templates/mahasiswa/skkm_template', 'mahasiswa/skkm/list_valid', $data);
+        $this->template->load('mahasiswa/templates/skkm', 'mahasiswa/skkm/list_valid', $data);
     }
 
     public function list_skkm_tidak_valid()
@@ -53,7 +53,7 @@ class Skkm extends Mahasiswa_Controller
             'sum_tidak_valid' => $this->skkm->sum_tidak_valid($current_user->id),
             'status_skkm' => $this->skkm->status_skkm($current_user->id)
         );
-        $this->template->load('templates/mahasiswa/skkm_template', 'mahasiswa/skkm/list_tidak_valid', $data);
+        $this->template->load('mahasiswa/templates/skkm', 'mahasiswa/skkm/list_tidak_valid', $data);
     }
 
     public function list_skkm_belum_valid()
@@ -68,7 +68,7 @@ class Skkm extends Mahasiswa_Controller
             'sum_tidak_valid' => $this->skkm->sum_tidak_valid($current_user->id),
             'status_skkm' => $this->skkm->status_skkm($current_user->id)
         );
-        $this->template->load('templates/mahasiswa/skkm_template', 'mahasiswa/skkm/list_belum_valid', $data);
+        $this->template->load('mahasiswa/templates/skkm', 'mahasiswa/skkm/list_belum_valid', $data);
     }
 
     public function get_tingkat()
@@ -119,7 +119,7 @@ class Skkm extends Mahasiswa_Controller
               'jenis_selected' => $this->input->post('id_jenis') ? $this->input->post('id_jenis') : '',
               'tingkat_selected' => $this->input->post('id_tingkat') ? $this->input->post('id_tingkat') : '',
               'prestasi_selected' => $this->input->post('id_prestasi') ? $this->input->post('id_prestasi') : '');
-      $this->template->load('templates/mahasiswa/skkm_template', 'mahasiswa/skkm/add', $data);
+      $this->template->load('mahasiswa/templates/skkm', 'mahasiswa/skkm/add', $data);
     }
 
     public function store()
@@ -179,7 +179,7 @@ class Skkm extends Mahasiswa_Controller
               'id_prestasi' => $row->id_prestasi,
               'dd_prestasi' => $this->skkm->get_prestasi($row->id_tingkat),
               'nilai' => $row->nilai);
-      $this->template->load('templates/mahasiswa/skkm_template', 'mahasiswa/skkm/edit', $data);
+      $this->template->load('mahasiswa/templates/skkm', 'mahasiswa/skkm/edit', $data);
     }
 
     public function update($id)

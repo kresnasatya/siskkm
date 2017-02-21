@@ -17,7 +17,7 @@ class Users extends Admin_Controller
             'current_user' => $current_user,
             'users' => $this->users->get_users(),
             'gravatar_url' => $this->gravatar->get($current_user->email));
-        $this->template->load('templates/admin/users_template', 'admin/users/index', $data);
+        $this->template->load('admin/templates/users', 'admin/users/index', $data);
     }
 
     public function get_prodi()
@@ -46,7 +46,7 @@ class Users extends Admin_Controller
           'kelas_selected' => $this->input->post('id_kelas'),
           'current_user' => $current_user,
           'gravatar_url' => $this->gravatar->get($current_user->email));
-      $this->template->load('templates/admin/users_template', 'admin/users/add', $data);
+      $this->template->load('admin/templates/users', 'admin/users/add', $data);
     }
 
     public function store()
@@ -138,7 +138,7 @@ class Users extends Admin_Controller
             $data['usergroups'][] = $group->id;
         }
       }
-      $this->template->load('templates/admin/users_template', 'admin/users/edit', $data);
+      $this->template->load('admin/templates/users', 'admin/users/edit', $data);
     }
 
     public function update($user_id)

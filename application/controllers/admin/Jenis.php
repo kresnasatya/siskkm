@@ -18,7 +18,7 @@ class Jenis extends Admin_Controller
               'current_user' => $current_user,
               'jenis' => $this->jenis->get_all(),
               'gravatar_url' => $this->gravatar->get($current_user->email));
-      $this->template->load('templates/admin/jenis_template', 'admin/jenis/index', $data);
+      $this->template->load('admin/templates/jenis', 'admin/jenis/index', $data);
     }
 
     public function create()
@@ -27,7 +27,7 @@ class Jenis extends Admin_Controller
       $data = array(
               'current_user' => $current_user,
               'gravatar_url' => $this->gravatar->get($current_user->email));
-      $this->template->load('templates/admin/jenis_template', 'admin/jenis/add', $data);
+      $this->template->load('admin/templates/jenis', 'admin/jenis/add', $data);
     }
 
     public function store()
@@ -54,7 +54,7 @@ class Jenis extends Admin_Controller
                   'jenis' => $row->jenis,
                   'current_user' => $current_user,
                   'gravatar_url' => $this->gravatar->get($current_user->email));
-          $this->template->load('templates/admin/jenis_template', 'admin/jenis/edit', $data);
+          $this->template->load('admin/templates/jenis', 'admin/jenis/edit', $data);
       } else {
           $this->session->set_flashdata('message', "<div style='color:#dd4b39;'>Data tidak ditemukan.</div>");
           redirect(site_url('admin/jenis'));

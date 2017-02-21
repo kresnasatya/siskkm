@@ -15,7 +15,7 @@ class User extends Admin_Controller
         $data = array(
                 'current_user' => $current_user,
                 'gravatar_url' => $this->gravatar->get($current_user->email));
-        $this->template->load('templates/admin/user_template', 'admin/user/index', $data);
+        $this->template->load('admin/templates/user', 'admin/user/index', $data);
     }
 
     public function profil()
@@ -24,7 +24,7 @@ class User extends Admin_Controller
       $data = array(
               'current_user' => $current_user,
               'gravatar_url' => $this->gravatar->get($current_user->email));
-      $this->template->load('templates/admin/user_template', 'admin/user/profil', $data);
+      $this->template->load('admin/templates/user', 'admin/user/profil', $data);
     }
 
     public function update_profil()
@@ -50,7 +50,7 @@ class User extends Admin_Controller
       $data = array(
               'current_user' => $current_user,
               'gravatar_url' => $this->gravatar->get($current_user->email));
-      $this->template->load('templates/admin/user_template', 'admin/user/password', $data);
+      $this->template->load('admin/templates/user', 'admin/user/password', $data);
     }
 
     public function update_password()
