@@ -28,5 +28,7 @@
             </div><!-- /.col -->
         </div>
         <?php echo form_close(); ?>
+        <br>
+        <a href="<?php echo site_url('login'); ?>">Log in?</a>
     </div><!-- /.forgotpassword-box-body -->
 </div><!-- /.forgotpassword-box -->

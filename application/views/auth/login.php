@@ -34,11 +34,12 @@
         <div class="row">
             <div class="col-xs-12">
                 <?php echo form_submit('submit', 'Log in', 'class="btn btn-primary btn-block btn-flat"') ?>
-                <a href="<?php echo site_url('register'); ?>" class="btn btn-primary btn-block btn-flat">Register</a>
             </div><!-- /.col -->
         </div>
         <?php echo form_close(); ?>
         <br>
-        <a href="<?php echo site_url('forgotpassword'); ?>">Lupa Password?</a>
+        <a href="<?php echo site_url('register'); ?>" class="btn btn-primary btn-block btn-flat">Register</a>
+        <br>
+        <a href="<?php echo site_url('forgot_password'); ?>">Lupa Password?</a>
     </div><!-- /.login-box-body -->
 </div><!-- /.login-box -->
