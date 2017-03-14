@@ -5,7 +5,6 @@
     </h1>
     <ol class="breadcrumb">
         <li><a href="<?php echo site_url('admin/pengumuman'); ?>"><i class="fa fa-newspaper-o"></i>Pengumuman</a></li>
-        <li class="active">Data Pengumuman</li>
     </ol>
 </section>
 
@@ -38,7 +37,7 @@
                         <textarea class="textarea" name="isi_pengumuman" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                     </div>
                     <?php echo anchor(site_url('admin/pengumuman'), 'Kembali', 'class="btn btn-default"'); ?>
-                    <?php echo form_submit('submit', 'Tambah', 'class="btn btn-primary"'); ?>
+                    <?php echo form_submit('submit', 'Simpan', 'class="btn btn-primary"'); ?>
                 </div>
                 <?php echo form_close(); ?>
             </div>

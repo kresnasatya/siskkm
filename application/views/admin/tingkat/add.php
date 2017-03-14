@@ -5,7 +5,7 @@
     </h1>
     <ol class="breadcrumb">
         <li><a href="<?php echo site_url('admin/tingkat'); ?>"><i class="fa fa-balance-scale"></i>Bobot SKKM</a></li>
-        <li class="active">Data Tingkat</li>
+        <li class="active">Tingkat</li>
     </ol>
 </section>
 
@@ -45,7 +45,7 @@
                         ?>
                     </div>
                     <?php echo anchor(site_url('admin/tingkat'), 'Kembali', 'class="btn btn-default"'); ?>
-                    <?php echo form_submit('submit', 'Tambah', 'class="btn btn-primary"'); ?>
+                    <?php echo form_submit('submit', 'Simpan', 'class="btn btn-primary"'); ?>
                     <?php echo form_close(); ?>
                 </div>
             </div>

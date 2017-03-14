@@ -5,7 +5,7 @@
     </h1>
     <ol class="breadcrumb">
         <li><a href="<?php echo site_url('admin/prestasi'); ?>"><i class="fa fa-balance-scale"></i>Bobot SKKM</a></li>
-        <li class="active">Data Prestasi</li>
+        <li class="active">Prestasi</li>
     </ol>
 </section>
 
@@ -60,7 +60,7 @@
                     </div>
                     <?php echo form_hidden('id_prestasi', set_value('id_prestasi', $id_prestasi)); ?>
                     <?php echo anchor(site_url('admin/prestasi'), 'Kembali', 'class="btn btn-default"'); ?>
-                    <?php echo form_submit('submit', 'Edit', 'class="btn btn-warning"'); ?>
+                    <?php echo form_submit('submit', 'Simpan', 'class="btn btn-warning"'); ?>
                     <?php echo form_close(); ?>
                 </div>
             </div>

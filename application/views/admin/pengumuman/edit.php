@@ -5,7 +5,6 @@
     </h1>
     <ol class="breadcrumb">
         <li><a href="<?php echo site_url('admin/pengumuman'); ?>"><i class="fa fa-newspaper-o"></i>Pengumuman</a></li>
-        <li class="active">Data Pengumuman</li>
     </ol>
 </section>
 
@@ -39,7 +38,7 @@
                     </div>
                     <?php echo form_hidden('id', $id); ?>
                     <?php echo anchor(site_url('admin/pengumuman'), 'Kembali', 'class="btn btn-default"'); ?>
-                    <?php echo form_submit('submit', 'Edit', 'class="btn btn-warning"'); ?>
+                    <?php echo form_submit('submit', 'Simpan', 'class="btn btn-warning"'); ?>
                 </div>
                 <?php echo form_close(); ?>
             </div>

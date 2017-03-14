@@ -1,12 +1,12 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Data Jenis
-        <small>kelola data jenis di sini</small>
+        Jenis
+        <small>kelola di sini</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="<?php echo site_url('admin/jenis'); ?>"><i class="fa fa-balance-scale"></i>Bobot SKKM</a></li>
-        <li class="active">Data Jenis</li>
+        <li class="active">Jenis</li>
     </ol>
 </section>
 
@@ -16,9 +16,9 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3>Daftar Data Jenis</h3>
+                    <h3>Daftar Jenis</h3>
                     <div class="col-md-4">
-                        <a href="<?php echo site_url('admin/jenis/create'); ?>" class="btn btn-primary">Tambah Jenis</a>
+                        <a href="<?php echo site_url('admin/jenis/create'); ?>" class="btn btn-primary">Tambah</a>
                     </div>
                     <div class="col-md-4 text-center">
                         <div style="margin-top: 4px" id="message">
@@ -40,11 +40,12 @@
                         $start = 0;
                         foreach ($jenis as $row): ?>
                             <tr>
-                                <td><?php echo ++$start ?></td>
+                                <td><?php echo ++$start; ?></td>
+                                <td><?php echo $row->jenis; ?></td>
                                 <td>
-                                    <a href="<?php echo site_url('admin/jenis/edit/' . $row->id_jenis); ?>"><?php echo $row->jenis; ?></a>
-                                </td>
-                                <td><?php
+                                  <?php $ubah = array('class' => 'btn btn-sm btn-warning');
+                                        echo anchor(site_url('admin/jenis/edit/' . $row->id_jenis), 'Ubah', $ubah); ?>
+                                  <?php
                                     $hapus = array(
                                         'class' => 'btn btn-sm btn-danger',
                                         'onclick' => 'javascript: return confirm(\'Anda yakin menghapus ' . $row->jenis . '?\')'
