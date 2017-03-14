@@ -122,11 +122,11 @@
                             class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="<?php echo site_url('admin/jenis'); ?>"><i class="fa fa-circle-o"></i> Data
+                        <li><a href="<?php echo site_url('admin/jenis'); ?>"><i class="fa fa-circle-o"></i>
                                 Jenis</a></li>
-                        <li><a href="<?php echo site_url('admin/tingkat'); ?>"><i class="fa fa-circle-o"></i> Data
+                        <li><a href="<?php echo site_url('admin/tingkat'); ?>"><i class="fa fa-circle-o"></i>
                                 Tingkat</a></li>
-                        <li><a href="<?php echo site_url('admin/prestasi'); ?>"><i class="fa fa-circle-o"></i> Data
+                        <li><a href="<?php echo site_url('admin/prestasi'); ?>"><i class="fa fa-circle-o"></i>
                                 Prestasi</a></li>
                     </ul>
                 </li>
