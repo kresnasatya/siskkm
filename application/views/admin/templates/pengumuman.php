@@ -13,6 +13,9 @@
     <!-- Bootstrap 3.3.5 -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>backend/bootstrap/css/bootstrap.min.css">
 
+    <!-- DataTable -->
+    <link rel="stylesheet" href="<?php echo base_url(); ?>backend/plugins/datatables/datatables.bootstrap.css">
+
     <!-- Theme style -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>backend/dist/css/AdminLTE.min.css">
 
@@ -161,7 +164,7 @@
 </div><!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="<?php echo base_url(); ?>backend/plugins/jQuery/jquery-2.2.3.min.js"></script>
 
 <!-- Bootstrap 3.3.5 -->
 <script src="<?php echo base_url(); ?>backend/bootstrap/js/bootstrap.min.js"></script>
