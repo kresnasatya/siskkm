@@ -183,40 +183,46 @@
 <script>
     $(document).ready(function () {
         $("#userstable").DataTable();
-        var groups = document.querySelector('input[name = "groups[]"]:checked').value;
 
-        // group admin UP2KK
-        if (groups == 1) {
-            document.getElementById('nim').disabled = true;
-            document.getElementById('jurusan').disabled = true;
-            document.getElementById('prodi').disabled = true;
-            document.getElementById('kelas').disabled = true;
-            document.getElementById('semester').disabled = true;
-            document.getElementById('nip').required = true;
-        }
-        // group anggota UP2KK
-        else if (groups == 2) {
-            document.getElementById('nim').disabled = true;
-            document.getElementById('jurusan').disabled = false;
-            document.getElementById('jurusan').required = true;
-            document.getElementById('prodi').disabled = true;
-            document.getElementById('kelas').disabled = true;
-            document.getElementById('semester').disabled = true;
-            document.getElementById('nip').required = true;
-        }
-        // group mahasiswa
-        else if (groups == 3) {
-            document.getElementById('nip').disabled = true;
-            document.getElementById('nim').disabled = false;
-            document.getElementById('nim').required = true;
-            document.getElementById('jurusan').disabled = false;
-            document.getElementById('jurusan').required = true;
-            document.getElementById('prodi').disabled = false;
-            document.getElementById('prodi').required = true;
-            document.getElementById('kelas').disabled = false;
-            document.getElementById('kelas').required = true;
-            document.getElementById('semester').disabled = false;
-            document.getElementById('semester').required = true;
+        // Check that the element exists first
+        var groups,
+        element = document.querySelector('input[name = "groups[]"]:checked');
+        if (element != null) {
+          groups = element.value;
+          switch (groups) {
+            case "1": // admin
+              document.getElementById('nim').disabled = true;
+              document.getElementById('jurusan').disabled = true;
+              document.getElementById('prodi').disabled = true;
+              document.getElementById('kelas').disabled = true;
+              document.getElementById('semester').disabled = true;
+              document.getElementById('nip').required = true;
+            break;
+            case "2": // up2kk
+              document.getElementById('nim').disabled = true;
+              document.getElementById('jurusan').disabled = false;
+              document.getElementById('jurusan').required = true;
+              document.getElementById('prodi').disabled = true;
+              document.getElementById('kelas').disabled = true;
+              document.getElementById('semester').disabled = true;
+              document.getElementById('nip').required = true;
+            break;
+            case "3": // mahasiswa
+              document.getElementById('nip').disabled = true;
+              document.getElementById('nim').disabled = false;
+              document.getElementById('nim').required = true;
+              document.getElementById('jurusan').disabled = false;
+              document.getElementById('jurusan').required = true;
+              document.getElementById('prodi').disabled = false;
+              document.getElementById('prodi').required = true;
+              document.getElementById('kelas').disabled = false;
+              document.getElementById('kelas').required = true;
+              document.getElementById('semester').disabled = false;
+              document.getElementById('semester').required = true;
+            break;
+          }
+        } else {
+          groups = null;
         }
     });
 
