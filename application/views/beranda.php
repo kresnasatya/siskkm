@@ -18,21 +18,19 @@
 
 <div class="container mtb">
     <div class="row">
-        <div class="col-lg-6 col-lg-offset-1">
-            <h4>Tentang SISKKM</h4>
+        <div class="col-md-6">
+            <h4>Tentang</h4>
+            <div class="hline"></div>
             <p>
-                Peringatan!!!<br>
-                Sistem ini masih dalam status uji coba dan pengembangan. Belum siap untuk produksi.
+                Sistem ini dalam status pengembangan.
                 Satuan Kredit Kegiatan Mahasiswa (SKKM) merupakan kredit poin yang harus dipenuhi oleh mahasiswa ketika
                 menempuh pendidikan di kampus Politeknik Negeri Bali.
                 Sistem ini ditujukan kepada mahasiswa untuk mengelola SKKM yang dimiliki dan UP2KK untuk memvalidasi
                 SKKM.
             </p>
-            <p><br/><a href="<?php echo site_url('tentang'); ?>" class="btn btn-theme">Lebih Lanjut</a></p>
         </div>
-
-        <div class="col-lg-3">
-            <h4>Pos Terakhir</h4>
+        <div class="col-md-6">
+            <h4>Pengumuman Terakhir</h4>
             <div class="hline"></div>
             <?php foreach ($pengumuman as $row): ?>
                 <p>
@@ -43,5 +41,34 @@
         </div>
 
     </div>
-    <! --/row -->
-</div><! --/container -->
+    <!-- row -->
+</div><!-- container -->
+
+<div class="container mtb">
+    <div class="row">
+        <div class="col-md-12">
+          <h4>Kritik dan Saran</h4>
+          <?php echo $this->session->userdata('email_sent'); ?>
+          <div class="hline"></div>
+          <p>Pesan kamu sangat berarti bagi sistem ini.</p>
+          <?php
+          $attributes = array('role' => 'form');
+          echo form_open('beranda/kirim_pesan', $attributes); ?>
+          <div class="form-group">
+              <label for="nama">Nama</label>
+              <input type="text" name="nama" class="form-control" id="nama" required="">
+          </div>
+          <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" name="email" class="form-control" id="email" required="">
+          </div>
+          <div class="form-group">
+              <label for="pesan">Pesan</label>
+              <textarea class="form-control" name="pesan" id="pesan" rows="3" required=""></textarea>
+          </div>
+          <?php echo form_submit('submit', 'Kirim', 'class="btn btn-theme form-control"'); ?>
+          <?php echo form_close(); ?>
+        </div>
+    </div>
+    <!-- row -->
+</div><!-- container -->

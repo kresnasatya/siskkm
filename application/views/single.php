@@ -9,7 +9,7 @@
 	 		<div class="col-lg-8">
 				<?php foreach ($single as $row): ?>
 					<a href="<?php echo site_url('pengumuman/'.$row->slug);?>"><h3 class="ctitle"><?php echo $row->judul; ?></h3></a>
-					<p><csmall><?php echo $row->tanggal; ?></csmall> | <csmall2><?php echo $row->nama_depan.' '.$row->nama_belakang; ?></csmall2></p>
+					<p><csmall><?php echo $row->tanggal; ?></csmall> | <csmall2><?php echo $row->nama_lengkap; ?></csmall2></p>
 					<p>
 						<?php echo $row->isi_pengumuman; ?>
 					</p>

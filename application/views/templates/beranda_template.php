@@ -51,12 +51,8 @@
             <ul class="nav navbar-nav">
                 <li class="<?php echo ($this->uri->segment(1) === 'beranda') ? 'active' : ''; ?>"><a
                         href="<?php echo site_url('beranda'); ?>">BERANDA</a></li>
-                <li class="<?php echo ($this->uri->segment(1) === 'tentang') ? 'active' : ''; ?>"><a
-                        href="<?php echo site_url('tentang'); ?>">TENTANG</a></li>
                 <li class="<?php echo ($this->uri->segment(1) === 'pengumuman') ? 'active' : ''; ?>"><a
                         href="<?php echo site_url('pengumuman'); ?>">PENGUMUMAN</a></li>
-                <li class="<?php echo ($this->uri->segment(1) === 'kontak') ? 'active' : ''; ?>"><a
-                        href="<?php echo site_url('kontak'); ?>">KONTAK</a></li>
                 <li><a href="<?php echo site_url('login'); ?>">LOGIN</a></li>
             </ul>
         </div><!--/.nav-collapse -->
@@ -73,30 +69,9 @@
  FOOTER
  ***************************************************************************************************************** -->
 <div id="footerwrap">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <h4>Tentang</h4>
-                <div class="hline-w"></div>
-                <p>Peringatan!!!<br>
-                    Sistem ini masih dalam status uji coba dan pengembangan. Belum untuk produksi.</p>
-            </div>
-            <div class="col-lg-6">
-                <h4>Alamat</h4>
-                <div class="hline-w"></div>
-                <p>
-                    Politeknik Negeri Bali,<br/>
-                    30861, Jimbaran,<br/>
-                    Kuta Selatan, Badung, Bali.<br/>
-                </p>
-            </div>
-
-        </div>
-        <! --/row -->
-    </div>
-    <! --/container -->
+    <!-- Still think about content -->
 </div>
-<! --/footerwrap -->
+<!-- footerwrap -->
 
 
 <!-- Bootstrap core JavaScript

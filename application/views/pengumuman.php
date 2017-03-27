@@ -10,7 +10,7 @@
       <! -- Blog Post 1 -->
       <?php foreach ($pengumuman as $row): ?>
         <a href="<?php echo site_url('pengumuman/'.$row->slug); ?>"><h3 class="ctitle"><?php echo $row->judul; ?></h3></a>
-        <p><csmall>Posted: <?php echo $row->tanggal; ?></csmall> | <csmall2>Oleh: <?php echo $row->nama_depan.' '.$row->nama_belakang; ?></csmall2></p>
+        <p><csmall>Posted: <?php echo $row->tanggal; ?></csmall> | <csmall2>Oleh: <?php echo $row->nama_lengkap; ?></csmall2></p>
         <p><?php echo character_limiter($row->isi_pengumuman, 200); ?></p>
         <p><a href="<?php echo site_url('pengumuman/'.$row->slug); ?>">[Lanjut Baca]</a></p>
         <div class="hline"></div>
